@@ -4,4 +4,7 @@ import me.aartikov.alligator.Screen
 
 object Screens {
     object AuthFlow : Screen
+    object Auth : Screen
+
+    object MainFlow : Screen
 }

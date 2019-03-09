@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.global.network.DisqusApi
+import com.akhbulatov.discusim.data.session.OAuthParams
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -16,6 +17,17 @@ import javax.inject.Singleton
 
 @Module
 object NetworkModule {
+    @JvmStatic
+    @Provides
+    @Singleton
+    fun provideOAuthParams() = OAuthParams(
+        "${BuildConfig.BASE_URL}api/oauth/2.0/authorize/",
+        BuildConfig.CLIENT_ID,
+        BuildConfig.CLIENT_SECRET,
+        BuildConfig.OAUTH_SCOPE,
+        BuildConfig.REDIRECT_URI
+    )
+
     @JvmStatic
     @Provides
     @Singleton
@@ -46,7 +58,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit =
         Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BuildConfig.BASE_API_URL)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
