@@ -1,24 +1,24 @@
-package com.akhbulatov.discusim.presentation.ui.profile
+package com.akhbulatov.discusim.presentation.ui.profile.comments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.UserDetails
-import com.akhbulatov.discusim.domain.profile.ProfileInteractor
+import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.profile.comments.ProfileCommentsInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class ProfileViewModel @Inject constructor(
-    private val profileInteractor: ProfileInteractor,
+class ProfileCommentsViewModel @Inject constructor(
+    private val interactor: ProfileCommentsInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _profile = MutableLiveData<UserDetails>()
-    val profile: LiveData<UserDetails> get() = _profile
+    private val _comments = MutableLiveData<List<Comment>>()
+    val comments: LiveData<List<Comment>> get() = _comments
 
     private val _contentBlock = MutableLiveData<Boolean>()
     val contentBlock: LiveData<Boolean> get() = _contentBlock
@@ -30,11 +30,11 @@ class ProfileViewModel @Inject constructor(
     val contentError: LiveData<String> get() = _contentError
 
     fun setUserId(userId: Long) {
-        loadProfile(userId)
+        loadComments(userId)
     }
 
-    private fun loadProfile(userId: Long) {
-        subscriptions += profileInteractor.getProfile(userId)
+    private fun loadComments(userId: Long) {
+        subscriptions += interactor.getComments(userId)
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _contentBlock.value = false
@@ -44,7 +44,7 @@ class ProfileViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     _contentBlock.value = true
-                    _profile.value = it
+                    _comments.value = it
                 },
                 onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
             )

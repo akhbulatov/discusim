@@ -12,4 +12,7 @@ object Screens {
 
     @Parcelize
     data class Profile(val userId: Long) : Screen, Parcelable
+
+    @Parcelize
+    data class ProfileComments(val userId: Long) : Screen, Parcelable
 }

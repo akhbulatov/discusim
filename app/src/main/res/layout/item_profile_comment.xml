@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/normal_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/authorImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/authorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            app:layout_constraintStart_toEndOf="@id/authorImageView"
+            app:layout_constraintTop_toTopOf="@id/authorImageView"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/createdAtTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/authorTextView"
+            app:layout_constraintTop_toTopOf="@id/authorTextView"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/authorTextView"
+            app:layout_constraintTop_toBottomOf="@id/authorTextView"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/upvotesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:drawableEnd="@drawable/ic_arrow_upward"
+            app:layout_constraintStart_toStartOf="@id/authorTextView"
+            app:layout_constraintTop_toBottomOf="@id/messageTextView"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/downvotesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:drawableEnd="@drawable/ic_arrow_downward"
+            app:layout_constraintStart_toEndOf="@id/upvotesTextView"
+            app:layout_constraintTop_toTopOf="@id/upvotesTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
