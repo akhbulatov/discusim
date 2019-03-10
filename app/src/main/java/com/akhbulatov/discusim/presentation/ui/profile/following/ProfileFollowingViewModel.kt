@@ -33,10 +33,9 @@ class ProfileFollowingViewModel @Inject constructor(
     }
 
     private fun loadFollowing(userId: Long, followingType: ProfileFollowingType) {
-        val followingRequest = if (followingType == ProfileFollowingType.USER) {
-            interactor.getFollowingUsers(userId)
-        } else {
-            interactor.getFollowingUsers(userId) // TODO
+        val followingRequest = when (followingType) {
+            ProfileFollowingType.USER -> interactor.getFollowingUsers(userId)
+            ProfileFollowingType.FORUM -> interactor.getFollowingForums(userId)
         }
 
         subscriptions += followingRequest

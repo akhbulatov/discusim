@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
+import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.global.utils.inflate
@@ -31,6 +32,10 @@ class ProfileFollowingAdapter : ListAdapter<Any, ProfileFollowingAdapter.Followi
                 avatarUrl = item.avatar.small.link
                 name = item.name
                 about = item.about
+            } else if (item is Forum) {
+                avatarUrl = item.favicon.link
+                name = item.name
+                about = item.description ?: item.url
             }
 
             Glide.with(itemView)
@@ -48,12 +53,16 @@ class ProfileFollowingAdapter : ListAdapter<Any, ProfileFollowingAdapter.Followi
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
                 if (oldItem is User && newItem is User) {
                     return oldItem.id == newItem.id
+                } else if (oldItem is Forum && newItem is Forum) {
+                    return oldItem.pk == newItem.pk
                 }
                 return false
             }
 
             override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
                 if (oldItem is User && newItem is User) {
+                    return oldItem == newItem
+                } else if (oldItem is Forum && newItem is Forum) {
                     return oldItem == newItem
                 }
                 return false
