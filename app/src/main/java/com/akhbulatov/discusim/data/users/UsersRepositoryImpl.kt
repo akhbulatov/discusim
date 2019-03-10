@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.data.users
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.domain.global.repositories.UsersRepository
 import io.reactivex.Single
@@ -21,6 +22,11 @@ class UsersRepositoryImpl @Inject constructor(
 
     override fun getUserComments(userId: Long): Single<List<Comment>> =
         api.getUserComments(userId)
+            .map { usersResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
+    override fun getFollowingUsers(userId: Long): Single<List<User>> =
+        api.getFollowingUsers(userId)
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }
