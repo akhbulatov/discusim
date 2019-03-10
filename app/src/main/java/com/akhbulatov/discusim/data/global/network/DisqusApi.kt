@@ -1,7 +1,8 @@
 package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
-import com.akhbulatov.discusim.data.users.UserResponse
+import com.akhbulatov.discusim.data.users.UserCommentsResponse
+import com.akhbulatov.discusim.data.users.UserDetailsResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
 import io.reactivex.Single
 import retrofit2.http.Field
@@ -22,5 +23,8 @@ interface DisqusApi {
     ): Single<Auth>
 
     @GET("users/details.json")
-    fun getUser(@Query("user") userId: Long): Single<UserResponse>
+    fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
+
+    @GET("users/listPosts.json")
+    fun getUserComments(@Query("user") userId: Long): Single<UserCommentsResponse>
 }

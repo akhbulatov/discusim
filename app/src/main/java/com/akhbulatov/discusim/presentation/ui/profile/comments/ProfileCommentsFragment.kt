@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.profile
+package com.akhbulatov.discusim.presentation.ui.profile.comments
 
 import android.os.Bundle
 import android.view.View
@@ -6,70 +6,63 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
-import com.bumptech.glide.Glide
+import com.akhbulatov.discusim.presentation.global.widgets.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.fragment_profile_comments.*
 import me.aartikov.alligator.ScreenResolver
 import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Profile::class)
-class ProfileFragment : BaseFragment() {
+@RegisterScreen(Screens.ProfileComments::class)
+class ProfileCommentsFragment : BaseFragment() {
     @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: ProfileCommentsViewModel
+    private val commentsAdapter = ProfileCommentsAdapter()
 
-    override val layoutRes: Int = R.layout.fragment_profile
+    override val layoutRes: Int = R.layout.fragment_profile_comments
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.Profile>(this)
+        val screen = screenResolver.getScreen<Screens.ProfileComments>(this)
         val userId = screen.userId
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileViewModel::class.java]
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileCommentsViewModel::class.java]
         viewModel.setUserId(userId)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        commentsRecyclerView.run {
+            setHasFixedSize(true)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = commentsAdapter
+        }
         observeChanges()
     }
 
     private fun observeChanges() {
-        viewModel.profile.observe(this, Observer { showProfile(it) })
+        viewModel.comments.observe(this, Observer { showComments(it) })
         viewModel.contentBlock.observe(this, Observer { showContentBlock(it) })
         viewModel.contentProgress.observe(this, Observer { showProgress(it) })
         viewModel.contentError.observe(this, Observer { showError(it) })
     }
 
-    private fun showProfile(userDetails: UserDetails) {
-        userDetails.let {
-            toolbar.title = userDetails.username
-
-            Glide.with(this@ProfileFragment)
-                .load(it.avatar.large.link)
-                .placeholder(R.drawable.img_user_placeholder)
-                .into(avatarImageView)
-
-            nameTextView.text = it.name
-            usernameTextView.text = it.username
-            aboutTextView.text = it.about
-            upvotesTextView.text = it.upvotes.toString()
-            locationTextView.text = it.location
-            websiteTextView.text = it.url
-            joinedAtTextView.text = it.joinedAt
-        }
+    private fun showComments(comments: List<Comment>) {
+        commentsAdapter.submitList(comments)
     }
 
     private fun showContentBlock(show: Boolean) {
-        contentLayout.isVisible = show
+        commentsRecyclerView.isVisible = show
     }
 
     private fun showProgress(show: Boolean) {
