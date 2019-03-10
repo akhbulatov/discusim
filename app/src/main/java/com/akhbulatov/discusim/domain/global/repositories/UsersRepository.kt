@@ -8,7 +8,10 @@ import io.reactivex.Single
 
 interface UsersRepository {
     fun getUser(userId: Long): Single<UserDetails>
+
     fun getUserComments(userId: Long): Single<List<Comment>>
+
+    fun getFollowers(userId: Long): Single<List<User>>
     fun getFollowingUsers(userId: Long): Single<List<User>>
     fun getFollowingForums(userId: Long): Single<List<Forum>>
 }

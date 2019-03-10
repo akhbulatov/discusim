@@ -30,6 +30,9 @@ interface DisqusApi {
     @GET("users/listPosts.json")
     fun getUserComments(@Query("user") userId: Long): Single<UserCommentsResponse>
 
+    @GET("users/listFollowers.json")
+    fun getFollowers(@Query("user") userId: Long): Single<UsersResponse>
+
     @GET("users/listFollowing.json")
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
 
