@@ -26,6 +26,11 @@ class UsersRepositoryImpl @Inject constructor(
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
+    override fun getFollowers(userId: Long): Single<List<User>> =
+        api.getFollowers(userId)
+            .map { usersResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
     override fun getFollowingUsers(userId: Long): Single<List<User>> =
         api.getFollowingUsers(userId)
             .map { usersResponseMapper.map(it) }
