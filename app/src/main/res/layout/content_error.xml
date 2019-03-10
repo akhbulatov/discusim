@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/normal_margin"
-    android:visibility="gone"
-    tools:visibility="visible">
+    android:visibility="gone">
 
     <TextView
         android:id="@+id/contentErrorTextView"
