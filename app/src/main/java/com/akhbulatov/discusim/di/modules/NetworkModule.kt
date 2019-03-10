@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.global.network.DisqusApi
+import com.akhbulatov.discusim.data.global.network.interceptors.AuthInterceptor
 import com.akhbulatov.discusim.data.session.OAuthParams
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -41,9 +42,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authInterceptor: AuthInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(authInterceptor)
         .build()
 
     @JvmStatic

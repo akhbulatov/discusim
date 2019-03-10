@@ -1,11 +1,14 @@
 package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
+import com.akhbulatov.discusim.data.users.UserResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
 import io.reactivex.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface DisqusApi {
     @FormUrlEncoded
@@ -17,4 +20,7 @@ interface DisqusApi {
         @Field("redirect_uri") redirectUri: String,
         @Field("code") code: String
     ): Single<Auth>
+
+    @GET("users/details.json")
+    fun getUser(@Query("user") userId: Long): Single<UserResponse>
 }
