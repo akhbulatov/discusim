@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.data.users.UserForumsResponse
 import com.akhbulatov.discusim.data.users.UsersResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
 import io.reactivex.Single
+import okhttp3.ResponseBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -26,6 +27,9 @@ interface DisqusApi {
 
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
+
+    @GET("users/listActivity.json")
+    fun getUserActivities(@Query("user") userId: Long): Single<ResponseBody>
 
     @GET("users/listPosts.json")
     fun getUserComments(@Query("user") userId: Long): Single<UserCommentsResponse>
