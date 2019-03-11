@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/commentsRecyclerView"
+        android:id="@+id/postsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/grey_50"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="2"
-        tools:listitem="@layout/item_profile_comment" />
+        tools:listitem="@layout/item_profile_post" />
 
     <include layout="@layout/content_progress" />
 

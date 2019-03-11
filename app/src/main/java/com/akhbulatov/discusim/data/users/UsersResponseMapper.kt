@@ -2,8 +2,8 @@ package com.akhbulatov.discusim.data.users
 
 import com.akhbulatov.discusim.data.global.network.models.ActivityNetModel
 import com.akhbulatov.discusim.domain.global.models.Activity
-import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.domain.global.models.VoteType
@@ -13,8 +13,8 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 class UsersResponseMapper @Inject constructor(moshi: Moshi) {
-    private val activityMainAdapter = moshi.adapter(ActivityNetModel.Main::class.java)
-    private val activityPostAdapter = moshi.adapter(ActivityNetModel.Post::class.java)
+    private val activityMainAdapter = moshi.adapter(ActivityNetModel.MainNet::class.java)
+    private val activityPostAdapter = moshi.adapter(ActivityNetModel.PostNet::class.java)
 
     fun map(response: UsersResponse): List<User> = response.users
     fun map(response: UserDetailsResponse): UserDetails = response.userDetails
@@ -66,6 +66,6 @@ class UsersResponseMapper @Inject constructor(moshi: Moshi) {
         return activities
     }
 
-    fun map(response: UserCommentsResponse): List<Comment> = response.comments
+    fun map(response: UserPostsResponse): List<Post> = response.posts
     fun map(response: UserForumsResponse): List<Forum> = response.forums
 }

@@ -1,28 +1,28 @@
-package com.akhbulatov.discusim.presentation.ui.profile.comments
+package com.akhbulatov.discusim.presentation.ui.profile.posts
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.presentation.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.global.utils.inflate
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_profile_comment.*
+import kotlinx.android.synthetic.main.item_profile_post.*
 
-class ProfileCommentsAdapter : ListAdapter<Comment, ProfileCommentsAdapter.CommentViewHolder>(COMMENT_DIFF_CALLBACK) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val itemView = parent.inflate(R.layout.item_profile_comment)
-        return CommentViewHolder(itemView)
+class ProfilePostsAdapter : ListAdapter<Post, ProfilePostsAdapter.PostViewHolder>(DIFF_CALLBACK) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        val itemView = parent.inflate(R.layout.item_profile_post)
+        return PostViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class CommentViewHolder(itemView: View) : BaseViewHolder<Comment>(itemView) {
-        override fun bind(item: Comment) {
+    class PostViewHolder(itemView: View) : BaseViewHolder<Post>(itemView) {
+        override fun bind(item: Post) {
             item.let {
                 Glide.with(itemView)
                     .load(it.author.avatar.small.link)
@@ -38,11 +38,11 @@ class ProfileCommentsAdapter : ListAdapter<Comment, ProfileCommentsAdapter.Comme
     }
 
     companion object {
-        val COMMENT_DIFF_CALLBACK = object : DiffUtil.ItemCallback<Comment>() {
-            override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean =
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
+            override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Comment, newItem: Comment): Boolean =
+            override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean =
                 oldItem == newItem
         }
     }

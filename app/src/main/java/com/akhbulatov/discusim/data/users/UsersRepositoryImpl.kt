@@ -3,8 +3,8 @@ package com.akhbulatov.discusim.data.users
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Activity
-import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.domain.global.repositories.UsersRepository
@@ -27,8 +27,8 @@ class UsersRepositoryImpl @Inject constructor(
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun getUserComments(userId: Long): Single<List<Comment>> =
-        api.getUserComments(userId)
+    override fun getUserPosts(userId: Long): Single<List<Post>> =
+        api.getUserPosts(userId)
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 

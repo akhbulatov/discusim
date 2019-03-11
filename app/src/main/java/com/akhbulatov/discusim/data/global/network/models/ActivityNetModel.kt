@@ -1,13 +1,13 @@
 package com.akhbulatov.discusim.data.global.network.models
 
-import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.global.models.User
 import com.squareup.moshi.Json
 
 sealed class ActivityNetModel {
-    data class Main(
+    data class MainNet(
         @Json(name = "object") val common: Common,
         @Json(name = "type") val type: String,
         @Json(name = "createdAt") val createdAt: String
@@ -22,8 +22,8 @@ sealed class ActivityNetModel {
         )
     }
 
-    data class Post(
-        @Json(name = "object") val post: Comment,
+    data class PostNet(
+        @Json(name = "object") val post: Post,
         @Json(name = "type") val type: String,
         @Json(name = "createdAt") val createdAt: String
     ) : ActivityNetModel()

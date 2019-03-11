@@ -18,7 +18,7 @@ object Screens {
     data class ProfileActivities(val userId: Long): Screen, Parcelable
 
     @Parcelize
-    data class ProfileComments(val userId: Long) : Screen, Parcelable
+    data class ProfilePosts(val userId: Long) : Screen, Parcelable
 
     @Parcelize
     data class ProfileFollowers(val userId: Long) : Screen, Parcelable

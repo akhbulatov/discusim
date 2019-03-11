@@ -1,9 +1,9 @@
 package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
-import com.akhbulatov.discusim.data.users.UserCommentsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
 import com.akhbulatov.discusim.data.users.UserForumsResponse
+import com.akhbulatov.discusim.data.users.UserPostsResponse
 import com.akhbulatov.discusim.data.users.UsersResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
 import io.reactivex.Single
@@ -32,7 +32,7 @@ interface DisqusApi {
     fun getUserActivities(@Query("user") userId: Long): Single<ResponseBody>
 
     @GET("users/listPosts.json")
-    fun getUserComments(@Query("user") userId: Long): Single<UserCommentsResponse>
+    fun getUserPosts(@Query("user") userId: Long): Single<UserPostsResponse>
 
     @GET("users/listFollowers.json")
     fun getFollowers(@Query("user") userId: Long): Single<UsersResponse>

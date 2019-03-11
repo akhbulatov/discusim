@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.domain.global.models
 
 data class Activity(
     val main: Main? = null,
-    val post: Comment? = null,
+    val post: Post? = null,
     val type: Type,
     val createdAt: String
 ) {
