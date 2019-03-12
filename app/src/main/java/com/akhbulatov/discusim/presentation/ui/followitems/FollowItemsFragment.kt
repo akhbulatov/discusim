@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.profile.following
+package com.akhbulatov.discusim.presentation.ui.followitems
 
 import android.os.Bundle
 import android.view.View
@@ -14,55 +14,55 @@ import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
-import kotlinx.android.synthetic.main.fragment_profile_following.*
+import kotlinx.android.synthetic.main.fragment_follow_items.*
 import me.aartikov.alligator.ScreenResolver
 import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.ProfileFollowing::class)
-class ProfileFollowingFragment : BaseFragment() {
+@RegisterScreen(Screens.FollowItems::class)
+class FollowItemsFragment : BaseFragment() {
     @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ProfileFollowingViewModel
-    private val followingAdapter = ProfileFollowingAdapter()
+    private lateinit var viewModel: FollowItemsViewModel
+    private val followItemsAdapter = FollowItemsAdapter()
 
-    override val layoutRes: Int = R.layout.fragment_profile_following
+    override val layoutRes: Int = R.layout.fragment_follow_items
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.ProfileFollowing>(this)
-        val userId = screen.userId
-        val followingType = screen.type
+        val screen = screenResolver.getScreen<Screens.FollowItems>(this)
+        val itemId = screen.itemId
+        val followType = screen.type
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileFollowingViewModel::class.java]
-        viewModel.setInitialData(userId, followingType)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[FollowItemsViewModel::class.java]
+        viewModel.setInitialData(itemId, followType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        followingRecyclerView.run {
+        followItemsRecyclerView.run {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            adapter = followingAdapter
+            adapter = followItemsAdapter
         }
         observeChanges()
     }
 
     private fun observeChanges() {
-        viewModel.following.observe(this, Observer { showFollowing(it) })
+        viewModel.followItems.observe(this, Observer { showFollowItems(it) })
         viewModel.contentBlock.observe(this, Observer { showContentBlock(it) })
         viewModel.contentProgress.observe(this, Observer { showProgress(it) })
         viewModel.contentError.observe(this, Observer { showError(it) })
     }
 
-    private fun showFollowing(following: List<Any>) {
-        followingAdapter.submitList(following)
+    private fun showFollowItems(followItems: List<Any>) {
+        followItemsAdapter.submitList(followItems)
     }
 
     private fun showContentBlock(show: Boolean) {
-        followingRecyclerView.isVisible = show
+        followItemsRecyclerView.isVisible = show
     }
 
     private fun showProgress(show: Boolean) {

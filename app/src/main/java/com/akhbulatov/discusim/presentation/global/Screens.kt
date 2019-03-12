@@ -1,7 +1,7 @@
 package com.akhbulatov.discusim.presentation.global
 
 import android.os.Parcelable
-import com.akhbulatov.discusim.presentation.ui.profile.following.ProfileFollowingType
+import com.akhbulatov.discusim.presentation.ui.followitems.FollowItemType
 import kotlinx.android.parcel.Parcelize
 import me.aartikov.alligator.Screen
 
@@ -15,14 +15,17 @@ object Screens {
     data class Profile(val userId: Long) : Screen, Parcelable
 
     @Parcelize
-    data class ProfileActivities(val userId: Long): Screen, Parcelable
+    data class ProfileActivities(val userId: Long) : Screen, Parcelable
 
     @Parcelize
     data class ProfilePosts(val userId: Long) : Screen, Parcelable
 
     @Parcelize
-    data class ProfileFollowers(val userId: Long) : Screen, Parcelable
+    data class FollowItems(val itemId: String, val type: FollowItemType) : Screen, Parcelable
 
     @Parcelize
-    data class ProfileFollowing(val userId: Long, val type: ProfileFollowingType) : Screen, Parcelable
+    data class Forum(val forumId: String) : Screen, Parcelable
+
+    @Parcelize
+    data class Threads(val forumId: String) : Screen, Parcelable
 }

@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.data.users
 
 import com.akhbulatov.discusim.data.global.network.models.ActivityNetModel
+import com.akhbulatov.discusim.data.threads.ThreadsResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Activity
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.Post
@@ -12,7 +13,10 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import javax.inject.Inject
 
-class UsersResponseMapper @Inject constructor(moshi: Moshi) {
+class UsersResponseMapper @Inject constructor(
+    moshi: Moshi,
+    private val threadsResponseMapper: ThreadsResponseMapper
+) {
     private val activityMainAdapter = moshi.adapter(ActivityNetModel.MainNet::class.java)
     private val activityPostAdapter = moshi.adapter(ActivityNetModel.PostNet::class.java)
 
@@ -40,7 +44,7 @@ class UsersResponseMapper @Inject constructor(moshi: Moshi) {
                             -1 -> VoteType.DOWNVOTE
                             else -> VoteType.NOT_VOTE
                         },
-                        it.thread,
+                        threadsResponseMapper.map(it.thread),
                         it.forum,
                         it.author
                     )
