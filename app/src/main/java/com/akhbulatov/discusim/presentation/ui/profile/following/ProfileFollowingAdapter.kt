@@ -54,7 +54,7 @@ class ProfileFollowingAdapter : ListAdapter<Any, ProfileFollowingAdapter.Followi
                 if (oldItem is User && newItem is User) {
                     return oldItem.id == newItem.id
                 } else if (oldItem is Forum && newItem is Forum) {
-                    return oldItem.pk == newItem.pk
+                    return oldItem.id == newItem.id
                 }
                 return false
             }
