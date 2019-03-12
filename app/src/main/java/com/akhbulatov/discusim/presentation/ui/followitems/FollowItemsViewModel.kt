@@ -37,7 +37,7 @@ class FollowItemsViewModel @Inject constructor(
             FollowItemType.FOLLOWING_USER -> interactor.getFollowingUsers(itemId.toLong())
             FollowItemType.FOLLOWING_FORUM -> interactor.getFollowingForums(itemId.toLong())
             FollowItemType.FOLLOWER -> interactor.getFollowers(itemId.toLong())
-            FollowItemType.TOP_COMMENTERS -> interactor.getTopCommenters(itemId)
+            FollowItemType.TOP_COMMENTER -> interactor.getTopCommenters(itemId)
         }
 
         subscriptions += followItemsRequest

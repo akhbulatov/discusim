@@ -8,5 +8,5 @@ enum class FollowItemType : Parcelable {
     FOLLOWING_USER,
     FOLLOWING_FORUM,
     FOLLOWER,
-    TOP_COMMENTERS
+    TOP_COMMENTER
 }

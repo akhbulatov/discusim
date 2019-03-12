@@ -27,7 +27,7 @@ class ForumPagerAdapter(
             else -> {
                 val screenImpl = navigationFactory.getScreenImplementation(Screens.FollowItems::class.java)
                 (screenImpl as FragmentScreenImplementation).createFragment(
-                    Screens.FollowItems("itcua", FollowItemType.TOP_COMMENTERS)
+                    Screens.FollowItems("itcua", FollowItemType.TOP_COMMENTER)
                 ) // TODO
             }
         }
