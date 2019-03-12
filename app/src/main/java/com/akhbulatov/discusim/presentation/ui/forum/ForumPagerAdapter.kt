@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.ui.followitems.FollowItemType
 import me.aartikov.alligator.navigationfactories.NavigationFactory
 import me.aartikov.alligator.screenimplementations.FragmentScreenImplementation
 
@@ -24,8 +25,10 @@ class ForumPagerAdapter(
             }
 
             else -> {
-                val screenImpl = navigationFactory.getScreenImplementation(Screens.Threads::class.java)
-                (screenImpl as FragmentScreenImplementation).createFragment(Screens.Threads("space")) // TODO
+                val screenImpl = navigationFactory.getScreenImplementation(Screens.FollowItems::class.java)
+                (screenImpl as FragmentScreenImplementation).createFragment(
+                    Screens.FollowItems("itcua", FollowItemType.TOP_COMMENTERS)
+                ) // TODO
             }
         }
 
