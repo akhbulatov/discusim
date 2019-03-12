@@ -48,6 +48,9 @@ interface DisqusApi {
     @GET("forums/details.json")
     fun getForumDetails(@Query("forum") forumId: String): Single<ForumResponse>
 
+    @GET("forums/listMostActiveUsers.json")
+    fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
+
     @GET("forums/listThreads.json")
     fun getThreads(
         @Query("forum") forumId: String,

@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.profile.followers
+package com.akhbulatov.discusim.presentation.ui.followitems
 
 import android.os.Bundle
 import android.view.View
@@ -10,59 +10,59 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
-import kotlinx.android.synthetic.main.fragment_profile_followers.*
+import kotlinx.android.synthetic.main.fragment_follow_items.*
 import me.aartikov.alligator.ScreenResolver
 import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.ProfileFollowers::class)
-class ProfileFollowersFragment : BaseFragment() {
+@RegisterScreen(Screens.FollowItems::class)
+class FollowItemsFragment : BaseFragment() {
     @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ProfileFollowersViewModel
-    private val followersAdapter = ProfileFollowersAdapter()
+    private lateinit var viewModel: FollowItemsViewModel
+    private val followItemsAdapter = FollowItemsAdapter()
 
-    override val layoutRes: Int = R.layout.fragment_profile_followers
+    override val layoutRes: Int = R.layout.fragment_follow_items
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.ProfileFollowers>(this)
-        val userId = screen.userId
+        val screen = screenResolver.getScreen<Screens.FollowItems>(this)
+        val itemId = screen.itemId
+        val followType = screen.type
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileFollowersViewModel::class.java]
-        viewModel.setUserId(userId)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[FollowItemsViewModel::class.java]
+        viewModel.setInitialData(itemId, followType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        followersRecyclerView.run {
+        followItemsRecyclerView.run {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-            adapter = followersAdapter
+            adapter = followItemsAdapter
         }
         observeChanges()
     }
 
     private fun observeChanges() {
-        viewModel.followers.observe(this, Observer { showFollowers(it) })
+        viewModel.followItems.observe(this, Observer { showFollowItems(it) })
         viewModel.contentBlock.observe(this, Observer { showContentBlock(it) })
         viewModel.contentProgress.observe(this, Observer { showProgress(it) })
         viewModel.contentError.observe(this, Observer { showError(it) })
     }
 
-    private fun showFollowers(followers: List<User>) {
-        followersAdapter.submitList(followers)
+    private fun showFollowItems(followItems: List<Any>) {
+        followItemsAdapter.submitList(followItems)
     }
 
     private fun showContentBlock(show: Boolean) {
-        followersRecyclerView.isVisible = show
+        followItemsRecyclerView.isVisible = show
     }
 
     private fun showProgress(show: Boolean) {
