@@ -1,23 +1,24 @@
-package com.akhbulatov.discusim.presentation.ui.followitems
+package com.akhbulatov.discusim.presentation.ui.users
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.akhbulatov.discusim.domain.followitems.FollowItemsInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.users.UsersInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class FollowItemsViewModel @Inject constructor(
-    private val interactor: FollowItemsInteractor,
+class UsersViewModel @Inject constructor(
+    private val interactor: UsersInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _followItems = MutableLiveData<List<Any>>()
-    val followItems: LiveData<List<Any>> get() = _followItems
+    private val _users = MutableLiveData<List<User>>()
+    val users: LiveData<List<User>> get() = _users
 
     private val _contentBlock = MutableLiveData<Boolean>()
     val contentBlock: LiveData<Boolean> get() = _contentBlock
@@ -28,19 +29,18 @@ class FollowItemsViewModel @Inject constructor(
     private val _contentError = MutableLiveData<String>()
     val contentError: LiveData<String> get() = _contentError
 
-    fun setInitialData(itemId: String, followType: FollowItemType) {
-        loadFollowing(itemId, followType)
+    fun setInitialData(userId: String, userType: UserType) {
+        loadUsers(userId, userType)
     }
 
-    private fun loadFollowing(itemId: String, followType: FollowItemType) {
-        val followItemsRequest = when (followType) {
-            FollowItemType.FOLLOWING_USER -> interactor.getFollowingUsers(itemId.toLong())
-            FollowItemType.FOLLOWING_FORUM -> interactor.getFollowingForums(itemId.toLong())
-            FollowItemType.FOLLOWER -> interactor.getFollowers(itemId.toLong())
-            FollowItemType.TOP_COMMENTER -> interactor.getTopCommenters(itemId)
+    private fun loadUsers(itemId: String, userType: UserType) {
+        val usersRequest = when (userType) {
+            UserType.FOLLOWING -> interactor.getFollowingUsers(itemId.toLong())
+            UserType.FOLLOWER -> interactor.getFollowers(itemId.toLong())
+            UserType.TOP_COMMENTER -> interactor.getTopCommenters(itemId)
         }
 
-        subscriptions += followItemsRequest
+        subscriptions += usersRequest
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _contentBlock.value = false
@@ -50,7 +50,7 @@ class FollowItemsViewModel @Inject constructor(
             .subscribeBy(
                 onSuccess = {
                     _contentBlock.value = true
-                    _followItems.value = it
+                    _users.value = it
                 },
                 onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
             )
