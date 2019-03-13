@@ -1,21 +1,18 @@
-package com.akhbulatov.discusim.presentation.channel
+package com.akhbulatov.discusim.presentation.channeldetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.akhbulatov.discusim.domain.channel.ChannelInteractor
+import com.akhbulatov.discusim.domain.channeldetails.ChannelDetailsInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import me.aartikov.alligator.Navigator
 import javax.inject.Inject
 
-class ChannelViewModel @Inject constructor(
-    private val navigator: Navigator,
-    private val interactor: ChannelInteractor,
+class ChannelDetailsViewModel @Inject constructor(
+    private val interactor: ChannelDetailsInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
@@ -40,6 +37,4 @@ class ChannelViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) {} } // TODO
             )
     }
-
-    fun onAboutClicked(forumId: String) = navigator.goForward(Screens.ChannelDetails(forumId))
 }

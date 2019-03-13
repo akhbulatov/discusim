@@ -38,6 +38,7 @@ class UsersViewModel @Inject constructor(
             UserType.FOLLOWING -> interactor.getFollowingUsers(itemId.toLong())
             UserType.FOLLOWER -> interactor.getFollowers(itemId.toLong())
             UserType.TOP_COMMENTER -> interactor.getTopCommenters(itemId)
+            UserType.MODERATOR -> interactor.getModerators(itemId)
         }
 
         subscriptions += usersRequest

@@ -15,12 +15,12 @@ class ForumsResponseMapper @Inject constructor() {
                 it.description,
                 it.favicon.link,
                 it.url,
+                it.numThreads,
+                it.numFollowers,
+                it.numModerators,
                 it.channel?.let { channel ->
                     Forum.Channel(
-                        channel.id,
-                        channel.name,
                         channel.bannerColor,
-                        channel.options.description,
                         "http:${channel.options.backgroundUrl}", // TODO Добавить коммент про CDN
                         "http:${channel.options.logo.url}", // TODO Добавить коммент про CDN
                         channel.options.guidelinesUrl
