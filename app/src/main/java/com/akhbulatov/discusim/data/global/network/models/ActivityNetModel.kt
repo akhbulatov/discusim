@@ -1,6 +1,5 @@
 package com.akhbulatov.discusim.data.global.network.models
 
-import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.User
 import com.squareup.moshi.Json
@@ -16,7 +15,7 @@ sealed class ActivityNetModel {
             @Json(name = "id") val id: String,
             @Json(name = "vote") val vote: Int,
             @Json(name = "thread") val thread: ThreadNetModel,
-            @Json(name = "forum") val forum: Forum,
+            @Json(name = "forum") val forum: ForumNetModel,
             @Json(name = "author") val author: User
         )
     }

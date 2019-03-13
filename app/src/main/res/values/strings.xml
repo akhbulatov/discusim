@@ -7,4 +7,7 @@
 
     <!-- Auth -->
     <string name="auth_title">Authorization</string>
+
+    <!-- Channel -->
+    <string name="channel_about">About</string>
 </resources>

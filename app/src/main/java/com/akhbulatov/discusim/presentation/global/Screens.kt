@@ -30,5 +30,8 @@ object Screens {
     data class Forums(val userId: Long) : Screen, Parcelable
 
     @Parcelize
+    data class Channel(val forumId: String) : Screen, Parcelable
+
+    @Parcelize
     data class Threads(val forumId: String) : Screen, Parcelable
 }
