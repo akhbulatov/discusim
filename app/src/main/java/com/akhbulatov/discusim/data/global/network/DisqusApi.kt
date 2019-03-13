@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forums.ForumResponse
+import com.akhbulatov.discusim.data.forums.ModeratorsResponse
 import com.akhbulatov.discusim.data.threads.ThreadsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
 import com.akhbulatov.discusim.data.users.UserForumsResponse
@@ -59,4 +60,7 @@ interface DisqusApi {
 
     @GET("forums/listMostActiveUsers.json")
     fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
+
+    @GET("forums/listModerators.json")
+    fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
 }

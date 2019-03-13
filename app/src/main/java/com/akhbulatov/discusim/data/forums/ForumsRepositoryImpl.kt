@@ -33,4 +33,9 @@ class ForumsRepositoryImpl @Inject constructor(
         api.getForumMostActiveUsers(forumId)
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+
+    override fun getModerators(forumId: String): Single<List<User>> =
+        api.getForumModerators(forumId)
+            .map { usersResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
 }

@@ -14,11 +14,12 @@ import kotlinx.android.synthetic.main.fragment_channel_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import me.aartikov.alligator.ScreenResolver
 import me.aartikov.alligator.annotations.RegisterScreen
+import me.aartikov.alligator.navigationfactories.NavigationFactory
 import javax.inject.Inject
 
 @RegisterScreen(Screens.ChannelDetails::class)
 class ChannelDetailsFragment : BaseFragment() {
-    //    @Inject lateinit var navigationFactory: NavigationFactory
+    @Inject lateinit var navigationFactory: NavigationFactory
     @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
@@ -38,7 +39,7 @@ class ChannelDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-//        setupPager()
+        setupPager()
         observeChanges()
     }
 
@@ -49,10 +50,10 @@ class ChannelDetailsFragment : BaseFragment() {
         }
     }
 
-//    private fun setupPager() {
-//        channelDetailsPager.adapter = ChannelDetailsPagerAdapter(childFragmentManager, navigationFactory)
-//        channelDetailsTabLayout.setupWithViewPager(channelDetailsPager)
-//    }
+    private fun setupPager() {
+        channelDetailsPager.adapter = ChannelDetailsPagerAdapter(childFragmentManager, navigationFactory)
+        channelDetailsTabLayout.setupWithViewPager(channelDetailsPager)
+    }
 
     private fun observeChanges() {
         viewModel.forum.observe(this, Observer { showChannelDetails(it) })
@@ -76,6 +77,8 @@ class ChannelDetailsFragment : BaseFragment() {
                 val count = resources.getQuantityString(R.plurals.channel_details_num_followers, followers, followers)
                 numFollowersTextView.text = count
             }
+
+            channelDetailsTabLayout.getTabAt(0)?.text = "Mods ${forum.numModerators}" // TODO
         }
     }
 

@@ -16,4 +16,6 @@ class UsersInteractor @Inject constructor(
     fun getFollowers(userId: Long): Single<List<User>> = usersRepository.getFollowers(userId)
 
     fun getTopCommenters(forumId: String): Single<List<User>> = forumsRepository.getTopCommenters(forumId)
+
+    fun getModerators(forumId: String): Single<List<User>> = forumsRepository.getModerators(forumId)
 }

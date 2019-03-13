@@ -9,4 +9,5 @@ interface ForumsRepository {
     fun getForumDetails(forumId: String): Single<Forum>
     fun getThreads(forumId: String): Single<List<Thread>>
     fun getTopCommenters(forumId: String): Single<List<User>>
+    fun getModerators(forumId: String): Single<List<User>>
 }

@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 enum class UserType : Parcelable {
     FOLLOWING,
     FOLLOWER,
-    TOP_COMMENTER
+    TOP_COMMENTER,
+    MODERATOR
 }

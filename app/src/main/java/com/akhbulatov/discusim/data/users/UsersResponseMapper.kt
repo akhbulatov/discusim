@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.data.users
 
 import com.akhbulatov.discusim.data.forums.ForumsResponseMapper
+import com.akhbulatov.discusim.data.forums.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.ActivityNetModel
 import com.akhbulatov.discusim.data.threads.ThreadsResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Activity
@@ -23,6 +24,8 @@ class UsersResponseMapper @Inject constructor(
     private val activityPostAdapter = moshi.adapter(ActivityNetModel.PostNet::class.java)
 
     fun map(response: UsersResponse): List<User> = response.users
+    fun map(response: ModeratorsResponse): List<User> = response.moderators.map { it.user }
+
     fun map(response: UserDetailsResponse): UserDetails = response.userDetails
 
     fun map(responseBody: ResponseBody): List<Activity> {
