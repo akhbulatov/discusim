@@ -25,7 +25,7 @@ class ForumsAdapter : ListAdapter<Forum, ForumsAdapter.ForumViewHolder>(DIFF_CAL
         override fun bind(item: Forum) {
             item.let {
                 Glide.with(itemView)
-                    .load(it.favicon.link)
+                    .load(it.faviconUrl)
                     .placeholder(R.drawable.img_user_placeholder) // TODO
                     .into(avatarImageView)
 

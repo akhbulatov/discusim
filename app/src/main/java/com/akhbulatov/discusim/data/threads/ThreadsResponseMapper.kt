@@ -1,10 +1,14 @@
 package com.akhbulatov.discusim.data.threads
 
+import com.akhbulatov.discusim.data.forums.ForumsResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
 import com.akhbulatov.discusim.domain.global.models.Thread
 import javax.inject.Inject
 
-class ThreadsResponseMapper @Inject constructor() {
+class ThreadsResponseMapper @Inject constructor(
+    private val forumsResponseMapper: ForumsResponseMapper
+) {
+
     fun map(response: ThreadsResponse): List<Thread> = response.threads.map { map(it) }
 
     fun map(model: ThreadNetModel): Thread =
@@ -20,7 +24,7 @@ class ThreadsResponseMapper @Inject constructor() {
                 it.posts,
                 it.closed,
                 it.userScore > 0,
-                it.forum
+                forumsResponseMapper.map(it.forum)
             )
         }
 }

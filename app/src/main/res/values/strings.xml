@@ -7,4 +7,23 @@
 
     <!-- Auth -->
     <string name="auth_title">Authorization</string>
+
+    <!-- Channel -->
+    <string name="channel_about">About</string>
+
+    <!-- Channel Details -->
+    <string name="channel_details_guidelines">Community Guidelines</string>
+
+    <plurals name="channel_details_num_threads">
+        <item quantity="one">%d Discussion</item>
+        <item quantity="other">%d Discussions</item>
+    </plurals>
+
+    <plurals name="channel_details_num_followers">
+        <item quantity="one">%d Follower</item>
+        <item quantity="other">%d Followers</item>
+    </plurals>
+
+    <string name="channel_details_questions">Have questions about channel?</string>
+    <string name="channel_details_help">Channel Help</string>
 </resources>

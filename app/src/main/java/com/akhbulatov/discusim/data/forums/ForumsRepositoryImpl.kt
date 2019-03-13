@@ -20,7 +20,7 @@ class ForumsRepositoryImpl @Inject constructor(
 ) : ForumsRepository {
 
     override fun getForumDetails(forumId: String): Single<Forum> =
-        api.getForumDetails(forumId)
+        api.getForumDetails(forumId, arrayListOf("counters"))
             .map { forumsResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
@@ -31,6 +31,11 @@ class ForumsRepositoryImpl @Inject constructor(
 
     override fun getTopCommenters(forumId: String): Single<List<User>> =
         api.getForumMostActiveUsers(forumId)
+            .map { usersResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
+    override fun getModerators(forumId: String): Single<List<User>> =
+        api.getForumModerators(forumId)
             .map { usersResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }

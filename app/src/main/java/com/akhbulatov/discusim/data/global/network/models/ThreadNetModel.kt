@@ -1,6 +1,5 @@
 package com.akhbulatov.discusim.data.global.network.models
 
-import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.User
 import com.squareup.moshi.Json
 
@@ -16,7 +15,7 @@ data class ThreadNetModel(
     @Json(name = "isClosed") val closed: Boolean,
     @Json(name = "link") val link: String,
     @Json(name = "userScore") val userScore: Int,
-    @Json(name = "forum") val forum: Forum
+    @Json(name = "forum") val forum: ForumNetModel
 ) {
 
     data class Media(
