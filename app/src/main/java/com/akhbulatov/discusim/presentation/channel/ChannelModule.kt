@@ -15,7 +15,7 @@ abstract class ChannelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ChannelViewModel::class)
-    abstract fun bindForumViewModel(viewModel: ChannelViewModel): ViewModel
+    abstract fun bindChannelViewModel(viewModel: ChannelViewModel): ViewModel
 
     @Flow2ChildFragmentScope
     @ContributesAndroidInjector(modules = [ThreadsModule::class])

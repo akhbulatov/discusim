@@ -38,6 +38,7 @@ class ChannelFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        aboutButton.setOnClickListener { viewModel.onAboutClicked("channel-gifs") } // TODO
         setupPager()
         observeChanges()
     }
@@ -53,7 +54,7 @@ class ChannelFragment : BaseFragment() {
 
     private fun showChannel(forum: Forum) {
         forum.channel?.let {
-            toolbar.title = it.name
+            toolbar.title = forum.name
 
             Glide.with(this@ChannelFragment)
                 .load(it.backgroundUrl)

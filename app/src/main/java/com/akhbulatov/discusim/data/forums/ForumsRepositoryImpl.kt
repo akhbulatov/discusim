@@ -20,7 +20,7 @@ class ForumsRepositoryImpl @Inject constructor(
 ) : ForumsRepository {
 
     override fun getForumDetails(forumId: String): Single<Forum> =
-        api.getForumDetails(forumId)
+        api.getForumDetails(forumId, arrayListOf("counters"))
             .map { forumsResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 

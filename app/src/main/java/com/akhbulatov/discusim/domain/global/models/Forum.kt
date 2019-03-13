@@ -6,14 +6,14 @@ data class Forum(
     val description: String?,
     val faviconUrl: String,
     val url: String,
+    val numThreads: Int?,
+    val numFollowers: Int?,
+    val numModerators: Int?,
     val channel: Channel?
 ) {
 
     data class Channel(
-        val id: String,
-        val name: String,
         val bannerColor: String,
-        val description: String?,
         val backgroundUrl: String,
         val logoUrl: String,
         val guidelinesUrl: String
