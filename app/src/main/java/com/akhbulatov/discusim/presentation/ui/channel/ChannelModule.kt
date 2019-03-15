@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.channel
+package com.akhbulatov.discusim.presentation.ui.channel
 
 import androidx.lifecycle.ViewModel
 import com.akhbulatov.discusim.di.ViewModelKey

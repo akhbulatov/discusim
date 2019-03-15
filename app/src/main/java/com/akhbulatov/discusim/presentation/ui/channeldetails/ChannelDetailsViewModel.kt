@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.channeldetails
+package com.akhbulatov.discusim.presentation.ui.channeldetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

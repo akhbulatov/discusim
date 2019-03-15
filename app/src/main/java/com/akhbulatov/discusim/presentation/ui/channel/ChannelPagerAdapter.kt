@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.channel
+package com.akhbulatov.discusim.presentation.ui.channel
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

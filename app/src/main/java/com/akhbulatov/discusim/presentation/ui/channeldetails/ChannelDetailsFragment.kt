@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.channeldetails
+package com.akhbulatov.discusim.presentation.ui.channeldetails
 
 import android.os.Bundle
 import android.view.View
