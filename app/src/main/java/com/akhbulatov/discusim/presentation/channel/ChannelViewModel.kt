@@ -6,15 +6,15 @@ import com.akhbulatov.discusim.domain.channel.ChannelInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
+import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import me.aartikov.alligator.Navigator
 import javax.inject.Inject
 
 class ChannelViewModel @Inject constructor(
-    private val navigator: Navigator,
+    private val router: FlowRouter,
     private val interactor: ChannelInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
@@ -41,5 +41,7 @@ class ChannelViewModel @Inject constructor(
             )
     }
 
-    fun onAboutClicked(forumId: String) = navigator.goForward(Screens.ChannelDetails(forumId))
+    fun onAboutClicked(forumId: String) = router.navigateTo(Screens.ChannelDetails(forumId))
+
+    override fun onBackPressed() = router.exit()
 }

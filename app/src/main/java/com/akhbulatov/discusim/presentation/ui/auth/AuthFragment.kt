@@ -12,16 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_auth.*
 import kotlinx.android.synthetic.main.toolbar.*
-import me.aartikov.alligator.annotations.RegisterScreen
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Auth::class)
 class AuthFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 

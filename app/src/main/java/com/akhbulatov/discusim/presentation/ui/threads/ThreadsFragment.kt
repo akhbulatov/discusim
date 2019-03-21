@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.presentation.ui.threads
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -9,31 +10,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.global.widgets.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_threads.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Threads::class)
 class ThreadsFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ThreadsViewModel
-    private val threadsAdapter = ThreadsAdapter()
+    private val threadsAdapter by lazy { ThreadsAdapter() }
 
     override val layoutRes: Int = R.layout.fragment_threads
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.Threads>(this)
-        val forumId = screen.forumId
+        val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ThreadsViewModel::class.java]
         viewModel.setForumId(forumId)
@@ -75,4 +70,12 @@ class ThreadsFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_FORUM_ID = "forum_id"
+
+        fun newInstance(forumId: String) = ThreadsFragment().apply {
+            arguments = bundleOf(ARG_FORUM_ID to forumId)
+        }
+    }
 }

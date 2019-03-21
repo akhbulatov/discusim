@@ -2,25 +2,19 @@ package com.akhbulatov.discusim.presentation.channeldetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_channel_details.*
 import kotlinx.android.synthetic.main.toolbar.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
-import me.aartikov.alligator.navigationfactories.NavigationFactory
 import javax.inject.Inject
 
-@RegisterScreen(Screens.ChannelDetails::class)
 class ChannelDetailsFragment : BaseFragment() {
-    @Inject lateinit var navigationFactory: NavigationFactory
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ChannelDetailsViewModel
@@ -29,8 +23,7 @@ class ChannelDetailsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.ChannelDetails>(this)
-        val forumId = screen.forumId
+        val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ChannelDetailsViewModel::class.java]
         viewModel.setForumId(forumId)
@@ -51,7 +44,7 @@ class ChannelDetailsFragment : BaseFragment() {
     }
 
     private fun setupPager() {
-        channelDetailsPager.adapter = ChannelDetailsPagerAdapter(childFragmentManager, navigationFactory)
+        channelDetailsPager.adapter = ChannelDetailsPagerAdapter(childFragmentManager)
         channelDetailsTabLayout.setupWithViewPager(channelDetailsPager)
     }
 
@@ -83,4 +76,12 @@ class ChannelDetailsFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_FORUM_ID = "forum_id"
+
+        fun newInstance(forumId: String) = ChannelDetailsFragment().apply {
+            arguments = bundleOf(ARG_FORUM_ID to forumId)
+        }
+    }
 }

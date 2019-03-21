@@ -11,5 +11,5 @@ abstract class BaseViewModel : ViewModel() {
         super.onCleared()
     }
 
-    open fun onBackPressed() {}
+    abstract fun onBackPressed()
 }

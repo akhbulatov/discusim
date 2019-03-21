@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.presentation.ui.forums
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,29 +12,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_forums.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Forums::class)
 class ForumsFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ForumsViewModel
-    private val forumsAdapter = ForumsAdapter()
+    private val forumsAdapter by lazy { ForumsAdapter() }
 
     override val layoutRes: Int = R.layout.fragment_forums
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.Forums>(this)
-        val userId = screen.userId
+        val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumsViewModel::class.java]
         viewModel.setUserId(userId)
@@ -75,4 +70,12 @@ class ForumsFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_USER_ID = "user_id"
+
+        fun newInstance(userId: Long) = ForumsFragment().apply {
+            arguments = bundleOf(ARG_USER_ID to userId)
+        }
+    }
 }

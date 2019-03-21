@@ -1,40 +1,67 @@
 package com.akhbulatov.discusim.presentation.global
 
-import android.os.Parcelable
+import androidx.fragment.app.Fragment
+import com.akhbulatov.discusim.presentation.channel.ChannelFragment
+import com.akhbulatov.discusim.presentation.channeldetails.ChannelDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
+import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
+import com.akhbulatov.discusim.presentation.ui.forum.ForumFragment
+import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
+import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
+import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
+import com.akhbulatov.discusim.presentation.ui.profile.activities.ProfileActivitiesFragment
+import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
+import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
 import com.akhbulatov.discusim.presentation.ui.users.UserType
-import kotlinx.android.parcel.Parcelize
-import me.aartikov.alligator.Screen
+import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
-    object AuthFlow : Screen
-    object Auth : Screen
+    object AuthFlow : SupportAppScreen() {
+        override fun getFragment(): Fragment = AuthFlowFragment()
+    }
 
-    object MainFlow : Screen
+    object Auth : SupportAppScreen() {
+        override fun getFragment(): Fragment = AuthFragment()
+    }
 
-    @Parcelize
-    data class Profile(val userId: Long) : Screen, Parcelable
+    object MainFlow : SupportAppScreen() {
+        override fun getFragment(): Fragment = MainFlowFragment()
+    }
 
-    @Parcelize
-    data class ProfileActivities(val userId: Long) : Screen, Parcelable
+    data class Profile(val userId: Long) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ProfileFragment.newInstance(userId)
+    }
 
-    @Parcelize
-    data class ProfilePosts(val userId: Long) : Screen, Parcelable
+    data class ProfileActivities(val userId: Long) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ProfileActivitiesFragment.newInstance(userId)
+    }
 
-    @Parcelize
-    data class Users(val itemId: String, val type: UserType) : Screen, Parcelable
+    data class ProfilePosts(val userId: Long) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ProfilePostsFragment.newInstance(userId)
+    }
 
-    @Parcelize
-    data class Forum(val forumId: String) : Screen, Parcelable
+    data class Users(val itemId: String, val userType: UserType) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UsersFragment.newInstance(itemId, userType)
+    }
 
-    @Parcelize
-    data class Forums(val userId: Long) : Screen, Parcelable
+    data class Forum(val forumId: String) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumFragment.newInstance(forumId)
+    }
 
-    @Parcelize
-    data class Channel(val forumId: String) : Screen, Parcelable
+    data class Forums(val userId: Long) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumsFragment.newInstance(userId)
+    }
 
-    @Parcelize
-    data class ChannelDetails(val forumId: String) : Screen, Parcelable
+    data class Channel(val forumId: String) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ChannelFragment.newInstance(forumId)
+    }
 
-    @Parcelize
-    data class Threads(val forumId: String) : Screen, Parcelable
+    data class ChannelDetails(val forumId: String) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ChannelDetailsFragment.newInstance(forumId)
+    }
+
+    data class Threads(val forumId: String) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId)
+    }
 }

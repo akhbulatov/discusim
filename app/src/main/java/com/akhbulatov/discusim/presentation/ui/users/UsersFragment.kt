@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.presentation.ui.users
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,30 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_users.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Users::class)
 class UsersFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: UsersViewModel
-    private val usersAdapter = UsersAdapter()
+    private val usersAdapter by lazy { UsersAdapter() }
 
     override val layoutRes: Int = R.layout.fragment_users
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.Users>(this)
-        val itemId = screen.itemId
-        val userType = screen.type
+        val itemId = requireNotNull(arguments?.getString(ARG_ITEM_ID))
+        val userType: UserType = requireNotNull(arguments?.getParcelable(ARG_USER_TYPE))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[UsersViewModel::class.java]
         viewModel.setInitialData(itemId, userType)
@@ -76,4 +71,16 @@ class UsersFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_ITEM_ID = "item_id"
+        private const val ARG_USER_TYPE = "user_type"
+
+        fun newInstance(itemId: String, userType: UserType) = UsersFragment().apply {
+            arguments = bundleOf(
+                ARG_ITEM_ID to itemId,
+                ARG_USER_TYPE to userType
+            )
+        }
+    }
 }
