@@ -2,10 +2,10 @@ package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forums.ForumResponse
+import com.akhbulatov.discusim.data.forums.ForumsResponse
 import com.akhbulatov.discusim.data.forums.ModeratorsResponse
 import com.akhbulatov.discusim.data.threads.ThreadsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
-import com.akhbulatov.discusim.data.users.UserForumsResponse
 import com.akhbulatov.discusim.data.users.UserPostsResponse
 import com.akhbulatov.discusim.data.users.UsersResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
@@ -44,7 +44,7 @@ interface DisqusApi {
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
 
     @GET("users/listFollowingForums.json")
-    fun getFollowingForums(@Query("user") userId: Long): Single<UserForumsResponse>
+    fun getFollowingForums(@Query("user") userId: Long): Single<ForumsResponse>
 
     @GET("forums/details.json")
     fun getForumDetails(

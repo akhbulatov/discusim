@@ -13,7 +13,6 @@ data class Forum(
 ) {
 
     data class Channel(
-        val bannerColor: String,
         val backgroundUrl: String,
         val logoUrl: String,
         val guidelinesUrl: String

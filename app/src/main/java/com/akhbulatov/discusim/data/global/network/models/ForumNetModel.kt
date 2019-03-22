@@ -17,12 +17,11 @@ data class ForumNetModel(
     data class Favicon(@Json(name = "permalink") val link: String)
 
     data class Channel(
-        @Json(name = "bannerColorHex") val bannerColor: String,
+        @Json(name = "avatar") val avatarUrl: String,
         @Json(name = "options") val options: Options
     ) {
 
         data class Options(
-            @Json(name = "description") val description: String,
             @Json(name = "alertBackground") val backgroundUrl: String,
             @Json(name = "titleLogo") val logo: Logo,
             @Json(name = "aboutUrlPath") val guidelinesUrl: String

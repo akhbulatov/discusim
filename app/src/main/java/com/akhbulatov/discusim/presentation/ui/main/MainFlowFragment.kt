@@ -21,7 +21,7 @@ class MainFlowFragment : FlowFragment() {
             switchTab(
                 when (it.itemId) {
                     R.id.menu_bottom_nav_profile -> profileTab
-                    R.id.menu_bottom_nav_threads -> threadsTab
+                    R.id.menu_bottom_nav_forums -> forumsTab
                     else -> throw IllegalArgumentException("") // TODO
                 }
             )
@@ -31,7 +31,7 @@ class MainFlowFragment : FlowFragment() {
         switchTab(
             when (currentTabFragment?.tag) {
                 profileTab.screenKey -> profileTab
-                threadsTab.screenKey -> threadsTab
+                forumsTab.screenKey -> forumsTab
                 else -> profileTab
             }
         )
@@ -41,7 +41,6 @@ class MainFlowFragment : FlowFragment() {
         val currentFragment = currentTabFragment
         val newFragment = childFragmentManager.findFragmentByTag(tabScreen.screenKey)
 
-        // Ничего не делает, если выбран текущий таб
         if (currentFragment != null && newFragment != null && currentFragment == newFragment) {
             return
         }
@@ -64,7 +63,7 @@ class MainFlowFragment : FlowFragment() {
     }
 
     companion object {
-        private val profileTab = Screens.Profile(1)
-        private val threadsTab = Screens.Threads("channel-gifs") // TODO
+        private val profileTab = Screens.Profile(178987138) // TODO
+        private val forumsTab = Screens.Forums(178987138) // TODO
     }
 }
