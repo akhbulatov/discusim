@@ -10,6 +10,7 @@
     <color name="black_transparent_50">#80000000</color>
 
     <color name="blue">#36A1FC</color>
+    <color name="blue_light">#A3D3FD</color>
 
     <color name="grey_50">#EBEEF2</color>
     <color name="grey_100">#cccccc</color>
