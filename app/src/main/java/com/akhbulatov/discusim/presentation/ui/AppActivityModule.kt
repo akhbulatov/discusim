@@ -1,9 +1,9 @@
 package com.akhbulatov.discusim.presentation.ui
 
 import androidx.lifecycle.ViewModel
+import com.akhbulatov.discusim.di.FlowFragmentScope
 import com.akhbulatov.discusim.di.ViewModelKey
 import com.akhbulatov.discusim.di.modules.FlowNavigationModule
-import com.akhbulatov.discusim.di.scopes.FlowFragmentScope
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowModule
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment

@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.presentation.channeldetails
 
 import androidx.lifecycle.ViewModel
+import com.akhbulatov.discusim.di.Flow2ChildFragmentScope
 import com.akhbulatov.discusim.di.ViewModelKey
-import com.akhbulatov.discusim.di.scopes.Flow2ChildFragmentScope
 import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
 import com.akhbulatov.discusim.presentation.ui.users.UsersModule
 import dagger.Binds

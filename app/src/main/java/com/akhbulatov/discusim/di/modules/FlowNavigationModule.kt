@@ -1,7 +1,7 @@
 package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.di.Flow
-import com.akhbulatov.discusim.di.scopes.FlowFragmentScope
+import com.akhbulatov.discusim.di.FlowFragmentScope
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import dagger.Module
 import dagger.Provides
