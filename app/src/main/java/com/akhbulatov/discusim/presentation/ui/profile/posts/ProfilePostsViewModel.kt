@@ -6,12 +6,14 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.profile.posts.ProfilePostsInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
+import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class ProfilePostsViewModel @Inject constructor(
+    private val router: FlowRouter,
     private val interactor: ProfilePostsInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
@@ -49,4 +51,6 @@ class ProfilePostsViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
             )
     }
+
+    override fun onBackPressed() = router.exit()
 }

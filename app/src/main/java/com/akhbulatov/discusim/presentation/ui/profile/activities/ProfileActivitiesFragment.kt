@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.presentation.ui.profile.activities
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,29 +12,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Activity
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_profile_activities.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.ProfileActivities::class)
 class ProfileActivitiesFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ProfileActivitiesViewModel
-    private val activitiesAdapter = ProfileActivitiesAdapter()
+    private val activitiesAdapter by lazy { ProfileActivitiesAdapter() }
 
     override val layoutRes: Int = R.layout.fragment_profile_activities
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.ProfileActivities>(this)
-        val userId = screen.userId
+        val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileActivitiesViewModel::class.java]
         viewModel.setUserId(userId)
@@ -75,4 +70,12 @@ class ProfileActivitiesFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_USER_ID = "user_id"
+
+        fun newInstance(userId: Long) = ProfileActivitiesFragment().apply {
+            arguments = bundleOf(ARG_USER_ID to userId)
+        }
+    }
 }

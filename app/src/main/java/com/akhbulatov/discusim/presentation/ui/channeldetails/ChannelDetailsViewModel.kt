@@ -6,12 +6,14 @@ import com.akhbulatov.discusim.domain.channeldetails.ChannelDetailsInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
+import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class ChannelDetailsViewModel @Inject constructor(
+    private val router: FlowRouter,
     private val interactor: ChannelDetailsInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
@@ -37,4 +39,6 @@ class ChannelDetailsViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) {} } // TODO
             )
     }
+
+    override fun onBackPressed() = router.exit()
 }

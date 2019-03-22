@@ -3,16 +3,19 @@ package com.akhbulatov.discusim.presentation.ui
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
-import me.aartikov.alligator.Navigator
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class AppActivityViewModel @Inject constructor(
-    navigator: Navigator,
+    private val router: Router,
     sessionInteractor: SessionInteractor
 ) : BaseViewModel() {
 
+
     init {
         val screen = if (sessionInteractor.isLoggedIn()) Screens.MainFlow else Screens.AuthFlow
-        navigator.reset(screen)
+        router.newRootScreen(screen)
     }
+
+    override fun onBackPressed() = router.exit()
 }

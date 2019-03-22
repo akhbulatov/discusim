@@ -2,26 +2,22 @@ package com.akhbulatov.discusim.presentation.ui.profile
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.UserDetails
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.Profile::class)
 class ProfileFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ProfileViewModel
@@ -30,8 +26,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.Profile>(this)
-        val userId = screen.userId
+        val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileViewModel::class.java]
         viewModel.setUserId(userId)
@@ -82,4 +77,12 @@ class ProfileFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_USER_ID = "user_id"
+
+        fun newInstance(userId: Long) = ProfileFragment().apply {
+            arguments = bundleOf(ARG_USER_ID to userId)
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.presentation.ui.profile.posts
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,30 +11,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Post
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.global.widgets.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_profile_posts.*
-import me.aartikov.alligator.ScreenResolver
-import me.aartikov.alligator.annotations.RegisterScreen
 import javax.inject.Inject
 
-@RegisterScreen(Screens.ProfilePosts::class)
 class ProfilePostsFragment : BaseFragment() {
-    @Inject lateinit var screenResolver: ScreenResolver
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ProfilePostsViewModel
-    private val postsAdapter = ProfilePostsAdapter()
+    private val postsAdapter by lazy { ProfilePostsAdapter() }
 
     override val layoutRes: Int = R.layout.fragment_profile_posts
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screen = screenResolver.getScreen<Screens.ProfilePosts>(this)
-        val userId = screen.userId
+        val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfilePostsViewModel::class.java]
         viewModel.setUserId(userId)
@@ -75,4 +70,12 @@ class ProfilePostsFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        private const val ARG_USER_ID = "user_id"
+
+        fun newInstance(userId: Long) = ProfilePostsFragment().apply {
+            arguments = bundleOf(ARG_USER_ID to userId)
+        }
+    }
 }

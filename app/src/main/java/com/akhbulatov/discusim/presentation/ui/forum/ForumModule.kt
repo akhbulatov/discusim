@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.presentation.ui.forum
 
 import androidx.lifecycle.ViewModel
+import com.akhbulatov.discusim.di.Flow2ChildFragmentScope
 import com.akhbulatov.discusim.di.ViewModelKey
-import com.akhbulatov.discusim.di.scopes.Flow2ChildFragmentScope
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadsModule
 import com.akhbulatov.discusim.presentation.ui.users.UsersFragment

@@ -6,15 +6,16 @@ import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import dagger.android.support.DaggerAppCompatActivity
-import me.aartikov.alligator.NavigationContext
-import me.aartikov.alligator.NavigationContextBinder
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 class AppActivity : DaggerAppCompatActivity() {
-    @Inject lateinit var navigationContextBinder: NavigationContextBinder
+    @Inject lateinit var navigatorHolder: NavigatorHolder
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var navigationContext: NavigationContext
+    private val navigator: Navigator by lazy { SupportAppNavigator(this, R.id.container) }
     private lateinit var viewModel: AppActivityViewModel
 
     private val currentFragment
@@ -23,24 +24,20 @@ class AppActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.container)
-
         viewModel = ViewModelProviders.of(this, viewModelFactory)[AppActivityViewModel::class.java]
-        navigationContext = NavigationContext.Builder(this)
-            .containerId(R.id.container)
-            .build()
     }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
-        navigationContextBinder.bind(navigationContext)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-        navigationContextBinder.unbind(this)
+        navigatorHolder.removeNavigator()
         super.onPause()
     }
 
     override fun onBackPressed() {
-        currentFragment?.onBackPressed() ?: super.onBackPressed()
+        currentFragment?.onBackPressed() ?: viewModel.onBackPressed()
     }
 }

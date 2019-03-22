@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_bottom_nav_profile"
+        android:icon="@drawable/ic_account_circle"
+        android:title="@string/main_flow_profile" />
+
+    <!-- TODO -->
+    <item
+        android:id="@+id/menu_bottom_nav_threads"
+        android:icon="@drawable/ic_comment"
+        android:title="Threads" />
+
+</menu>

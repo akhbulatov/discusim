@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.presentation.ui.auth
 
-import com.akhbulatov.discusim.di.scopes.FlowChildFragmentScope
+import com.akhbulatov.discusim.di.FlowChildFragmentScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

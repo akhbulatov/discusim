@@ -8,6 +8,9 @@
     <!-- Auth -->
     <string name="auth_title">Authorization</string>
 
+    <!-- Main Flow -->
+    <string name="main_flow_profile">Profile</string>
+
     <!-- Channel -->
     <string name="channel_about">About</string>
 
