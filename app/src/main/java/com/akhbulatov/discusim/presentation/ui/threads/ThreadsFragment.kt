@@ -29,9 +29,10 @@ class ThreadsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
+        val threadType: ThreadType = requireNotNull(arguments?.getParcelable(ARG_THREAD_TYPE))
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ThreadsViewModel::class.java]
-        viewModel.setForumId(forumId)
+        viewModel.setParams(forumId, threadType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,9 +74,13 @@ class ThreadsFragment : BaseFragment() {
 
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
+        private const val ARG_THREAD_TYPE = "thread_type"
 
-        fun newInstance(forumId: String) = ThreadsFragment().apply {
-            arguments = bundleOf(ARG_FORUM_ID to forumId)
+        fun newInstance(forumId: String, threadType: ThreadType) = ThreadsFragment().apply {
+            arguments = bundleOf(
+                ARG_FORUM_ID to forumId,
+                ARG_THREAD_TYPE to threadType
+            )
         }
     }
 }

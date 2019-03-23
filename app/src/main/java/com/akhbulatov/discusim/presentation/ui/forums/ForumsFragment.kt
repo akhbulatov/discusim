@@ -23,7 +23,7 @@ class ForumsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ForumsViewModel
-    private val forumsAdapter by lazy { ForumsAdapter() }
+    private val forumsAdapter by lazy { ForumsAdapter { viewModel.onForumClicked(it) } }
 
     override val layoutRes: Int = R.layout.fragment_forums
 

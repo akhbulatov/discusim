@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -50,6 +51,11 @@ class ForumsViewModel @Inject constructor(
                 },
                 onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
             )
+    }
+
+    fun onForumClicked(forum: Forum) {
+        val screen = forum.channel?.let { Screens.Channel(forum.id) } ?: Screens.Forum(forum.id)
+        router.navigateTo(screen)
     }
 
     override fun onBackPressed() = router.exit()

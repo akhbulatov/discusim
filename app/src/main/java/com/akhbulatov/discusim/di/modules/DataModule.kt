@@ -2,9 +2,11 @@ package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.data.forums.ForumsRepositoryImpl
 import com.akhbulatov.discusim.data.session.SessionRepositoryImpl
+import com.akhbulatov.discusim.data.threads.ThreadsRepositoryImpl
 import com.akhbulatov.discusim.data.users.UsersRepositoryImpl
 import com.akhbulatov.discusim.domain.global.repositories.ForumsRepository
 import com.akhbulatov.discusim.domain.global.repositories.SessionRepository
+import com.akhbulatov.discusim.domain.global.repositories.ThreadsRepository
 import com.akhbulatov.discusim.domain.global.repositories.UsersRepository
 import dagger.Binds
 import dagger.Module
@@ -23,4 +25,8 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindForumsRepository(repository: ForumsRepositoryImpl): ForumsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindThreadsRepository(repository: ThreadsRepositoryImpl): ThreadsRepository
 }
