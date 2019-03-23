@@ -31,12 +31,18 @@ class ThreadsViewModel @Inject constructor(
     private val _contentError = MutableLiveData<String>()
     val contentError: LiveData<String> get() = _contentError
 
-    fun setForumId(forumId: String) {
-        loadThreads(forumId)
+    fun setParams(forumId: String, threadType: ThreadType) {
+        loadThreads(forumId, threadType)
     }
 
-    private fun loadThreads(forumId: String) {
-        subscriptions += interactor.getThreads(forumId)
+    private fun loadThreads(forumId: String, threadType: ThreadType) {
+        val threadsRequest = when (threadType) {
+            ThreadType.LATEST -> interactor.getThreads(forumId)
+            ThreadType.HOT -> interactor.getHotThreads(forumId)
+            ThreadType.POPULAR -> interactor.getPopularThreads(forumId)
+        }
+
+        subscriptions += threadsRequest
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _contentBlock.value = false

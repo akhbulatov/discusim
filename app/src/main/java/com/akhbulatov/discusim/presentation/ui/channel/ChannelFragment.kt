@@ -37,7 +37,7 @@ class ChannelFragment : BaseFragment() {
     }
 
     private fun setupPager() {
-        channelPager.adapter = ChannelPagerAdapter(childFragmentManager)
+        channelPager.adapter = ChannelPagerAdapter(context!!, childFragmentManager)
         channelTabLayout.setupWithViewPager(channelPager)
     }
 

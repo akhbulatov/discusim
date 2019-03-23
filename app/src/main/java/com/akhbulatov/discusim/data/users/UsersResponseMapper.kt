@@ -5,7 +5,6 @@ import com.akhbulatov.discusim.data.forums.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.ActivityNetModel
 import com.akhbulatov.discusim.data.threads.ThreadsResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Activity
-import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
@@ -76,5 +75,4 @@ class UsersResponseMapper @Inject constructor(
     }
 
     fun map(response: UserPostsResponse): List<Post> = response.posts
-    fun map(response: UserForumsResponse): List<Forum> = response.forums
 }

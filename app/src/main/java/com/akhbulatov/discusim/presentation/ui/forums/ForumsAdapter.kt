@@ -11,18 +11,33 @@ import com.akhbulatov.discusim.presentation.global.utils.inflate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_forum.*
 
-class ForumsAdapter : ListAdapter<Forum, ForumsAdapter.ForumViewHolder>(DIFF_CALLBACK) {
+class ForumsAdapter(
+    private val clickListener: (Forum) -> Unit
+) : ListAdapter<Forum, ForumsAdapter.ForumViewHolder>(DIFF_CALLBACK) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForumViewHolder {
         val itemView = parent.inflate(R.layout.item_forum)
-        return ForumViewHolder(itemView)
+        return ForumViewHolder(itemView, clickListener)
     }
 
     override fun onBindViewHolder(holder: ForumViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ForumViewHolder(itemView: View) : BaseViewHolder<Forum>(itemView) {
+    class ForumViewHolder(
+        itemView: View,
+        private val clickListener: (Forum) -> Unit
+    ) : BaseViewHolder<Forum>(itemView) {
+
+        private lateinit var forum: Forum
+
+        init {
+            itemView.setOnClickListener { clickListener(forum) }
+        }
+
         override fun bind(item: Forum) {
+            forum = item
+
             item.let {
                 Glide.with(itemView)
                     .load(it.faviconUrl)

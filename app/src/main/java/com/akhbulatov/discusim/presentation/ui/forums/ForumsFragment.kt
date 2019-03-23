@@ -16,13 +16,14 @@ import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_forums.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class ForumsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ForumsViewModel
-    private val forumsAdapter by lazy { ForumsAdapter() }
+    private val forumsAdapter by lazy { ForumsAdapter { viewModel.onForumClicked(it) } }
 
     override val layoutRes: Int = R.layout.fragment_forums
 
@@ -36,6 +37,7 @@ class ForumsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbar.setTitle(R.string.forums_title)
         forumsRecyclerView.run {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))

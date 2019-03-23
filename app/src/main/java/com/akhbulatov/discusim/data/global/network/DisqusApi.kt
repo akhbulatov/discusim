@@ -2,10 +2,10 @@ package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forums.ForumResponse
+import com.akhbulatov.discusim.data.forums.ForumsResponse
 import com.akhbulatov.discusim.data.forums.ModeratorsResponse
 import com.akhbulatov.discusim.data.threads.ThreadsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
-import com.akhbulatov.discusim.data.users.UserForumsResponse
 import com.akhbulatov.discusim.data.users.UserPostsResponse
 import com.akhbulatov.discusim.data.users.UsersResponse
 import com.akhbulatov.discusim.domain.global.models.Auth
@@ -44,7 +44,7 @@ interface DisqusApi {
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
 
     @GET("users/listFollowingForums.json")
-    fun getFollowingForums(@Query("user") userId: Long): Single<UserForumsResponse>
+    fun getFollowingForums(@Query("user") userId: Long): Single<ForumsResponse>
 
     @GET("forums/details.json")
     fun getForumDetails(
@@ -63,4 +63,16 @@ interface DisqusApi {
 
     @GET("forums/listModerators.json")
     fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
+
+    @GET("threads/listHot.json")
+    fun getHotThreads(
+        @Query("forum") forumId: String,
+        @Query("related") related: List<String>
+    ): Single<ThreadsResponse>
+
+    @GET("threads/listPopular.json")
+    fun getPopularThreads(
+        @Query("forum") forumId: String,
+        @Query("related") related: List<String>
+    ): Single<ThreadsResponse>
 }

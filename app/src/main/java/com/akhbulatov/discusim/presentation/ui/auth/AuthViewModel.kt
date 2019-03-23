@@ -6,6 +6,7 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -48,7 +49,7 @@ class AuthViewModel @Inject constructor(
             .doOnSubscribe { _contentProgress.value = true }
             .doOnTerminate { _contentProgress.value = false }
             .subscribeBy(
-                onComplete = { }, // TODO
+                onComplete = { router.newRootFlow(Screens.MainFlow) },
                 onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
             )
     }

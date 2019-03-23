@@ -10,9 +10,16 @@
 
     <!-- Main Flow -->
     <string name="main_flow_profile">Profile</string>
+    <string name="main_flow_forums">Forums</string>
+
+    <!-- Forums -->
+    <string name="forums_title">Forums</string>
 
     <!-- Channel -->
     <string name="channel_about">About</string>
+    <string name="channel_latest">Latest</string>
+    <string name="channel_hot">Hot</string>
+    <string name="channel_popular">Popular</string>
 
     <!-- Channel Details -->
     <string name="channel_details_guidelines">Community Guidelines</string>
