@@ -2,13 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_bottom_nav_profile"
-        android:icon="@drawable/ic_account_circle"
-        android:title="@string/main_flow_profile" />
+        android:id="@+id/menu_bottom_nav_activity"
+        android:icon="@drawable/ic_home"
+        android:title="@string/main_flow_activity" />
+
+    <item
+        android:id="@+id/menu_bottom_nav_trends"
+        android:icon="@drawable/ic_trending_up"
+        android:title="@string/main_flow_trends" />
 
     <item
         android:id="@+id/menu_bottom_nav_forums"
         android:icon="@drawable/ic_forum"
         android:title="@string/main_flow_forums" />
+
+    <item
+        android:id="@+id/menu_bottom_nav_profile"
+        android:icon="@drawable/ic_account_circle"
+        android:title="@string/main_flow_profile" />
 
 </menu>

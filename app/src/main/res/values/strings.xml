@@ -9,6 +9,8 @@
     <string name="auth_title">Authorization</string>
 
     <!-- Main Flow -->
+    <string name="main_flow_activity">Activity</string>
+    <string name="main_flow_trends">Trends</string>
     <string name="main_flow_profile">Profile</string>
     <string name="main_flow_forums">Forums</string>
 
