@@ -48,12 +48,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
     // UI
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
-    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
     implementation 'de.hdodenhof:circleimageview:3.0.0' // TODO удалить либу, а ImageView округлять через Glide
 
