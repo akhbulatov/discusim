@@ -15,7 +15,6 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_auth.*
-import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
@@ -33,14 +32,13 @@ class AuthFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.setTitle(R.string.auth_title)
         setupWebView()
         observeChanges()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {
-        authWebView.run {
+        with(authWebView) {
             settings.javaScriptEnabled = true
             loadUrl(viewModel.getAuthorizeUrl())
             webViewClient = object : WebViewClient() {

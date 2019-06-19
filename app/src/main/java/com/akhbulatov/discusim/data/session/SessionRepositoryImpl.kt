@@ -12,6 +12,7 @@ class SessionRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
     private val prefsStorage: PreferencesStorage,
     private val oAuthParams: OAuthParams,
+    private val sessionResponseMapper: SessionResponseMapper,
     private val schedulers: SchedulersProvider
 ) : SessionRepository {
 
@@ -39,7 +40,9 @@ class SessionRepositoryImpl @Inject constructor(
             oAuthParams.clientSecret,
             oAuthParams.redirectUri,
             code
-        ).subscribeOn(schedulers.io())
+        )
+            .map { sessionResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
 
     override fun logout() {
         prefsStorage.logout()

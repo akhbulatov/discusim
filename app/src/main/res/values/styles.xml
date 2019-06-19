@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextColor">@color/toolbar_text</item>
+    </style>
+
     <style name="BottomNavBarStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@drawable/bottom_nav_selector</item>
         <item name="itemTextColor">@drawable/bottom_nav_selector</item>

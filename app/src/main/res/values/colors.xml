@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colors to apply in views -->
     <color name="primary">@color/white</color>
-    <color name="primary_dark">@color/grey_100</color>
-    <color name="accent">@color/blue</color>
+    <color name="primary_dark">@color/grey_silver</color>
+    <color name="secondary">@color/blue_dodger</color>
 
+    <color name="toolbar_text">@color/blue_dodger</color>
+
+    <color name="blue_light">#A3D3FD</color>
+    <color name="grey_50">#EBEEF2</color>
+
+    <!-- Palette colors -->
+    <!-- Colors for "internal use" only -->
+
+    <!-- General palettes -->
     <color name="white">#ffffff</color>
-
     <color name="black">#000000</color>
     <color name="black_transparent_50">#80000000</color>
 
-    <color name="blue">#36A1FC</color>
-    <color name="blue_light">#A3D3FD</color>
+    <!-- Palette blue -->
+    <color name="blue_dodger">#36A1FC</color>
 
-    <color name="grey_50">#EBEEF2</color>
-    <color name="grey_100">#cccccc</color>
+    <!-- Palette grey -->
+    <color name="grey_silver">#cccccc</color>
 </resources>

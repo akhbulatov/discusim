@@ -4,11 +4,11 @@ import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forums.ForumResponse
 import com.akhbulatov.discusim.data.forums.ForumsResponse
 import com.akhbulatov.discusim.data.forums.ModeratorsResponse
+import com.akhbulatov.discusim.data.global.network.models.AuthNetModel
 import com.akhbulatov.discusim.data.threads.ThreadsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
 import com.akhbulatov.discusim.data.users.UserPostsResponse
 import com.akhbulatov.discusim.data.users.UsersResponse
-import com.akhbulatov.discusim.domain.global.models.Auth
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -26,7 +26,7 @@ interface DisqusApi {
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String,
         @Field("code") code: String
-    ): Single<Auth>
+    ): Single<AuthNetModel>
 
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
