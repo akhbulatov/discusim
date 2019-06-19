@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.UserDetails
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*

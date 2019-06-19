@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.Screens
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.global.base.FlowFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
 import kotlinx.android.synthetic.main.fragment_main_flow.*
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 

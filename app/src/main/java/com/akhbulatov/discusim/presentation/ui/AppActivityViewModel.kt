@@ -11,7 +11,6 @@ class AppActivityViewModel @Inject constructor(
     sessionInteractor: SessionInteractor
 ) : BaseViewModel() {
 
-
     init {
         val screen = if (sessionInteractor.isLoggedIn()) Screens.MainFlow else Screens.AuthFlow
         router.newRootScreen(screen)

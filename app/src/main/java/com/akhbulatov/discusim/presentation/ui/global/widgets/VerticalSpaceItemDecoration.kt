@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.global.widgets
+package com.akhbulatov.discusim.presentation.ui.global.widgets
 
 import android.graphics.Rect
 import android.view.View

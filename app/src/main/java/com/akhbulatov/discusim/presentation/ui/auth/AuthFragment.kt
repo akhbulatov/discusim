@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_auth.*
 import org.jetbrains.anko.support.v4.toast

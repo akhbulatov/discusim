@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.presentation.global.base.BaseViewHolder
-import com.akhbulatov.discusim.presentation.global.utils.inflate
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_forum.*
 

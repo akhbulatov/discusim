@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.presentation.global
 
 import com.akhbulatov.discusim.domain.global.ResourceManager
 import com.akhbulatov.discusim.domain.session.SessionInteractor
-import com.akhbulatov.discusim.presentation.global.utils.userMessage
+import com.akhbulatov.discusim.presentation.ui.global.utils.userMessage
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject

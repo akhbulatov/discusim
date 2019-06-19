@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Activity
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_profile_activities.*

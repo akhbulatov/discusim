@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.global.base
+package com.akhbulatov.discusim.presentation.ui.global.base
 
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.di.Flow

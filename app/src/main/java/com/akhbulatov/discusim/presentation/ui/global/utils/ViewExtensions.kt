@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.global.utils
+package com.akhbulatov.discusim.presentation.ui.global.utils
 
 import android.view.LayoutInflater
 import android.view.View

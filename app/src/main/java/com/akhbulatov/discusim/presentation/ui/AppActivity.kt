@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import dagger.android.support.DaggerAppCompatActivity
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder

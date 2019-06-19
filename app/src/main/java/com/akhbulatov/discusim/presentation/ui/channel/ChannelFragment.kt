@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
-import com.akhbulatov.discusim.presentation.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_channel.*
 import kotlinx.android.synthetic.main.toolbar.*
