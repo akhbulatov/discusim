@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.data.global.local.prefs
 
-import com.akhbulatov.discusim.domain.global.models.Auth
+import com.akhbulatov.discusim.domain.global.models.Session
 
 interface PreferencesStorage {
     var userId: Long
@@ -8,6 +8,6 @@ interface PreferencesStorage {
     var refreshToken: String?
 
     fun isLoggedIn(): Boolean
-    fun setLoggedIn(auth: Auth)
+    fun setLoggedIn(session: Session)
     fun logout()
 }

@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.data.global.local.prefs
 
 import android.content.Context
 import androidx.core.content.edit
-import com.akhbulatov.discusim.domain.global.models.Auth
+import com.akhbulatov.discusim.domain.global.models.Session
 import javax.inject.Inject
 
 class SharedPreferencesStorage @Inject constructor(context: Context) : PreferencesStorage {
@@ -24,10 +24,10 @@ class SharedPreferencesStorage @Inject constructor(context: Context) : Preferenc
         return userId != -1L && accessToken != null && refreshToken != null
     }
 
-    override fun setLoggedIn(auth: Auth) {
-        userId = auth.userId
-        accessToken = auth.accessToken
-        refreshToken = auth.refreshToken
+    override fun setLoggedIn(session: Session) {
+        userId = session.userId
+        accessToken = session.accessToken
+        refreshToken = session.refreshToken
     }
 
     override fun logout() {

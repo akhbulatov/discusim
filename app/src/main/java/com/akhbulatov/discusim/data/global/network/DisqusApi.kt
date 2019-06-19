@@ -4,7 +4,7 @@ import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forums.ForumResponse
 import com.akhbulatov.discusim.data.forums.ForumsResponse
 import com.akhbulatov.discusim.data.forums.ModeratorsResponse
-import com.akhbulatov.discusim.data.global.network.models.AuthNetModel
+import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.threads.ThreadsResponse
 import com.akhbulatov.discusim.data.users.UserDetailsResponse
 import com.akhbulatov.discusim.data.users.UserPostsResponse
@@ -26,7 +26,7 @@ interface DisqusApi {
         @Field("client_secret") clientSecret: String,
         @Field("redirect_uri") redirectUri: String,
         @Field("code") code: String
-    ): Single<AuthNetModel>
+    ): Single<SessionNetModel>
 
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
