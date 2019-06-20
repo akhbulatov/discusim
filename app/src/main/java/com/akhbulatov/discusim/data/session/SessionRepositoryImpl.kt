@@ -24,7 +24,7 @@ class SessionRepositoryImpl @Inject constructor(
                 "redirect_uri=${oAuthParams.redirectUri}"
     }
 
-    override fun isLoggedIn(userId: Long?): Boolean = prefsStorage.isLoggedIn()
+    override fun isLoggedIn(): Boolean = prefsStorage.isLoggedIn()
 
     override fun setLoggedIn(session: Session) {
         prefsStorage.setLoggedIn(session)

@@ -6,7 +6,7 @@ import io.reactivex.Single
 interface SessionRepository {
     fun getAuthorizeUrl(): String
 
-    fun isLoggedIn(userId: Long? = null): Boolean
+    fun isLoggedIn(): Boolean
     fun setLoggedIn(session: Session)
 
     fun login(code: String): Single<Session>

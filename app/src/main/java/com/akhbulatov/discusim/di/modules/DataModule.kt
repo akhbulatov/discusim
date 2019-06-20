@@ -16,7 +16,7 @@ import javax.inject.Singleton
 abstract class DataModule {
     @Binds
     @Singleton
-    abstract fun bindSessionRepository(repositoryImpl: SessionRepositoryImpl): SessionRepository
+    abstract fun bindSessionRepository(repository: SessionRepositoryImpl): SessionRepository
 
     @Binds
     @Singleton
