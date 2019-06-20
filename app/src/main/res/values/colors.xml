@@ -5,11 +5,15 @@
     <color name="primary_dark">@color/grey_silver</color>
     <color name="accent">@color/blue_dodger</color>
 
+    <color name="text_date">@color/grey_silver</color>
+
     <color name="toolbar_text">@color/blue_dodger</color>
     <color name="progress_content_background">@color/black_transparent_50</color>
 
+    <color name="bottom_nav_active">@color/blue_dodger</color>
+    <color name="bottom_nav_inactive">@color/grey_silver</color>
+
     <!-- TODO Следует переименовать в соответствии с новым подходом именования цветов -->
-    <color name="blue_light">#A3D3FD</color>
     <color name="grey_50">#EBEEF2</color>
 
     <!-- Palette colors -->
@@ -21,7 +25,7 @@
     <color name="black_transparent_50">#80000000</color>
 
     <!-- Palette blue -->
-    <color name="blue_dodger">#36A1FC</color>
+    <color name="blue_dodger">#2E9FFF</color>
 
     <!-- Palette grey -->
     <color name="grey_silver">#cccccc</color>

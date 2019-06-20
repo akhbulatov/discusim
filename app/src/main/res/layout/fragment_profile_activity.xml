@@ -5,17 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/profile_activity_title" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activitiesRecyclerView"
+        android:id="@+id/activityRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/grey_50"
         android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="2"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:itemCount="3"
         tools:listitem="@layout/item_profile_activity" />
 
     <include layout="@layout/content_progress" />

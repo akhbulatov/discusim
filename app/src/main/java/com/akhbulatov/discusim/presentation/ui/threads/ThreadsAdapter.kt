@@ -24,10 +24,10 @@ class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF
     class ThreadViewHolder(itemView: View) : BaseViewHolder<Thread>(itemView) {
         override fun bind(item: Thread) {
             item.let {
-                val contentImageUrl = if (!it.media.isNullOrEmpty()) it.media[0].url else null
+                val contentImageUrl = if (!it.mediaUrls.isNullOrEmpty()) it.mediaUrls[0] else null
 
                 Glide.with(itemView)
-                    .load(it.author.avatar.small.link)
+                    .load(it.author.avatarUrl)
                     .into(authorImageView)
 
                 Glide.with(itemView)

@@ -6,13 +6,9 @@ data class Thread(
     val message: String,
     val author: User,
     val createdAt: String,
-    val media: List<Media>?,
+    val mediaUrls: List<String>?,
     val likes: String,
     val posts: Int,
-    val closed: Boolean,
     val upvoted: Boolean,
     val forum: Forum
-) {
-
-    data class Media(val thumbnailUrl: String, val url: String)
-}
+)

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/normal_margin">
+    android:padding="@dimen/spacing_normal">
 
     <ImageView
         android:id="@+id/authorImageView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -18,14 +18,14 @@
         android:id="@+id/activityTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginStart="@dimen/spacing_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/authorImageView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
     <ImageView
-        android:id="@+id/activityImageView"
+        android:id="@+id/activityTypeImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/activityTextView"
@@ -33,12 +33,13 @@
         tools:src="@drawable/ic_favorite" />
 
     <TextView
-        android:id="@+id/createdAtTextView"
+        android:id="@+id/dateTextView"
+        style="@style/Text.Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/normal_margin"
-        app:layout_constraintStart_toEndOf="@id/activityImageView"
-        app:layout_constraintTop_toTopOf="@id/activityImageView"
+        android:layout_marginStart="@dimen/spacing_normal"
+        app:layout_constraintStart_toEndOf="@id/activityTypeImageView"
+        app:layout_constraintTop_toTopOf="@id/activityTypeImageView"
         tools:text="@tools:sample/date/mmddyy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

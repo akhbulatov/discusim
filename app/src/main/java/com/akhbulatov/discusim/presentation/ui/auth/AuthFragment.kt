@@ -19,11 +19,11 @@ import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_auth
+
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: AuthViewModel
-
-    override val layoutRes: Int = R.layout.fragment_auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

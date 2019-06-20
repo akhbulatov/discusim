@@ -25,7 +25,7 @@ class ProfilePostsAdapter : ListAdapter<Post, ProfilePostsAdapter.PostViewHolder
         override fun bind(item: Post) {
             item.let {
                 Glide.with(itemView)
-                    .load(it.author.avatar.small.link)
+                    .load(it.author.avatarUrl)
                     .placeholder(R.drawable.img_user_placeholder)
                     .into(authorImageView)
 

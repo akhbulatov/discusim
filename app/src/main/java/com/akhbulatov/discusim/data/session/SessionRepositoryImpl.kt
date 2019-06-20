@@ -30,6 +30,8 @@ class SessionRepositoryImpl @Inject constructor(
         prefsStorage.setLoggedIn(session)
     }
 
+    override fun getUserId(): Long = prefsStorage.userId
+
     override fun login(code: String): Single<Session> =
         api.login(
             "authorization_code",

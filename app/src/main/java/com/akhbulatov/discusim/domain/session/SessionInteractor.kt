@@ -27,6 +27,8 @@ class SessionInteractor @Inject constructor(
 
     fun isLoggedIn(): Boolean = sessionRepository.isLoggedIn()
 
+    fun getUserId(): Long = sessionRepository.getUserId()
+
     fun login(code: String): Completable =
         sessionRepository.login(code)
             .doOnSuccess { sessionRepository.setLoggedIn(it) }

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="font_normal">16sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+
+    <dimen name="spacing_normal">16dp</dimen>
+
+    <!-- TODO Следует заменить в соответствии с новым применяемым гайдом -->
     <dimen name="small_margin">8dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
 </resources>

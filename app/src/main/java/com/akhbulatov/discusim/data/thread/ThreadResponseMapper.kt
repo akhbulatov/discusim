@@ -1,12 +1,16 @@
-package com.akhbulatov.discusim.data.threads
+package com.akhbulatov.discusim.data.thread
 
-import com.akhbulatov.discusim.data.forums.ForumsResponseMapper
+import com.akhbulatov.discusim.data.forums.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
+import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Thread
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class ThreadsResponseMapper @Inject constructor(
-    private val forumsResponseMapper: ForumsResponseMapper
+@Singleton
+class ThreadResponseMapper @Inject constructor(
+    private val userResponseMappeer: UserResponseMapper,
+    private val forumResponseMapper: ForumResponseMapper
 ) {
 
     fun map(response: ThreadsResponse): List<Thread> = response.threads.map { map(it) }
@@ -17,14 +21,13 @@ class ThreadsResponseMapper @Inject constructor(
                 it.id,
                 it.title,
                 it.message,
-                it.author,
+                userResponseMappeer.map(it.author),
                 it.createdAt,
-                it.media?.map { media -> Thread.Media(media.thumbnailUrl, media.url) },
+                it.media?.map { media -> media.url },
                 it.likes,
                 it.posts,
-                it.closed,
                 it.userScore > 0,
-                forumsResponseMapper.map(it.forum)
+                forumResponseMapper.map(it.forum)
             )
         }
 }

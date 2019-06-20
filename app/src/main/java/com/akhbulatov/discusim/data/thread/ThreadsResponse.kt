@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.data.threads
+package com.akhbulatov.discusim.data.thread
 
 import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
 import com.squareup.moshi.Json

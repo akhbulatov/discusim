@@ -10,31 +10,30 @@ import kotlinx.android.synthetic.main.fragment_main_flow.*
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class MainFlowFragment : FlowFragment() {
+    override val layoutRes: Int = R.layout.fragment_main_flow
+
     private val currentTabFragment: BaseFragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? BaseFragment
 
-    override val layoutRes: Int = R.layout.fragment_main_flow
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavBar.setOnNavigationItemSelectedListener {
-            switchTab(
-                when (it.itemId) {
-                    R.id.menu_bottom_nav_profile -> profileTab
-                    R.id.menu_bottom_nav_forums -> forumsTab
-                    else -> throw IllegalArgumentException("") // TODO
-                }
-            )
+        bottomNavView.setOnNavigationItemSelectedListener { item ->
+            val tabScreen = when (item.itemId) {
+                R.id.menu_bottom_nav_profile_activity -> profileActivityTabScreen
+                R.id.menu_bottom_nav_forums -> forumsTabScreen
+                else -> profileTabScreen
+            }
+            switchTab(tabScreen)
             true
         }
 
-        switchTab(
-            when (currentTabFragment?.tag) {
-                profileTab.screenKey -> profileTab
-                forumsTab.screenKey -> forumsTab
-                else -> profileTab
-            }
-        )
+
+        val tabScreen = when (currentTabFragment?.tag) {
+            forumsTabScreen.screenKey -> forumsTabScreen
+            profileTabScreen.screenKey -> profileTabScreen
+            else -> profileActivityTabScreen // Задается первым, если табы еще не были добавлены
+        }
+        switchTab(tabScreen)
     }
 
     private fun switchTab(tabScreen: SupportAppScreen) {
@@ -42,7 +41,7 @@ class MainFlowFragment : FlowFragment() {
         val newFragment = childFragmentManager.findFragmentByTag(tabScreen.screenKey)
 
         if (currentFragment != null && newFragment != null && currentFragment == newFragment) {
-            return
+            return // Возврат, т.к. нажатие выполнено на текущем табе
         }
 
         childFragmentManager.beginTransaction().apply {
@@ -50,20 +49,14 @@ class MainFlowFragment : FlowFragment() {
                 add(R.id.container, tabScreen.fragment, tabScreen.screenKey)
             }
 
-            currentFragment?.let {
-                hide(it)
-                it.userVisibleHint = false
-            }
-
-            newFragment?.let {
-                show(it)
-                it.userVisibleHint = true
-            }
+            currentFragment?.let { hide(it) }
+            newFragment?.let { show(it) }
         }.commitNow()
     }
 
     companion object {
-        private val profileTab = Screens.Profile(178987138) // TODO
-        private val forumsTab = Screens.Forums(178987138) // TODO
+        private val profileActivityTabScreen = Screens.ProfileActivity()
+        private val forumsTabScreen = Screens.Forums(178987138) // TODO
+        private val profileTabScreen = Screens.Profile(178987138) // TODO
     }
 }

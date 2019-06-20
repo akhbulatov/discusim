@@ -9,6 +9,8 @@ interface SessionRepository {
     fun isLoggedIn(): Boolean
     fun setLoggedIn(session: Session)
 
+    fun getUserId(): Long
+
     fun login(code: String): Single<Session>
     fun logout()
 }

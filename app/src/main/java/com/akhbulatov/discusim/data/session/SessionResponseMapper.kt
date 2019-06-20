@@ -7,8 +7,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SessionResponseMapper @Inject constructor() {
-    fun map(session: SessionNetModel): Session =
-        session.let {
+    fun map(model: SessionNetModel): Session =
+        model.let {
             Session(
                 it.userId,
                 it.accessToken,

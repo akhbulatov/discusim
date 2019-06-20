@@ -1,51 +1,45 @@
-package com.akhbulatov.discusim.data.users
+package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.forums.ForumsResponseMapper
+import com.akhbulatov.discusim.data.forums.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.Activity
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.Post
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
-import com.akhbulatov.discusim.domain.global.repositories.UsersRepository
+import com.akhbulatov.discusim.domain.global.repositories.UserRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class UsersRepositoryImpl @Inject constructor(
+class UserRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
     private val schedulers: SchedulersProvider,
-    private val usersResponseMapper: UsersResponseMapper,
-    private val forumsResponseMapper: ForumsResponseMapper
-) : UsersRepository {
+    private val userResponseMapper: UserResponseMapper,
+    private val forumResponseMapper: ForumResponseMapper
+) : UserRepository {
 
     override fun getUser(userId: Long): Single<UserDetails> =
         api.getUser(userId)
-            .map { usersResponseMapper.map(it) }
-            .subscribeOn(schedulers.io())
-
-    override fun getUserActivities(userId: Long): Single<List<Activity>> =
-        api.getUserActivities(userId)
-            .map { usersResponseMapper.map(it) }
+            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getUserPosts(userId: Long): Single<List<Post>> =
         api.getUserPosts(userId)
-            .map { usersResponseMapper.map(it) }
+            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getFollowers(userId: Long): Single<List<User>> =
         api.getFollowers(userId)
-            .map { usersResponseMapper.map(it) }
+            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getFollowingUsers(userId: Long): Single<List<User>> =
         api.getFollowingUsers(userId)
-            .map { usersResponseMapper.map(it) }
+            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getFollowingForums(userId: Long): Single<List<Forum>> =
         api.getFollowingForums(userId)
-            .map { forumsResponseMapper.map(it) }
+            .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }
