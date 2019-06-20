@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+    <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="titleTextColor">@color/toolbar_text</item>
     </style>
 
