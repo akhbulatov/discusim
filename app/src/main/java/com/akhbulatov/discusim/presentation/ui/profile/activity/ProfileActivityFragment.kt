@@ -8,8 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
@@ -36,10 +34,9 @@ class ProfileActivityFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityRecyclerView.run {
+        with(activityRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = activityAdapter
         }
         observeChanges()
