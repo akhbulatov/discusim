@@ -19,11 +19,11 @@ class AuthViewModel @Inject constructor(
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _contentProgress = MutableLiveData<Boolean>()
-    val contentProgress: LiveData<Boolean> get() = _contentProgress
+    private val _progress = MutableLiveData<Boolean>()
+    val progress: LiveData<Boolean> get() = _progress
 
-    private val _contentError = MutableLiveData<String>()
-    val contentError: LiveData<String> get() = _contentError
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
 
     fun getAuthorizeUrl(): String = sessionInteractor.getAuthorizeUrl()
 
@@ -46,11 +46,11 @@ class AuthViewModel @Inject constructor(
     private fun login(code: String) {
         subscriptions += sessionInteractor.login(code)
             .observeOn(schedulers.ui())
-            .doOnSubscribe { _contentProgress.value = true }
-            .doOnTerminate { _contentProgress.value = false }
+            .doOnSubscribe { _progress.value = true }
+            .doOnTerminate { _progress.value = false }
             .subscribeBy(
                 onComplete = { router.newRootFlow(Screens.MainFlow) },
-                onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
+                onError = { errorHandler.proceed(it) { msg -> _error.value = msg } }
             )
     }
 

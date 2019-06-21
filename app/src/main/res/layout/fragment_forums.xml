@@ -20,8 +20,8 @@
         tools:itemCount="2"
         tools:listitem="@layout/item_forum" />
 
-    <include layout="@layout/content_progress" />
+    <include layout="@layout/layout_progress" />
 
-    <include layout="@layout/content_error" />
+    <include layout="@layout/layout_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

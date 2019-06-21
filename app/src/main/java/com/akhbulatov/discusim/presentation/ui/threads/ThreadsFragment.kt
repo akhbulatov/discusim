@@ -13,8 +13,8 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.widgets.VerticalSpaceItemDecoration
-import kotlinx.android.synthetic.main.content_error.*
-import kotlinx.android.synthetic.main.content_progress.*
+import kotlinx.android.synthetic.main.layout_error.*
+import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_threads.*
 import javax.inject.Inject
 
@@ -62,12 +62,12 @@ class ThreadsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        contentProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        contentErrorLayout.isVisible = true
-        contentErrorTextView.text = message
+        errorLayout.isVisible = true
+        errorTextView.text = message
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

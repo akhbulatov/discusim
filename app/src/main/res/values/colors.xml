@@ -8,7 +8,6 @@
     <color name="text_date">@color/grey_silver</color>
 
     <color name="toolbar_text">@color/blue_dodger</color>
-    <color name="progress_content_background">@color/black_transparent_50</color>
 
     <color name="bottom_nav_active">@color/blue_dodger</color>
     <color name="bottom_nav_inactive">@color/grey_silver</color>
@@ -22,7 +21,6 @@
     <!-- General palettes -->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="black_transparent_50">#80000000</color>
 
     <!-- Palette blue -->
     <color name="blue_dodger">#2E9FFF</color>

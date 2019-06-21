@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.content_error.*
-import kotlinx.android.synthetic.main.content_progress.*
+import kotlinx.android.synthetic.main.layout_error.*
+import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_profile_activity.*
 import javax.inject.Inject
 
@@ -58,12 +58,12 @@ class ProfileActivityFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        contentProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        contentErrorLayout.isVisible = true
-        contentErrorTextView.text = message
+        errorLayout.isVisible = true
+        errorTextView.text = message
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
