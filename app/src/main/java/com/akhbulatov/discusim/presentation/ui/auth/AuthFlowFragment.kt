@@ -6,7 +6,7 @@ import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
 
 class AuthFlowFragment : FlowFragment() {
-    override val layoutRes: Int = R.layout.container
+    override val layoutRes: Int = R.layout.layout_container
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

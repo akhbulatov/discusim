@@ -23,7 +23,7 @@ class AppActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.container)
+        setContentView(R.layout.layout_container)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[AppActivityViewModel::class.java]
     }
 
