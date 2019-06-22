@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_profile_post.*
 
-class ProfilePostsAdapter : ListAdapter<Post, ProfilePostsAdapter.PostViewHolder>(DIFF_CALLBACK) {
+class ProfilePostsAdapter : ListAdapter<Comment, ProfilePostsAdapter.PostViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val itemView = parent.inflate(R.layout.item_profile_post)
         return PostViewHolder(itemView)
@@ -21,8 +21,8 @@ class ProfilePostsAdapter : ListAdapter<Post, ProfilePostsAdapter.PostViewHolder
         holder.bind(getItem(position))
     }
 
-    class PostViewHolder(itemView: View) : BaseViewHolder<Post>(itemView) {
-        override fun bind(item: Post) {
+    class PostViewHolder(itemView: View) : BaseViewHolder<Comment>(itemView) {
+        override fun bind(item: Comment) {
             item.let {
                 Glide.with(itemView)
                     .load(it.author.avatarUrl)
@@ -30,19 +30,19 @@ class ProfilePostsAdapter : ListAdapter<Post, ProfilePostsAdapter.PostViewHolder
                     .into(authorImageView)
 
                 authorTextView.text = it.author.name
-                createdAtTextView.text = it.createdAt
+//                createdAtTextView.text = it.createdAt
                 messageTextView.text = it.message
-                upvotesTextView.text = it.likes.toString()
+//                upvotesTextView.text = it.likes.toString()
             }
         }
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
-            override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean =
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Comment>() {
+            override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean =
+            override fun areContentsTheSame(oldItem: Comment, newItem: Comment): Boolean =
                 oldItem == newItem
         }
     }

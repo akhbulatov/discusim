@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.forums.ModeratorsResponse
+import com.akhbulatov.discusim.data.forum.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.UserNetModel
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import javax.inject.Inject
@@ -14,13 +14,8 @@ class UserResponseMapper @Inject constructor() {
         model.let {
             User(
                 it.id,
-                it.username,
                 it.name,
-                it.avatar.large.link,
-                it.about,
-                it.location,
-                it.url,
-                it.joinedAt
+                it.avatar.url
             )
         }
 
@@ -29,5 +24,5 @@ class UserResponseMapper @Inject constructor() {
 
     fun map(response: UserDetailsResponse): UserDetails = response.userDetails
 
-    fun map(response: UserPostsResponse): List<Post> = response.posts
+    fun map(response: UserPostsResponse): List<Comment> = response.posts
 }

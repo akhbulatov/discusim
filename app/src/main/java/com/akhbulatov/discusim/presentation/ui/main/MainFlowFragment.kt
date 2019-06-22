@@ -19,7 +19,7 @@ class MainFlowFragment : FlowFragment() {
         super.onViewCreated(view, savedInstanceState)
         bottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
-                R.id.menu_bottom_nav_profile_activity -> profileActivityTabScreen
+                R.id.menu_bottom_nav_user_activity -> userActivityTabScreen
                 R.id.menu_bottom_nav_forums -> forumsTabScreen
                 else -> profileTabScreen
             }
@@ -31,7 +31,7 @@ class MainFlowFragment : FlowFragment() {
         val tabScreen = when (currentTabFragment?.tag) {
             forumsTabScreen.screenKey -> forumsTabScreen
             profileTabScreen.screenKey -> profileTabScreen
-            else -> profileActivityTabScreen // Задается первым, если табы еще не были добавлены
+            else -> userActivityTabScreen // Первый таб
         }
         switchTab(tabScreen)
     }
@@ -41,7 +41,7 @@ class MainFlowFragment : FlowFragment() {
         val newFragment = childFragmentManager.findFragmentByTag(tabScreen.screenKey)
 
         if (currentFragment != null && newFragment != null && currentFragment == newFragment) {
-            return // Возврат, т.к. нажатие выполнено на текущем табе
+            return // Не переключает таб, т.к. нажатие выполнено на текущем табе
         }
 
         childFragmentManager.beginTransaction().apply {
@@ -55,7 +55,7 @@ class MainFlowFragment : FlowFragment() {
     }
 
     companion object {
-        private val profileActivityTabScreen = Screens.ProfileActivity()
+        private val userActivityTabScreen = Screens.UserActivity()
         private val forumsTabScreen = Screens.Forums(178987138) // TODO
         private val profileTabScreen = Screens.Profile(178987138) // TODO
     }

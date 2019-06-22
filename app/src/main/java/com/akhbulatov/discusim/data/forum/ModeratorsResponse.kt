@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.data.forums
+package com.akhbulatov.discusim.data.forum
 
 import com.akhbulatov.discusim.domain.global.models.User
 import com.squareup.moshi.Json

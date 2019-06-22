@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.profile.posts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.profile.posts.ProfilePostsInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -19,8 +19,8 @@ class ProfilePostsViewModel @Inject constructor(
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _posts = MutableLiveData<List<Post>>()
-    val posts: LiveData<List<Post>> get() = _posts
+    private val _posts = MutableLiveData<List<Comment>>()
+    val posts: LiveData<List<Comment>> get() = _posts
 
     private val _contentBlock = MutableLiveData<Boolean>()
     val contentBlock: LiveData<Boolean> get() = _contentBlock

@@ -5,7 +5,7 @@
     <color name="primary_dark">@color/grey_silver</color>
     <color name="accent">@color/blue_dodger</color>
 
-    <color name="text_date">@color/grey_silver</color>
+    <color name="text_date">@color/grey_dove</color>
 
     <color name="toolbar_text">@color/blue_dodger</color>
 
@@ -27,4 +27,5 @@
 
     <!-- Palette grey -->
     <color name="grey_silver">#cccccc</color>
+    <color name="grey_dove">#6F6F6F</color>
 </resources>

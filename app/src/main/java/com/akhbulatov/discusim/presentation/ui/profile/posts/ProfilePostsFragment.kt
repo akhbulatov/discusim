@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.widgets.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.layout_error.*
@@ -52,7 +52,7 @@ class ProfilePostsFragment : BaseFragment() {
         viewModel.contentError.observe(this, Observer { showError(it) })
     }
 
-    private fun showPosts(posts: List<Post>) {
+    private fun showPosts(posts: List<Comment>) {
         postsAdapter.submitList(posts)
     }
 

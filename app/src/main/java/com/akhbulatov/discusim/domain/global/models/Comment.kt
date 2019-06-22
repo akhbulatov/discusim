@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.domain.global.models
 
-data class Thread(
+data class Comment(
     val id: String,
-    val title: String
+    val message: String,
+    val author: User
 )

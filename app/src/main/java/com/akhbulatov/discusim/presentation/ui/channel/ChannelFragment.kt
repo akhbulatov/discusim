@@ -9,9 +9,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_channel.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class ChannelFragment : BaseFragment() {
@@ -46,17 +44,17 @@ class ChannelFragment : BaseFragment() {
     }
 
     private fun showChannel(forum: Forum) {
-        forum.channel?.let {
-            toolbar.title = forum.name
-
-            Glide.with(this@ChannelFragment)
-                .load(it.backgroundUrl)
-                .into(coverImageView)
-
-            Glide.with(this@ChannelFragment)
-                .load((it.logoUrl))
-                .into(logoImageView)
-        }
+//        forum.channel?.let {
+//            toolbar.title = forum.name
+//
+//            Glide.with(this@ChannelFragment)
+//                .load(it.backgroundUrl)
+//                .into(coverImageView)
+//
+//            Glide.with(this@ChannelFragment)
+//                .load((it.logoUrl))
+//                .into(logoImageView)
+//        }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

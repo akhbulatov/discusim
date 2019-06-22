@@ -9,7 +9,7 @@ import com.akhbulatov.discusim.presentation.ui.forum.ForumFragment
 import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
-import com.akhbulatov.discusim.presentation.ui.profile.activity.ProfileActivityFragment
+import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
@@ -30,12 +30,12 @@ object Screens {
         override fun getFragment(): Fragment = MainFlowFragment()
     }
 
-    data class Profile(val userId: Long) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ProfileFragment.newInstance(userId)
+    data class UserActivity(val userId: Long? = null) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
     }
 
-    data class ProfileActivity(val userId: Long? = null) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ProfileActivityFragment.newInstance(userId)
+    data class Profile(val userId: Long) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ProfileFragment.newInstance(userId)
     }
 
     data class ProfilePosts(val userId: Long) : SupportAppScreen() {

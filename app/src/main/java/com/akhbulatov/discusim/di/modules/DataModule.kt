@@ -1,7 +1,7 @@
 package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.data.activity.ActivityRepositoryImpl
-import com.akhbulatov.discusim.data.forums.ForumsRepositoryImpl
+import com.akhbulatov.discusim.data.forum.ForumsRepositoryImpl
 import com.akhbulatov.discusim.data.session.SessionRepositoryImpl
 import com.akhbulatov.discusim.data.thread.ThreadsRepositoryImpl
 import com.akhbulatov.discusim.data.user.UserRepositoryImpl
@@ -22,11 +22,11 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
+    abstract fun bindActivityRepository(repository: ActivityRepositoryImpl): ActivityRepository
 
     @Binds
     @Singleton
-    abstract fun bindActivityRepository(repository: ActivityRepositoryImpl): ActivityRepository
+    abstract fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
 
     @Binds
     @Singleton

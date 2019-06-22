@@ -7,9 +7,9 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ProfileActivityModule {
+abstract class UserActivityModule {
     @Binds
     @IntoMap
-    @ViewModelKey(ProfileActivityViewModel::class)
-    abstract fun bindProfileActivitiesViewModel(viewModel: ProfileActivityViewModel): ViewModel
+    @ViewModelKey(UserActivityViewModel::class)
+    abstract fun bindUserActivityViewModel(viewModel: UserActivityViewModel): ViewModel
 }

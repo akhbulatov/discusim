@@ -11,24 +11,24 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_user_activity.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_progress.*
-import kotlinx.android.synthetic.main.fragment_profile_activity.*
 import javax.inject.Inject
 
-class ProfileActivityFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_profile_activity
+class UserActivityFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_user_activity
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ProfileActivityViewModel
-    private val activityAdapter by lazy { ProfileActivityAdapter() }
+    private lateinit var viewModel: UserActivityViewModel
+    private val activityAdapter by lazy { UserActivityAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val userId = arguments?.getLong(ARG_USER_ID)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ProfileActivityViewModel::class.java]
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserActivityViewModel::class.java]
         viewModel.setUserId(userId)
     }
 
@@ -39,21 +39,21 @@ class ProfileActivityFragment : BaseFragment() {
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             adapter = activityAdapter
         }
-        observeChanges()
+        observeUIChanges()
     }
 
-    private fun observeChanges() {
+    private fun observeUIChanges() {
         viewModel.actions.observe(this, Observer { showActions(it) })
-        viewModel.contentBlock.observe(this, Observer { showContentBlock(it) })
-        viewModel.contentProgress.observe(this, Observer { showProgress(it) })
-        viewModel.contentError.observe(this, Observer { showError(it) })
+        viewModel.content.observe(this, Observer { showContent(it) })
+        viewModel.progress.observe(this, Observer { showProgress(it) })
+        viewModel.error.observe(this, Observer { showError(it) })
     }
 
     private fun showActions(actions: List<Action>) {
         activityAdapter.submitList(actions)
     }
 
-    private fun showContentBlock(show: Boolean) {
+    private fun showContent(show: Boolean) {
         activityRecyclerView.isVisible = show
     }
 
@@ -71,7 +71,7 @@ class ProfileActivityFragment : BaseFragment() {
     companion object {
         private const val ARG_USER_ID = "user_id"
 
-        fun newInstance(userId: Long? = null) = ProfileActivityFragment().apply {
+        fun newInstance(userId: Long? = null) = UserActivityFragment().apply {
             userId?.let {
                 arguments = bundleOf(ARG_USER_ID to userId)
             }

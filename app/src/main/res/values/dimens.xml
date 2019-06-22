@@ -5,6 +5,8 @@
 
     <dimen name="spacing_normal">16dp</dimen>
 
+    <dimen name="avatar_size">40dp</dimen>
+
     <!-- TODO Следует заменить в соответствии с новым применяемым гайдом -->
     <dimen name="small_margin">8dp</dimen>
     <dimen name="normal_margin">16dp</dimen>

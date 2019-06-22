@@ -9,13 +9,19 @@
     <string name="auth_title">Authorization</string>
 
     <!-- Main Flow -->
-    <string name="main_flow_profile_activity">Activity</string>
+    <string name="main_flow_user_activity">Activity</string>
     <string name="main_flow_trends">Trends</string>
     <string name="main_flow_profile">Profile</string>
     <string name="main_flow_forums">Forums</string>
 
-    <!-- Profile Activity -->
-    <string name="profile_activity_title">Activity</string>
+    <!-- User Activity -->
+    <string name="user_activity_title">Activity</string>
+
+    <!-- Item User Activity -->
+    <string name="item_user_activity_upvote">upvotes</string>
+    <string name="item_user_activity_downvote">downvotes</string>
+    <string name="item_user_activity_no_vote">not votes</string>
+    <string name="item_user_activity_comment">commented</string>
 
     <!-- Forums -->
     <string name="forums_title">Forums</string>

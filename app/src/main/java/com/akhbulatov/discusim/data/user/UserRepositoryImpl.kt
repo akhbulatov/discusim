@@ -1,10 +1,10 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.forums.ForumResponseMapper
+import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.domain.global.repositories.UserRepository
@@ -23,7 +23,7 @@ class UserRepositoryImpl @Inject constructor(
             .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun getUserPosts(userId: Long): Single<List<Post>> =
+    override fun getUserPosts(userId: Long): Single<List<Comment>> =
         api.getUserPosts(userId)
             .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())

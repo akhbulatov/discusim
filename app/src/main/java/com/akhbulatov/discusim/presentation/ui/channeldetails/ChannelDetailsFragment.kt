@@ -9,7 +9,6 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_channel_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -53,26 +52,26 @@ class ChannelDetailsFragment : BaseFragment() {
     }
 
     private fun showChannelDetails(forum: Forum) {
-        forum.let {
-            toolbar.title = it.name
-
-            Glide.with(this@ChannelDetailsFragment)
-                .load(it.faviconUrl)
-                .into(faviconImageView)
-
-            nameTextView.text = it.name
-            descriptionTextView.text = it.description
-            it.numThreads?.let { threads ->
-                val count = resources.getQuantityString(R.plurals.channel_details_num_threads, threads, threads)
-                numThreadsTextView.text = count
-            }
-            it.numFollowers?.let { followers ->
-                val count = resources.getQuantityString(R.plurals.channel_details_num_followers, followers, followers)
-                numFollowersTextView.text = count
-            }
-
-            channelDetailsTabLayout.getTabAt(0)?.text = "Mods ${forum.numModerators}" // TODO
-        }
+//        forum.let {
+//            toolbar.title = it.name
+//
+//            Glide.with(this@ChannelDetailsFragment)
+//                .load(it.faviconUrl)
+//                .into(faviconImageView)
+//
+//            nameTextView.text = it.name
+//            descriptionTextView.text = it.description
+//            it.numThreads?.let { threads ->
+//                val count = resources.getQuantityString(R.plurals.channel_details_num_threads, threads, threads)
+//                numThreadsTextView.text = count
+//            }
+//            it.numFollowers?.let { followers ->
+//                val count = resources.getQuantityString(R.plurals.channel_details_num_followers, followers, followers)
+//                numFollowersTextView.text = count
+//            }
+//
+//            channelDetailsTabLayout.getTabAt(0)?.text = "Mods ${forum.numModerators}" // TODO
+//        }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

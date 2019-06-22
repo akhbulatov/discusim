@@ -11,9 +11,8 @@ fun Throwable.userMessage(resourceManager: ResourceManager): String = when (this
     else -> resourceManager.getString(R.string.error_unknown)
 }
 
-fun VoteType.getHumanName(resources: Resources): String = when (this) {
-    // TODO Взять строки из ресурсов
-    VoteType.UPVOTE -> "upvotes"
-    VoteType.DOWNVOTE -> "downvotes"
-    VoteType.NOT_VOTE -> "not votes"
+fun VoteType.getHumanName(res: Resources): String = when (this) {
+    VoteType.UPVOTE -> res.getString(R.string.item_user_activity_upvote)
+    VoteType.DOWNVOTE -> res.getString(R.string.item_user_activity_downvote)
+    VoteType.NO_VOTE -> res.getString(R.string.item_user_activity_no_vote)
 }

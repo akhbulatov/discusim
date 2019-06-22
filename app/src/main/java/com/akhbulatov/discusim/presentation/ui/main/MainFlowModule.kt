@@ -5,16 +5,16 @@ import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
 import com.akhbulatov.discusim.presentation.ui.forums.ForumsModule
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileModule
-import com.akhbulatov.discusim.presentation.ui.profile.activity.ProfileActivityFragment
-import com.akhbulatov.discusim.presentation.ui.profile.activity.ProfileActivityModule
+import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFragment
+import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class MainFlowModule {
     @FlowChildFragmentScope
-    @ContributesAndroidInjector(modules = [ProfileActivityModule::class])
-    abstract fun contributeProfileActivityFragment(): ProfileActivityFragment
+    @ContributesAndroidInjector(modules = [UserActivityModule::class])
+    abstract fun contributeUserActivityFragment(): UserActivityFragment
 
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [ForumsModule::class])

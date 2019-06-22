@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.data.forums
+package com.akhbulatov.discusim.data.forum
 
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
