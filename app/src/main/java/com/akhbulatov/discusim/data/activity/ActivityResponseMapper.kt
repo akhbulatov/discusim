@@ -25,7 +25,7 @@ class ActivityResponseMapper @Inject constructor(
         val actions = activityResponseParser.parse(activityBody.string())
         return actions.map {
             when (it.`object`) {
-                is ActionNetModel.ThreadVoteNet -> {
+                is ActionNetModel.ThreadVoteNetModel -> {
                     Action(
                         threadVote = mapThreadVote(it.`object`),
                         type = Action.Type.THREAD_VOTE,
@@ -44,7 +44,7 @@ class ActivityResponseMapper @Inject constructor(
         }
     }
 
-    private fun mapThreadVote(model: ActionNetModel.ThreadVoteNet): Action.ThreadVote =
+    private fun mapThreadVote(model: ActionNetModel.ThreadVoteNetModel): Action.ThreadVote =
         model.let {
             Action.ThreadVote(
                 it.id.toLong(),

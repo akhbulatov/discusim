@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
     private val actionAdapter = moshi.adapter(ActionNetModel::class.java)
-    private val threadVoteAdapter = moshi.adapter(ActionNetModel.ThreadVoteNet::class.java)
+    private val threadVoteAdapter = moshi.adapter(ActionNetModel.ThreadVoteNetModel::class.java)
     private val commentAdapter = moshi.adapter(CommentNetModel::class.java)
 
     fun parse(activityJson: String): List<ActionNetModel> {

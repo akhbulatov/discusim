@@ -8,7 +8,7 @@ data class ActionNetModel(
     @Json(name = "createdAt") val createdAt: String
 ) {
 
-    data class ThreadVoteNet(
+    data class ThreadVoteNetModel(
         @Json(name = "id") val id: String,
         @Json(name = "thread") val thread: ThreadNetModel,
         @Json(name = "forum") val forum: ForumNetModel,
