@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.presentation.ui.profile.activity
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanName
+import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_user_activity.*
@@ -25,22 +27,23 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
 
     class UserActivityViewHolder(itemView: View) : BaseViewHolder<Action>(itemView) {
         override fun bind(item: Action) {
+            val context = itemView.context
             var authorAvatarUrl = ""
             var activity = ""
-            var activityIconRes = 0
+            var activityDrawable: Drawable? = null
 
             if (item.threadVote != null) {
                 // ThreadVote
                 authorAvatarUrl = item.threadVote.author.avatarUrl
                 val vote = item.threadVote.voteType.getHumanName(itemView.resources)
                 activity = "${item.threadVote.author.name} $vote ${item.threadVote.thread.title}"
-                activityIconRes = R.drawable.ic_favorite
+                activityDrawable = context.getTintDrawable(R.drawable.ic_favorite, R.color.button_upvote)
             } else if (item.comment != null) {
                 // Comment
                 authorAvatarUrl = item.comment.author.avatarUrl
                 val comment = itemView.context.getString(R.string.item_user_activity_comment)
                 activity = "${item.comment.author.name} $comment ${item.comment.message}"
-                activityIconRes = R.drawable.ic_comment
+                activityDrawable = context.getTintDrawable(R.drawable.ic_comment, R.color.accent)
             }
 
             Glide.with(itemView)
@@ -49,7 +52,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
                 .into(authorImageView)
 
             activityTextView.text = activity
-            activityImageView.setImageResource(activityIconRes)
+            activityImageView.setImageDrawable(activityDrawable)
             dateTextView.text = item.createdAt
         }
     }
