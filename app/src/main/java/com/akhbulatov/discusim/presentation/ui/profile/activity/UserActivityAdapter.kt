@@ -3,12 +3,12 @@ package com.akhbulatov.discusim.presentation.ui.profile.activity
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanName
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
@@ -32,20 +32,30 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
             val context = itemView.context
             var authorAvatarUrl = ""
             var activity = ""
-            var activityDrawable: Drawable? = null
+            var activityTypeDrawable: Drawable? = null
 
             if (item.threadVote != null) {
-                // ThreadVote
+                // Thread Vote
                 authorAvatarUrl = item.threadVote.author.avatarUrl
-                val vote = item.threadVote.voteType.getHumanName(itemView.resources)
-                activity = "${item.threadVote.author.name} $vote ${item.threadVote.thread.title}"
-                activityDrawable = context.getTintDrawable(R.drawable.ic_favorite, R.color.button_upvote)
+                val upvotedThread = context.getString(
+                    R.string.item_user_activity_upvoted_thread,
+                    item.threadVote.thread.title
+                )
+                activity = "${item.threadVote.author.name} $upvotedThread"
+                activityTypeDrawable = context.getTintDrawable(R.drawable.ic_favorite, R.color.button_upvote)
             } else if (item.comment != null) {
                 // Comment
                 authorAvatarUrl = item.comment.author.avatarUrl
-                val comment = itemView.context.getString(R.string.item_user_activity_comment)
-                activity = "${item.comment.author.name} $comment ${item.comment.message}"
-                activityDrawable = context.getTintDrawable(R.drawable.ic_comment, R.color.accent)
+                val commented = context.getString(
+                    R.string.item_user_activity_commented_thread,
+                    item.comment.thread.title
+                )
+                activity = "${item.comment.author.name} $commented"
+                with(commentTextView) {
+                    text = item.comment.message
+                    isVisible = true
+                }
+                activityTypeDrawable = context.getTintDrawable(R.drawable.ic_comment, R.color.accent)
             }
 
             Glide.with(itemView)
@@ -54,7 +64,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
                 .into(authorImageView)
 
             activityTextView.text = activity
-            activityImageView.setImageDrawable(activityDrawable)
+            activityTypeImageView.setImageDrawable(activityTypeDrawable)
             dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
         }
     }
@@ -62,7 +72,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Action>() {
             override fun areItemsTheSame(oldItem: Action, newItem: Action): Boolean {
-                if (oldItem.threadVote != null && newItem.threadVote != null) { // ThreadVote
+                if (oldItem.threadVote != null && newItem.threadVote != null) { // Thread Vote
                     return oldItem.threadVote.id == newItem.threadVote.id
                 } else if (oldItem.comment != null && newItem.comment != null) { // Comment
                     return oldItem.comment.id == oldItem.comment.id
@@ -71,7 +81,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
             }
 
             override fun areContentsTheSame(oldItem: Action, newItem: Action): Boolean {
-                if (oldItem.threadVote != null && newItem.threadVote != null) { // ThreadVote
+                if (oldItem.threadVote != null && newItem.threadVote != null) { // Thread Vote
                     return oldItem.threadVote == newItem.threadVote
                 } else if (oldItem.comment != null && newItem.comment != null) { // Comment
                     return oldItem.comment == oldItem.comment

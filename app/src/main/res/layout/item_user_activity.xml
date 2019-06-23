@@ -25,13 +25,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
+    <TextView
+        android:id="@+id/commentTextView"
+        style="@style/Text.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/activityTextView"
+        app:layout_constraintTop_toBottomOf="@+id/activityTextView"
+        tools:text="@tools:sample/lorem"
+        tools:visibility="visible" />
+
     <ImageView
-        android:id="@+id/activityImageView"
+        android:id="@+id/activityTypeImageView"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginTop="@dimen/spacing_small"
         app:layout_constraintStart_toStartOf="@id/activityTextView"
-        app:layout_constraintTop_toBottomOf="@id/activityTextView"
+        app:layout_constraintTop_toBottomOf="@id/commentTextView"
         tools:src="@drawable/ic_favorite" />
 
     <TextView
@@ -40,8 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"
-        app:layout_constraintStart_toEndOf="@id/activityImageView"
-        app:layout_constraintTop_toTopOf="@id/activityImageView"
+        app:layout_constraintStart_toEndOf="@id/activityTypeImageView"
+        app:layout_constraintTop_toTopOf="@id/activityTypeImageView"
         tools:text="@tools:sample/date/mmddyy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

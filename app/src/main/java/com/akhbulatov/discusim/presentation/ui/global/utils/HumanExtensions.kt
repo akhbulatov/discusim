@@ -3,7 +3,6 @@ package com.akhbulatov.discusim.presentation.ui.global.utils
 import android.content.res.Resources
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.ResourceManager
-import com.akhbulatov.discusim.domain.global.models.VoteType
 import org.threeten.bp.Duration
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
@@ -38,10 +37,4 @@ fun LocalDateTime.getHumanTime(resources: Resources): String {
         }
         else -> this.format(DATE_FORMATTER)
     }
-}
-
-fun VoteType.getHumanName(resources: Resources): String = when (this) {
-    VoteType.UPVOTE -> resources.getString(R.string.item_user_activity_upvote)
-    VoteType.DOWNVOTE -> resources.getString(R.string.item_user_activity_downvote)
-    VoteType.NO_VOTE -> resources.getString(R.string.item_user_activity_no_vote)
 }

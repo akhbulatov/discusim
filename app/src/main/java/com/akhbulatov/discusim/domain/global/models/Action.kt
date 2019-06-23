@@ -13,8 +13,7 @@ data class Action(
         val id: Long,
         val thread: Thread,
         val forum: Forum,
-        val author: User,
-        val voteType: VoteType
+        val author: User
     )
 
     enum class Type {

@@ -7,7 +7,6 @@ import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
-import com.akhbulatov.discusim.domain.global.models.VoteType
 import okhttp3.ResponseBody
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -50,12 +49,7 @@ class ActivityResponseMapper @Inject constructor(
                 it.id.toLong(),
                 threadResponseMapper.map(it.thread),
                 forumResponseMapper.map(it.forum),
-                userResponseMapper.map(it.author),
-                when (it.vote) {
-                    1 -> VoteType.UPVOTE
-                    -1 -> VoteType.DOWNVOTE
-                    else -> VoteType.NO_VOTE
-                }
+                userResponseMapper.map(it.author)
             )
         }
 }

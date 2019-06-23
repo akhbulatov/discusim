@@ -41,10 +41,8 @@
     <string name="user_activity_title">Activity</string>
 
     <!-- Item User Activity -->
-    <string name="item_user_activity_upvote">upvotes</string>
-    <string name="item_user_activity_downvote">downvotes</string>
-    <string name="item_user_activity_no_vote">not votes</string>
-    <string name="item_user_activity_comment">commented</string>
+    <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
+    <string name="item_user_activity_commented_thread">commented on thread %s</string>
 
     <!-- Forums -->
     <string name="forums_title">Forums</string>
