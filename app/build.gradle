@@ -77,7 +77,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"
 
     // JSON
-    implementation "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 
     // Navigation
     implementation "ru.terrakok.cicerone:cicerone:${versions.cicerone}"

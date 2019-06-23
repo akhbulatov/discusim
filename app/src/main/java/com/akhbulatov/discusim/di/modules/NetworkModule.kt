@@ -5,7 +5,6 @@ import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.data.global.network.interceptors.AuthInterceptor
 import com.akhbulatov.discusim.data.session.OAuthParams
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -52,9 +51,7 @@ object NetworkModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @JvmStatic
     @Provides

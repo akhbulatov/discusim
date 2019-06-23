@@ -20,16 +20,16 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
 
         for (i in 0 until responses.length()) {
             val actionJson = responses.getJSONObject(i)
-            val objectJson = actionJson.getJSONObject("object").toString()
+            val objJson = actionJson.getJSONObject("object").toString()
             val action = actionAdapter.fromJson(actionJson.toString())!!
 
-            val `object`: Any? = when (action.type) {
-                ActivityType.THREAD_LIKE.type -> threadVoteAdapter.fromJson(objectJson)!!
-                ActivityType.POST.type -> commentAdapter.fromJson(objectJson)
+            val obj: Any? = when (action.type) {
+                ActivityType.THREAD_LIKE.type -> threadVoteAdapter.fromJson(objJson)!!
+                ActivityType.POST.type -> commentAdapter.fromJson(objJson)
                 else -> null
             }
 
-            val finalAction = action.copy(`object` = `object`)
+            val finalAction = action.copy(obj = obj)
             actions.add(finalAction)
         }
         return actions
