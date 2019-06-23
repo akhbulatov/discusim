@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_user_activity.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_progress.*
@@ -34,6 +35,7 @@ class UserActivityFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activitySwipeRefresh.setOnRefreshListener { viewModel.refreshActivity() }
         with(activityRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -46,7 +48,9 @@ class UserActivityFragment : BaseFragment() {
         viewModel.actions.observe(this, Observer { showActions(it) })
         viewModel.content.observe(this, Observer { showContent(it) })
         viewModel.progress.observe(this, Observer { showProgress(it) })
+        viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.error.observe(this, Observer { showError(it) })
+        viewModel.refreshError.observe(this, Observer { showRefreshError(it) })
     }
 
     private fun showActions(actions: List<Action>) {
@@ -54,16 +58,24 @@ class UserActivityFragment : BaseFragment() {
     }
 
     private fun showContent(show: Boolean) {
-        activityRecyclerView.isVisible = show
+        contentLayout.isVisible = show
     }
 
     private fun showProgress(show: Boolean) {
         progressLayout.isVisible = show
     }
 
+    private fun showRefreshProgress(show: Boolean) {
+        activitySwipeRefresh.isRefreshing = show
+    }
+
     private fun showError(message: String) {
         errorLayout.isVisible = true
         errorTextView.text = message
+    }
+
+    private fun showRefreshError(message: String) {
+        showSnackbar(message)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
