@@ -24,17 +24,17 @@ class ActivityResponseMapper @Inject constructor(
     fun map(activityBody: ResponseBody): List<Action> {
         val actions = activityResponseParser.parse(activityBody.string())
         return actions.map {
-            when (it.`object`) {
+            when (it.obj) {
                 is ActionNetModel.ThreadVoteNetModel -> {
                     Action(
-                        threadVote = mapThreadVote(it.`object`),
+                        threadVote = mapThreadVote(it.obj),
                         type = Action.Type.THREAD_VOTE,
                         createdAt = it.createdAt
                     )
                 }
                 is CommentNetModel -> {
                     Action(
-                        comment = commentResponseMapper.map(it.`object`),
+                        comment = commentResponseMapper.map(it.obj),
                         type = Action.Type.POST,
                         createdAt = it.createdAt
                     )
