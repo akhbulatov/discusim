@@ -9,6 +9,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanName
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
@@ -53,7 +54,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
 
             activityTextView.text = activity
             activityImageView.setImageDrawable(activityDrawable)
-            dateTextView.text = item.createdAt
+            dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
         }
     }
 

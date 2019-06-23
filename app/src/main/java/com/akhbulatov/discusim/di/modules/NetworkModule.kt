@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.di.modules
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.global.network.DisqusApi
+import com.akhbulatov.discusim.data.global.network.converters.LocalDateTimeConverter
 import com.akhbulatov.discusim.data.global.network.interceptors.AuthInterceptor
 import com.akhbulatov.discusim.data.session.OAuthParams
 import com.squareup.moshi.Moshi
@@ -51,7 +52,9 @@ object NetworkModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(LocalDateTimeConverter())
+        .build()
 
     @JvmStatic
     @Provides
