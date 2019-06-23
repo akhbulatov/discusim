@@ -13,6 +13,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_user_activity.*
 
 class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivityViewHolder>(DIFF_CALLBACK) {
@@ -49,7 +50,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
 
             Glide.with(itemView)
                 .load(authorAvatarUrl)
-                .placeholder(R.drawable.img_user_placeholder)
+                .apply(RequestOptions.circleCropTransform())
                 .into(authorImageView)
 
             activityTextView.text = activity
