@@ -1,6 +1,29 @@
 <resources>
     <string name="app_name">Discusim</string>
 
+    <!-- Common Messages -->
+
+    <!-- Time -->
+    <plurals name="time_days">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+
+    <plurals name="time_hours">
+        <item quantity="one">%d hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
+
+    <plurals name="time_minutes">
+        <item quantity="one">%d minute ago</item>
+        <item quantity="other">%d minutes ago</item>
+    </plurals>
+
+    <plurals name="time_seconds">
+        <item quantity="one">%d second ago</item>
+        <item quantity="other">%d seconds ago</item>
+    </plurals>
+
     <!-- Common Errors -->
     <string name="error_unknown">Unknown error</string>
     <string name="error_network">Network error</string>
@@ -9,10 +32,17 @@
     <string name="auth_title">Authorization</string>
 
     <!-- Main Flow -->
-    <string name="main_flow_activity">Activity</string>
+    <string name="main_flow_user_activity">Activity</string>
     <string name="main_flow_trends">Trends</string>
     <string name="main_flow_profile">Profile</string>
     <string name="main_flow_forums">Forums</string>
+
+    <!-- User Activity -->
+    <string name="user_activity_title">Activity</string>
+
+    <!-- Item User Activity -->
+    <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
+    <string name="item_user_activity_commented_thread">commented on thread %s</string>
 
     <!-- Forums -->
     <string name="forums_title">Forums</string>

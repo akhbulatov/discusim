@@ -10,11 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Post
+import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.widgets.VerticalSpaceItemDecoration
-import kotlinx.android.synthetic.main.content_error.*
-import kotlinx.android.synthetic.main.content_progress.*
+import kotlinx.android.synthetic.main.layout_error.*
+import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_profile_posts.*
 import javax.inject.Inject
 
@@ -52,7 +52,7 @@ class ProfilePostsFragment : BaseFragment() {
         viewModel.contentError.observe(this, Observer { showError(it) })
     }
 
-    private fun showPosts(posts: List<Post>) {
+    private fun showPosts(posts: List<Comment>) {
         postsAdapter.submitList(posts)
     }
 
@@ -61,12 +61,12 @@ class ProfilePostsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        contentProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        contentErrorLayout.isVisible = true
-        contentErrorTextView.text = message
+        errorLayout.isVisible = true
+        errorTextView.text = message
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

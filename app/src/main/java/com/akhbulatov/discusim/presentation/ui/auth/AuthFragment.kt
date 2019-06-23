@@ -13,17 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.content_progress.*
 import kotlinx.android.synthetic.main.fragment_auth.*
+import kotlinx.android.synthetic.main.layout_progress.*
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_auth
+
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: AuthViewModel
-
-    override val layoutRes: Int = R.layout.fragment_auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class AuthFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupWebView()
-        observeChanges()
+        observeUIChanges()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -64,13 +64,13 @@ class AuthFragment : BaseFragment() {
         }
     }
 
-    private fun observeChanges() {
-        viewModel.contentProgress.observe(this, Observer { showProgress(it) })
-        viewModel.contentError.observe(this, Observer { showError(it) })
+    private fun observeUIChanges() {
+        viewModel.progress.observe(this, Observer { showProgress(it) })
+        viewModel.error.observe(this, Observer { showError(it) })
     }
 
     private fun showProgress(show: Boolean) {
-        contentProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {

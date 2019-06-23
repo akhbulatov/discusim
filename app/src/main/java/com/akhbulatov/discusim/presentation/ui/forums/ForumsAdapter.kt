@@ -8,8 +8,6 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_forum.*
 
 class ForumsAdapter(
     private val clickListener: (Forum) -> Unit
@@ -38,14 +36,14 @@ class ForumsAdapter(
         override fun bind(item: Forum) {
             forum = item
 
-            item.let {
-                Glide.with(itemView)
-                    .load(it.faviconUrl)
-                    .placeholder(R.drawable.img_user_placeholder) // TODO
-                    .into(avatarImageView)
-
-                nameTextView.text = it.name
-            }
+//            item.let {
+//                Glide.with(itemView)
+//                    .load(it.faviconUrl)
+//                    .placeholder(R.drawable.img_user_placeholder) // TODO
+//                    .into(avatarImageView)
+//
+//                nameTextView.text = it.name
+//            }
         }
     }
 

@@ -13,7 +13,7 @@ buildscript {
             'constraintLayout': '2.0.0-beta1',
             'archLifecycle'   : '2.2.0-alpha01',
             'dagger'          : '2.23.2',
-            'rxJava'          : '2.2.9',
+            'rxJava'          : '2.2.10',
             'rxKotlin'        : '2.3.0',
             'rxAndroid'       : '2.1.1',
             'retrofit'        : '2.6.0',

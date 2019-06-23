@@ -9,7 +9,6 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_forum.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -47,14 +46,14 @@ class ForumFragment : BaseFragment() {
     private fun showForumDetails(forum: Forum) {
         toolbar.title = forum.name
 
-        forum.let {
-            Glide.with(this@ForumFragment)
-                .load(it.faviconUrl)
-                .into(avatarImageView)
-
-            nameTextView.text = it.name
-            descriptionTextView.text = it.description ?: it.url
-        }
+//        forum.let {
+//            Glide.with(this@ForumFragment)
+//                .load(it.faviconUrl)
+//                .into(avatarImageView)
+//
+//            nameTextView.text = it.name
+//            descriptionTextView.text = it.description ?: it.url
+//        }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

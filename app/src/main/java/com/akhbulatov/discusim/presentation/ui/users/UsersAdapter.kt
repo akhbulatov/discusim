@@ -25,7 +25,7 @@ class UsersAdapter : ListAdapter<User, UsersAdapter.UserViewHolder>(DIFF_CALLBAC
         override fun bind(item: User) {
             item.let {
                 Glide.with(itemView)
-                    .load(it.avatar.small.link)
+                    .load(it.avatarUrl)
                     .placeholder(R.drawable.img_user_placeholder) // TODO
                     .into(avatarImageView)
 

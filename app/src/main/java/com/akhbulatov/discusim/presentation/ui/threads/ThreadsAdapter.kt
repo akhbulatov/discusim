@@ -8,8 +8,6 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThreadViewHolder {
@@ -23,21 +21,21 @@ class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF
 
     class ThreadViewHolder(itemView: View) : BaseViewHolder<Thread>(itemView) {
         override fun bind(item: Thread) {
-            item.let {
-                val contentImageUrl = if (!it.media.isNullOrEmpty()) it.media[0].url else null
-
-                Glide.with(itemView)
-                    .load(it.author.avatar.small.link)
-                    .into(authorImageView)
-
-                Glide.with(itemView)
-                    .load(contentImageUrl)
-                    .into(contentImageView)
-
-                authorTextView.text = it.author.name
-                createdAtTextView.text = it.createdAt
-                titleTextView.text = it.title
-            }
+//            item.let {
+//                val contentImageUrl = if (!it.mediaUrls.isNullOrEmpty()) it.mediaUrls[0] else null
+//
+//                Glide.with(itemView)
+//                    .load(it.author.avatarUrl)
+//                    .into(authorImageView)
+//
+//                Glide.with(itemView)
+//                    .load(contentImageUrl)
+//                    .into(contentImageView)
+//
+//                authorTextView.text = it.author.name
+//                createdAtTextView.text = it.createdAt
+//                titleTextView.text = it.title
+//            }
         }
     }
 
