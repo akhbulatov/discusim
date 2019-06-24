@@ -10,7 +10,7 @@ buildscript {
             'material'        : '1.1.0-alpha07',
             'appCompat'       : '1.1.0-beta01',
             'recyclerView'    : '1.1.0-alpha06',
-            'constraintLayout': '2.0.0-beta1',
+            'constraintLayout': '2.0.0-beta2',
             'archLifecycle'   : '2.2.0-alpha01',
             'dagger'          : '2.23.2',
             'rxJava'          : '2.2.10',
