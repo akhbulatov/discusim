@@ -46,19 +46,14 @@ class UserActivityFragment : BaseFragment() {
 
     private fun observeUIChanges() {
         viewModel.actions.observe(this, Observer { showActions(it) })
-        viewModel.content.observe(this, Observer { showContent(it) })
         viewModel.progress.observe(this, Observer { showProgress(it) })
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
-        viewModel.error.observe(this, Observer { showError(it) })
+        viewModel.error.observe(this, Observer { showError(it.first, it.second) })
         viewModel.refreshError.observe(this, Observer { showRefreshError(it) })
     }
 
     private fun showActions(actions: List<Action>) {
         activityAdapter.submitList(actions)
-    }
-
-    private fun showContent(show: Boolean) {
-        contentLayout.isVisible = show
     }
 
     private fun showProgress(show: Boolean) {
@@ -69,8 +64,8 @@ class UserActivityFragment : BaseFragment() {
         activitySwipeRefresh.isRefreshing = show
     }
 
-    private fun showError(message: String) {
-        errorLayout.isVisible = true
+    private fun showError(show: Boolean, message: String?) {
+        errorLayout.isVisible = show
         errorTextView.text = message
     }
 
