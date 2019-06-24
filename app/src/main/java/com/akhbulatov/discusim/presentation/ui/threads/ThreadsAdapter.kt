@@ -2,14 +2,20 @@ package com.akhbulatov.discusim.presentation.ui.threads
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
+import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
+import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
+import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF_CALLBACK) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThreadViewHolder {
         val itemView = parent.inflate(R.layout.item_thread)
         return ThreadViewHolder(itemView)
@@ -21,21 +27,17 @@ class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF
 
     class ThreadViewHolder(itemView: View) : BaseViewHolder<Thread>(itemView) {
         override fun bind(item: Thread) {
-//            item.let {
-//                val contentImageUrl = if (!it.mediaUrls.isNullOrEmpty()) it.mediaUrls[0] else null
-//
-//                Glide.with(itemView)
-//                    .load(it.author.avatarUrl)
-//                    .into(authorImageView)
-//
-//                Glide.with(itemView)
-//                    .load(contentImageUrl)
-//                    .into(contentImageView)
-//
-//                authorTextView.text = it.author.name
-//                createdAtTextView.text = it.createdAt
-//                titleTextView.text = it.title
-//            }
+            authorImageView.loadRoundedImage(itemView.context, item.author.avatarUrl)
+            authorTextView.text = item.author.name
+            dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
+            contentImageView.isVisible = false // TODO
+            topicsChipGroup.isVisible = false // TODO
+            titleTextView.text = item.title
+            with(voteButton) {
+                text = item.upvotes.toString()
+                setVote(item.upvoted)
+            }
+            commentsButton.text = item.comments.toString()
         }
     }
 

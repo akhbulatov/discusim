@@ -10,7 +10,7 @@ class ForumResponseMapper @Inject constructor() {
     fun map(model: ForumNetModel): Forum =
         model.let {
             Forum(
-                it.pk,
+                it.id,
                 it.name
             )
         }

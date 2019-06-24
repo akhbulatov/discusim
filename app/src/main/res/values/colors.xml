@@ -2,19 +2,30 @@
 <resources>
     <!-- Colors to apply in views -->
     <color name="primary">@color/white</color>
-    <color name="primary_dark">@color/grey_silver</color>
+    <color name="primary_dark">@color/gray_silver</color>
     <color name="accent">@color/blue_dodger</color>
 
+    <color name="screen_background">@color/gray_athens</color>
+    <color name="list_item_background">@color/white</color>
+
     <color name="text_primary">@color/black</color>
-    <color name="text_secondary">@color/grey_dove</color>
-    <color name="text_date">@color/grey_dove</color>
+    <color name="text_secondary">@color/gray_dove</color>
+    <color name="text_date">@color/gray_dove</color>
 
-    <color name="toolbar_text">@color/blue_dodger</color>
+    <color name="toolbar_background">@color/primary</color>
+    <color name="toolbar_text">@color/accent</color>
 
-    <color name="button_upvote">@color/red_froly</color>
+    <color name="bottom_nav_active">@color/accent</color>
+    <color name="bottom_nav_inactive">@color/gray_silver</color>
 
-    <color name="bottom_nav_active">@color/blue_dodger</color>
-    <color name="bottom_nav_inactive">@color/grey_silver</color>
+    <color name="button_upvote_background">@color/red_froly</color>
+    <color name="button_thread_upvote_icon">@color/white</color>
+    <color name="button_thread_upvote_text">@color/white</color>
+    <color name="button_thread_background">@color/transparent</color>
+    <color name="button_thread_icon">@color/accent</color>
+    <color name="button_thread_text">@color/text_primary</color>
+
+    <color name="divider">@color/gray_athens</color>
 
     <!-- TODO Следует переименовать в соответствии с новым подходом именования цветов -->
     <color name="grey_50">#EBEEF2</color>
@@ -25,6 +36,7 @@
     <!-- General palettes -->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 
     <!-- Palette blue -->
     <color name="blue_dodger">#2E9FFF</color>
@@ -32,7 +44,8 @@
     <!-- Palette red -->
     <color name="red_froly">#F05F70</color>
 
-    <!-- Palette grey -->
-    <color name="grey_silver">#cccccc</color>
-    <color name="grey_dove">#6F6F6F</color>
+    <!-- Palette gray -->
+    <color name="gray_silver">#cccccc</color>
+    <color name="gray_athens">#EBEEF3</color>
+    <color name="gray_dove">#6F6F6F</color>
 </resources>

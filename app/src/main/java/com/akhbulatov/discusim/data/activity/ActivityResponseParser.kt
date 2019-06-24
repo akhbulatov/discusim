@@ -1,7 +1,9 @@
 package com.akhbulatov.discusim.data.activity
 
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
-import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
+import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_ThreadVoteNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.CommentNetModelJsonAdapter
 import com.squareup.moshi.Moshi
 import org.json.JSONObject
 import javax.inject.Inject
@@ -9,9 +11,9 @@ import javax.inject.Singleton
 
 @Singleton
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
-    private val actionAdapter = moshi.adapter(ActionNetModel::class.java)
-    private val threadVoteAdapter = moshi.adapter(ActionNetModel.ThreadVoteNetModel::class.java)
-    private val commentAdapter = moshi.adapter(CommentNetModel::class.java)
+    private val actionAdapter = ActionNetModelJsonAdapter(moshi)
+    private val threadVoteAdapter = ActionNetModel_ThreadVoteNetModelJsonAdapter(moshi)
+    private val commentAdapter = CommentNetModelJsonAdapter(moshi)
 
     fun parse(activityJson: String): List<ActionNetModel> {
         val actions = arrayListOf<ActionNetModel>()
