@@ -20,37 +20,64 @@ class ThreadsViewModel @Inject constructor(
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
+    private var forumId: String? = null
+    private lateinit var threadType: ThreadType
+
     private val _threads = MutableLiveData<List<Thread>>()
     val threads: LiveData<List<Thread>> get() = _threads
-
-    private val _content = MutableLiveData<Boolean>()
-    val contentBlock: LiveData<Boolean> get() = _content
 
     private val _progress = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean> get() = _progress
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _refreshProgress = MutableLiveData<Boolean>()
+    val refreshProgress: LiveData<Boolean> get() = _refreshProgress
+
+    private val _error = MutableLiveData<Pair<Boolean, String?>>()
+    val error: LiveData<Pair<Boolean, String?>> get() = _error
+
+    private val _refreshError = MutableLiveData<String>()
+    val refreshError: LiveData<String> get() = _refreshError
 
     fun setParams(forumId: String?, threadType: ThreadType) {
-        loadThreads(forumId, threadType)
+        this.forumId = forumId
+        this.threadType = threadType
+        loadThreads()
     }
 
-    private fun loadThreads(forumId: String?, threadType: ThreadType) {
+    private fun loadThreads(refresh: Boolean = false) {
         val threadsRequest = chooseThreadsRequest(forumId, threadType)
         subscriptions += threadsRequest
             .observeOn(schedulers.ui())
             .doOnSubscribe {
-                _content.value = false
-                _progress.value = true
+                if (!refresh) {
+                    _progress.value = true
+                } else {
+                    _refreshProgress.value = true
+                }
             }
-            .doAfterTerminate { _progress.value = false }
+            .doAfterTerminate {
+                if (!refresh) {
+                    _progress.value = false
+                } else {
+                    _refreshProgress.value = false
+                }
+            }
             .subscribeBy(
                 onSuccess = {
-                    _content.value = true
+                    if (_error.value?.first != false) {
+                        _error.value = Pair(false, null)
+                    }
                     _threads.value = it
                 },
-                onError = { errorHandler.proceed(it) { msg -> _error.value = msg } }
+                onError = {
+                    errorHandler.proceed(it) { msg ->
+                        if (!refresh) {
+                            _error.value = Pair(true, msg)
+                        } else {
+                            _refreshError.value = msg
+                        }
+                    }
+                }
             )
     }
 
@@ -61,6 +88,8 @@ class ThreadsViewModel @Inject constructor(
             ThreadType.HOT -> threadInteractor.getHotThreads(forumId!!)
             ThreadType.POPULAR -> threadInteractor.getPopularThreads(forumId!!)
         }
+
+    fun refreshThreads() = loadThreads(refresh = true)
 
     override fun onBackPressed() = router.exit()
 }

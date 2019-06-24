@@ -10,6 +10,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.akhbulatov.discusim.presentation.ui.global.widgets.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_threads.*
 import kotlinx.android.synthetic.main.layout_error.*
@@ -36,6 +37,7 @@ class ThreadsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        threadsSwipeRefresh.setOnRefreshListener { viewModel.refreshThreads() }
         with(threadsRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(VerticalSpaceItemDecoration(dip(10)))
@@ -46,26 +48,31 @@ class ThreadsFragment : BaseFragment() {
 
     private fun observeUIChanges() {
         viewModel.threads.observe(this, Observer { showThreads(it) })
-        viewModel.contentBlock.observe(this, Observer { showContent(it) })
         viewModel.progress.observe(this, Observer { showProgress(it) })
-        viewModel.error.observe(this, Observer { showError(it) })
+        viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
+        viewModel.error.observe(this, Observer { showError(it.first, it.second) })
+        viewModel.refreshError.observe(this, Observer { showRefreshError(it) })
     }
 
     private fun showThreads(threads: List<Thread>) {
         threadsAdapter.submitList(threads)
     }
 
-    private fun showContent(show: Boolean) {
-        contentLayout.isVisible = show
-    }
-
     private fun showProgress(show: Boolean) {
         progressLayout.isVisible = show
     }
 
-    private fun showError(message: String) {
-        errorLayout.isVisible = true
+    private fun showRefreshProgress(show: Boolean) {
+        threadsSwipeRefresh.isRefreshing = show
+    }
+
+    private fun showError(show: Boolean, message: String?) {
+        errorLayout.isVisible = show
         errorTextView.text = message
+    }
+
+    private fun showRefreshError(message: String) {
+        showSnackbar(message)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
