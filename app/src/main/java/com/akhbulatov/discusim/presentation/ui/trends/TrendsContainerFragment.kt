@@ -9,7 +9,7 @@ import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
 import javax.inject.Inject
 
 class TrendsContainerFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_trends
+    override val layoutRes: Int = R.layout.fragment_trends_container
 
     @Inject lateinit var router: FlowRouter
 
