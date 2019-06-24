@@ -7,6 +7,8 @@ import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileModule
 import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityModule
+import com.akhbulatov.discusim.presentation.ui.trends.TrendsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.trends.TrendsContainerModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,6 +17,10 @@ abstract class MainFlowModule {
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [UserActivityModule::class])
     abstract fun contributeUserActivityFragment(): UserActivityFragment
+
+    @FlowChildFragmentScope
+    @ContributesAndroidInjector(modules = [TrendsContainerModule::class])
+    abstract fun contributeTrendsContainerFragment(): TrendsContainerFragment
 
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [ForumsModule::class])

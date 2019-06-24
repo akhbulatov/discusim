@@ -1,0 +1,22 @@
+package com.akhbulatov.discusim.domain.thread
+
+import com.akhbulatov.discusim.domain.global.models.Thread
+import com.akhbulatov.discusim.domain.global.repositories.ForumsRepository
+import com.akhbulatov.discusim.domain.global.repositories.ThreadRepository
+import io.reactivex.Single
+import javax.inject.Inject
+
+class ThreadInteractor @Inject constructor(
+    private val threadRepository: ThreadRepository,
+    private val forumsRepository: ForumsRepository
+) {
+
+    fun getTrendThreads(forumId: String?): Single<List<Thread>> =
+        threadRepository.getTrendThreads(forumId)
+
+    fun getThreads(forumId: String): Single<List<Thread>> = forumsRepository.getThreads(forumId) // TODO
+
+    fun getHotThreads(forumId: String): Single<List<Thread>> = threadRepository.getHotThreads(forumId)
+
+    fun getPopularThreads(forumId: String): Single<List<Thread>> = threadRepository.getPopularThreads(forumId)
+}

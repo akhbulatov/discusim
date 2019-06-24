@@ -4,5 +4,5 @@ data class Comment(
     val id: String,
     val message: String,
     val author: User,
-    val thread: Thread
+    val thread: ThreadPreview
 )

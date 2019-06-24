@@ -6,6 +6,10 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorSecondary">@color/accent</item>
 
+        <item name="android:colorBackground">@color/screen_background</item>
+
+        <item name="colorOnPrimary">@color/text_primary</item>
+
         <item name="toolbarStyle">@style/AppToolbar</item>
     </style>
 

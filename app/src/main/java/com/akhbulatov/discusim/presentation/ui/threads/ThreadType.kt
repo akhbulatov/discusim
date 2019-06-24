@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 enum class ThreadType : Parcelable {
+    TRENDS,
     LATEST,
     HOT,
     POPULAR

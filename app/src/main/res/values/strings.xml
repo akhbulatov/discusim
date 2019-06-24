@@ -44,6 +44,9 @@
     <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
     <string name="item_user_activity_commented_thread">commented on thread %s</string>
 
+    <!-- Trends -->
+    <string name="trends_title">Trends</string>
+
     <!-- Forums -->
     <string name="forums_title">Forums</string>
 

@@ -1,12 +1,21 @@
 <resources>
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/toolbar_background</item>
         <item name="titleTextColor">@color/toolbar_text</item>
+    </style>
+
+    <style name="AppCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">0dp</item>
     </style>
 
     <style name="AppBottomNavView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@drawable/bottom_nav_selector</item>
         <item name="itemTextColor">@drawable/bottom_nav_selector</item>
+    </style>
+
+    <style name="ListItem">
+        <item name="android:background">@color/list_item_background</item>
     </style>
 
     <style name="Text" />
@@ -25,5 +34,12 @@
         <item name="android:textColor">@color/text_date</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
+
+    <!--<style name="ThreadActionButton" parent="Widget.MaterialComponents.Button.OutlinedButton">-->
+        <!--<item name="android:textAppearance">@style/Text.Primary</item>-->
+        <!--<item name="android:textSize">14sp</item>-->
+        <!--<item name="iconTint">@color/accent</item>-->
+        <!--<item name="strokeColor">@color/accent</item>-->
+    <!--</style>-->
 
 </resources>
