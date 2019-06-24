@@ -26,32 +26,28 @@ class UserActivityViewModel @Inject constructor(
     private val _actions = MutableLiveData<List<Action>>()
     val actions: LiveData<List<Action>> get() = _actions
 
-    private val _content = MutableLiveData<Boolean>()
-    val content: LiveData<Boolean> get() = _content
-
     private val _progress = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean> get() = _progress
 
     private val _refreshProgress = MutableLiveData<Boolean>()
     val refreshProgress: LiveData<Boolean> get() = _refreshProgress
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _error = MutableLiveData<Pair<Boolean, String?>>()
+    val error: LiveData<Pair<Boolean, String?>> get() = _error
 
     private val _refreshError = MutableLiveData<String>()
     val refreshError: LiveData<String> get() = _refreshError
 
     fun setUserId(userId: Long?) {
         this.userId = userId ?: sessionInteractor.getUserId()
-        loadActivity(this.userId, refresh = false)
+        loadActivity()
     }
 
-    private fun loadActivity(userId: Long, refresh: Boolean) {
+    private fun loadActivity(refresh: Boolean = false) {
         subscriptions += activityInteractor.getUserActivity(userId)
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 if (!refresh) {
-                    _content.value = false
                     _progress.value = true
                 } else {
                     _refreshProgress.value = true
@@ -66,15 +62,15 @@ class UserActivityViewModel @Inject constructor(
             }
             .subscribeBy(
                 onSuccess = {
-                    if (!refresh) {
-                        _content.value = true
+                    if (_error.value?.first != false) {
+                        _error.value = Pair(false, null)
                     }
                     _actions.value = it
                 },
                 onError = {
                     errorHandler.proceed(it) { msg ->
                         if (!refresh) {
-                            _error.value = msg
+                            _error.value = Pair(true, msg)
                         } else {
                             _refreshError.value = msg
                         }
@@ -83,9 +79,7 @@ class UserActivityViewModel @Inject constructor(
             )
     }
 
-    fun refreshActivity() {
-        loadActivity(userId, refresh = true)
-    }
+    fun refreshActivity() = loadActivity(refresh = true)
 
     override fun onBackPressed() = router.exit()
 }
