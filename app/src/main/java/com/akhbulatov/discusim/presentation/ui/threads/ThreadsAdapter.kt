@@ -11,6 +11,7 @@ import com.akhbulatov.discusim.presentation.ui.global.base.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
+import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
 import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF_CALLBACK) {
@@ -32,7 +33,10 @@ class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF
             contentImageView.isVisible = false // TODO
             topicsChipGroup.isVisible = false // TODO
             titleTextView.text = item.title
-            voteButton.text = item.upvotes.toString()
+            with(voteButton) {
+                text = item.upvotes.toString()
+                setVote(item.upvoted)
+            }
             commentsButton.text = item.comments.toString()
         }
     }

@@ -35,11 +35,20 @@
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
-    <!--<style name="ThreadActionButton" parent="Widget.MaterialComponents.Button.OutlinedButton">-->
-        <!--<item name="android:textAppearance">@style/Text.Primary</item>-->
-        <!--<item name="android:textSize">14sp</item>-->
-        <!--<item name="iconTint">@color/accent</item>-->
-        <!--<item name="strokeColor">@color/accent</item>-->
-    <!--</style>-->
+    <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:minWidth">66dp</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="iconPadding">6dp</item>
+        <item name="iconTint">@color/button_thread_icon</item>
+        <item name="strokeColor">@color/accent</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
 
 </resources>

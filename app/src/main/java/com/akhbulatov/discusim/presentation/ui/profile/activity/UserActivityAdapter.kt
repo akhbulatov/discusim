@@ -41,7 +41,7 @@ class UserActivityAdapter : ListAdapter<Action, UserActivityAdapter.UserActivity
                     item.threadVote.thread.title
                 )
                 activity = "${item.threadVote.author.name} $upvotedThread"
-                activityTypeDrawable = context.getTintDrawable(R.drawable.ic_favorite, R.color.button_upvote)
+                activityTypeDrawable = context.getTintDrawable(R.drawable.ic_favorite, R.color.button_upvote_background)
             } else if (item.comment != null) {
                 // Comment
                 authorAvatarUrl = item.comment.author.avatarUrl
