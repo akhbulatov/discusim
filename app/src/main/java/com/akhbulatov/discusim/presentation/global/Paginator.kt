@@ -32,7 +32,7 @@ class Paginator<T>(
     }
 
     /**
-     * Callback'и, вызываемые в момент перехода от одного стейта к другому.
+     * Callback'и, вызываемые в момент перехода от одного состояния к другому.
      */
     interface ViewController<T> {
         fun showEmptyProgress(show: Boolean)
@@ -54,7 +54,10 @@ class Paginator<T>(
     }
 
     /**
-     * Первоначальное состояние.
+     * Первоначальное пустое состояние, когда загрузка данных еще не выполнена.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [ReleasedState].
      */
     private inner class EmptyState : State<T> {
         override fun refresh() {
@@ -66,13 +69,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние отображения прогресса на пустом экране.
+     * Состояние отображения прогресса на пустом экране и последующего отображения данных, если не было ошибок.
+     *
+     * Возможные последующие состояния:
+     * [DataState], [EmptyDataState], [EmptyErrorState], [ReleasedState].
      */
     private inner class EmptyProgressState : State<T> {
         override fun restart() {
@@ -107,13 +113,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние отображения ошибки на пустом экране.
+     * Состояние отображения ошибки на пустом экране с возможностью рестарта и обновления.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [ReleasedState].
      */
     private inner class EmptyErrorState : State<T> {
         override fun restart() {
@@ -135,13 +144,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние отображения пустых данных (список пуст).
+     * Состояние отображения пустых данных (т.е. их отсутствие) с возможностью рестарта и обновления.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [ReleasedState].
      */
     private inner class EmptyDataState : State<T> {
         override fun restart() {
@@ -163,13 +175,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние отображения данных списка (НЕ всего).
+     * Состояние отображения данных (НЕ всех страниц).
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [RefreshState], [PageProgressState], [ReleasedState].
      */
     private inner class DataState : State<T> {
         override fun restart() {
@@ -198,13 +213,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние обновления списка. Например, кнопка "Обновить" на пустом экране.
+     * Состояние обновления данных с последующим отображением данных (или пустых?), если не было ошибок.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [DataState], [EmptyDataState], [ReleasedState].
      */
     private inner class RefreshState : State<T> { // TODO
         override fun restart() {
@@ -248,13 +266,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние загружения новой (следующей) страницы.
+     * Состояние подгрузки новой страницы.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [DataState], [AllDataState], [RefreshState], [ReleasedState].
      */
     private inner class PageProgressState : State<T> {
         override fun restart() {
@@ -300,13 +321,16 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние загруженного всего списка (всех страниц).
+     * Состояние, когда весь список (всее страницы) загружен.
+     *
+     * Возможные последующие состояния:
+     * [EmptyProgressState], [RefreshState], [ReleasedState].
      */
     private inner class AllDataState : State<T> {
         override fun restart() {
@@ -327,13 +351,13 @@ class Paginator<T>(
         }
 
         override fun release() {
-            currentState = RELEASED()
+            currentState = ReleasedState()
             requestDisposable?.dispose()
         }
     }
 
     /**
-     * Состояние сброса состояния пагинации.
+     * Состояние сброса состояния.
      */
-    private inner class RELEASED : State<T>
+    private inner class ReleasedState : State<T>
 }
