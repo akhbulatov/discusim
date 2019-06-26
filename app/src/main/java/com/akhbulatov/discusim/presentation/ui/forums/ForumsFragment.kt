@@ -9,27 +9,33 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import com.akhbulatov.discusim.presentation.ui.global.views.list.DividerNoLastItemDecoration
+import com.akhbulatov.discusim.presentation.ui.global.views.list.InfiniteScrollListener
 import kotlinx.android.synthetic.main.fragment_forums.*
+import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class ForumsFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_forums
+
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ForumsViewModel
-    private val forumsAdapter by lazy { ForumsAdapter { viewModel.onForumClicked(it) } }
-
-    override val layoutRes: Int = R.layout.fragment_forums
+    private val forumsAdapter by lazy { ForumsAdapter() }
+    private val scrollListener by lazy {
+        InfiniteScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
+        { viewModel.loadNextForumsPage() }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
+        val userId = arguments?.getLong(ARG_USER_ID)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumsViewModel::class.java]
         viewModel.setUserId(userId)
@@ -37,38 +43,57 @@ class ForumsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.setTitle(R.string.forums_title)
-        forumsRecyclerView.run {
+        forumsSwipeRefresh.setOnRefreshListener { viewModel.refreshForums() }
+        with(forumsRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addOnScrollListener(scrollListener)
             adapter = forumsAdapter
         }
+        errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
+        dataRefreshButton.setOnClickListener { viewModel.refreshForums() }
         observeChanges()
     }
 
     private fun observeChanges() {
-        viewModel.forums.observe(this, Observer { showForums(it) })
-        viewModel.contentBlock.observe(this, Observer { showContentBlock(it) })
-        viewModel.contentProgress.observe(this, Observer { showProgress(it) })
-        viewModel.contentError.observe(this, Observer { showError(it) })
+        viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
+        viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
+        viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
+        viewModel.forums.observe(this, Observer { showActions(it.first, it.second) })
+        viewModel.errorMessage.observe(this, Observer { showErrorMessage(it) })
+        viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
+        viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
     }
 
-    private fun showForums(forums: List<Forum>) {
-        forumsAdapter.submitList(forums)
-    }
-
-    private fun showContentBlock(show: Boolean) {
-        forumsRecyclerView.isVisible = show
-    }
-
-    private fun showProgress(show: Boolean) {
+    private fun showEmptyProgress(show: Boolean) {
         progressLayout.isVisible = show
     }
 
-    private fun showError(message: String) {
-        errorLayout.isVisible = true
+    private fun showEmptyError(show: Boolean, message: String?) {
         errorTextView.text = message
+        errorLayout.isVisible = show
+    }
+
+    private fun showEmptyData(show: Boolean) {
+        dataLayout.isVisible = show
+    }
+
+    private fun showActions(show: Boolean, forums: List<Forum>) {
+        forumsAdapter.submitList(forums)
+        forumsRecyclerView.isVisible = show
+    }
+
+    private fun showErrorMessage(message: String) {
+        showSnackbar(message)
+    }
+
+    private fun showRefreshProgress(show: Boolean) {
+        forumsSwipeRefresh.isRefreshing = show
+    }
+
+    private fun showPageProgress(show: Boolean) {
+        if (!show) scrollListener.setLoaded()
+        forumsAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
@@ -76,8 +101,10 @@ class ForumsFragment : BaseFragment() {
     companion object {
         private const val ARG_USER_ID = "user_id"
 
-        fun newInstance(userId: Long) = ForumsFragment().apply {
-            arguments = bundleOf(ARG_USER_ID to userId)
+        fun newInstance(userId: Long? = null) = ForumsFragment().apply {
+            userId?.let {
+                arguments = bundleOf(ARG_USER_ID to userId)
+            }
         }
     }
 }
