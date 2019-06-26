@@ -13,6 +13,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import com.akhbulatov.discusim.presentation.ui.global.views.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.views.list.InfiniteScrollListener
 import kotlinx.android.synthetic.main.fragment_user_activity.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -45,7 +46,7 @@ class UserActivityFragment : BaseFragment() {
         activitySwipeRefresh.setOnRefreshListener { viewModel.refreshActivity() }
         with(activityRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(scrollListener)
             adapter = activityAdapter
         }
