@@ -35,6 +35,10 @@
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
+    <style name="RefreshButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
     <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:minWidth">66dp</item>

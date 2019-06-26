@@ -4,6 +4,7 @@ import com.akhbulatov.discusim.data.comment.CommentResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
+import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
@@ -20,20 +21,26 @@ class ActivityResponseMapper @Inject constructor(
     private val commentResponseMapper: CommentResponseMapper
 ) {
 
-    fun map(activityBody: ResponseBody): List<Action> {
-        val actions = activityResponseParser.parse(activityBody.string())
-        return actions.map {
+    fun map(activityBody: ResponseBody): Pair<CursorNetModel, List<Action>> {
+        val activity = activityResponseParser.parse(activityBody.string())
+        val actions = activity.second.map {
             when (it.obj) {
                 is ActionNetModel.ThreadVoteNetModel -> {
+                    val threadVote = mapThreadVote(it.obj)
+
                     Action(
-                        threadVote = mapThreadVote(it.obj),
+                        id = threadVote.id,
+                        threadVote = threadVote,
                         type = Action.Type.THREAD_VOTE,
                         createdAt = it.createdAt
                     )
                 }
                 is CommentNetModel -> {
+                    val comment = commentResponseMapper.map(it.obj)
+
                     Action(
-                        comment = commentResponseMapper.map(it.obj),
+                        id = comment.id,
+                        comment = comment,
                         type = Action.Type.POST,
                         createdAt = it.createdAt
                     )
@@ -41,6 +48,7 @@ class ActivityResponseMapper @Inject constructor(
                 else -> throw Exception() // TODO
             }
         }
+        return Pair(activity.first, actions)
     }
 
     private fun mapThreadVote(model: ActionNetModel.ThreadVoteNetModel): Action.ThreadVote =

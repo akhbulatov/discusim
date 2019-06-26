@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.layout_error.*
-import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_forums.*
+import kotlinx.android.synthetic.main.layout_empty_error.*
+import kotlinx.android.synthetic.main.layout_empty_progress.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
@@ -63,11 +63,11 @@ class ForumsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        progressLayout.isVisible = show
+        emptyProgressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        errorLayout.isVisible = true
+        emptyErrorLayout.isVisible = true
         errorTextView.text = message
     }
 

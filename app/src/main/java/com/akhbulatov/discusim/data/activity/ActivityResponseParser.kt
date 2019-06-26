@@ -4,6 +4,8 @@ import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_ThreadVoteNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
+import com.akhbulatov.discusim.data.global.network.responses.BaseResponseJsonAdapter
 import com.squareup.moshi.Moshi
 import org.json.JSONObject
 import javax.inject.Inject
@@ -11,12 +13,15 @@ import javax.inject.Singleton
 
 @Singleton
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
+    private val baseResponseAdapter = BaseResponseJsonAdapter(moshi)
     private val actionAdapter = ActionNetModelJsonAdapter(moshi)
     private val threadVoteAdapter = ActionNetModel_ThreadVoteNetModelJsonAdapter(moshi)
     private val commentAdapter = CommentNetModelJsonAdapter(moshi)
 
-    fun parse(activityJson: String): List<ActionNetModel> {
+    fun parse(activityJson: String): Pair<CursorNetModel, List<ActionNetModel>> {
+        val cursor = baseResponseAdapter.fromJson(activityJson)!!.cursor
         val actions = arrayListOf<ActionNetModel>()
+
         val root = JSONObject(activityJson)
         val responses = root.getJSONArray("response")
 
@@ -34,7 +39,7 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
             val finalAction = action.copy(obj = obj)
             actions.add(finalAction)
         }
-        return actions
+        return Pair(cursor!!, actions)
     }
 
     private enum class ActivityType(val type: String) {

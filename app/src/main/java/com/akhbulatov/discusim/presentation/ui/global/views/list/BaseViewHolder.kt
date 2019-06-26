@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.global.base
+package com.akhbulatov.discusim.presentation.ui.global.views.list
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
