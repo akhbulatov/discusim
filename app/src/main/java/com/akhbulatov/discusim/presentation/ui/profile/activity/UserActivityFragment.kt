@@ -50,6 +50,8 @@ class UserActivityFragment : BaseFragment() {
             addOnScrollListener(scrollListener)
             adapter = activityAdapter
         }
+        errorRefreshButton.setOnClickListener { viewModel.refreshActivity() }
+        dataRefreshButton.setOnClickListener { viewModel.refreshActivity() }
         observeUIChanges()
     }
 
@@ -73,7 +75,7 @@ class UserActivityFragment : BaseFragment() {
     }
 
     private fun showEmptyData(show: Boolean) {
-        emptyDataLayout.isVisible = show
+        dataLayout.isVisible = show
     }
 
     private fun showActions(show: Boolean, actions: List<Action>) {
