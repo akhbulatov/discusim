@@ -12,9 +12,6 @@
     <color name="text_secondary">@color/gray_dove</color>
     <color name="text_date">@color/gray_dove</color>
 
-    <color name="toolbar_background">@color/primary</color>
-    <color name="toolbar_text">@color/accent</color>
-
     <color name="bottom_nav_active">@color/accent</color>
     <color name="bottom_nav_inactive">@color/gray_silver</color>
 
