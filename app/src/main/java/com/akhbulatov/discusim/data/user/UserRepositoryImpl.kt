@@ -1,9 +1,7 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
@@ -14,8 +12,7 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
     private val schedulers: SchedulersProvider,
-    private val userResponseMapper: UserResponseMapper,
-    private val forumResponseMapper: ForumResponseMapper
+    private val userResponseMapper: UserResponseMapper
 ) : UserRepository {
 
     override fun getUser(userId: Long): Single<UserDetails> =
@@ -36,10 +33,5 @@ class UserRepositoryImpl @Inject constructor(
     override fun getFollowingUsers(userId: Long): Single<List<User>> =
         api.getFollowingUsers(userId)
             .map { userResponseMapper.map(it) }
-            .subscribeOn(schedulers.io())
-
-    override fun getFollowingForums(userId: Long): Single<List<Forum>> =
-        api.getFollowingForums(userId)
-            .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }

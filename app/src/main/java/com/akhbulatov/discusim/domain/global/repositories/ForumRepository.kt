@@ -5,7 +5,9 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.global.models.User
 import io.reactivex.Single
 
-interface ForumsRepository {
+interface ForumRepository {
+    fun getFollowingForums(userId: Long, page: String?): Single<List<Forum>>
+
     fun getForumDetails(forumId: String): Single<Forum>
     fun getThreads(forumId: String): Single<List<Thread>>
     fun getTopCommenters(forumId: String): Single<List<User>>

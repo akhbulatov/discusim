@@ -2,59 +2,115 @@ package com.akhbulatov.discusim.presentation.ui.forums
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.akhbulatov.discusim.domain.forums.ForumsInteractor
+import com.akhbulatov.discusim.domain.forum.ForumInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.eventbus.CursorStore
 import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
+import timber.log.Timber
 import javax.inject.Inject
 
 class ForumsViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val interactor: ForumsInteractor,
+    private val sessionInteractor: SessionInteractor,
+    private val forumInteractor: ForumInteractor,
     private val schedulers: SchedulersProvider,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
+    cursorStore: CursorStore
 ) : BaseViewModel() {
 
-    private val _forums = MutableLiveData<List<Forum>>()
-    val forums: LiveData<List<Forum>> get() = _forums
-
-    private val _contentBlock = MutableLiveData<Boolean>()
-    val contentBlock: LiveData<Boolean> get() = _contentBlock
-
-    private val _contentProgress = MutableLiveData<Boolean>()
-    val contentProgress: LiveData<Boolean> get() = _contentProgress
-
-    private val _contentError = MutableLiveData<String>()
-    val contentError: LiveData<String> get() = _contentError
-
-    fun setUserId(userId: Long) {
-        loadForums(userId)
-    }
-
-    private fun loadForums(userId: Long) {
-        subscriptions += interactor.getFollowingForums(userId)
-            .observeOn(schedulers.ui())
-            .doOnSubscribe {
-                _contentBlock.value = false
-                _contentProgress.value = true
-            }
-            .doAfterTerminate { _contentProgress.value = false }
+    init {
+        subscriptions += cursorStore.observe()
             .subscribeBy(
-                onSuccess = {
-                    _contentBlock.value = true
-                    _forums.value = it
+                onNext = {
+                    Timber.d("Next cursor: $it")
+                    paginator.nextPage = it
                 },
-                onError = { errorHandler.proceed(it) { msg -> _contentError.value = msg } }
+                onComplete = { Timber.d("Observation cursor completed.") },
+                onError = { Timber.e("An error occurred while observing cursor: $it") }
             )
     }
 
-    fun onForumClicked(forum: Forum) {
-//        val screen = forum.channel?.let { Screens.Channel(forum.id) } ?: Screens.Forum(forum.id)
-//        router.navigateTo(screen)
+    private var userId: Long = -1
+
+    private val _emptyProgress = MutableLiveData<Boolean>()
+    val emptyProgress: LiveData<Boolean> get() = _emptyProgress
+
+    private val _emptyError = MutableLiveData<Pair<Boolean, String?>>()
+    val emptyError: LiveData<Pair<Boolean, String?>> get() = _emptyError
+
+    private val _emptyData = MutableLiveData<Boolean>()
+    val emptyData: LiveData<Boolean> get() = _emptyData
+
+    private val _forums = MutableLiveData<Pair<Boolean, List<Forum>>>()
+    val forums: LiveData<Pair<Boolean, List<Forum>>> get() = _forums
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
+
+    private val _refreshProgress = MutableLiveData<Boolean>()
+    val refreshProgress: LiveData<Boolean> get() = _refreshProgress
+
+    private val _pageProgress = MutableLiveData<Boolean>()
+    val pageProgress: LiveData<Boolean> get() = _pageProgress
+
+    private val paginator = Paginator(
+        {
+            forumInteractor.getFollowingForums(userId, it)
+                .observeOn(schedulers.ui())
+        },
+        object : Paginator.ViewController<Forum> {
+            override fun showEmptyProgress(show: Boolean) {
+                _emptyProgress.value = show
+            }
+
+            override fun showEmptyError(show: Boolean, error: Throwable?) {
+                if (error != null) {
+                    errorHandler.proceed(error) { msg -> _emptyError.value = Pair(show, msg) }
+                } else {
+                    _emptyError.value = Pair(show, null)
+                }
+            }
+
+            override fun showEmptyData(show: Boolean) {
+                _emptyData.value = show
+            }
+
+            override fun showData(show: Boolean, data: List<Forum>) {
+                _forums.value = Pair(show, data)
+            }
+
+            override fun showErrorMessage(error: Throwable) {
+                errorHandler.proceed(error) { msg -> _errorMessage.value = msg }
+            }
+
+            override fun showRefreshProgress(show: Boolean) {
+                _refreshProgress.value = show
+            }
+
+            override fun showPageProgress(show: Boolean) {
+                _pageProgress.value = show
+            }
+        }
+    )
+
+    fun setUserId(userId: Long?) {
+        this.userId = userId ?: sessionInteractor.getUserId()
+        refreshForums()
+    }
+
+    fun refreshForums() = paginator.refresh()
+    fun loadNextForumsPage() = paginator.loadNewPage()
+
+    override fun onCleared() {
+        paginator.release()
+        super.onCleared()
     }
 
     override fun onBackPressed() = router.exit()

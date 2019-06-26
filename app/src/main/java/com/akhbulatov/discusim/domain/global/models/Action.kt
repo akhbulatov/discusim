@@ -13,7 +13,7 @@ data class Action(
     data class ThreadVote(
         val id: Long,
         val thread: ThreadPreview,
-        val forum: Forum,
+        val forum: ForumPreview,
         val author: User
     )
 

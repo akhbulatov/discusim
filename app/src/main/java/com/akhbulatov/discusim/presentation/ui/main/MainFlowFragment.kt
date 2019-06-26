@@ -59,7 +59,7 @@ class MainFlowFragment : FlowFragment() {
     companion object {
         private val userActivityTabScreen = Screens.UserActivity()
         private val trendsTabScreen = Screens.TrendsContainer
-        private val forumsTabScreen = Screens.Forums(178987138) // TODO
+        private val forumsTabScreen = Screens.Forums()
         private val profileTabScreen = Screens.Profile(178987138) // TODO
     }
 }

@@ -41,6 +41,12 @@ interface DisqusApi {
         @Query("related") related: List<String>
     ): Single<TrendThreadsResponse>
 
+    @GET("users/listFollowingForums.json")
+    fun getFollowingForums(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?
+    ): Single<ForumsResponse>
+
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
 
@@ -52,9 +58,6 @@ interface DisqusApi {
 
     @GET("users/listFollowing.json")
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("users/listFollowingForums.json")
-    fun getFollowingForums(@Query("user") userId: Long): Single<ForumsResponse>
 
     @GET("forums/details.json")
     fun getForumDetails(
