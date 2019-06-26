@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_users.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import kotlinx.android.synthetic.main.fragment_users.*
 import javax.inject.Inject
 
 class UsersFragment : BaseFragment() {
@@ -62,11 +62,11 @@ class UsersFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        emptyErrorLayout.isVisible = true
+        errorLayout.isVisible = true
         errorTextView.text = message
     }
 

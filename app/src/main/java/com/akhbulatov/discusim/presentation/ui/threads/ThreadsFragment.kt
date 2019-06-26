@@ -65,7 +65,7 @@ class ThreadsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showRefreshProgress(show: Boolean) {
@@ -73,7 +73,7 @@ class ThreadsFragment : BaseFragment() {
     }
 
     private fun showError(show: Boolean, message: String?) {
-        emptyErrorLayout.isVisible = show
+        errorLayout.isVisible = show
         errorTextView.text = message
     }
 

@@ -63,12 +63,12 @@ class UserActivityFragment : BaseFragment() {
     }
 
     private fun showEmptyProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showEmptyError(show: Boolean, message: String?) {
         errorTextView.text = message
-        emptyErrorLayout.isVisible = show
+        errorLayout.isVisible = show
     }
 
     private fun showEmptyData(show: Boolean) {

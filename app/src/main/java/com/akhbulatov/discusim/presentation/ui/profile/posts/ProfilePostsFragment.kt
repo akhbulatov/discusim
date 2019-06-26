@@ -13,9 +13,9 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.views.list.VerticalSpaceItemDecoration
+import kotlinx.android.synthetic.main.fragment_profile_posts.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import kotlinx.android.synthetic.main.fragment_profile_posts.*
 import javax.inject.Inject
 
 class ProfilePostsFragment : BaseFragment() {
@@ -61,11 +61,11 @@ class ProfilePostsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        emptyErrorLayout.isVisible = true
+        errorLayout.isVisible = true
         errorTextView.text = message
     }
 

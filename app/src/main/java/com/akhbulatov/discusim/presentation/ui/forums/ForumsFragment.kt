@@ -63,11 +63,11 @@ class ForumsFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
-        emptyErrorLayout.isVisible = true
+        errorLayout.isVisible = true
         errorTextView.text = message
     }
 

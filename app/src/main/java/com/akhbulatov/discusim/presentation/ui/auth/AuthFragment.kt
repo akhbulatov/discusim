@@ -70,7 +70,7 @@ class AuthFragment : BaseFragment() {
     }
 
     private fun showProgress(show: Boolean) {
-        emptyProgressLayout.isVisible = show
+        progressLayout.isVisible = show
     }
 
     private fun showError(message: String) {
