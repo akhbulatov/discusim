@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.presentation.ui.profile.activity
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                         item.threadVote.thread.title
                     )
                     activity = "${item.threadVote.author.name} $upvotedThread"
+                    commentTextView.isVisible = false
                     activityTypeDrawable = context.getTintDrawable(
                         R.drawable.ic_favorite,
                         R.color.button_upvote_background
@@ -113,9 +115,10 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                     oldItem is ProgressItem && newItem is ProgressItem
                 }
 
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean =
                 if (oldItem is Action && newItem is Action) {
-                    oldItem as Action == newItem as Action
+                    oldItem == newItem
                 } else {
                     true
                 }
