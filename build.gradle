@@ -23,7 +23,7 @@ buildscript {
             'cicerone'        : '5.0.0',
             'glide'           : '4.9.0',
             'threeTenAbp'     : '1.2.1',
-            'androidKtx'      : '1.0.2',
+            'androidKtx'      : '1.2.0-alpha02',
             'anko'            : '0.10.8',
             'detekt'          : '1.0.0-RC15',
             'timber'          : '4.7.1',
