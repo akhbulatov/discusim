@@ -30,7 +30,10 @@ interface DisqusApi {
     ): Single<SessionNetModel>
 
     @GET("users/listActivity.json")
-    fun getUserActivity(@Query("user") userId: Long): Single<ResponseBody>
+    fun getUserActivity(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?
+    ): Single<ResponseBody>
 
     @GET("trends/listThreads.json")
     fun getTrendThreads(

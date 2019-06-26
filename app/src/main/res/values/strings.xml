@@ -2,6 +2,8 @@
     <string name="app_name">Discusim</string>
 
     <!-- Common Messages -->
+    <string name="msg_refresh">Refresh</string>
+    <string name="msg_empty_data">Empty data</string>
 
     <!-- Time -->
     <plurals name="time_days">

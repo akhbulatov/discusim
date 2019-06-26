@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_auth.*
-import kotlinx.android.synthetic.main.layout_progress.*
+import kotlinx.android.synthetic.main.layout_empty_progress.*
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 

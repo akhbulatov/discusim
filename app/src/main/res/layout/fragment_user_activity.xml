@@ -37,9 +37,11 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <include layout="@layout/layout_progress" />
+        <include layout="@layout/layout_empty_progress" />
 
-        <include layout="@layout/layout_error" />
+        <include layout="@layout/layout_empty_error" />
+
+        <include layout="@layout/layout_empty_data" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

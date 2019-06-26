@@ -11,10 +11,10 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import com.akhbulatov.discusim.presentation.ui.global.widgets.VerticalSpaceItemDecoration
+import com.akhbulatov.discusim.presentation.ui.global.views.list.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_threads.*
-import kotlinx.android.synthetic.main.layout_error.*
-import kotlinx.android.synthetic.main.layout_progress.*
+import kotlinx.android.synthetic.main.layout_empty_error.*
+import kotlinx.android.synthetic.main.layout_empty_progress.*
 import org.jetbrains.anko.support.v4.dip
 import javax.inject.Inject
 

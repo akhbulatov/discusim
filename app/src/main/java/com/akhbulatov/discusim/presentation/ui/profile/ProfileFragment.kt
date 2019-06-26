@@ -11,9 +11,9 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.layout_error.*
-import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.layout_empty_error.*
+import kotlinx.android.synthetic.main.layout_empty_progress.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 

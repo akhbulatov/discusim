@@ -16,7 +16,7 @@ class CommentResponseMapper @Inject constructor(
     fun map(model: CommentNetModel): Comment =
         model.let {
             Comment(
-                it.id,
+                it.id.toLong(),
                 it.message,
                 userResponseMapper.map(it.author),
                 threadResponseMapper.map(it.thread)

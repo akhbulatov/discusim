@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.layout_error.*
-import kotlinx.android.synthetic.main.layout_progress.*
 import kotlinx.android.synthetic.main.fragment_users.*
+import kotlinx.android.synthetic.main.layout_empty_error.*
+import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
 class UsersFragment : BaseFragment() {

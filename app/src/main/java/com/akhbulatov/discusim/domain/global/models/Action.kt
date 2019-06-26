@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.domain.global.models
 import org.threeten.bp.LocalDateTime
 
 data class Action(
+    val id: Long,
     val threadVote: ThreadVote? = null,
     val comment: Comment? = null,
     val type: Type,
