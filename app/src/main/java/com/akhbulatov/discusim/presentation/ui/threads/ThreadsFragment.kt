@@ -40,13 +40,7 @@ class ThreadsFragment : BaseFragment() {
         threadsSwipeRefresh.setOnRefreshListener { viewModel.refreshThreads() }
         with(threadsRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(
-                VerticalSpaceItemDecoration(
-                    dip(
-                        10
-                    )
-                )
-            )
+            addItemDecoration(VerticalSpaceItemDecoration(dip(10)))
             adapter = threadsAdapter
         }
         observeUIChanges()
