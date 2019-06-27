@@ -56,5 +56,6 @@
     <string name="forum_container_tab_details">Details</string>
     <string name="forum_container_tab_latest">Latest</string>
     <string name="forum_container_tab_hot">Hot</string>
+    <string name="forum_container_tab_popular">Popular</string>
 
 </resources>

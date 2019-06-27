@@ -34,7 +34,13 @@ class ThreadRepositoryImpl @Inject constructor(
             .subscribeOn(schedulers.io())
 
     override fun getPopularThreads(forumId: String): Single<List<Thread>> =
-        api.getPopularThreads(forumId, arrayListOf("forum", "author"))
+        api.getPopularThreads(
+            forumId,
+            listOf(
+                RequestParams.Related.FORUM,
+                RequestParams.Related.AUTHOR
+            )
+        )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }

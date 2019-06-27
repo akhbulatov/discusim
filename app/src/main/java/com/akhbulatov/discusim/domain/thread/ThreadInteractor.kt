@@ -17,8 +17,8 @@ class ThreadInteractor @Inject constructor(
     fun getHotThreads(forumId: String): Single<List<Thread>> =
         threadRepository.getHotThreads(forumId)
 
+    fun getPopularThreads(forumId: String): Single<List<Thread>> =
+        threadRepository.getPopularThreads(forumId)
+
     fun getThreads(forumId: String): Single<List<Thread>> = forumRepository.getThreads(forumId) // TODO
-
-
-    fun getPopularThreads(forumId: String): Single<List<Thread>> = threadRepository.getPopularThreads(forumId)
 }
