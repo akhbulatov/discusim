@@ -23,6 +23,7 @@ class ThreadResponseMapper @Inject constructor(
                 it.id,
                 it.title,
                 if (it.message.isNotEmpty()) it.message else null,
+                it.media?.map { media -> Thread.Media(media.url) },
                 userResponseMapper.map(it.author),
                 it.createdAt,
                 it.likes,

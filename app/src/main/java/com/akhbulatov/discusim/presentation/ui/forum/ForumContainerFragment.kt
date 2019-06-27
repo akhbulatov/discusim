@@ -71,8 +71,8 @@ class ForumContainerFragment : BaseFragment() {
 
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> Screens.ForumDetails(forumId).fragment
-            1 -> Screens.Threads(forumId).fragment
-            else -> Screens.Threads(threadType = ThreadType.TRENDS).fragment // TODO
+            1 -> Screens.Threads(forumId, ThreadType.LATEST).fragment
+            else -> Screens.Threads(forumId, ThreadType.HOT).fragment
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {

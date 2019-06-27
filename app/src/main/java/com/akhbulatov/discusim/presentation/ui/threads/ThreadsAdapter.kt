@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
-import com.akhbulatov.discusim.presentation.ui.global.views.list.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
+import com.akhbulatov.discusim.presentation.ui.global.views.list.BaseViewHolder
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF_CALLBACK) {
@@ -30,7 +31,15 @@ class ThreadsAdapter : ListAdapter<Thread, ThreadsAdapter.ThreadViewHolder>(DIFF
             authorImageView.loadRoundedImage(itemView.context, item.author.avatarUrl)
             authorTextView.text = item.author.name
             dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
-            contentImageView.isVisible = false // TODO
+
+            if (item.mediaList != null) {
+                Glide.with(itemView)
+                    .load(item.mediaList.first().url)
+                    .into(contentImageView)
+            } else {
+                contentImageView.isVisible = false
+            }
+
             topicsChipGroup.isVisible = false // TODO
             titleTextView.text = item.title
             with(voteButton) {

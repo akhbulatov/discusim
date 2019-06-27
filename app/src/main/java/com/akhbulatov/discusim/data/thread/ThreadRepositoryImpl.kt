@@ -23,7 +23,13 @@ class ThreadRepositoryImpl @Inject constructor(
             .subscribeOn(schedulers.io())
 
     override fun getHotThreads(forumId: String): Single<List<Thread>> =
-        api.getHotThreads(forumId, arrayListOf("forum", "author"))
+        api.getHotThreads(
+            forumId,
+            listOf(
+                RequestParams.Related.FORUM,
+                RequestParams.Related.AUTHOR
+            )
+        )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
