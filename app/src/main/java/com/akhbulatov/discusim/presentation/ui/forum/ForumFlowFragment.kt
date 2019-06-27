@@ -27,7 +27,7 @@ class ForumFlowFragment : FlowFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        bottomNavView.setOnNavigationItemSelectedListener { item ->
+        forumBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_forum_details -> forumDetailsTabScreen
                 else -> forumDetailsTabScreen // TODO

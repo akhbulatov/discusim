@@ -17,7 +17,7 @@ class MainFlowFragment : FlowFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottomNavView.setOnNavigationItemSelectedListener { item ->
+        mainBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_user_activity -> userActivityTabScreen
                 R.id.menu_bottom_nav_trends -> trendsTabScreen
