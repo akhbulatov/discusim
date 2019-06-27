@@ -27,7 +27,9 @@ class ForumsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: ForumsViewModel
-    private val forumsAdapter by lazy { ForumsAdapter() }
+    private val forumsAdapter by lazy {
+        ForumsAdapter { viewModel.onForumClicked(it) }
+    }
     private val scrollListener by lazy {
         InfiniteScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextForumsPage() }

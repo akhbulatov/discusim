@@ -12,28 +12,37 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
-class ForumViewModel @Inject constructor(
+class ForumContainerViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val interactor: ForumInteractor,
+    private val forumInteractor: ForumInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
+
+    private lateinit var forumId: String
+
+    private val _progress = MutableLiveData<Boolean>()
+    val progress: LiveData<Boolean> get() = _progress
+
+    private val _error = MutableLiveData<Pair<Boolean, String?>>()
+    val error: LiveData<Pair<Boolean, String?>> get() = _error
 
     private val _forum = MutableLiveData<Forum>()
     val forum: LiveData<Forum> get() = _forum
 
     fun setForumId(forumId: String) {
-        loadForumDetails(forumId)
+        this.forumId = forumId
+        loadForumDetails()
     }
 
-    private fun loadForumDetails(forumId: String) {
-        subscriptions += interactor.getForumDetails(forumId)
+    private fun loadForumDetails() {
+        subscriptions += forumInteractor.getForumDetails(forumId)
             .observeOn(schedulers.ui())
-            .doOnSubscribe { } // TODO
-            .doAfterTerminate { } // TODO
+            .doOnSubscribe { _progress.value = true }
+            .doAfterTerminate { _progress.value = false }
             .subscribeBy(
                 onSuccess = { _forum.value = it },
-                onError = { errorHandler.proceed(it) {} } // TODO
+                onError = { errorHandler.proceed(it) { msg -> _error.value = Pair(true, msg) } }
             )
     }
 

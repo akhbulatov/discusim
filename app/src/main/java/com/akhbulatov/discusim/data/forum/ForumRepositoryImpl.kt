@@ -21,14 +21,14 @@ class ForumRepositoryImpl @Inject constructor(
     private val cursorStore: CursorStore
 ) : ForumRepository {
 
-    override fun getFollowingForums(userId: Long, page: String?): Single<List<Forum>> =
-        api.getFollowingForums(userId, page)
-            .doOnSuccess { it.cursor?.next?.let { next -> cursorStore.publish(next) } }
+    override fun getForumDetails(forumId: String): Single<Forum> =
+        api.getForumDetails(forumId)
             .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun getForumDetails(forumId: String): Single<Forum> =
-        api.getForumDetails(forumId, arrayListOf("counters"))
+    override fun getFollowingForums(userId: Long, page: String?): Single<List<Forum>> =
+        api.getFollowingForums(userId, page)
+            .doOnSuccess { it.cursor?.next?.let { next -> cursorStore.publish(next) } }
             .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 

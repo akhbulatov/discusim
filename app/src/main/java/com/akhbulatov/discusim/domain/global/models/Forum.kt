@@ -10,6 +10,7 @@ data class Forum(
 
     data class Channel(
         val id: Long,
-        val avatarUrl: String
+        val avatarUrl: String,
+        val bannerUrl: String
     )
 }

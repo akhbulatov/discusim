@@ -10,6 +10,7 @@ import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
+import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -107,6 +108,8 @@ class ForumsViewModel @Inject constructor(
 
     fun refreshForums() = paginator.refresh()
     fun loadNextForumsPage() = paginator.loadNewPage()
+
+    fun onForumClicked(forum: Forum) = router.startFlow(Screens.ForumFlow(forum.id))
 
     override fun onCleared() {
         paginator.release()

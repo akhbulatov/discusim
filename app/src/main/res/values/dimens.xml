@@ -10,6 +10,7 @@
 
     <dimen name="spacing_list_vertical">10dp</dimen>
 
+    <dimen name="toolbar_expand_height">192dp</dimen>
     <dimen name="avatar_size">40dp</dimen>
 
     <!-- TODO Следует заменить в соответствии с новым применяемым гайдом -->

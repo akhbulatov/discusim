@@ -11,6 +11,8 @@ import javax.inject.Singleton
 class ForumResponseMapper @Inject constructor() {
     fun map(response: ForumsResponse): List<Forum> = response.forums.map { map(it) }
 
+    fun map(response: ForumResponse): Forum = map(response.forum)
+
     fun map(model: ForumNetModel): Forum =
         model.let {
             Forum(
@@ -26,7 +28,8 @@ class ForumResponseMapper @Inject constructor() {
         model.let {
             Forum.Channel(
                 it.id.toLong(),
-                it.avatar
+                it.avatar,
+                "https:${it.options.alertBackground}"
             )
         }
 
@@ -37,6 +40,4 @@ class ForumResponseMapper @Inject constructor() {
                 it.name
             )
         }
-
-    fun map(response: ForumResponse): Forum = map(response.forum)
 }

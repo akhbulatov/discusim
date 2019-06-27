@@ -14,7 +14,9 @@ import com.akhbulatov.discusim.presentation.ui.global.views.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.views.list.ProgressViewHolder
 import kotlinx.android.synthetic.main.item_forum.*
 
-class ForumsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class ForumsAdapter(
+    private val clickListener: (Forum) -> Unit
+) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
@@ -56,9 +58,17 @@ class ForumsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    class ForumViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    inner class ForumViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+        private lateinit var forum: Forum
+
+        init {
+            itemView.setOnClickListener { clickListener(forum) }
+        }
+
         override fun bind(item: Any) {
             if (item is Forum) {
+                forum = item
+
                 nameTextView.text = item.name
                 val faviconUrl = item.channel?.avatarUrl ?: item.faviconUrl
                 avatarImageView.loadRoundedImage(itemView.context, faviconUrl)

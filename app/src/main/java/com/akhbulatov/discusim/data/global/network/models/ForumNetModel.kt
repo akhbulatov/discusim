@@ -18,6 +18,11 @@ data class ForumNetModel(
     @JsonClass(generateAdapter = true)
     data class ChannelNetModel(
         @Json(name = "id") val id: String,
-        @Json(name = "avatar") val avatar: String
-    )
+        @Json(name = "avatar") val avatar: String,
+        @Json(name = "options") val options: OptionsNetModel
+    ) {
+
+        @JsonClass(generateAdapter = true)
+        data class OptionsNetModel(@Json(name = "alertBackground") val alertBackground: String)
+    }
 }

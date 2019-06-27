@@ -47,6 +47,9 @@ interface DisqusApi {
         @Query("cursor") cursor: String?
     ): Single<ForumsResponse>
 
+    @GET("forums/details.json")
+    fun getForumDetails(@Query("forum") forumId: String): Single<ForumResponse>
+
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
 
@@ -58,12 +61,6 @@ interface DisqusApi {
 
     @GET("users/listFollowing.json")
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("forums/details.json")
-    fun getForumDetails(
-        @Query("forum") forumId: String,
-        @Query("attach") attachList: List<String>
-    ): Single<ForumResponse>
 
     @GET("forums/listThreads.json")
     fun getThreads(
