@@ -5,6 +5,7 @@ import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.data.global.network.converters.LocalDateTimeConverter
 import com.akhbulatov.discusim.data.global.network.interceptors.AuthInterceptor
 import com.akhbulatov.discusim.data.session.OAuthParams
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -47,6 +48,7 @@ object NetworkModule {
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(authInterceptor)
+        .addNetworkInterceptor(StethoInterceptor())
         .build()
 
     @JvmStatic
