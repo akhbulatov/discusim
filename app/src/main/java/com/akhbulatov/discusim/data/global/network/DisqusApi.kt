@@ -35,12 +35,6 @@ interface DisqusApi {
         @Query("cursor") cursor: String?
     ): Single<ResponseBody>
 
-    @GET("trends/listThreads.json")
-    fun getTrendThreads(
-        @Query("forum") forumId: String?,
-        @Query("related") related: List<String>
-    ): Single<TrendThreadsResponse>
-
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(
         @Query("user") userId: Long,
@@ -50,6 +44,19 @@ interface DisqusApi {
     @GET("forums/details.json")
     fun getForumDetails(@Query("forum") forumId: String): Single<ForumResponse>
 
+    @GET("threads/listHot.json")
+    fun getHotThreads(
+        @Query("forum") forumId: String,
+        @Query("related") related: List<String>
+    ): Single<ThreadsResponse>
+
+    @GET("trends/listThreads.json")
+    fun getTrendThreads(
+        @Query("forum") forumId: String?,
+        @Query("related") related: List<String>
+    ): Single<TrendThreadsResponse>
+
+    // --- //
     @GET("users/details.json")
     fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
 
@@ -73,12 +80,6 @@ interface DisqusApi {
 
     @GET("forums/listModerators.json")
     fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
-
-    @GET("threads/listHot.json")
-    fun getHotThreads(
-        @Query("forum") forumId: String,
-        @Query("related") related: List<String>
-    ): Single<ThreadsResponse>
 
     @GET("threads/listPopular.json")
     fun getPopularThreads(

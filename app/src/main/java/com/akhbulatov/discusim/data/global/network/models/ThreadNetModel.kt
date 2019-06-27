@@ -9,9 +9,14 @@ data class ThreadNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "title") val title: String,
     @Json(name = "message") val message: String,
+    @Json(name = "media") val media: List<MediaNetModel>?,
     @Json(name = "author") val author: UserNetModel,
     @Json(name = "createdAt") val createdAt: LocalDateTime,
     @Json(name = "likes") val likes: Int,
     @Json(name = "userScore") val userScore: Int,
     @Json(name = "posts") val posts: Int
-)
+) {
+
+    @JsonClass(generateAdapter = true)
+    data class MediaNetModel(@Json(name = "url") val url: String)
+}
