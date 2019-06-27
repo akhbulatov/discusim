@@ -3,8 +3,8 @@ package com.akhbulatov.discusim.presentation.global
 import androidx.fragment.app.Fragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
-import com.akhbulatov.discusim.presentation.ui.forum.ForumContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
@@ -60,10 +60,10 @@ object Screens {
         override fun getFragment(): Fragment = ForumFlowFragment.newInstance(forumId)
     }
 
-    data class ForumContainer(
+    data class ForumDetailsContainer(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumContainerFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ForumDetailsContainerFragment.newInstance(forumId)
     }
 
     data class ForumDetails(

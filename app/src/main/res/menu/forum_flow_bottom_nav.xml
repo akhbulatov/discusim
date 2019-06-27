@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_bottom_nav_forum_details"
+        android:icon="@drawable/ic_info_outline"
+        android:title="@string/forum_flow_details" />
+
+    <!-- TODO Сменить иконку -->
+    <item
+        android:id="@+id/menu_bottom_nav_forum_threads"
+        android:icon="@drawable/ic_format_list_bulleted"
+        android:title="@string/forum_flow_threads" />
+
+    <!-- TODO -->
+    <item
+        android:id="@+id/menu_bottom_nav_temp"
+        android:icon="@drawable/ic_forum"
+        android:title="@string/forum_flow_temp" />
+
+</menu>
