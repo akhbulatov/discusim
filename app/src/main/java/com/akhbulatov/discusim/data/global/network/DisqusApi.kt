@@ -50,6 +50,12 @@ interface DisqusApi {
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
 
+    @GET("threads/listPopular.json")
+    fun getPopularThreads(
+        @Query("forum") forumId: String,
+        @Query("related") related: List<String>
+    ): Single<ThreadsResponse>
+
     @GET("trends/listThreads.json")
     fun getTrendThreads(
         @Query("forum") forumId: String?,
@@ -80,10 +86,4 @@ interface DisqusApi {
 
     @GET("forums/listModerators.json")
     fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
-
-    @GET("threads/listPopular.json")
-    fun getPopularThreads(
-        @Query("forum") forumId: String,
-        @Query("related") related: List<String>
-    ): Single<ThreadsResponse>
 }
