@@ -33,8 +33,8 @@ class ForumDetailsContainerFragment : BaseFragment() {
     }
 
     private fun setupForumPager() {
-        detailsViewPager.adapter = pagerAdapter
-        detailsTabLayout.setupWithViewPager(detailsViewPager)
+        detailsPager.adapter = pagerAdapter
+        detailsTabLayout.setupWithViewPager(detailsPager)
     }
 
     override fun onBackPressed() = router.exit()

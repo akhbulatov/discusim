@@ -36,7 +36,6 @@ class ForumFlowFragment : FlowFragment() {
             true
         }
 
-
         val tabScreen = when (currentTabFragment?.tag) {
             else -> forumDetailsTabScreen // Первый таб, открываемый по умолчанию
         }
