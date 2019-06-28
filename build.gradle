@@ -28,7 +28,7 @@ buildscript {
             'detekt'          : '1.0.0-RC15',
             'timber'          : '4.7.1',
             'stetho'          : '1.5.1',
-            'leakCanary'      : '1.6.3'
+            'leakCanary'      : '2.0-alpha-2'
     ]
 
     repositories {

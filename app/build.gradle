@@ -99,6 +99,4 @@ dependencies {
     implementation "com.facebook.stetho:stetho:${versions.stetho}"
     implementation "com.facebook.stetho:stetho-okhttp3:${versions.stetho}"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
-    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${versions.leakCanary}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
 }
