@@ -11,9 +11,6 @@ class ThreadInteractor @Inject constructor(
     private val forumRepository: ForumRepository
 ) {
 
-    fun getTrendThreads(forumId: String?): Single<List<Thread>> =
-        threadRepository.getTrendThreads(forumId)
-
     fun getHotThreads(forumId: String): Single<List<Thread>> =
         threadRepository.getHotThreads(forumId)
 

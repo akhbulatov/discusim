@@ -13,7 +13,6 @@ import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFrag
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
-import com.akhbulatov.discusim.presentation.ui.trends.TrendsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.users.UserType
 import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -35,10 +34,6 @@ object Screens {
         val userId: Long? = null
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
-    }
-
-    object TrendsContainer : SupportAppScreen() {
-        override fun getFragment(): Fragment = TrendsContainerFragment()
     }
 
     data class Threads(

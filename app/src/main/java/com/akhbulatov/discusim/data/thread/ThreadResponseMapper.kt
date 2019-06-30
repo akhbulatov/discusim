@@ -15,8 +15,6 @@ class ThreadResponseMapper @Inject constructor(
 
     fun map(response: ThreadsResponse): List<Thread> = response.threads.map { map(it) }
 
-    fun map(response: TrendThreadsResponse): List<Thread> = response.trends.map { map(it) }
-
     fun map(model: ThreadNetModel): Thread =
         model.let {
             Thread(
@@ -39,6 +37,4 @@ class ThreadResponseMapper @Inject constructor(
                 it.title
             )
         }
-
-    fun map(model: TrendThreadsResponse.TrendThreadNetModel): Thread = map(model.thread)
 }

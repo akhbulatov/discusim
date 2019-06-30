@@ -6,7 +6,6 @@ import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.forum.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
-import com.akhbulatov.discusim.data.thread.TrendThreadsResponse
 import com.akhbulatov.discusim.data.user.UserDetailsResponse
 import com.akhbulatov.discusim.data.user.UserPostsResponse
 import com.akhbulatov.discusim.data.user.UsersResponse
@@ -55,12 +54,6 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
-
-    @GET("trends/listThreads.json")
-    fun getTrendThreads(
-        @Query("forum") forumId: String?,
-        @Query("related") related: List<String>
-    ): Single<TrendThreadsResponse>
 
     // --- //
     @GET("users/details.json")
