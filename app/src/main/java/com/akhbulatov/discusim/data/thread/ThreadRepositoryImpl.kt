@@ -14,14 +14,6 @@ class ThreadRepositoryImpl @Inject constructor(
     private val threadResponseMapper: ThreadResponseMapper
 ) : ThreadRepository {
 
-    override fun getTrendThreads(forumId: String?): Single<List<Thread>> =
-        api.getTrendThreads(
-            forumId,
-            listOf(RequestParams.Related.AUTHOR)
-        )
-            .map { threadResponseMapper.map(it) }
-            .subscribeOn(schedulers.io())
-
     override fun getHotThreads(forumId: String): Single<List<Thread>> =
         api.getHotThreads(
             forumId,

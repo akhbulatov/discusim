@@ -83,7 +83,6 @@ class ThreadsViewModel @Inject constructor(
 
     private fun chooseThreadsRequest(forumId: String?, threadType: ThreadType): Single<List<Thread>> =
         when (threadType) {
-            ThreadType.TRENDS -> threadInteractor.getTrendThreads(forumId)
             ThreadType.LATEST -> threadInteractor.getThreads(forumId!!)
             ThreadType.HOT -> threadInteractor.getHotThreads(forumId!!)
             ThreadType.POPULAR -> threadInteractor.getPopularThreads(forumId!!)
