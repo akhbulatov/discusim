@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
+import com.akhbulatov.discusim.presentation.ui.forum.ForumSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
@@ -21,6 +23,7 @@ class ForumDetailsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ForumDetailsViewModel
+    private lateinit var forumSharedViewModel: ForumSharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,9 @@ class ForumDetailsFragment : BaseFragment() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumDetailsViewModel::class.java]
         viewModel.setForumId(forumId)
+
+        val parentFlowFragment = parentFragment!!.parentFragment!!
+        forumSharedViewModel = ViewModelProviders.of(parentFlowFragment)[ForumSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +57,14 @@ class ForumDetailsFragment : BaseFragment() {
     }
 
     private fun showForumDetails(forum: Forum) {
-        showSnackbar(forum.toString()) // TODO
+        forumSharedViewModel.forum.value = forum
+
+        Glide.with(this)
+            .load(forum.channel?.avatarUrl ?: forum.faviconUrl)
+            .into(avatarImageView)
+        nameTextView.text = forum.name
+        descriptionTextView.text = forum.description
+        numFollowersTextView.text = forum.numFollowers.toString()
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

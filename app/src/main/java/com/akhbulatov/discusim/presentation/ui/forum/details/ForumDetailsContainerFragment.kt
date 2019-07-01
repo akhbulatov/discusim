@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
-import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_forum_details_container.*
 import javax.inject.Inject
@@ -16,7 +15,6 @@ import javax.inject.Inject
 class ForumDetailsContainerFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_details_container
 
-    @Inject lateinit var viewModelFactory: ViewModelFactory
     @Inject lateinit var router: FlowRouter
 
     private lateinit var forumId: String

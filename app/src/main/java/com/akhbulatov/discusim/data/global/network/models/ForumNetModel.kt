@@ -9,6 +9,8 @@ data class ForumNetModel(
     @Json(name = "name") val name: String,
     @Json(name = "description") val description: String?,
     @Json(name = "favicon") val favicon: Favicon,
+    @Json(name = "isFollowing") val isFollowing: Boolean,
+    @Json(name = "numFollowers") val numFollowers: Int,
     @Json(name = "channel") val channel: ChannelNetModel?
 ) {
 

@@ -29,8 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingTop="@dimen/spacing_list_vertical"
-                android:paddingBottom="@dimen/spacing_list_vertical"
+                android:paddingTop="@dimen/spacing_content_vertical"
+                android:paddingBottom="@dimen/spacing_content_vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_user_activity" />

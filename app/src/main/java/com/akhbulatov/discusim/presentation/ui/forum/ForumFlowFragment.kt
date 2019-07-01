@@ -3,10 +3,13 @@ package com.akhbulatov.discusim.presentation.ui.forum
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_forum_flow.*
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -22,6 +25,13 @@ class ForumFlowFragment : FlowFragment() {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
         forumDetailsTabScreen = Screens.ForumDetailsContainer(forumId)
+
+        val forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
+        forumSharedViewModel.forum.observe(this, Observer {
+            Glide.with(this)
+                .load(it.channel?.bannerUrl)
+                .into(bannerImageView)
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

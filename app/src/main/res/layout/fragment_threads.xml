@@ -20,9 +20,9 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingStart="@dimen/spacing_small"
-            android:paddingTop="@dimen/spacing_list_vertical"
+            android:paddingTop="@dimen/spacing_content_vertical"
             android:paddingEnd="@dimen/spacing_small"
-            android:paddingBottom="@dimen/spacing_list_vertical"
+            android:paddingBottom="@dimen/spacing_content_vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="2"
             tools:listitem="@layout/item_thread" />

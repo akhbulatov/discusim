@@ -38,13 +38,6 @@ object Screens {
         override fun getFragment(): Fragment = MyForumsFragment()
     }
 
-    data class Threads(
-        val forumId: String? = null,
-        val threadType: ThreadType = ThreadType.LATEST
-    ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId, threadType)
-    }
-
     data class ForumFlow(
         val forumId: String
     ) : SupportAppScreen() {
@@ -61,6 +54,13 @@ object Screens {
         val forumId: String
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumDetailsFragment.newInstance(forumId)
+    }
+
+    data class Threads(
+        val forumId: String? = null,
+        val threadType: ThreadType = ThreadType.LATEST
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId, threadType)
     }
 
     data class Profile(val userId: Long) : SupportAppScreen() {

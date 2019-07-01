@@ -47,11 +47,15 @@
     <!-- Forum Flow -->
     <string name="forum_flow_details">Details</string>
     <string name="forum_flow_threads">Threads</string>
-    <string name="forum_flow_temp">Temp</string> <!-- TODO Временно -->
 
     <!-- Forum Details Container -->
     <string name="forum_details_container_details">Details</string>
     <string name="forum_details_container_topics">Topics</string>
+
+    <!-- Forum Details -->
+    <string name="forum_details_followers">Followers</string>
+    <string name="forum_details_follow">Follow</string>
+    <string name="forum_details_following">Following</string>
 
     <!-- List Items -->
 

@@ -5,9 +5,7 @@ import com.akhbulatov.discusim.data.global.network.models.ForumPreviewNetModel
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.ForumPreview
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ForumResponseMapper @Inject constructor() {
     fun map(response: ForumsResponse): List<Forum> = response.forums.map { map(it) }
 
@@ -20,6 +18,8 @@ class ForumResponseMapper @Inject constructor() {
                 it.name,
                 it.description,
                 it.favicon.permalink,
+                it.isFollowing,
+                it.numFollowers,
                 it.channel?.let { channel -> mapChannel(channel) }
             )
         }

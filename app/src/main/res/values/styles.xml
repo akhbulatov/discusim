@@ -6,6 +6,11 @@
         <item name="titleTextColor">?colorSecondary</item>
     </style>
 
+    <style name="AppToolbar.Collapsing">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
     <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorColor">?colorSecondary</item>
         <item name="tabSelectedTextColor">?colorSecondary</item>

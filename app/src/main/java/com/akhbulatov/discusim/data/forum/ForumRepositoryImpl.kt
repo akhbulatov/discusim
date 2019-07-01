@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.data.forum
 
 import com.akhbulatov.discusim.data.global.network.DisqusApi
+import com.akhbulatov.discusim.data.global.network.utils.RequestParams
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
@@ -21,14 +22,27 @@ class ForumRepositoryImpl @Inject constructor(
     private val cursorStore: CursorStore
 ) : ForumRepository {
 
-    override fun getMyFollowingForums(page: String?): Single<List<Forum>> =
-        api.getFollowingForums(null, page)
-            .doOnSuccess { it.cursor?.next?.let { next -> cursorStore.publish(next) } }
+    override fun getForumDetails(forumId: String): Single<Forum> =
+        api.getForumDetails(
+            forumId,
+            listOf(
+                RequestParams.Forum.FOLLOWS_FORUM,
+                RequestParams.Forum.COUNTERS
+            )
+        )
             .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun getForumDetails(forumId: String): Single<Forum> =
-        api.getForumDetails(forumId)
+    override fun getMyFollowingForums(page: String?): Single<List<Forum>> =
+        api.getFollowingForums(
+            null,
+            page,
+            listOf(
+                RequestParams.Forum.FOLLOWS_FORUM,
+                RequestParams.Forum.COUNTERS
+            )
+        )
+            .doOnSuccess { it.cursor?.next?.let { next -> cursorStore.publish(next) } }
             .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 

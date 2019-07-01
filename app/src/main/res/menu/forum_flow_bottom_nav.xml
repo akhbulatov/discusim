@@ -6,16 +6,9 @@
         android:icon="@drawable/ic_info_outline"
         android:title="@string/forum_flow_details" />
 
-    <!-- TODO Сменить иконку -->
     <item
         android:id="@+id/menu_bottom_nav_forum_threads"
-        android:icon="@drawable/ic_format_list_bulleted"
+        android:icon="@drawable/ic_collections"
         android:title="@string/forum_flow_threads" />
-
-    <!-- TODO -->
-    <item
-        android:id="@+id/menu_bottom_nav_temp"
-        android:icon="@drawable/ic_forum"
-        android:title="@string/forum_flow_temp" />
 
 </menu>
