@@ -6,6 +6,7 @@ import com.akhbulatov.discusim.domain.global.models.Session
 import javax.inject.Inject
 
 class SharedPreferencesStorage @Inject constructor(context: Context) : PreferencesStorage {
+
     private val prefs = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     override var userId: Long
@@ -16,24 +17,18 @@ class SharedPreferencesStorage @Inject constructor(context: Context) : Preferenc
         get() = prefs.getString(PREF_ACCESS_TOKEN, null)
         set(value) = prefs.edit { putString(PREF_ACCESS_TOKEN, value) }
 
-    override var refreshToken: String?
-        get() = prefs.getString(PREF_REFRESH_TOKEN, null)
-        set(value) = prefs.edit { putString(PREF_REFRESH_TOKEN, value) }
-
     override fun isLoggedIn(): Boolean {
-        return userId != -1L && accessToken != null && refreshToken != null
+        return userId != -1L && accessToken != null
     }
 
     override fun setLoggedIn(session: Session) {
         userId = session.userId
         accessToken = session.accessToken
-        refreshToken = session.refreshToken
     }
 
     override fun logout() {
         userId = -1
         accessToken = null
-        refreshToken = null
     }
 
     companion object {
@@ -41,6 +36,5 @@ class SharedPreferencesStorage @Inject constructor(context: Context) : Preferenc
 
         private const val PREF_USER_ID = "user_id"
         private const val PREF_ACCESS_TOKEN = "access_token"
-        private const val PREF_REFRESH_TOKEN = "refresh_token"
     }
 }

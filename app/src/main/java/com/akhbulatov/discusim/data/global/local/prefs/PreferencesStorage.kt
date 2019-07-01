@@ -5,7 +5,6 @@ import com.akhbulatov.discusim.domain.global.models.Session
 interface PreferencesStorage {
     var userId: Long
     var accessToken: String?
-    var refreshToken: String?
 
     fun isLoggedIn(): Boolean
     fun setLoggedIn(session: Session)
