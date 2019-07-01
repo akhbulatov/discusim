@@ -1,8 +1,7 @@
-package com.akhbulatov.discusim.presentation.ui.forums
+package com.akhbulatov.discusim.presentation.ui.main.my.forums
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,21 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
-import kotlinx.android.synthetic.main.fragment_forums.*
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumsAdapter
+import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import kotlinx.android.synthetic.main.fragment_my_forums.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
-class ForumsFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forums
+class MyForumsFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_my_forums
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ForumsViewModel
+    private lateinit var viewModel: MyForumsViewModel
     private val forumsAdapter by lazy {
         ForumsAdapter { viewModel.onForumClicked(it) }
     }
@@ -37,10 +37,8 @@ class ForumsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val userId = arguments?.getLong(ARG_USER_ID)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumsViewModel::class.java]
-        viewModel.setUserId(userId)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[MyForumsViewModel::class.java]
+        viewModel.refreshForums()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,10 +52,10 @@ class ForumsFragment : BaseFragment() {
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
         dataRefreshButton.setOnClickListener { viewModel.refreshForums() }
-        observeChanges()
+        observeUIChanges()
     }
 
-    private fun observeChanges() {
+    private fun observeUIChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
@@ -99,14 +97,4 @@ class ForumsFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
-
-    companion object {
-        private const val ARG_USER_ID = "user_id"
-
-        fun newInstance(userId: Long? = null) = ForumsFragment().apply {
-            userId?.let {
-                arguments = bundleOf(ARG_USER_ID to userId)
-            }
-        }
-    }
 }

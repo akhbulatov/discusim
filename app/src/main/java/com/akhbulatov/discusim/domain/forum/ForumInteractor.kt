@@ -7,8 +7,8 @@ class ForumInteractor @Inject constructor(
     private val forumRepository: ForumRepository
 ) {
 
-    fun getFollowingForums(userId: Long, page: String?) =
-        forumRepository.getFollowingForums(userId, page)
+    fun getMyFollowingForums(page: String?) =
+        forumRepository.getMyFollowingForums(page)
 
     fun getForumDetails(forumId: String) = forumRepository.getForumDetails(forumId)
 }

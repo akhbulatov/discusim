@@ -6,9 +6,9 @@ import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
-import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
+import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
@@ -34,17 +34,15 @@ object Screens {
         override fun getFragment(): Fragment = MyActivityFragment()
     }
 
+    object MyForums : SupportAppScreen() {
+        override fun getFragment(): Fragment = MyForumsFragment()
+    }
+
     data class Threads(
         val forumId: String? = null,
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId, threadType)
-    }
-
-    data class Forums(
-        val userId: Long? = null
-    ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumsFragment.newInstance(userId)
     }
 
     data class ForumFlow(

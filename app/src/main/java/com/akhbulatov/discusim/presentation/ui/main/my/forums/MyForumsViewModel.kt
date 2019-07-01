@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forums
+package com.akhbulatov.discusim.presentation.ui.main.my.forums
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import com.akhbulatov.discusim.domain.forum.ForumInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.eventbus.CursorStore
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
@@ -17,9 +16,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import javax.inject.Inject
 
-class ForumsViewModel @Inject constructor(
+class MyForumsViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val sessionInteractor: SessionInteractor,
     private val forumInteractor: ForumInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler,
@@ -37,8 +35,6 @@ class ForumsViewModel @Inject constructor(
                 onError = { Timber.e("An error occurred while observing cursor: $it") }
             )
     }
-
-    private var userId: Long = -1
 
     private val _emptyProgress = MutableLiveData<Boolean>()
     val emptyProgress: LiveData<Boolean> get() = _emptyProgress
@@ -63,7 +59,7 @@ class ForumsViewModel @Inject constructor(
 
     private val paginator = Paginator(
         {
-            forumInteractor.getFollowingForums(userId, it)
+            forumInteractor.getMyFollowingForums(it)
                 .observeOn(schedulers.ui())
         },
         object : Paginator.ViewController<Forum> {
@@ -100,11 +96,6 @@ class ForumsViewModel @Inject constructor(
             }
         }
     )
-
-    fun setUserId(userId: Long?) {
-        this.userId = userId ?: sessionInteractor.getUserId()
-        refreshForums()
-    }
 
     fun refreshForums() = paginator.refresh()
     fun loadNextForumsPage() = paginator.loadNewPage()
