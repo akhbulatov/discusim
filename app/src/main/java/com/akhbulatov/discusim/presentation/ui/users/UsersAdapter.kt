@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
-import com.akhbulatov.discusim.presentation.ui.global.views.list.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_user.*

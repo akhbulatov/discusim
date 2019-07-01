@@ -8,8 +8,8 @@ import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContain
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
+import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
-import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
@@ -30,10 +30,8 @@ object Screens {
         override fun getFragment(): Fragment = MainFlowFragment()
     }
 
-    data class UserActivity(
-        val userId: Long? = null
-    ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
+    object MyActivity : SupportAppScreen() {
+        override fun getFragment(): Fragment = MyActivityFragment()
     }
 
     data class Threads(

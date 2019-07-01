@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.views.list.VerticalSpaceItemDecoration
+import com.akhbulatov.discusim.presentation.ui.global.list.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_profile_posts.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*

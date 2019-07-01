@@ -1,8 +1,7 @@
-package com.akhbulatov.discusim.presentation.ui.profile.activity
+package com.akhbulatov.discusim.presentation.ui.main.my.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,21 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
+import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserActivityAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import com.akhbulatov.discusim.presentation.ui.global.views.list.DividerNoLastItemDecoration
-import com.akhbulatov.discusim.presentation.ui.global.views.list.InfiniteScrollListener
-import kotlinx.android.synthetic.main.fragment_user_activity.*
+import kotlinx.android.synthetic.main.fragment_my_activity.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
-class UserActivityFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_user_activity
+class MyActivityFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_my_activity
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: UserActivityViewModel
+    private lateinit var viewModel: MyActivityViewModel
     private val activityAdapter by lazy { UserActivityAdapter() }
     private val scrollListener by lazy {
         InfiniteScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
@@ -35,10 +35,8 @@ class UserActivityFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val userId = arguments?.getLong(ARG_USER_ID)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserActivityViewModel::class.java]
-        viewModel.setUserId(userId)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[MyActivityViewModel::class.java]
+        viewModel.refreshActivity()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -97,14 +95,4 @@ class UserActivityFragment : BaseFragment() {
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
-
-    companion object {
-        private const val ARG_USER_ID = "user_id"
-
-        fun newInstance(userId: Long? = null) = UserActivityFragment().apply {
-            userId?.let {
-                arguments = bundleOf(ARG_USER_ID to userId)
-            }
-        }
-    }
 }

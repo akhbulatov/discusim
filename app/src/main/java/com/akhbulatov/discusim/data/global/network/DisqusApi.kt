@@ -30,7 +30,7 @@ interface DisqusApi {
 
     @GET("users/listActivity.json")
     fun getUserActivity(
-        @Query("user") userId: Long,
+        @Query("user") userId: Long?,
         @Query("cursor") cursor: String?
     ): Single<ResponseBody>
 

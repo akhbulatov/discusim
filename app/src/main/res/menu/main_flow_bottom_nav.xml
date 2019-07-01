@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_bottom_nav_user_activity"
+        android:id="@+id/menu_bottom_nav_my_activity"
         android:icon="@drawable/ic_home"
-        android:title="@string/main_flow_user_activity" />
+        android:title="@string/main_flow_my_activity" />
 
     <item
         android:id="@+id/menu_bottom_nav_forums"

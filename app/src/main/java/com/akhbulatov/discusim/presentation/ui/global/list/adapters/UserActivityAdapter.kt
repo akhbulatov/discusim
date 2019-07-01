@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.profile.activity
+package com.akhbulatov.discusim.presentation.ui.global.list.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
+import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.views.list.BaseViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.views.list.ProgressItem
-import com.akhbulatov.discusim.presentation.ui.global.views.list.ProgressViewHolder
 import kotlinx.android.synthetic.main.item_user_activity.*
 
 class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
@@ -117,11 +117,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
 
             @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is Action && newItem is Action) {
-                    oldItem == newItem
-                } else {
-                    true
-                }
+                oldItem == newItem
         }
 
         private const val ITEM_ACTION = 0
