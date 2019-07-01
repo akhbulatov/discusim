@@ -15,8 +15,8 @@ class ActivityRepositoryImpl @Inject constructor(
     private val cursorStore: CursorStore
 ) : ActivityRepository {
 
-    override fun getUserActivity(userId: Long, page: String?): Single<List<Action>> =
-        api.getUserActivity(userId, page)
+    override fun getMyActivity(page: String?): Single<List<Action>> =
+        api.getUserActivity(null, page)
             .map {
                 val activity = activityResponseMapper.map(it)
                 activity.first.next?.let { next -> cursorStore.publish(next) }

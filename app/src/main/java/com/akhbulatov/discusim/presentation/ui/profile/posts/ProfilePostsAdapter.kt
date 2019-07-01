@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
-import com.akhbulatov.discusim.presentation.ui.global.views.list.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_profile_post.*
 

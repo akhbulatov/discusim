@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.global.views.list
+package com.akhbulatov.discusim.presentation.ui.global.list
 
 import android.content.Context
 import android.graphics.Rect

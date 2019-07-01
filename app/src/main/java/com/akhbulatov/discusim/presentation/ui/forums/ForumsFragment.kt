@@ -13,8 +13,8 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import com.akhbulatov.discusim.presentation.ui.global.views.list.DividerNoLastItemDecoration
-import com.akhbulatov.discusim.presentation.ui.global.views.list.InfiniteScrollListener
+import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
+import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
 import kotlinx.android.synthetic.main.fragment_forums.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*

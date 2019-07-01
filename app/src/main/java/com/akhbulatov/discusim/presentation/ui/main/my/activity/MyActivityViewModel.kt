@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.profile.activity
+package com.akhbulatov.discusim.presentation.ui.main.my.activity
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,6 @@ import com.akhbulatov.discusim.domain.activity.ActivityInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.eventbus.CursorStore
 import com.akhbulatov.discusim.domain.global.models.Action
-import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
@@ -16,9 +15,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 import javax.inject.Inject
 
-class UserActivityViewModel @Inject constructor(
+class MyActivityViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val sessionInteractor: SessionInteractor,
     private val activityInteractor: ActivityInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler,
@@ -36,8 +34,6 @@ class UserActivityViewModel @Inject constructor(
                 onError = { Timber.e("An error occurred while observing cursor: $it") }
             )
     }
-
-    private var userId: Long = -1
 
     private val _emptyProgress = MutableLiveData<Boolean>()
     val emptyProgress: LiveData<Boolean> get() = _emptyProgress
@@ -62,7 +58,7 @@ class UserActivityViewModel @Inject constructor(
 
     private val paginator = Paginator(
         {
-            activityInteractor.getUserActivity(userId, it)
+            activityInteractor.getMyActivity(it)
                 .observeOn(schedulers.ui())
         },
         object : Paginator.ViewController<Action> {
@@ -99,11 +95,6 @@ class UserActivityViewModel @Inject constructor(
             }
         }
     )
-
-    fun setUserId(userId: Long?) {
-        this.userId = userId ?: sessionInteractor.getUserId()
-        refreshActivity()
-    }
 
     fun refreshActivity() = paginator.refresh()
     fun loadNextActivityPage() = paginator.loadNewPage()

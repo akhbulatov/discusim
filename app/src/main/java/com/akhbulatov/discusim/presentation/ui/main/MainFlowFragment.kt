@@ -19,7 +19,7 @@ class MainFlowFragment : FlowFragment() {
         super.onViewCreated(view, savedInstanceState)
         mainBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
-                R.id.menu_bottom_nav_user_activity -> userActivityTabScreen
+                R.id.menu_bottom_nav_my_activity -> Screens.MyActivity
                 R.id.menu_bottom_nav_forums -> forumsTabScreen
                 else -> profileTabScreen
             }
@@ -31,7 +31,7 @@ class MainFlowFragment : FlowFragment() {
         val tabScreen = when (currentTabFragment?.tag) {
             forumsTabScreen.screenKey -> forumsTabScreen
             profileTabScreen.screenKey -> profileTabScreen
-            else -> userActivityTabScreen // Первый таб, открываемый по умолчанию
+            else -> Screens.MyActivity // Первый таб, открываемый по умолчанию
         }
         switchTab(tabScreen)
     }
@@ -55,7 +55,6 @@ class MainFlowFragment : FlowFragment() {
     }
 
     companion object {
-        private val userActivityTabScreen = Screens.UserActivity()
         private val forumsTabScreen = Screens.Forums()
         private val profileTabScreen = Screens.Profile(178987138) // TODO
     }
