@@ -10,9 +10,7 @@ import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
 import okhttp3.ResponseBody
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ActivityResponseMapper @Inject constructor(
     private val activityResponseParser: ActivityResponseParser,
     private val threadResponseMapper: ThreadResponseMapper,
