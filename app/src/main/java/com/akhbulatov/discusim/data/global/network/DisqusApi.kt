@@ -36,7 +36,7 @@ interface DisqusApi {
 
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(
-        @Query("user") userId: Long,
+        @Query("user") userId: Long?,
         @Query("cursor") cursor: String?
     ): Single<ForumsResponse>
 

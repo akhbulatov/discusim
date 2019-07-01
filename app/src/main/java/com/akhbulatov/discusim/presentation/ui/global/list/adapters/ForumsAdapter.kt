@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forums
+package com.akhbulatov.discusim.presentation.ui.global.list.adapters
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
+import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
-import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
 import kotlinx.android.synthetic.main.item_forum.*
 
 class ForumsAdapter(
@@ -87,11 +87,7 @@ class ForumsAdapter(
 
             @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is Forum && newItem is Forum) {
-                    oldItem == newItem
-                } else {
-                    true
-                }
+                oldItem == newItem
         }
 
         private const val ITEM_FORUM = 0

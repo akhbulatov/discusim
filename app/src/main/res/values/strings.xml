@@ -41,12 +41,8 @@
     <!-- My Activity -->
     <string name="my_activity_title">Activity</string>
 
-    <!-- Item User Activity -->
-    <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
-    <string name="item_user_activity_commented_thread">commented on thread %s</string>
-
-    <!-- Forums -->
-    <string name="forums_title">Forums</string>
+    <!-- My Forums -->
+    <string name="my_forums_title">Forums</string>
 
     <!-- Forum Flow -->
     <string name="forum_flow_details">Details</string>
@@ -56,5 +52,11 @@
     <!-- Forum Details Container -->
     <string name="forum_details_container_details">Details</string>
     <string name="forum_details_container_topics">Topics</string>
+
+    <!-- List Items -->
+
+    <!-- Item User Activity -->
+    <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
+    <string name="item_user_activity_commented_thread">commented on thread %s</string>
 
 </resources>
