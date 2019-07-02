@@ -206,10 +206,16 @@ class Paginator<T>(
 
         override fun loadNewPage() {
             Timber.d("loadNewPage: $nextPage")
+            if (nextPage == null) {
+                Timber.d("Cannot reload the current page or the first one.")
+                return
+            }
+
             currentState = PageProgressState()
 
             viewController.showPageProgress(true)
             loadPage(nextPage)
+            nextPage = null // Обнулить, чтобы предотвратить повторную загрузку страницы
         }
 
         override fun release() {
@@ -242,8 +248,6 @@ class Paginator<T>(
 
                 currentData.clear()
                 currentData.addAll(data)
-
-                nextPage = firstPage
 
                 viewController.showRefreshProgress(false)
                 viewController.showData(true, data)
