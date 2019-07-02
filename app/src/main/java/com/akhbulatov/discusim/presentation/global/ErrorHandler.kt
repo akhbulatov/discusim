@@ -7,9 +7,7 @@ import retrofit2.HttpException
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ErrorHandler @Inject constructor(
     private val router: Router,
     private val sessionInteractor: SessionInteractor,
