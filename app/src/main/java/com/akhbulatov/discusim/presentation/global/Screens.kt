@@ -3,17 +3,17 @@ package com.akhbulatov.discusim.presentation.global
 import androidx.fragment.app.Fragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
-import com.akhbulatov.discusim.presentation.ui.channel.ChannelFragment
-import com.akhbulatov.discusim.presentation.ui.channeldetails.ChannelDetailsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.ForumFragment
-import com.akhbulatov.discusim.presentation.ui.forums.ForumsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
+import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
+import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
-import com.akhbulatov.discusim.presentation.ui.profile.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
-import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
-import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
-import com.akhbulatov.discusim.presentation.ui.trends.TrendsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.users.UserType
 import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -31,23 +31,43 @@ object Screens {
         override fun getFragment(): Fragment = MainFlowFragment()
     }
 
-    data class UserActivity(val userId: Long? = null) : SupportAppScreen() {
-        override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
+    object MyActivity : SupportAppScreen() {
+        override fun getFragment(): Fragment = MyActivityFragment()
     }
 
-    object TrendsContainer : SupportAppScreen() {
-        override fun getFragment(): Fragment = TrendsContainerFragment()
+    object MyForums : SupportAppScreen() {
+        override fun getFragment(): Fragment = MyForumsFragment()
     }
 
-    data class Threads(
-        val forumId: String? = null,
+    data class ForumFlow(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumFlowFragment.newInstance(forumId)
+    }
+
+    data class ForumDetailsContainer(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumDetailsContainerFragment.newInstance(forumId)
+    }
+
+    data class ForumDetails(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumDetailsFragment.newInstance(forumId)
+    }
+
+    data class ForumThreadsContainer(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumThreadsContainerFragment.newInstance(forumId)
+    }
+
+    data class ForumThreads(
+        val forumId: String,
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId, threadType)
-    }
-
-    data class Forums(val userId: Long? = null) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumsFragment.newInstance(userId)
+        override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
     }
 
     data class Profile(val userId: Long) : SupportAppScreen() {
@@ -60,17 +80,5 @@ object Screens {
 
     data class Users(val itemId: String, val userType: UserType) : SupportAppScreen() {
         override fun getFragment(): Fragment = UsersFragment.newInstance(itemId, userType)
-    }
-
-    data class Forum(val forumId: String) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumFragment.newInstance(forumId)
-    }
-
-    data class Channel(val forumId: String) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ChannelFragment.newInstance(forumId)
-    }
-
-    data class ChannelDetails(val forumId: String) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ChannelDetailsFragment.newInstance(forumId)
     }
 }

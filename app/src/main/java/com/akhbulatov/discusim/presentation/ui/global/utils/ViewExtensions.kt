@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
@@ -20,12 +21,16 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
 
-fun Context.color(@ColorRes colorRes: Int) = ContextCompat.getColor(this, colorRes)
+fun Context.color(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
 
 fun Context.getTintDrawable(@DrawableRes drawableRes: Int, @ColorRes colorRes: Int): Drawable {
     val drawable = this.getDrawable(drawableRes)!!
     drawable.setTint(this.color(colorRes))
     return drawable
+}
+
+fun TextView.setStartDrawable(drawable: Drawable?) {
+    setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
 }
 
 fun ImageView.loadRoundedImage(ctx: Context? = null, url: String) {
@@ -44,4 +49,18 @@ fun MaterialButton.setVote(upvoted: Boolean) {
     iconTint = ColorStateList.valueOf(context.color(iconTintColor))
     setTextColor(context.color(textColor))
     if (upvoted) strokeWidth = 0 // Убирает рамки в случае лайка
+}
+
+fun MaterialButton.setFollow(follow: Boolean) {
+    val backgroundColor = if (follow) R.color.button_following else R.color.button_follow
+    val textResId = if (follow) R.string.forum_details_following else R.string.forum_details_follow
+
+    setBackgroundColor(context.color(backgroundColor))
+    setText(textResId)
+    if (follow) {
+        val tintedDrawable = context.getTintDrawable(R.drawable.ic_done, R.color.primary)
+        setStartDrawable(tintedDrawable)
+    } else {
+        setStartDrawable(null)
+    }
 }

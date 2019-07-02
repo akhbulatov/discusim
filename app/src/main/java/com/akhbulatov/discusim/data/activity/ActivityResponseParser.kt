@@ -9,9 +9,7 @@ import com.akhbulatov.discusim.data.global.network.responses.BaseResponseJsonAda
 import com.squareup.moshi.Moshi
 import org.json.JSONObject
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
     private val baseResponseAdapter = BaseResponseJsonAdapter(moshi)
     private val actionAdapter = ActionNetModelJsonAdapter(moshi)

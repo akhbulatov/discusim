@@ -6,16 +6,12 @@ import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.global.models.ThreadPreview
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class ThreadResponseMapper @Inject constructor(
     private val userResponseMapper: UserResponseMapper
 ) {
 
     fun map(response: ThreadsResponse): List<Thread> = response.threads.map { map(it) }
-
-    fun map(response: TrendThreadsResponse): List<Thread> = response.trends.map { map(it) }
 
     fun map(model: ThreadNetModel): Thread =
         model.let {
@@ -23,6 +19,7 @@ class ThreadResponseMapper @Inject constructor(
                 it.id,
                 it.title,
                 if (it.message.isNotEmpty()) it.message else null,
+                it.media?.map { media -> Thread.Media(media.url) },
                 userResponseMapper.map(it.author),
                 it.createdAt,
                 it.likes,
@@ -38,6 +35,4 @@ class ThreadResponseMapper @Inject constructor(
                 it.title
             )
         }
-
-    fun map(model: TrendThreadsResponse.TrendThreadNetModel): Thread = map(model.thread)
 }

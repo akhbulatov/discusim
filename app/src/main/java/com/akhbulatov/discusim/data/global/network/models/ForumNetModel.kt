@@ -9,6 +9,8 @@ data class ForumNetModel(
     @Json(name = "name") val name: String,
     @Json(name = "description") val description: String?,
     @Json(name = "favicon") val favicon: Favicon,
+    @Json(name = "isFollowing") val isFollowing: Boolean,
+    @Json(name = "numFollowers") val numFollowers: Int,
     @Json(name = "channel") val channel: ChannelNetModel?
 ) {
 
@@ -18,6 +20,11 @@ data class ForumNetModel(
     @JsonClass(generateAdapter = true)
     data class ChannelNetModel(
         @Json(name = "id") val id: String,
-        @Json(name = "avatar") val avatar: String
-    )
+        @Json(name = "avatar") val avatar: String,
+        @Json(name = "options") val options: OptionsNetModel
+    ) {
+
+        @JsonClass(generateAdapter = true)
+        data class OptionsNetModel(@Json(name = "alertBackground") val alertBackground: String)
+    }
 }

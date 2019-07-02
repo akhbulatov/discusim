@@ -1,8 +1,19 @@
 <resources>
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:background">@color/toolbar_background</item>
-        <item name="titleTextColor">@color/toolbar_text</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:elevation">4dp</item>
+        <item name="titleTextColor">?colorSecondary</item>
+    </style>
+
+    <style name="AppToolbar.Collapsing">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicatorColor">?colorSecondary</item>
+        <item name="tabSelectedTextColor">?colorSecondary</item>
     </style>
 
     <style name="AppCardView" parent="Widget.MaterialComponents.CardView">

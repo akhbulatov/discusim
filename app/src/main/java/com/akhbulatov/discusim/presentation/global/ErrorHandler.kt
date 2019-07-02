@@ -4,12 +4,14 @@ import com.akhbulatov.discusim.domain.global.ResourceManager
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.ui.global.utils.userMessage
 import retrofit2.HttpException
+import ru.terrakok.cicerone.Router
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class ErrorHandler @Inject constructor(
+    private val router: Router,
     private val sessionInteractor: SessionInteractor,
     private val resourceManager: ResourceManager
 ) {
@@ -18,7 +20,7 @@ class ErrorHandler @Inject constructor(
         Timber.e(error)
         when (error) {
             is HttpException -> when (error.code()) {
-                401 -> logout() // Токен истек
+                401 -> logout() // Токен истек, сессия юзера завершена
                 else -> messageListener(error.userMessage(resourceManager))
             }
             else -> messageListener(error.userMessage(resourceManager))
@@ -27,5 +29,6 @@ class ErrorHandler @Inject constructor(
 
     private fun logout() {
         sessionInteractor.logout()
+        router.newRootScreen(Screens.AuthFlow)
     }
 }

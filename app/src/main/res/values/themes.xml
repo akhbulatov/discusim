@@ -9,8 +9,10 @@
         <item name="android:colorBackground">@color/screen_background</item>
 
         <item name="colorOnPrimary">@color/text_primary</item>
+        <item name="colorOnSurface">@color/text_primary</item>
 
         <item name="toolbarStyle">@style/AppToolbar</item>
+        <item name="bottomNavigationStyle">@style/AppBottomNavView</item>
     </style>
 
 </resources>

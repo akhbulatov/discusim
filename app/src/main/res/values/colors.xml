@@ -12,9 +12,6 @@
     <color name="text_secondary">@color/gray_dove</color>
     <color name="text_date">@color/gray_dove</color>
 
-    <color name="toolbar_background">@color/primary</color>
-    <color name="toolbar_text">@color/accent</color>
-
     <color name="bottom_nav_active">@color/accent</color>
     <color name="bottom_nav_inactive">@color/gray_silver</color>
 
@@ -24,6 +21,9 @@
     <color name="button_thread_background">@color/transparent</color>
     <color name="button_thread_icon">@color/accent</color>
     <color name="button_thread_text">@color/text_primary</color>
+
+    <color name="button_follow">@color/blue_dodger</color>
+    <color name="button_following">@color/green_fern</color>
 
     <color name="divider">@color/gray_athens</color>
 
@@ -48,4 +48,7 @@
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>
+
+    <!-- Palette green -->
+    <color name="green_fern">#5FB66A</color>
 </resources>

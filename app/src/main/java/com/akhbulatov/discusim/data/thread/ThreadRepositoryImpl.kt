@@ -14,21 +14,36 @@ class ThreadRepositoryImpl @Inject constructor(
     private val threadResponseMapper: ThreadResponseMapper
 ) : ThreadRepository {
 
-    override fun getTrendThreads(forumId: String?): Single<List<Thread>> =
-        api.getTrendThreads(
+    override fun getThreads(forumId: String): Single<List<Thread>> =
+        api.getThreads(
             forumId,
-            listOf(RequestParams.Related.AUTHOR)
+            listOf(
+                RequestParams.Thread.FORUM,
+                RequestParams.Thread.AUTHOR
+            )
         )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getHotThreads(forumId: String): Single<List<Thread>> =
-        api.getHotThreads(forumId, arrayListOf("forum", "author"))
+        api.getHotThreads(
+            forumId,
+            listOf(
+                RequestParams.Thread.FORUM,
+                RequestParams.Thread.AUTHOR
+            )
+        )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
     override fun getPopularThreads(forumId: String): Single<List<Thread>> =
-        api.getPopularThreads(forumId, arrayListOf("forum", "author"))
+        api.getPopularThreads(
+            forumId,
+            listOf(
+                RequestParams.Thread.FORUM,
+                RequestParams.Thread.AUTHOR
+            )
+        )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }

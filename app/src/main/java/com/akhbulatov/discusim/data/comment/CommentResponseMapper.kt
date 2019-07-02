@@ -5,9 +5,7 @@ import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Comment
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class CommentResponseMapper @Inject constructor(
     private val userResponseMapper: UserResponseMapper,
     private val threadResponseMapper: ThreadResponseMapper

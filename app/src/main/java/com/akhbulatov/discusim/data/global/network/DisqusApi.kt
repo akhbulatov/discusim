@@ -6,7 +6,6 @@ import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.forum.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
-import com.akhbulatov.discusim.data.thread.TrendThreadsResponse
 import com.akhbulatov.discusim.data.user.UserDetailsResponse
 import com.akhbulatov.discusim.data.user.UserPostsResponse
 import com.akhbulatov.discusim.data.user.UsersResponse
@@ -31,51 +30,28 @@ interface DisqusApi {
 
     @GET("users/listActivity.json")
     fun getUserActivity(
-        @Query("user") userId: Long,
+        @Query("user") userId: Long?,
         @Query("cursor") cursor: String?
     ): Single<ResponseBody>
 
-    @GET("trends/listThreads.json")
-    fun getTrendThreads(
-        @Query("forum") forumId: String?,
-        @Query("related") related: List<String>
-    ): Single<TrendThreadsResponse>
-
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(
-        @Query("user") userId: Long,
-        @Query("cursor") cursor: String?
+        @Query("user") userId: Long?,
+        @Query("cursor") cursor: String?,
+        @Query("attach") attach: List<String>?
     ): Single<ForumsResponse>
-
-    @GET("users/details.json")
-    fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
-
-    @GET("users/listPosts.json")
-    fun getUserPosts(@Query("user") userId: Long): Single<UserPostsResponse>
-
-    @GET("users/listFollowers.json")
-    fun getFollowers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("users/listFollowing.json")
-    fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
 
     @GET("forums/details.json")
     fun getForumDetails(
         @Query("forum") forumId: String,
-        @Query("attach") attachList: List<String>
+        @Query("attach") attach: List<String>?
     ): Single<ForumResponse>
 
-    @GET("forums/listThreads.json")
+    @GET("threads/list.json")
     fun getThreads(
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
-
-    @GET("forums/listMostActiveUsers.json")
-    fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
-
-    @GET("forums/listModerators.json")
-    fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
 
     @GET("threads/listHot.json")
     fun getHotThreads(
@@ -88,4 +64,23 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
+
+    // --- //
+    @GET("users/details.json")
+    fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
+
+    @GET("users/listPosts.json")
+    fun getUserPosts(@Query("user") userId: Long): Single<UserPostsResponse>
+
+    @GET("users/listFollowers.json")
+    fun getFollowers(@Query("user") userId: Long): Single<UsersResponse>
+
+    @GET("users/listFollowing.json")
+    fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
+
+    @GET("forums/listMostActiveUsers.json")
+    fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
+
+    @GET("forums/listModerators.json")
+    fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
 }

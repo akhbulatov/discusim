@@ -6,9 +6,7 @@ import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.models.UserDetails
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class UserResponseMapper @Inject constructor() {
     fun map(model: UserNetModel): User =
         model.let {

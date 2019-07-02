@@ -6,6 +6,8 @@ import com.akhbulatov.discusim.di.ViewModelKey
 import com.akhbulatov.discusim.di.modules.FlowNavigationModule
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowModule
+import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
+import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowModule
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowModule
 import dagger.Binds
@@ -27,4 +29,8 @@ abstract class AppActivityModule {
     @FlowFragmentScope
     @ContributesAndroidInjector(modules = [MainFlowModule::class, FlowNavigationModule::class])
     abstract fun contributeMainFlowFragment(): MainFlowFragment
+
+    @FlowFragmentScope
+    @ContributesAndroidInjector(modules = [ForumFlowModule::class, FlowNavigationModule::class])
+    abstract fun contributeForumFlowFragment(): ForumFlowFragment
 }

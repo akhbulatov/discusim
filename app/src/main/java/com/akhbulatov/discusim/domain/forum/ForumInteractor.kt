@@ -1,14 +1,17 @@
 package com.akhbulatov.discusim.domain.forum
 
+import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.repositories.ForumRepository
+import io.reactivex.Single
 import javax.inject.Inject
 
 class ForumInteractor @Inject constructor(
     private val forumRepository: ForumRepository
 ) {
 
-    fun getFollowingForums(userId: Long, page: String?) =
-        forumRepository.getFollowingForums(userId, page)
+    fun getForumDetails(forumId: String): Single<Forum> =
+        forumRepository.getForumDetails(forumId)
 
-    fun getForumDetails(forumId: String) = forumRepository.getForumDetails(forumId)
+    fun getMyFollowingForums(page: String?): Single<List<Forum>> =
+        forumRepository.getMyFollowingForums(page)
 }
