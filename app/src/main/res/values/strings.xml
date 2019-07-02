@@ -57,6 +57,11 @@
     <string name="forum_details_follow">Follow</string>
     <string name="forum_details_following">Following</string>
 
+    <!-- Forum Threads Container -->
+    <string name="forum_threads_container_latest">Latest</string>
+    <string name="forum_threads_container_hot">Hot</string>
+    <string name="forum_threads_container_popular">Popular</string>
+
     <!-- List Items -->
 
     <!-- Item User Activity -->

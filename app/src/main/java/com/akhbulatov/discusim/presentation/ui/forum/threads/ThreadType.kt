@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.threads
+package com.akhbulatov.discusim.presentation.ui.forum.threads
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
