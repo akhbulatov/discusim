@@ -4,36 +4,32 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.forum.ForumInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.eventbus.CursorStore
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
-import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.rxkotlin.subscribeBy
-import timber.log.Timber
 import javax.inject.Inject
 
 class MyForumsViewModel @Inject constructor(
     private val router: FlowRouter,
     private val forumInteractor: ForumInteractor,
     private val schedulers: SchedulersProvider,
-    private val errorHandler: ErrorHandler,
-    cursorStore: CursorStore
+    private val errorHandler: ErrorHandler
+//    cursorStore: CursorStore
 ) : BaseViewModel() {
 
     init {
-        subscriptions += cursorStore.observe()
-            .subscribeBy(
-                onNext = {
-                    Timber.d("Next cursor: $it")
-                    paginator.nextPage = it
-                },
-                onComplete = { Timber.d("Observation cursor completed.") },
-                onError = { Timber.e("An error occurred while observing cursor: $it") }
-            )
+//        subscriptions += cursorStore.observe()
+//            .subscribeBy(
+//                onNext = {
+//                    Timber.d("Next cursor: $it")
+//                    paginator.nextPage = it
+//                },
+//                onComplete = { Timber.d("Observation cursor completed.") },
+//                onError = { Timber.e("An error occurred while observing cursor: $it") }
+//            )
     }
 
     private val _emptyProgress = MutableLiveData<Boolean>()
