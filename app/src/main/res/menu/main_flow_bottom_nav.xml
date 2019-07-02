@@ -7,13 +7,8 @@
         android:title="@string/main_flow_my_activity" />
 
     <item
-        android:id="@+id/menu_bottom_nav_forums"
+        android:id="@+id/menu_bottom_nav_my_forums"
         android:icon="@drawable/ic_forum"
-        android:title="@string/main_flow_forums" />
-
-    <item
-        android:id="@+id/menu_bottom_nav_profile"
-        android:icon="@drawable/ic_account_circle"
-        android:title="@string/main_flow_profile" />
+        android:title="@string/main_flow_my_forums" />
 
 </menu>

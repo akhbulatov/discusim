@@ -35,8 +35,7 @@
 
     <!-- Main Flow -->
     <string name="main_flow_my_activity">Activity</string>
-    <string name="main_flow_forums">Forums</string>
-    <string name="main_flow_profile">Profile</string>
+    <string name="main_flow_my_forums">Forums</string>
 
     <!-- My Activity -->
     <string name="my_activity_title">Activity</string>
