@@ -5,11 +5,5 @@ import com.akhbulatov.discusim.domain.global.models.Session
 import javax.inject.Inject
 
 class SessionResponseMapper @Inject constructor() {
-    fun map(model: SessionNetModel): Session =
-        model.let {
-            Session(
-                it.userId,
-                it.accessToken
-            )
-        }
+    fun map(model: SessionNetModel): Session = Session(model.accessToken)
 }

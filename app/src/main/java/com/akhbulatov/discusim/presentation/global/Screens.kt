@@ -12,10 +12,6 @@ import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
-import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
-import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
-import com.akhbulatov.discusim.presentation.ui.users.UserType
-import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
@@ -68,17 +64,5 @@ object Screens {
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
-    }
-
-    data class Profile(val userId: Long) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ProfileFragment.newInstance(userId)
-    }
-
-    data class ProfilePosts(val userId: Long) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ProfilePostsFragment.newInstance(userId)
-    }
-
-    data class Users(val itemId: String, val userType: UserType) : SupportAppScreen() {
-        override fun getFragment(): Fragment = UsersFragment.newInstance(itemId, userType)
     }
 }

@@ -13,8 +13,4 @@
     <dimen name="avatar_size">40dp</dimen>
     <dimen name="toolbar_expand_height">128dp</dimen>
     <dimen name="divider_height">1dp</dimen>
-
-    <!-- TODO Следует заменить в соответствии с новым применяемым гайдом -->
-    <dimen name="small_margin">8dp</dimen>
-    <dimen name="normal_margin">16dp</dimen>
 </resources>

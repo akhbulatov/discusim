@@ -27,9 +27,6 @@
 
     <color name="divider">@color/gray_athens</color>
 
-    <!-- TODO Следует переименовать в соответствии с новым подходом именования цветов -->
-    <color name="grey_50">#EBEEF2</color>
-
     <!-- Palette colors -->
     <!-- Colors for "internal use" only -->
 

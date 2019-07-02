@@ -3,12 +3,8 @@ package com.akhbulatov.discusim.data.global.network
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
-import com.akhbulatov.discusim.data.forum.ModeratorsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
-import com.akhbulatov.discusim.data.user.UserDetailsResponse
-import com.akhbulatov.discusim.data.user.UserPostsResponse
-import com.akhbulatov.discusim.data.user.UsersResponse
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -64,23 +60,4 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
-
-    // --- //
-    @GET("users/details.json")
-    fun getUser(@Query("user") userId: Long): Single<UserDetailsResponse>
-
-    @GET("users/listPosts.json")
-    fun getUserPosts(@Query("user") userId: Long): Single<UserPostsResponse>
-
-    @GET("users/listFollowers.json")
-    fun getFollowers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("users/listFollowing.json")
-    fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("forums/listMostActiveUsers.json")
-    fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
-
-    @GET("forums/listModerators.json")
-    fun getForumModerators(@Query("forum") forumId: String): Single<ModeratorsResponse>
 }

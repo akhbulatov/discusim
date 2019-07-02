@@ -1,6 +1,3 @@
 package com.akhbulatov.discusim.domain.global.models
 
-data class Session(
-    val userId: Long,
-    val accessToken: String
-)
+data class Session(val accessToken: String)

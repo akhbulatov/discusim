@@ -55,6 +55,6 @@ class MainFlowFragment : FlowFragment() {
     }
 
     companion object {
-        private val profileTabScreen = Screens.Profile(178987138) // TODO
+        private val profileTabScreen = Screens.MyForums // TODO
     }
 }
