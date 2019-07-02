@@ -19,6 +19,6 @@ data class Action(
 
     enum class Type {
         THREAD_VOTE,
-        POST
+        COMMENT
     }
 }

@@ -1,5 +1,25 @@
 <resources>
 
+    <!-- Text -->
+    <style name="Text" />
+
+    <style name="Text.Primary">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/font_secondary</item>
+    </style>
+
+    <style name="Text.Date">
+        <item name="android:textColor">@color/text_date</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+    <!-- Text -->
+
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:background">?colorPrimary</item>
         <item name="android:elevation">4dp</item>
@@ -27,23 +47,6 @@
 
     <style name="ListItem">
         <item name="android:background">@color/content_background</item>
-    </style>
-
-    <style name="Text" />
-
-    <style name="Text.Primary">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text_primary</item>
-        <item name="android:textSize">@dimen/font_normal</item>
-    </style>
-
-    <style name="Text.Secondary">
-        <item name="android:textColor">@color/text_secondary</item>
-    </style>
-
-    <style name="Text.Date">
-        <item name="android:textColor">@color/text_date</item>
-        <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="RefreshButton" parent="Widget.MaterialComponents.Button.TextButton">

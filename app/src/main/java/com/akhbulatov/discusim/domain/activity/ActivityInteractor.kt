@@ -9,6 +9,6 @@ class ActivityInteractor @Inject constructor(
     private val activityRepository: ActivityRepository
 ) {
 
-    fun getMyActivity(page: String?): Single<List<Action>> =
-        activityRepository.getMyActivity(page)
+    fun getMyActivity(cursor: String?): Single<List<Action>> =
+        activityRepository.getMyActivity(cursor)
 }

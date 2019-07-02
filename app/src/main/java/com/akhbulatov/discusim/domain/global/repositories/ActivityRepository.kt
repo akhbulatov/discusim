@@ -4,5 +4,5 @@ import com.akhbulatov.discusim.domain.global.models.Action
 import io.reactivex.Single
 
 interface ActivityRepository {
-    fun getMyActivity(page: String?): Single<List<Action>>
+    fun getMyActivity(cursor: String?): Single<List<Action>>
 }

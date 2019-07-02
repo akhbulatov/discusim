@@ -39,7 +39,7 @@ class ActivityResponseMapper @Inject constructor(
                     Action(
                         id = comment.id,
                         comment = comment,
-                        type = Action.Type.POST,
+                        type = Action.Type.COMMENT,
                         createdAt = it.createdAt
                     )
                 }

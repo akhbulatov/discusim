@@ -13,7 +13,15 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+/**
+ * API сервиса Disqus спроектирован так, что если параметр **user** в запросах равен `null`,
+ * запрашивает данные для авторизованного юзера по access token. Поэтому данный параметр `nullable` в тех методах,
+ * в которых он используется.
+ *
+ * Для пагинации используется курсор.
+ */
 interface DisqusApi {
+    // --- Auth --- //
     @FormUrlEncoded
     @POST("${BuildConfig.BASE_URL}api/oauth/2.0/access_token/")
     fun login(
@@ -23,12 +31,15 @@ interface DisqusApi {
         @Field("redirect_uri") redirectUri: String,
         @Field("code") code: String
     ): Single<SessionNetModel>
+    // --- Auth --- //
 
+    // --- Users --- //
     @GET("users/listActivity.json")
     fun getUserActivity(
         @Query("user") userId: Long?,
         @Query("cursor") cursor: String?
     ): Single<ResponseBody>
+    // --- Users --- //
 
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(

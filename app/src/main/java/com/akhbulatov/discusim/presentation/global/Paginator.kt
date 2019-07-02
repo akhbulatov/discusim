@@ -224,7 +224,7 @@ class Paginator<T>(
      * Возможные последующие состояния:
      * [EmptyProgressState], [DataState], [EmptyDataState], [ReleasedState].
      */
-    private inner class RefreshState : State<T> { // TODO
+    private inner class RefreshState : State<T> {
         override fun restart() {
             Timber.d("restart")
             currentState = EmptyProgressState()

@@ -4,7 +4,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Используется для передачи курсора для следующей страницы при пагинации.
+ * Используется для передачи курсора следующей страницы при пагинации.
  */
 @Singleton
 class CursorStore @Inject constructor() : Store<String>()

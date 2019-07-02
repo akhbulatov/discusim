@@ -11,5 +11,5 @@ data class UserNetModel(
 ) {
 
     @JsonClass(generateAdapter = true)
-    data class Avatar(@Json(name = "permalink") val url: String)
+    data class Avatar(@Json(name = "permalink") val permalink: String)
 }

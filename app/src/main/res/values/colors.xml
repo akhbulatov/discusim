@@ -28,26 +28,26 @@
     <color name="progress_auth_shadow">@color/white_transparent_50</color>
     <color name="divider">@color/gray_athens</color>
 
-    <!-- Palette colors -->
+    <!-- Palette Colors -->
     <!-- Colors for "internal use" only -->
 
-    <!-- General palettes -->
+    <!-- General Palette -->
     <color name="white">#ffffff</color>
     <color name="white_transparent_50">#80ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Palette blue -->
+    <!-- Palette Blue -->
     <color name="blue_dodger">#2E9FFF</color>
 
-    <!-- Palette red -->
-    <color name="red_froly">#F05F70</color>
-
-    <!-- Palette gray -->
+    <!-- Palette Gray -->
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>
 
-    <!-- Palette green -->
+    <!-- Palette Red -->
+    <color name="red_froly">#F05F70</color>
+
+    <!-- Palette Green -->
     <color name="green_fern">#5FB66A</color>
 </resources>

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserActivityAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -44,7 +43,7 @@ class MyActivityFragment : BaseFragment() {
         activitySwipeRefresh.setOnRefreshListener { viewModel.refreshActivity() }
         with(activityRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(scrollListener)
             adapter = activityAdapter
         }

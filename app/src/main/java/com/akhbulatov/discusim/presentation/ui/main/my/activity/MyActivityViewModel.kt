@@ -18,9 +18,9 @@ import javax.inject.Inject
 class MyActivityViewModel @Inject constructor(
     private val router: FlowRouter,
     private val activityInteractor: ActivityInteractor,
+    cursorStore: CursorStore,
     private val schedulers: SchedulersProvider,
-    private val errorHandler: ErrorHandler,
-    cursorStore: CursorStore
+    private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
     init {

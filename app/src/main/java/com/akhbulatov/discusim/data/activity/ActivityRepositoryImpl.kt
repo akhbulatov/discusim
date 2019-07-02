@@ -11,12 +11,12 @@ import javax.inject.Inject
 class ActivityRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
     private val activityResponseMapper: ActivityResponseMapper,
-    private val schedulers: SchedulersProvider,
-    private val cursorStore: CursorStore
+    private val cursorStore: CursorStore,
+    private val schedulers: SchedulersProvider
 ) : ActivityRepository {
 
-    override fun getMyActivity(page: String?): Single<List<Action>> =
-        api.getUserActivity(null, page)
+    override fun getMyActivity(cursor: String?): Single<List<Action>> =
+        api.getUserActivity(null, cursor)
             .map {
                 val activity = activityResponseMapper.map(it)
                 activity.first.next?.let { next -> cursorStore.publish(next) }
