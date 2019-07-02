@@ -6,8 +6,8 @@ object RequestParams {
         const val COUNTERS = "counters"
     }
 
-    object Related {
-        const val AUTHOR = "author"
+    object Thread {
         const val FORUM = "forum"
+        const val AUTHOR = "author"
     }
 }

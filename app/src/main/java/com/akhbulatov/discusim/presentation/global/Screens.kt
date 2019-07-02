@@ -6,13 +6,14 @@ import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.profile.ProfileFragment
 import com.akhbulatov.discusim.presentation.ui.profile.posts.ProfilePostsFragment
-import com.akhbulatov.discusim.presentation.ui.threads.ThreadType
-import com.akhbulatov.discusim.presentation.ui.threads.ThreadsFragment
 import com.akhbulatov.discusim.presentation.ui.users.UserType
 import com.akhbulatov.discusim.presentation.ui.users.UsersFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -56,11 +57,17 @@ object Screens {
         override fun getFragment(): Fragment = ForumDetailsFragment.newInstance(forumId)
     }
 
-    data class Threads(
-        val forumId: String? = null,
+    data class ForumThreadsContainer(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumThreadsContainerFragment.newInstance(forumId)
+    }
+
+    data class ForumThreads(
+        val forumId: String,
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ThreadsFragment.newInstance(forumId, threadType)
+        override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
     }
 
     data class Profile(val userId: Long) : SupportAppScreen() {

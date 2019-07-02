@@ -47,6 +47,12 @@ interface DisqusApi {
         @Query("attach") attach: List<String>?
     ): Single<ForumResponse>
 
+    @GET("threads/list.json")
+    fun getThreads(
+        @Query("forum") forumId: String,
+        @Query("related") related: List<String>
+    ): Single<ThreadsResponse>
+
     @GET("threads/listHot.json")
     fun getHotThreads(
         @Query("forum") forumId: String,
@@ -71,12 +77,6 @@ interface DisqusApi {
 
     @GET("users/listFollowing.json")
     fun getFollowingUsers(@Query("user") userId: Long): Single<UsersResponse>
-
-    @GET("forums/listThreads.json")
-    fun getThreads(
-        @Query("forum") forumId: String,
-        @Query("related") related: List<String>
-    ): Single<ThreadsResponse>
 
     @GET("forums/listMostActiveUsers.json")
     fun getForumMostActiveUsers(@Query("forum") forumId: String): Single<UsersResponse>
