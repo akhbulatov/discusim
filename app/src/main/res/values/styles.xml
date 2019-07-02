@@ -21,12 +21,12 @@
     </style>
 
     <style name="AppBottomNavView" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="itemIconTint">@drawable/bottom_nav_selector</item>
-        <item name="itemTextColor">@drawable/bottom_nav_selector</item>
+        <item name="itemIconTint">@drawable/bottom_nav_item_selector</item>
+        <item name="itemTextColor">@drawable/bottom_nav_item_selector</item>
     </style>
 
     <style name="ListItem">
-        <item name="android:background">@color/list_item_background</item>
+        <item name="android:background">@color/content_background</item>
     </style>
 
     <style name="Text" />

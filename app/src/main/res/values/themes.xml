@@ -7,6 +7,7 @@
         <item name="colorSecondary">@color/accent</item>
 
         <item name="android:colorBackground">@color/screen_background</item>
+        <item name="colorSurface">@color/content_background</item>
 
         <item name="colorOnPrimary">@color/text_primary</item>
         <item name="colorOnSurface">@color/text_primary</item>
