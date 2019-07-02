@@ -25,7 +25,7 @@
     <color name="button_follow">@color/blue_dodger</color>
     <color name="button_following">@color/green_fern</color>
 
-    <color name="progress_auth_shadow">@color/white_transparent_50</color>
+    <color name="progress_auth_background">@color/white_transparent_50</color>
     <color name="divider">@color/gray_athens</color>
 
     <!-- Palette Colors -->

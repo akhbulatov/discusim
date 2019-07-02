@@ -23,7 +23,7 @@
             android:id="@+id/progressLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/progress_auth_shadow"
+            android:background="@color/progress_auth_background"
             android:visibility="gone">
 
             <ProgressBar

@@ -16,7 +16,7 @@ fun Throwable.userMessage(resourceManager: ResourceManager): String = when (this
 
 private val DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
 
-fun LocalDateTime.getHumanTime(resources: Resources): String {
+fun LocalDateTime.getHumanCreatedTime(resources: Resources): String {
     val duration = Duration.between(this, LocalDateTime.now())
     return when {
         duration.seconds < 60 -> {

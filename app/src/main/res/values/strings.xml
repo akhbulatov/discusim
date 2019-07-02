@@ -28,8 +28,8 @@
     <!-- Time -->
 
     <!-- Common Errors -->
-    <string name="error_unknown">Unknown error</string>
     <string name="error_network">Network error</string>
+    <string name="error_unknown">Unknown error</string>
 
     <!-- Auth -->
     <string name="auth_title">Authorization</string>

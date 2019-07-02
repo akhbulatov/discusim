@@ -11,7 +11,7 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
@@ -65,7 +65,7 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
             if (item is Thread) {
                 authorImageView.loadRoundedImage(itemView.context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
-                dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
+                dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
 
                 if (item.mediaList != null) {
                     Glide.with(itemView)

@@ -10,7 +10,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-abstract class PrefsModule {
+abstract class PreferencesModule {
     @Binds
     @Singleton
     abstract fun bindPreferencesStorage(storage: SharedPreferencesStorage): PreferencesStorage

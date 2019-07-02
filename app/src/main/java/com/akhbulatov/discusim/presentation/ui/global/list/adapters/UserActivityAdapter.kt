@@ -12,7 +12,7 @@ import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
@@ -101,7 +101,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                 authorImageView.loadRoundedImage(context, authorAvatarUrl)
                 activityTextView.text = activity
                 activityTypeImageView.setImageDrawable(activityTypeDrawable)
-                dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
+                dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
             }
         }
     }
