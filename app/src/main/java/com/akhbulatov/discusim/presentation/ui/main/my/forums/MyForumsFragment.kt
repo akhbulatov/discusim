@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumsAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -45,7 +44,7 @@ class MyForumsFragment : BaseFragment() {
         forumsSwipeRefresh.setOnRefreshListener { viewModel.refreshForums() }
         with(forumsRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(scrollListener)
             adapter = forumsAdapter
         }
