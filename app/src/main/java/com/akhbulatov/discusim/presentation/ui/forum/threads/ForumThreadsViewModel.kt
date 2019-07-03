@@ -7,7 +7,6 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.thread.ThreadInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
-import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
 import javax.inject.Inject
@@ -43,45 +42,45 @@ class ForumThreadsViewModel @Inject constructor(
     private val _pageProgress = MutableLiveData<Boolean>()
     val pageProgress: LiveData<Boolean> get() = _pageProgress
 
-    private val paginator = Paginator(
-        {
-            chooseThreadsRequest()
-                .observeOn(schedulers.ui())
-        },
-        object : Paginator.ViewController<Thread> {
-            override fun showEmptyProgress(show: Boolean) {
-                _emptyProgress.value = show
-            }
-
-            override fun showEmptyError(show: Boolean, error: Throwable?) {
-                if (error != null) {
-                    errorHandler.proceed(error) { msg -> _emptyError.value = Pair(show, msg) }
-                } else {
-                    _emptyError.value = Pair(show, null)
-                }
-            }
-
-            override fun showEmptyData(show: Boolean) {
-                _emptyData.value = show
-            }
-
-            override fun showData(show: Boolean, data: List<Thread>) {
-                _threads.value = Pair(show, data)
-            }
-
-            override fun showErrorMessage(error: Throwable) {
-                errorHandler.proceed(error) { msg -> _errorMessage.value = msg }
-            }
-
-            override fun showRefreshProgress(show: Boolean) {
-                _refreshProgress.value = show
-            }
-
-            override fun showPageProgress(show: Boolean) {
-                _pageProgress.value = show
-            }
-        }
-    )
+//    private val paginator = Paginator(
+//        {
+//            chooseThreadsRequest()
+//                .observeOn(schedulers.ui())
+//        },
+//        object : Paginator.ViewController<Thread> {
+//            override fun showEmptyProgress(show: Boolean) {
+//                _emptyProgress.value = show
+//            }
+//
+//            override fun showEmptyError(show: Boolean, error: Throwable?) {
+//                if (error != null) {
+//                    errorHandler.proceed(error) { msg -> _emptyError.value = Pair(show, msg) }
+//                } else {
+//                    _emptyError.value = Pair(show, null)
+//                }
+//            }
+//
+//            override fun showEmptyData(show: Boolean) {
+//                _emptyData.value = show
+//            }
+//
+//            override fun showData(show: Boolean, data: List<Thread>) {
+//                _threads.value = Pair(show, data)
+//            }
+//
+//            override fun showErrorMessage(error: Throwable) {
+//                errorHandler.proceed(error) { msg -> _errorMessage.value = msg }
+//            }
+//
+//            override fun showRefreshProgress(show: Boolean) {
+//                _refreshProgress.value = show
+//            }
+//
+//            override fun showPageProgress(show: Boolean) {
+//                _pageProgress.value = show
+//            }
+//        }
+//    )
 
     private fun chooseThreadsRequest(): Single<List<Thread>> =
         when (threadType) {
@@ -96,11 +95,16 @@ class ForumThreadsViewModel @Inject constructor(
         refreshThreads()
     }
 
-    fun refreshThreads() = paginator.refresh()
-    fun loadNextThreadsPage() = paginator.loadNewPage()
+    fun refreshThreads() {
+//        paginator.refresh()
+    }
+
+    fun loadNextThreadsPage() {
+//        paginator.loadNewPage()
+    }
 
     override fun onCleared() {
-        paginator.release()
+//        paginator.release()
         super.onCleared()
     }
 

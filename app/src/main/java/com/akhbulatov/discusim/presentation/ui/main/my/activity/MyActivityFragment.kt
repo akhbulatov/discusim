@@ -35,7 +35,6 @@ class MyActivityFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[MyActivityViewModel::class.java]
-        viewModel.refreshActivity()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,10 +48,10 @@ class MyActivityFragment : BaseFragment() {
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshActivity() }
         dataRefreshButton.setOnClickListener { viewModel.refreshActivity() }
-        observeUIChanges()
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })

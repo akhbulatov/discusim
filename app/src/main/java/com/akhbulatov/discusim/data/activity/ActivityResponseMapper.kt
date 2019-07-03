@@ -4,10 +4,10 @@ import com.akhbulatov.discusim.data.comment.CommentResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
-import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class ActivityResponseMapper @Inject constructor(
     private val commentResponseMapper: CommentResponseMapper
 ) {
 
-    fun map(activityBody: ResponseBody): Pair<CursorNetModel, List<Action>> {
+    fun map(activityBody: ResponseBody): PagedList<Action> {
         val activity = activityResponseParser.parse(activityBody.string())
         val actions = activity.second.map {
             when (it.obj) {
@@ -46,7 +46,7 @@ class ActivityResponseMapper @Inject constructor(
                 else -> throw Exception() // TODO
             }
         }
-        return Pair(activity.first, actions)
+        return PagedList(activity.first.next, actions)
     }
 
     private fun mapThreadVote(model: ActionNetModel.ThreadVoteNetModel): Action.ThreadVote =
