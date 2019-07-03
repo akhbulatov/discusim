@@ -39,14 +39,14 @@ interface DisqusApi {
         @Query("user") userId: Long?,
         @Query("cursor") cursor: String?
     ): Single<ResponseBody>
-    // --- Users --- //
 
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(
         @Query("user") userId: Long?,
         @Query("cursor") cursor: String?,
-        @Query("attach") attach: List<String>?
+        @Query("attach") attach: List<String>
     ): Single<ForumsResponse>
+    // --- Users --- //
 
     @GET("forums/details.json")
     fun getForumDetails(

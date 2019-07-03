@@ -38,7 +38,6 @@ class MyForumsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[MyForumsViewModel::class.java]
-        viewModel.refreshForums()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,14 +51,14 @@ class MyForumsFragment : BaseFragment() {
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
         dataRefreshButton.setOnClickListener { viewModel.refreshForums() }
-        observeUIChanges()
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
-        viewModel.forums.observe(this, Observer { showActions(it.first, it.second) })
+        viewModel.forums.observe(this, Observer { showForums(it.first, it.second) })
         viewModel.errorMessage.observe(this, Observer { showErrorMessage(it) })
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
@@ -78,7 +77,7 @@ class MyForumsFragment : BaseFragment() {
         dataLayout.isVisible = show
     }
 
-    private fun showActions(show: Boolean, forums: List<Forum>) {
+    private fun showForums(show: Boolean, forums: List<Forum>) {
         forumsAdapter.submitList(forums)
         forumsRecyclerView.isVisible = show
     }

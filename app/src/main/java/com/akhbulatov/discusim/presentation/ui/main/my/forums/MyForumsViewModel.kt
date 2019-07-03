@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.forum.ForumInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.eventbus.CursorStore
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import javax.inject.Inject
@@ -16,21 +16,8 @@ class MyForumsViewModel @Inject constructor(
     private val router: FlowRouter,
     private val forumInteractor: ForumInteractor,
     private val schedulers: SchedulersProvider,
-    private val errorHandler: ErrorHandler,
-    cursorStore: CursorStore
+    private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
-
-//    init {
-//        subscriptions += cursorStore.observe()
-//            .subscribeBy(
-//                onNext = {
-//                    Timber.d("Next cursor: $it")
-//                    paginator.nextPage = it
-//                },
-//                onComplete = { Timber.d("Observation cursor completed.") },
-//                onError = { Timber.e("An error occurred while observing cursor: $it") }
-//            )
-//    }
 
     private val _emptyProgress = MutableLiveData<Boolean>()
     val emptyProgress: LiveData<Boolean> get() = _emptyProgress
@@ -53,58 +40,57 @@ class MyForumsViewModel @Inject constructor(
     private val _pageProgress = MutableLiveData<Boolean>()
     val pageProgress: LiveData<Boolean> get() = _pageProgress
 
-//    private val paginator = Paginator(
-//        {
-//            forumInteractor.getMyFollowingForums(it)
-//                .observeOn(schedulers.ui())
-//        },
-//        object : Paginator.ViewController<Forum> {
-//            override fun showEmptyProgress(show: Boolean) {
-//                _emptyProgress.value = show
-//            }
-//
-//            override fun showEmptyError(show: Boolean, error: Throwable?) {
-//                if (error != null) {
-//                    errorHandler.proceed(error) { msg -> _emptyError.value = Pair(show, msg) }
-//                } else {
-//                    _emptyError.value = Pair(show, null)
-//                }
-//            }
-//
-//            override fun showEmptyData(show: Boolean) {
-//                _emptyData.value = show
-//            }
-//
-//            override fun showData(show: Boolean, data: List<Forum>) {
-//                _forums.value = Pair(show, data)
-//            }
-//
-//            override fun showErrorMessage(error: Throwable) {
-//                errorHandler.proceed(error) { msg -> _errorMessage.value = msg }
-//            }
-//
-//            override fun showRefreshProgress(show: Boolean) {
-//                _refreshProgress.value = show
-//            }
-//
-//            override fun showPageProgress(show: Boolean) {
-//                _pageProgress.value = show
-//            }
-//        }
-//    )
+    private val paginator = Paginator(
+        {
+            forumInteractor.getMyFollowingForums(it)
+                .observeOn(schedulers.ui())
+        },
+        object : Paginator.ViewController<Forum> {
+            override fun showEmptyProgress(show: Boolean) {
+                _emptyProgress.value = show
+            }
 
-    fun refreshForums() {
-//        paginator.refresh()
+            override fun showEmptyError(show: Boolean, error: Throwable?) {
+                if (error != null) {
+                    errorHandler.proceed(error) { msg -> _emptyError.value = Pair(show, msg) }
+                } else {
+                    _emptyError.value = Pair(show, null)
+                }
+            }
+
+            override fun showEmptyData(show: Boolean) {
+                _emptyData.value = show
+            }
+
+            override fun showData(show: Boolean, data: List<Forum>) {
+                _forums.value = Pair(show, data)
+            }
+
+            override fun showErrorMessage(error: Throwable) {
+                errorHandler.proceed(error) { msg -> _errorMessage.value = msg }
+            }
+
+            override fun showRefreshProgress(show: Boolean) {
+                _refreshProgress.value = show
+            }
+
+            override fun showPageProgress(show: Boolean) {
+                _pageProgress.value = show
+            }
+        }
+    )
+
+    init {
+        paginator.refresh()
     }
 
-    fun loadNextForumsPage() {
-//        paginator.loadNewPage()
-    }
+    fun refreshForums() = paginator.refresh()
+    fun loadNextForumsPage() = paginator.loadNewPage()
 
     fun onForumClicked(forum: Forum) = router.startFlow(Screens.ForumFlow(forum.id))
 
     override fun onCleared() {
-//        paginator.release()
+        paginator.release()
         super.onCleared()
     }
 
