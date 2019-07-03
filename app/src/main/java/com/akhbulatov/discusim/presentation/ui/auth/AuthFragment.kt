@@ -32,7 +32,7 @@ class AuthFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupWebView()
-        observeUIChanges()
+        observeUiChanges()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -63,7 +63,7 @@ class AuthFragment : BaseFragment() {
         }
     }
 
-    private fun observeUIChanges() {
+    private fun observeUiChanges() {
         viewModel.progress.observe(this, Observer { showProgress(it) })
         viewModel.error.observe(this, Observer { showError(it) })
     }
