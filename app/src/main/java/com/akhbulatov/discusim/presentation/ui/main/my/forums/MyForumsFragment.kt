@@ -29,7 +29,7 @@ class MyForumsFragment : BaseFragment() {
     private val forumsAdapter by lazy {
         ForumsAdapter { viewModel.onForumClicked(it) }
     }
-    private val scrollListener by lazy {
+    private val onScrollListener by lazy {
         InfiniteScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextForumsPage() }
     }
@@ -45,7 +45,7 @@ class MyForumsFragment : BaseFragment() {
         with(forumsRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            addOnScrollListener(scrollListener)
+            addOnScrollListener(onScrollListener)
             adapter = forumsAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
@@ -54,7 +54,7 @@ class MyForumsFragment : BaseFragment() {
     }
 
     override fun onDestroyView() {
-        forumsRecyclerView.removeOnScrollListener(scrollListener)
+        forumsRecyclerView.removeOnScrollListener(onScrollListener)
         super.onDestroyView()
     }
 
@@ -95,7 +95,7 @@ class MyForumsFragment : BaseFragment() {
     }
 
     private fun showPageProgress(show: Boolean) {
-        if (!show) scrollListener.setLoaded()
+        if (!show) onScrollListener.setLoaded()
         forumsAdapter.showProgress(show)
     }
 

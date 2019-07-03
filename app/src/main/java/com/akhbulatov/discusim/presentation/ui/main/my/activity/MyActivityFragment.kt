@@ -27,7 +27,7 @@ class MyActivityFragment : BaseFragment() {
 
     private lateinit var viewModel: MyActivityViewModel
     private val activityAdapter by lazy { UserActivityAdapter() }
-    private val scrollListener by lazy {
+    private val onScrollListener by lazy {
         InfiniteScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextActivityPage() }
     }
@@ -43,7 +43,7 @@ class MyActivityFragment : BaseFragment() {
         with(activityRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-            addOnScrollListener(scrollListener)
+            addOnScrollListener(onScrollListener)
             adapter = activityAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshActivity() }
@@ -52,7 +52,7 @@ class MyActivityFragment : BaseFragment() {
     }
 
     override fun onDestroyView() {
-        activityRecyclerView.removeOnScrollListener(scrollListener)
+        activityRecyclerView.removeOnScrollListener(onScrollListener)
         super.onDestroyView()
     }
 
@@ -93,7 +93,7 @@ class MyActivityFragment : BaseFragment() {
     }
 
     private fun showPageProgress(show: Boolean) {
-        if (!show) scrollListener.setLoaded()
+        if (!show) onScrollListener.setLoaded()
         activityAdapter.showProgress(show)
     }
 
