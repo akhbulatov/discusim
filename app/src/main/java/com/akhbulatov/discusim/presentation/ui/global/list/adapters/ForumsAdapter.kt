@@ -15,7 +15,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import kotlinx.android.synthetic.main.item_forum.*
 
 class ForumsAdapter(
-    private val clickListener: (Forum) -> Unit
+    private val onClickListener: (Forum) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
@@ -62,7 +62,7 @@ class ForumsAdapter(
         private lateinit var forum: Forum
 
         init {
-            itemView.setOnClickListener { clickListener(forum) }
+            itemView.setOnClickListener { onClickListener(forum) }
         }
 
         override fun bind(item: Any) {

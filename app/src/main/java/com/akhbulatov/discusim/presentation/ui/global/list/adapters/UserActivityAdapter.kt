@@ -33,9 +33,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
         }
 
     override fun onBindViewHolder(holder: BaseViewHolder<Any>, position: Int) {
-        if (holder is UserActivityViewHolder) {
-            holder.bind(getItem(position))
-        }
+        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int =
