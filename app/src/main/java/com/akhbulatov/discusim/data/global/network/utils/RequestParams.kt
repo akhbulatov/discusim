@@ -5,7 +5,7 @@ object RequestParams {
         /** Запрашивает статус подписи на форум. */
         const val FOLLOWS_FORUM = "followsForum"
 
-        /** Запрашивает кол-во фолловеров форума. */
+        /** Запрашивает кол-во тредов, фолловеров и т.д. форума. */
         const val COUNTERS = "counters"
     }
 
