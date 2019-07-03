@@ -9,7 +9,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
-import com.bumptech.glide.Glide
+import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import kotlinx.android.synthetic.main.fragment_forum_flow.*
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -30,9 +30,8 @@ class ForumFlowFragment : FlowFragment() {
 
         val forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
         forumSharedViewModel.forum.observe(this, Observer {
-            Glide.with(bannerImageView.context)
-                .load(it.channel?.bannerUrl)
-                .into(bannerImageView)
+            collapsingToolbar.title = it.name
+            bannerImageView.loadImage(context, it.channel?.bannerUrl!!) // TODO
         })
     }
 
@@ -42,7 +41,8 @@ class ForumFlowFragment : FlowFragment() {
         forumBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_forum_details -> forumDetailsTabScreen
-                else -> forumThreadsTabScreen
+                R.id.menu_bottom_nav_forum_threads -> forumThreadsTabScreen
+                else -> throw IllegalArgumentException()
             }
             switchTab(tabScreen)
             true

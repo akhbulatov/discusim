@@ -24,6 +24,7 @@ class ForumResponseMapper @Inject constructor() {
                 it.description,
                 it.favicon.permalink,
                 it.isFollowing,
+                it.numThreads,
                 it.numFollowers,
                 it.channel?.let { channel -> mapChannel(channel) }
             )

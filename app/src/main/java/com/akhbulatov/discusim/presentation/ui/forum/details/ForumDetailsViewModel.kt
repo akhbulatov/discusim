@@ -27,21 +27,25 @@ class ForumDetailsViewModel @Inject constructor(
     private val _error = MutableLiveData<Pair<Boolean, String?>>()
     val error: LiveData<Pair<Boolean, String?>> get() = _error
 
-    private val _forum = MutableLiveData<Forum>()
-    val forum: LiveData<Forum> get() = _forum
+    private val _forum = MutableLiveData<Pair<Boolean, Forum?>>()
+    val forum: LiveData<Pair<Boolean, Forum?>> get() = _forum
 
     fun setForumId(forumId: String) {
         this.forumId = forumId
         loadForumDetails()
     }
 
-    private fun loadForumDetails() {
+    fun loadForumDetails() {
         subscriptions += forumInteractor.getForumDetails(forumId)
             .observeOn(schedulers.ui())
-            .doOnSubscribe { _progress.value = true }
+            .doOnSubscribe {
+                _forum.value = Pair(false, null)
+                _error.value = Pair(false, null)
+                _progress.value = true
+            }
             .doAfterTerminate { _progress.value = false }
             .subscribeBy(
-                onSuccess = { _forum.value = it },
+                onSuccess = { _forum.value = Pair(true, it) },
                 onError = { errorHandler.proceed(it) { msg -> _error.value = Pair(true, msg) } }
             )
     }

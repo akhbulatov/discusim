@@ -33,11 +33,31 @@ fun TextView.setStartDrawable(drawable: Drawable?) {
     setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
 }
 
+fun ImageView.loadImage(ctx: Context? = null, url: String) {
+    Glide.with(ctx ?: context)
+        .load(url)
+        .into(this)
+}
+
 fun ImageView.loadRoundedImage(ctx: Context? = null, url: String) {
     Glide.with(ctx ?: context)
         .load(url)
         .apply(RequestOptions.circleCropTransform())
         .into(this)
+}
+
+fun MaterialButton.setFollowing(isFollowing: Boolean) {
+    val backgroundColor = if (isFollowing) R.color.button_following else R.color.button_follow
+    val textResId = if (isFollowing) R.string.forum_details_following else R.string.forum_details_follow
+
+    setBackgroundColor(context.color(backgroundColor))
+    setText(textResId)
+    if (isFollowing) {
+        val tintedDrawable = context.getTintDrawable(R.drawable.ic_done, R.color.primary)
+        setStartDrawable(tintedDrawable)
+    } else {
+        setStartDrawable(null)
+    }
 }
 
 fun MaterialButton.setVote(upvoted: Boolean) {
@@ -49,18 +69,4 @@ fun MaterialButton.setVote(upvoted: Boolean) {
     iconTint = ColorStateList.valueOf(context.color(iconTintColor))
     setTextColor(context.color(textColor))
     if (upvoted) strokeWidth = 0 // Убирает рамки в случае лайка
-}
-
-fun MaterialButton.setFollow(follow: Boolean) {
-    val backgroundColor = if (follow) R.color.button_following else R.color.button_follow
-    val textResId = if (follow) R.string.forum_details_following else R.string.forum_details_follow
-
-    setBackgroundColor(context.color(backgroundColor))
-    setText(textResId)
-    if (follow) {
-        val tintedDrawable = context.getTintDrawable(R.drawable.ic_done, R.color.primary)
-        setStartDrawable(tintedDrawable)
-    } else {
-        setStartDrawable(null)
-    }
 }

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Discusim</string>
 
-    <!-- Common Messages -->
+    <!-- Common Messages. Start -->
     <string name="msg_refresh">Refresh</string>
     <string name="msg_empty_data">Empty data</string>
 
-    <!-- Time -->
+    <!-- Time. Start -->
     <plurals name="time_seconds">
         <item quantity="one">%d second ago</item>
         <item quantity="other">%d seconds ago</item>
@@ -25,7 +25,9 @@
         <item quantity="one">%d day ago</item>
         <item quantity="other">%d days ago</item>
     </plurals>
-    <!-- Time -->
+    <!-- Time. End -->
+
+    <!-- Common Messages. End -->
 
     <!-- Common Errors -->
     <string name="error_network">Network error</string>
@@ -53,6 +55,7 @@
     <string name="forum_details_container_topics">Topics</string>
 
     <!-- Forum Details -->
+    <string name="forum_details_threads">Threads</string>
     <string name="forum_details_followers">Followers</string>
     <string name="forum_details_follow">Follow</string>
     <string name="forum_details_following">Following</string>
@@ -62,10 +65,12 @@
     <string name="forum_threads_container_hot">Hot</string>
     <string name="forum_threads_container_popular">Popular</string>
 
-    <!-- List Items -->
+    <!-- List Items. Start -->
 
     <!-- Item User Activity -->
     <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
     <string name="item_user_activity_commented_thread">commented on thread %s</string>
+
+    <!-- List Items. End -->
 
 </resources>

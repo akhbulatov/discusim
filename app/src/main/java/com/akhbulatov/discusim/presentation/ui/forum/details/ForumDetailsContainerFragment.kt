@@ -27,12 +27,7 @@ class ForumDetailsContainerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupForumPager()
-    }
-
-    private fun setupForumPager() {
         detailsPager.adapter = pagerAdapter
-        detailsTabLayout.setupWithViewPager(detailsPager)
     }
 
     override fun onBackPressed() = router.exit()
@@ -47,7 +42,8 @@ class ForumDetailsContainerFragment : BaseFragment() {
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
             0 -> getString(R.string.forum_details_container_details)
-            else -> getString(R.string.forum_details_container_topics)
+            1 -> getString(R.string.forum_details_container_topics)
+            else -> null
         }
 
         override fun getCount(): Int = 2

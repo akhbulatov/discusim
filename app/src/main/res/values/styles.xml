@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Text -->
+    <!-- Global Text. Start -->
     <style name="Text" />
 
     <style name="Text.Primary">
@@ -18,7 +18,7 @@
         <item name="android:textColor">@color/text_date</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
-    <!-- Text -->
+    <!-- Global Text. End -->
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:background">?colorPrimary</item>
@@ -34,6 +34,7 @@
     <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorColor">?colorSecondary</item>
         <item name="tabSelectedTextColor">?colorSecondary</item>
+        <item name="tabTextColor">@color/text_inactive</item>
     </style>
 
     <style name="AppCardView" parent="Widget.MaterialComponents.CardView">
@@ -51,6 +52,16 @@
 
     <style name="RefreshButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="ForumNumText" parent="Text.Primary">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/font_secondary</item>
+    </style>
+
+    <style name="ForumNumSubtext" parent="Text.Secondary">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton">

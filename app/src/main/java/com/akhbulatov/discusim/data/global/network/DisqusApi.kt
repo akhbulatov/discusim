@@ -48,11 +48,13 @@ interface DisqusApi {
     ): Single<ForumsResponse>
     // --- Users --- //
 
+    // --- Forum --- //
     @GET("forums/details.json")
     fun getForumDetails(
         @Query("forum") forumId: String,
-        @Query("attach") attach: List<String>?
+        @Query("attach") attach: List<String>
     ): Single<ForumResponse>
+    // --- Forum --- //
 
     @GET("threads/list.json")
     fun getThreads(

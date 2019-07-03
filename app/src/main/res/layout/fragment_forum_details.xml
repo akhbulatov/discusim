@@ -10,18 +10,35 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_content_vertical"
             android:background="?colorPrimary"
-            android:padding="@dimen/spacing_normal">
+            android:paddingTop="@dimen/spacing_normal">
+
+            <!-- Guidelines. Start -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+            <!-- Guidelines. End -->
 
             <ImageView
                 android:id="@+id/avatarImageView"
                 android:layout_width="@dimen/avatar_size"
                 android:layout_height="@dimen/avatar_size"
                 android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
@@ -32,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_normal"
                 app:layout_constraintBottom_toBottomOf="@id/avatarImageView"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
                 app:layout_constraintStart_toEndOf="@id/avatarImageView"
                 app:layout_constraintTop_toTopOf="@id/avatarImageView"
                 tools:text="@tools:sample/first_names" />
@@ -43,8 +60,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
                 app:layout_constraintTop_toBottomOf="@id/avatarImageView"
                 tools:text="@tools:sample/lorem" />
 
@@ -61,31 +78,72 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_normal"
+                android:paddingBottom="@dimen/spacing_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/endGuideline"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
                 app:layout_constraintTop_toBottomOf="@id/descriptionDivider">
 
-                <TextView
-                    android:id="@+id/numFollowersTextView"
-                    style="@style/Text.Primary"
-                    android:layout_width="wrap_content"
+                <!-- Threads. Start -->
+                <LinearLayout
+                    android:id="@+id/numThreadsLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/numFollowersLayout"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="268 368" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    style="@style/Text.Secondary"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/numThreadsTextView"
+                        style="@style/ForumNumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="5 368" />
+
+                    <TextView
+                        style="@style/ForumNumSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/forum_details_threads" />
+
+                </LinearLayout>
+                <!-- Threads. End -->
+
+                <!-- Followers. Start -->
+                <LinearLayout
+                    android:id="@+id/numFollowersLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/forum_details_followers"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/numFollowersTextView" />
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/followButton"
+                    app:layout_constraintHorizontal_weight="1.5"
+                    app:layout_constraintStart_toEndOf="@id/numThreadsLayout"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <TextView
+                        android:id="@+id/numFollowersTextView"
+                        style="@style/ForumNumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="268 368" />
+
+                    <TextView
+                        style="@style/ForumNumSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/forum_details_followers" />
+
+                </LinearLayout>
+                <!-- Followers. End -->
+
+                <!-- Follow/ing -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/followButton"
                     android:layout_width="wrap_content"
@@ -96,6 +154,7 @@
                     app:backgroundTint="?colorSecondary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/numFollowersLayout"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
