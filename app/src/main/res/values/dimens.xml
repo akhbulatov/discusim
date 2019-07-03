@@ -12,6 +12,7 @@
     <dimen name="spacing_content_vertical">6dp</dimen>
 
     <dimen name="avatar_size">40dp</dimen>
+    <dimen name="button_icon_size">18dp</dimen>
     <dimen name="toolbar_expand_height">128dp</dimen>
     <dimen name="divider_height">1dp</dimen>
 </resources>
