@@ -51,6 +51,11 @@ class MyActivityFragment : BaseFragment() {
         observeUiChanges()
     }
 
+    override fun onDestroyView() {
+        activityRecyclerView.removeOnScrollListener(scrollListener)
+        super.onDestroyView()
+    }
+
     private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
