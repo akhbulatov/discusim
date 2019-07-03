@@ -143,15 +143,12 @@
                 </LinearLayout>
                 <!-- Followers. End -->
 
-                <!-- Follow/ing -->
+                <!-- Follow -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/followButton"
+                    style="@style/FollowButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/forum_details_follow"
-                    android:textAllCaps="false"
-                    android:textColor="?colorPrimary"
-                    app:backgroundTint="?colorSecondary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/numFollowersLayout"

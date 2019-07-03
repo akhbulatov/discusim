@@ -20,7 +20,6 @@
         style="@style/RefreshButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:text="@string/msg_refresh" />
+        android:layout_marginTop="@dimen/spacing_large" />
 
 </LinearLayout>

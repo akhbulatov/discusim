@@ -41,16 +41,16 @@
     <!-- Palette Blue -->
     <color name="blue_dodger">#2E9FFF</color>
 
-    <!-- Palette Gray -->
-    <color name="gray_silver">#cccccc</color>
-    <color name="gray_athens">#EBEEF3</color>
-    <color name="gray_dove">#6F6F6F</color>
-
     <!-- Palette Red -->
     <color name="red_froly">#F05F70</color>
 
     <!-- Palette Green -->
-    <color name="green_fern">#5FB66A</color>
+    <color name="green_fern">#5cb767</color>
+
+    <!-- Palette Gray -->
+    <color name="gray_silver">#cccccc</color>
+    <color name="gray_athens">#EBEEF3</color>
+    <color name="gray_dove">#6F6F6F</color>
 
     <!-- Palette Colors. End -->
 </resources>

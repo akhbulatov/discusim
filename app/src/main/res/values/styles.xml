@@ -51,7 +51,16 @@
     </style>
 
     <style name="RefreshButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:text">@string/msg_refresh</item>
         <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="FollowButton" parent="Widget.MaterialComponents.Button.UnelevatedButton.Icon">
+        <item name="android:text">@string/msg_follow</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">?colorPrimary</item>
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="iconSize">18dp</item>
     </style>
 
     <style name="ForumNumText" parent="Text.Primary">

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
@@ -29,10 +28,6 @@ fun Context.getTintDrawable(@DrawableRes drawableRes: Int, @ColorRes colorRes: I
     return drawable
 }
 
-fun TextView.setStartDrawable(drawable: Drawable?) {
-    setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
-}
-
 fun ImageView.loadImage(ctx: Context? = null, url: String) {
     Glide.with(ctx ?: context)
         .load(url)
@@ -46,18 +41,15 @@ fun ImageView.loadRoundedImage(ctx: Context? = null, url: String) {
         .into(this)
 }
 
-fun MaterialButton.setFollowing(isFollowing: Boolean) {
+fun MaterialButton.setFollow(isFollowing: Boolean) {
+    val iconDrawable = if (isFollowing) context.getDrawable(R.drawable.ic_done) else null
     val backgroundColor = if (isFollowing) R.color.button_following else R.color.button_follow
-    val textResId = if (isFollowing) R.string.forum_details_following else R.string.forum_details_follow
+    val textResId = if (isFollowing) R.string.msg_following else R.string.msg_follow
 
+    icon = iconDrawable
+    iconTint = ColorStateList.valueOf(context.color(R.color.primary))
     setBackgroundColor(context.color(backgroundColor))
     setText(textResId)
-    if (isFollowing) {
-        val tintedDrawable = context.getTintDrawable(R.drawable.ic_done, R.color.primary)
-        setStartDrawable(tintedDrawable)
-    } else {
-        setStartDrawable(null)
-    }
 }
 
 fun MaterialButton.setVote(upvoted: Boolean) {

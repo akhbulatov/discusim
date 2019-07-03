@@ -4,6 +4,8 @@
     <!-- Common Messages. Start -->
     <string name="msg_refresh">Refresh</string>
     <string name="msg_empty_data">Empty data</string>
+    <string name="msg_follow">Follow</string>
+    <string name="msg_following">Following</string>
 
     <!-- Time. Start -->
     <plurals name="time_seconds">
@@ -57,8 +59,6 @@
     <!-- Forum Details -->
     <string name="forum_details_threads">Threads</string>
     <string name="forum_details_followers">Followers</string>
-    <string name="forum_details_follow">Follow</string>
-    <string name="forum_details_following">Following</string>
 
     <!-- Forum Threads Container -->
     <string name="forum_threads_container_latest">Latest</string>

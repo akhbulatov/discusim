@@ -12,7 +12,7 @@ import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.ForumSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
-import com.akhbulatov.discusim.presentation.ui.global.utils.setFollowing
+import com.akhbulatov.discusim.presentation.ui.global.utils.setFollow
 import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
@@ -67,7 +67,7 @@ class ForumDetailsFragment : BaseFragment() {
             descriptionTextView.text = forum.description
             numThreadsTextView.text = forum.numThreads.toString()
             numFollowersTextView.text = forum.numFollowers.toString()
-            followButton.setFollowing(forum.isFollowing)
+            followButton.setFollow(forum.isFollowing)
         }
         contentLayout.isVisible = show
     }
