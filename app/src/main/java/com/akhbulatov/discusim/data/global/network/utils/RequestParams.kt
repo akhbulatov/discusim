@@ -10,7 +10,7 @@ object RequestParams {
     }
 
     object Thread {
-        const val FORUM = "forum"
+        /** Запрашивает объект автора (юзера). */
         const val AUTHOR = "author"
     }
 }

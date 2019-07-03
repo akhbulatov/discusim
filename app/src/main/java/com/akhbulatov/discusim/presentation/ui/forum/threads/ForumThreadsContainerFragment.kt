@@ -27,12 +27,7 @@ class ForumThreadsContainerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupForumPager()
-    }
-
-    private fun setupForumPager() {
         threadsPager.adapter = pagerAdapter
-        threadsTabLayout.setupWithViewPager(threadsPager)
     }
 
     override fun onBackPressed() = router.exit()
@@ -43,13 +38,15 @@ class ForumThreadsContainerFragment : BaseFragment() {
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> Screens.ForumThreads(forumId).fragment
             1 -> Screens.ForumThreads(forumId, ThreadType.HOT).fragment
-            else -> Screens.ForumThreads(forumId, ThreadType.POPULAR).fragment
+            2 -> Screens.ForumThreads(forumId, ThreadType.POPULAR).fragment
+            else -> throw IllegalArgumentException()
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
             0 -> getString(R.string.forum_threads_container_latest)
             1 -> getString(R.string.forum_threads_container_hot)
-            else -> getString(R.string.forum_threads_container_popular)
+            2 -> getString(R.string.forum_threads_container_popular)
+            else -> null
         }
 
         override fun getCount(): Int = 3

@@ -10,7 +10,7 @@ data class Thread(
     val author: User,
     val createdAt: LocalDateTime,
     val upvotes: Int,
-    val upvoted: Boolean,
+    val isUpvoted: Boolean,
     val comments: Int
 ) {
 

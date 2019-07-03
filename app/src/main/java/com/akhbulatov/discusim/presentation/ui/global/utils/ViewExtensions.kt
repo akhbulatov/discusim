@@ -15,6 +15,7 @@ import com.akhbulatov.discusim.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.button.MaterialButton
+import org.jetbrains.anko.dip
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -52,13 +53,14 @@ fun MaterialButton.setFollow(isFollowing: Boolean) {
     setText(textResId)
 }
 
-fun MaterialButton.setVote(upvoted: Boolean) {
-    val backgroundColor = if (upvoted) R.color.button_upvote_background else R.color.button_thread_background
-    val iconTintColor = if (upvoted) R.color.button_thread_upvote_icon else R.color.button_thread_icon
-    val textColor = if (upvoted) R.color.button_thread_upvote_text else R.color.button_thread_text
+fun MaterialButton.setVote(isUpvoted: Boolean) {
+    val backgroundColor = if (isUpvoted) R.color.button_upvoted_background else R.color.button_thread_background
+    val iconTintColor = if (isUpvoted) R.color.button_thread_upvoted_icon else R.color.button_thread_icon
+    val textColor = if (isUpvoted) R.color.button_thread_upvoted_text else R.color.button_thread_text
+    val stroke = if (isUpvoted) 0 else dip(1)
 
     setBackgroundColor(context.color(backgroundColor))
     iconTint = ColorStateList.valueOf(context.color(iconTintColor))
     setTextColor(context.color(textColor))
-    if (upvoted) strokeWidth = 0 // Убирает рамки в случае лайка
+    strokeWidth = stroke
 }

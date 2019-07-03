@@ -73,19 +73,17 @@
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
-    <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:minWidth">66dp</item>
-        <item name="android:minHeight">30dp</item>
-        <item name="android:paddingTop">3dp</item>
-        <item name="android:paddingBottom">3dp</item>
-        <item name="android:paddingStart">6dp</item>
-        <item name="android:paddingEnd">6dp</item>
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:paddingStart">@dimen/spacing_small</item>
+        <item name="android:paddingEnd">@dimen/spacing_small</item>
+        <item name="android:textColor">?colorOnSurface</item>
         <item name="android:textSize">14sp</item>
-        <item name="iconPadding">6dp</item>
-        <item name="iconTint">@color/button_thread_icon</item>
-        <item name="strokeColor">@color/accent</item>
+        <item name="iconPadding">@dimen/spacing_micro</item>
+        <item name="iconSize">18dp</item>
+        <item name="iconTint">?colorSecondary</item>
+        <item name="strokeColor">?colorSecondary</item>
         <item name="strokeWidth">1dp</item>
     </style>
 

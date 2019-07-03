@@ -211,6 +211,11 @@ class Paginator<T>(
 
         override fun loadNewPage() {
             Timber.d("loadNewPage: $nextPage")
+            if (nextPage == null) {
+                Timber.d("Cannot reload the current page or the first one.")
+                return
+            }
+
             currentState = PageProgressState()
 
             viewController.showPageProgress(true)

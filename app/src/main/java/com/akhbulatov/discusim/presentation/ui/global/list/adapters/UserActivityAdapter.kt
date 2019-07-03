@@ -79,7 +79,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                     commentTextView.isVisible = false
                     activityTypeDrawable = context.getTintDrawable(
                         R.drawable.ic_favorite,
-                        R.color.button_upvote_background
+                        R.color.button_upvoted_background
                     )
                 } else if (item.comment != null) {
                     // Comment

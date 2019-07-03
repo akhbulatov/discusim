@@ -56,6 +56,7 @@ interface DisqusApi {
     ): Single<ForumResponse>
     // --- Forum --- //
 
+    // --- Threads --- //
     @GET("threads/list.json")
     fun getThreads(
         @Query("forum") forumId: String,
@@ -73,4 +74,5 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
+    // --- Threads --- //
 }
