@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.data.thread
 
+import com.akhbulatov.discusim.data.global.network.mappers.TopicResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
 import com.akhbulatov.discusim.data.global.network.models.ThreadPreviewNetModel
 import com.akhbulatov.discusim.data.user.UserResponseMapper
@@ -9,7 +10,8 @@ import com.akhbulatov.discusim.domain.global.models.ThreadPreview
 import javax.inject.Inject
 
 class ThreadResponseMapper @Inject constructor(
-    private val userResponseMapper: UserResponseMapper
+    private val userResponseMapper: UserResponseMapper,
+    private val topicResponseMapper: TopicResponseMapper
 ) {
 
     fun map(response: ThreadsResponse): PagedList<Thread> {
@@ -23,13 +25,10 @@ class ThreadResponseMapper @Inject constructor(
                 it.id,
                 it.title,
                 if (it.message.isNotEmpty()) it.message else null,
-                if (it.media != null && it.media.isNotEmpty()) {
-                    it.media.map { media -> Thread.Media(media.url) }
-                } else {
-                    null
-                },
+                it.media?.let { list -> list.map { media -> Thread.Media(media.url) } } ?: emptyList(),
                 userResponseMapper.map(it.author),
                 it.createdAt,
+                it.topics?.let { topic -> topicResponseMapper.map(topic) } ?: emptyList(),
                 it.likes,
                 it.userScore > 0,
                 it.posts

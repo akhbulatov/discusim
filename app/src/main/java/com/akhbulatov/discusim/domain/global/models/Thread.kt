@@ -6,9 +6,10 @@ data class Thread(
     val id: String,
     val title: String,
     val message: String?,
-    val mediaList: List<Media>?,
+    val mediaList: List<Media>,
     val author: User,
     val createdAt: LocalDateTime,
+    val topics: List<Topic>,
     val upvotes: Int,
     val isUpvoted: Boolean,
     val comments: Int

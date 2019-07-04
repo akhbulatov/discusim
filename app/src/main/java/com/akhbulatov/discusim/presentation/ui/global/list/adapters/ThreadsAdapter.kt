@@ -16,6 +16,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
+import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
@@ -68,12 +69,21 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
                 dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
-                if (item.mediaList != null) {
+                if (item.mediaList.isNotEmpty()) {
                     contentImageView.loadImage(context, item.mediaList.first().url)
                 } else {
                     contentImageView.isVisible = false
                 }
-                topicsChipGroup.isVisible = false // TODO
+                if (item.topics.isNotEmpty()) {
+                    item.topics.forEach {
+                        val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
+                            text = it.name
+                        }
+                        topicsChipGroup.addView(topicChip)
+                    }
+                } else {
+                    topicsChipGroup.isVisible = false
+                }
                 titleTextView.text = item.title
                 with(voteButton) {
                     text = item.upvotes.toString()

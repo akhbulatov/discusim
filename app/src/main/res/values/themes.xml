@@ -14,6 +14,8 @@
 
         <item name="toolbarStyle">@style/AppToolbar</item>
         <item name="bottomNavigationStyle">@style/AppBottomNavView</item>
+
+        <item name="topicChipStyle">@style/TopicChip</item>
     </style>
 
 </resources>

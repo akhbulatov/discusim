@@ -73,6 +73,13 @@
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
+    <style name="TopicChip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="chipStrokeColor">@color/chip_border</item>
+        <item name="chipStrokeWidth">1dp</item>
+    </style>
+
     <style name="ThreadButton" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:minWidth">66dp</item>

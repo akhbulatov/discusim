@@ -18,7 +18,8 @@ class ThreadRepositoryImpl @Inject constructor(
     override fun getThreads(forumId: String): Single<PagedList<Thread>> =
         api.getThreads(
             forumId,
-            listOf(RequestParams.Thread.AUTHOR)
+            listOf(RequestParams.Thread.AUTHOR),
+            listOf(RequestParams.Thread.TOPICS)
         )
             .map { threadResponseMapper.map(it) }
             .subscribeOn(schedulers.io())

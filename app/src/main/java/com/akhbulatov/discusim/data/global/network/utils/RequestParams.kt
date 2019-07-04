@@ -12,5 +12,8 @@ object RequestParams {
     object Thread {
         /** Запрашивает объект автора (юзера). */
         const val AUTHOR = "author"
+
+        /** Запрашивает список топиков. */
+        const val TOPICS = "topics"
     }
 }

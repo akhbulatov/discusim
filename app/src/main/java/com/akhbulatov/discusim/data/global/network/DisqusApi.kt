@@ -60,7 +60,8 @@ interface DisqusApi {
     @GET("threads/list.json")
     fun getThreads(
         @Query("forum") forumId: String,
-        @Query("related") related: List<String>
+        @Query("related") related: List<String>,
+        @Query("attach") attach: List<String>
     ): Single<ThreadsResponse>
 
     @GET("threads/listHot.json")
