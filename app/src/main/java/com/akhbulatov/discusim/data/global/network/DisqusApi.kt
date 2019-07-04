@@ -5,6 +5,7 @@ import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
+import com.akhbulatov.discusim.data.topic.TopicsResponse
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -54,6 +55,11 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("attach") attach: List<String>
     ): Single<ForumResponse>
+
+    @GET("channels/listTrendingTopics")
+    fun getTrendingTopics(
+        @Query("channel") forumId: String
+    ): Single<TopicsResponse>
     // --- Forum --- //
 
     // --- Threads --- //

@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.data.thread
 
-import com.akhbulatov.discusim.data.global.network.mappers.TopicResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
 import com.akhbulatov.discusim.data.global.network.models.ThreadPreviewNetModel
+import com.akhbulatov.discusim.data.topic.TopicResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Thread
