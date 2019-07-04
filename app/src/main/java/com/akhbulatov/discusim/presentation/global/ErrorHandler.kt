@@ -6,9 +6,8 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.userMessage
 import retrofit2.HttpException
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
-import javax.inject.Inject
 
-class ErrorHandler @Inject constructor(
+class ErrorHandler(
     private val router: Router,
     private val sessionInteractor: SessionInteractor,
     private val resourceManager: ResourceManager
@@ -17,6 +16,7 @@ class ErrorHandler @Inject constructor(
     fun proceed(error: Throwable, messageListener: (String) -> Unit) {
         Timber.e(error)
         when (error) {
+            // Сетевая ошибка
             is HttpException -> when (error.code()) {
                 401 -> logout() // Токен истек, сессия юзера завершена
                 else -> messageListener(error.userMessage(resourceManager))
