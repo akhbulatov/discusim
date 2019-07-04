@@ -37,7 +37,8 @@ class ForumDetailsContainerFragment : BaseFragment() {
 
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> Screens.ForumDetails(forumId).fragment
-            else -> Screens.ForumDetails(forumId).fragment
+            1 -> Screens.ForumTopics(forumId).fragment
+            else -> throw IllegalArgumentException()
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {

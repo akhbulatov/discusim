@@ -6,6 +6,7 @@ import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.topics.ForumTopicsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
@@ -51,6 +52,12 @@ object Screens {
         val forumId: String
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumDetailsFragment.newInstance(forumId)
+    }
+
+    data class ForumTopics(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumTopicsFragment.newInstance(forumId)
     }
 
     data class ForumThreadsContainer(
