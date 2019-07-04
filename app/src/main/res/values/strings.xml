@@ -65,6 +65,9 @@
     <string name="forum_threads_container_hot">Hot</string>
     <string name="forum_threads_container_popular">Popular</string>
 
+    <!-- User Flow -->
+    <string name="user_flow_details_tab">Details</string>
+
     <!-- List Items. Start -->
 
     <!-- Item User Activity -->
