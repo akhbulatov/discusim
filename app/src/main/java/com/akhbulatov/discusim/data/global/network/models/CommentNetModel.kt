@@ -7,6 +7,6 @@ import com.squareup.moshi.JsonClass
 data class CommentNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "message") val message: String,
-    @Json(name = "author") val author: UserNetModel,
+    @Json(name = "author") val author: UserPreviewNetModel,
     @Json(name = "thread") val thread: ThreadPreviewNetModel
 )

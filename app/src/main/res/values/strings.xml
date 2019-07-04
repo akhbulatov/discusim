@@ -68,6 +68,10 @@
     <!-- User Flow -->
     <string name="user_flow_details_tab">Details</string>
 
+    <!-- User Details -->
+    <string name="user_details_username">`@`%s</string>
+    <string name="user_details_num_upvotes"><b>%d</b> Upvotes</string>
+
     <!-- List Items. Start -->
 
     <!-- Item User Activity -->

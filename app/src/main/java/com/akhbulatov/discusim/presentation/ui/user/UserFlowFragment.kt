@@ -15,16 +15,16 @@ import kotlinx.android.synthetic.main.fragment_user_flow.*
 class UserFlowFragment : FlowFragment() {
     override val layoutRes: Int = R.layout.fragment_user_flow
 
-    private lateinit var userId: String
+    private var userId: Long = 0
     private val userPagerAdapter by lazy { UserPagerAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userId = requireNotNull(arguments?.getString(ARG_USER_ID))
+        userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
 
         val userSharedViewModel = ViewModelProviders.of(this)[UserSharedViewModel::class.java]
         userSharedViewModel.user.observe(this, Observer {
-            toolbar.title = it.name
+            toolbar.title = it.username
         })
     }
 
@@ -54,7 +54,7 @@ class UserFlowFragment : FlowFragment() {
     companion object {
         private const val ARG_USER_ID = "user_id"
 
-        fun newInstance(userId: String) = UserFlowFragment().apply {
+        fun newInstance(userId: Long) = UserFlowFragment().apply {
             arguments = bundleOf(ARG_USER_ID to userId)
         }
     }

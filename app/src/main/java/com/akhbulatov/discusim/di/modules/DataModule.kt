@@ -5,11 +5,13 @@ import com.akhbulatov.discusim.data.forum.ForumRepositoryImpl
 import com.akhbulatov.discusim.data.session.SessionRepositoryImpl
 import com.akhbulatov.discusim.data.thread.ThreadRepositoryImpl
 import com.akhbulatov.discusim.data.topic.TopicRepositoryImpl
+import com.akhbulatov.discusim.data.user.UserRepositoryImpl
 import com.akhbulatov.discusim.domain.global.repositories.ActivityRepository
 import com.akhbulatov.discusim.domain.global.repositories.ForumRepository
 import com.akhbulatov.discusim.domain.global.repositories.SessionRepository
 import com.akhbulatov.discusim.domain.global.repositories.ThreadRepository
 import com.akhbulatov.discusim.domain.global.repositories.TopicRepository
+import com.akhbulatov.discusim.domain.global.repositories.UserRepository
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -35,4 +37,8 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindTopicRepository(repository: TopicRepositoryImpl): TopicRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
 }

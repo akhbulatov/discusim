@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.UserPreview
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -20,7 +20,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import kotlinx.android.synthetic.main.item_user_activity.*
 
 class UserActivityAdapter(
-    private val onUserClickListener: (User) -> Unit
+    private val onUserClickListener: (UserPreview) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
@@ -64,7 +64,7 @@ class UserActivityAdapter(
     }
 
     inner class UserActivityViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
-        private lateinit var user: User
+        private lateinit var user: UserPreview
 
         init {
             authorImageView.setOnClickListener { onUserClickListener(user) }

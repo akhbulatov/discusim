@@ -76,13 +76,13 @@ object Screens {
     }
 
     data class UserFlow(
-        val userId: String
+        val userId: Long
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserFlowFragment.newInstance(userId)
     }
 
     data class UserDetails(
-        val userId: String
+        val userId: Long
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserDetailsFragment.newInstance(userId)
     }

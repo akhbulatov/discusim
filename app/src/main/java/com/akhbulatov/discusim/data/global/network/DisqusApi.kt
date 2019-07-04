@@ -6,6 +6,7 @@ import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
+import com.akhbulatov.discusim.data.user.UserResponse
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -35,6 +36,11 @@ interface DisqusApi {
     // --- Auth --- //
 
     // --- Users --- //
+    @GET("users/details.json")
+    fun getUserDetails(
+        @Query("user") userId: Long
+    ): Single<UserResponse>
+
     @GET("users/listActivity.json")
     fun getUserActivity(
         @Query("user") userId: Long?,
