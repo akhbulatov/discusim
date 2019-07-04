@@ -22,7 +22,7 @@
 
     <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="android:background">?colorPrimary</item>
-        <item name="android:elevation">4dp</item>
+        <item name="android:elevation">@dimen/spacing_micro</item>
         <item name="titleTextColor">?colorSecondary</item>
     </style>
 
@@ -74,9 +74,9 @@
     </style>
 
     <style name="TopicChip" parent="Widget.MaterialComponents.Chip.Action">
-        <item name="android:textColor">@color/chip_text</item>
-        <item name="chipBackgroundColor">@color/chip_background</item>
-        <item name="chipStrokeColor">@color/chip_border</item>
+        <item name="android:textColor">@color/chip_topic_text</item>
+        <item name="chipBackgroundColor">@color/chip_topic_background</item>
+        <item name="chipStrokeColor">@color/chip_topic_border</item>
         <item name="chipStrokeWidth">1dp</item>
     </style>
 

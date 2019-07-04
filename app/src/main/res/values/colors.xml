@@ -26,9 +26,9 @@
     <color name="button_thread_icon">@color/accent</color>
     <color name="button_thread_text">@color/text_primary</color>
 
-    <color name="chip_text">@color/green_fern</color>
-    <color name="chip_background">@color/transparent</color>
-    <color name="chip_border">@color/green_fern</color>
+    <color name="chip_topic_text">@color/green_fern</color>
+    <color name="chip_topic_background">@color/transparent</color>
+    <color name="chip_topic_border">@color/green_fern</color>
 
     <color name="divider">@color/gray_athens</color>
     <color name="progress_auth_background">@color/white_transparent_50</color>
