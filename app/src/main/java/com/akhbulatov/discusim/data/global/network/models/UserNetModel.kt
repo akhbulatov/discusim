@@ -15,7 +15,6 @@ data class UserNetModel(
     @Json(name = "url") val url: String,
     @Json(name = "numLikesReceived") val numLikesReceived: Int,
     @Json(name = "joinedAt") val joinedAt: LocalDateTime
-
 ) {
 
     @JsonClass(generateAdapter = true)
