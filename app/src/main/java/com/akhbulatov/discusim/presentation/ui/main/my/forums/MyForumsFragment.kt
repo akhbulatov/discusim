@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
+import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumsAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_my_forums.*
@@ -30,7 +30,7 @@ class MyForumsFragment : BaseFragment() {
         ForumsAdapter { viewModel.onForumClicked(it) }
     }
     private val onScrollListener by lazy {
-        InfiniteScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
+        EndlessScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextForumsPage() }
     }
 

@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.global.list
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class InfiniteScrollListener(
+class EndlessScrollListener(
     private val linearLayoutManager: LinearLayoutManager,
     private val onLoadMoreListener: () -> Unit
 ) : RecyclerView.OnScrollListener() {

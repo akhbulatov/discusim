@@ -11,7 +11,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
+import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.VerticalSpaceItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ThreadsAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -30,7 +30,7 @@ class ForumThreadsFragment : BaseFragment() {
     private lateinit var viewModel: ForumThreadsViewModel
     private val threadsAdapter by lazy { ThreadsAdapter() }
     private val onScrollListener by lazy {
-        InfiniteScrollListener(threadsRecyclerView.layoutManager as LinearLayoutManager)
+        EndlessScrollListener(threadsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextThreadsPage() }
     }
 

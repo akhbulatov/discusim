@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
+import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserActivityAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_my_activity.*
@@ -28,7 +28,7 @@ class MyActivityFragment : BaseFragment() {
     private lateinit var viewModel: MyActivityViewModel
     private val activityAdapter by lazy { UserActivityAdapter() }
     private val onScrollListener by lazy {
-        InfiniteScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
+        EndlessScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextActivityPage() }
     }
 
