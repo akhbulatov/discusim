@@ -11,11 +11,12 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
+import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
-import com.bumptech.glide.Glide
+import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_thread.*
 
 class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
@@ -63,23 +64,30 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
     class ThreadViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
         override fun bind(item: Any) {
             if (item is Thread) {
-                authorImageView.loadRoundedImage(itemView.context, item.author.avatarUrl)
-                authorTextView.text = item.author.name
-                dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
+                val context = itemView.context
 
-                if (item.mediaList != null) {
-                    Glide.with(itemView)
-                        .load(item.mediaList.first().url)
-                        .into(contentImageView)
+                authorImageView.loadRoundedImage(context, item.author.avatarUrl)
+                authorTextView.text = item.author.name
+                dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
+                if (item.mediaList.isNotEmpty()) {
+                    contentImageView.loadImage(context, item.mediaList.first().url)
                 } else {
                     contentImageView.isVisible = false
                 }
-
-                topicsChipGroup.isVisible = false // TODO
+                if (item.topics.isNotEmpty()) {
+                    item.topics.forEach {
+                        val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
+                            text = it.name
+                        }
+                        topicsChipGroup.addView(topicChip)
+                    }
+                } else {
+                    topicsChipGroup.isVisible = false
+                }
                 titleTextView.text = item.title
                 with(voteButton) {
                     text = item.upvotes.toString()
-                    setVote(item.upvoted)
+                    setVote(item.isUpvoted)
                 }
                 commentsButton.text = item.comments.toString()
             }

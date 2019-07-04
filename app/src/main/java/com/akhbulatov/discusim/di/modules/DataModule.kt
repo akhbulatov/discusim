@@ -24,9 +24,9 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindThreadRepository(repository: ThreadRepositoryImpl): ThreadRepository
+    abstract fun bindForumRepository(repository: ForumRepositoryImpl): ForumRepository
 
     @Binds
     @Singleton
-    abstract fun bindForumRepository(repository: ForumRepositoryImpl): ForumRepository
+    abstract fun bindThreadRepository(repository: ThreadRepositoryImpl): ThreadRepository
 }

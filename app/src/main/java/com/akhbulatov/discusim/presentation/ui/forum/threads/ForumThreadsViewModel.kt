@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.forum.threads
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.thread.ThreadInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
@@ -83,7 +84,7 @@ class ForumThreadsViewModel @Inject constructor(
         }
     )
 
-    private fun chooseThreadsRequest(): Single<List<Thread>> =
+    private fun chooseThreadsRequest(): Single<PagedList<Thread>> =
         when (threadType) {
             ThreadType.LATEST -> threadInteractor.getThreads(forumId)
             ThreadType.HOT -> threadInteractor.getHotThreads(forumId)

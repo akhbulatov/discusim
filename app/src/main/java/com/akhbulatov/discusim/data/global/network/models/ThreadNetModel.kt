@@ -12,6 +12,7 @@ data class ThreadNetModel(
     @Json(name = "media") val media: List<MediaNetModel>?,
     @Json(name = "author") val author: UserNetModel,
     @Json(name = "createdAt") val createdAt: LocalDateTime,
+    @Json(name = "topics") val topics: List<TopicNetModel>?,
     @Json(name = "likes") val likes: Int,
     @Json(name = "userScore") val userScore: Int,
     @Json(name = "posts") val posts: Int

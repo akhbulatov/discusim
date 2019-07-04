@@ -10,7 +10,7 @@ class UserResponseMapper @Inject constructor() {
             User(
                 it.id,
                 it.name,
-                it.avatar.url
+                it.avatar.permalink
             )
         }
 }

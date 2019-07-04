@@ -29,7 +29,7 @@ class ForumThreadsFragment : BaseFragment() {
 
     private lateinit var viewModel: ForumThreadsViewModel
     private val threadsAdapter by lazy { ThreadsAdapter() }
-    private val scrollListener by lazy {
+    private val onScrollListener by lazy {
         InfiniteScrollListener(threadsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextThreadsPage() }
     }
@@ -49,13 +49,20 @@ class ForumThreadsFragment : BaseFragment() {
         with(threadsRecyclerView) {
             setHasFixedSize(true)
             addItemDecoration(VerticalSpaceItemDecoration(dip(10)))
-            addOnScrollListener(scrollListener)
+            addOnScrollListener(onScrollListener)
             adapter = threadsAdapter
         }
-        observeUIChanges()
+        errorRefreshButton.setOnClickListener { viewModel.refreshThreads() }
+        dataRefreshButton.setOnClickListener { viewModel.refreshThreads() }
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    override fun onDestroyView() {
+        threadsRecyclerView.removeOnScrollListener(onScrollListener)
+        super.onDestroyView()
+    }
+
+    private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
@@ -78,8 +85,8 @@ class ForumThreadsFragment : BaseFragment() {
         dataLayout.isVisible = show
     }
 
-    private fun showThreads(show: Boolean, actions: List<Thread>) {
-        threadsAdapter.submitList(actions)
+    private fun showThreads(show: Boolean, threads: List<Thread>) {
+        threadsAdapter.submitList(threads)
         threadsRecyclerView.isVisible = show
     }
 
@@ -92,7 +99,7 @@ class ForumThreadsFragment : BaseFragment() {
     }
 
     private fun showPageProgress(show: Boolean) {
-        if (!show) scrollListener.setLoaded()
+        if (!show) onScrollListener.setLoaded()
         threadsAdapter.showProgress(show)
     }
 

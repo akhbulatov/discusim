@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.domain.thread
 
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Thread
 import com.akhbulatov.discusim.domain.global.repositories.ThreadRepository
 import io.reactivex.Single
@@ -9,12 +10,12 @@ class ThreadInteractor @Inject constructor(
     private val threadRepository: ThreadRepository
 ) {
 
-    fun getThreads(forumId: String): Single<List<Thread>> =
+    fun getThreads(forumId: String): Single<PagedList<Thread>> =
         threadRepository.getThreads(forumId)
 
-    fun getHotThreads(forumId: String): Single<List<Thread>> =
+    fun getHotThreads(forumId: String): Single<PagedList<Thread>> =
         threadRepository.getHotThreads(forumId)
 
-    fun getPopularThreads(forumId: String): Single<List<Thread>> =
+    fun getPopularThreads(forumId: String): Single<PagedList<Thread>> =
         threadRepository.getPopularThreads(forumId)
 }

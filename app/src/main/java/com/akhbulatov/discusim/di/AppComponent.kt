@@ -6,7 +6,7 @@ import com.akhbulatov.discusim.di.modules.AppModule
 import com.akhbulatov.discusim.di.modules.DataModule
 import com.akhbulatov.discusim.di.modules.NavigationModule
 import com.akhbulatov.discusim.di.modules.NetworkModule
-import com.akhbulatov.discusim.di.modules.PrefsModule
+import com.akhbulatov.discusim.di.modules.PreferencesModule
 import com.akhbulatov.discusim.di.modules.ViewModelModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -19,7 +19,7 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         AppModule::class,
         NetworkModule::class,
-        PrefsModule::class,
+        PreferencesModule::class,
         NavigationModule::class,
         DataModule::class,
         ViewModelModule::class,

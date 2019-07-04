@@ -4,10 +4,15 @@ import com.akhbulatov.discusim.data.global.network.models.ForumNetModel
 import com.akhbulatov.discusim.data.global.network.models.ForumPreviewNetModel
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.domain.global.models.ForumPreview
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
 class ForumResponseMapper @Inject constructor() {
-    fun map(response: ForumsResponse): List<Forum> = response.forums.map { map(it) }
+
+    fun map(response: ForumsResponse): PagedList<Forum> {
+        val forums = response.forums.map { map(it) }
+        return PagedList(response.cursor?.next, forums)
+    }
 
     fun map(response: ForumResponse): Forum = map(response.forum)
 
@@ -19,6 +24,7 @@ class ForumResponseMapper @Inject constructor() {
                 it.description,
                 it.favicon.permalink,
                 it.isFollowing,
+                it.numThreads,
                 it.numFollowers,
                 it.channel?.let { channel -> mapChannel(channel) }
             )

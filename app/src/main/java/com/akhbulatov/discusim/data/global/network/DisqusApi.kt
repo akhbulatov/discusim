@@ -13,7 +13,15 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
+/**
+ * API сервиса Disqus спроектирован так, что если параметр **user** в запросах равен `null`,
+ * запрашивает данные для авторизованного юзера по access token. Поэтому данный параметр `nullable` в тех методах,
+ * в которых он используется.
+ *
+ * Для пагинации используется курсор.
+ */
 interface DisqusApi {
+    // --- Auth --- //
     @FormUrlEncoded
     @POST("${BuildConfig.BASE_URL}api/oauth/2.0/access_token/")
     fun login(
@@ -23,7 +31,9 @@ interface DisqusApi {
         @Field("redirect_uri") redirectUri: String,
         @Field("code") code: String
     ): Single<SessionNetModel>
+    // --- Auth --- //
 
+    // --- Users --- //
     @GET("users/listActivity.json")
     fun getUserActivity(
         @Query("user") userId: Long?,
@@ -34,19 +44,24 @@ interface DisqusApi {
     fun getFollowingForums(
         @Query("user") userId: Long?,
         @Query("cursor") cursor: String?,
-        @Query("attach") attach: List<String>?
+        @Query("attach") attach: List<String>
     ): Single<ForumsResponse>
+    // --- Users --- //
 
+    // --- Forum --- //
     @GET("forums/details.json")
     fun getForumDetails(
         @Query("forum") forumId: String,
-        @Query("attach") attach: List<String>?
+        @Query("attach") attach: List<String>
     ): Single<ForumResponse>
+    // --- Forum --- //
 
+    // --- Threads --- //
     @GET("threads/list.json")
     fun getThreads(
         @Query("forum") forumId: String,
-        @Query("related") related: List<String>
+        @Query("related") related: List<String>,
+        @Query("attach") attach: List<String>
     ): Single<ThreadsResponse>
 
     @GET("threads/listHot.json")
@@ -60,4 +75,5 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<ThreadsResponse>
+    // --- Threads --- //
 }

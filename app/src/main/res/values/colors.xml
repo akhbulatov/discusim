@@ -6,46 +6,55 @@
     <color name="accent">@color/blue_dodger</color>
 
     <color name="screen_background">@color/gray_athens</color>
-    <color name="list_item_background">@color/white</color>
+    <color name="content_background">@color/white</color>
 
     <color name="text_primary">@color/black</color>
     <color name="text_secondary">@color/gray_dove</color>
     <color name="text_date">@color/gray_dove</color>
+    <color name="text_inactive">@color/gray_silver</color>
 
-    <color name="bottom_nav_active">@color/accent</color>
-    <color name="bottom_nav_inactive">@color/gray_silver</color>
-
-    <color name="button_upvote_background">@color/red_froly</color>
-    <color name="button_thread_upvote_icon">@color/white</color>
-    <color name="button_thread_upvote_text">@color/white</color>
-    <color name="button_thread_background">@color/transparent</color>
-    <color name="button_thread_icon">@color/accent</color>
-    <color name="button_thread_text">@color/text_primary</color>
+    <color name="bottom_nav_item_active">@color/accent</color>
+    <color name="bottom_nav_item_inactive">@color/gray_silver</color>
 
     <color name="button_follow">@color/blue_dodger</color>
     <color name="button_following">@color/green_fern</color>
 
-    <color name="divider">@color/gray_athens</color>
+    <color name="button_upvoted_background">@color/red_froly</color>
+    <color name="button_thread_upvoted_icon">@color/white</color>
+    <color name="button_thread_upvoted_text">@color/white</color>
+    <color name="button_thread_background">@color/transparent</color>
+    <color name="button_thread_icon">@color/accent</color>
+    <color name="button_thread_text">@color/text_primary</color>
 
-    <!-- Palette colors -->
+    <color name="chip_text">@color/green_fern</color>
+    <color name="chip_background">@color/transparent</color>
+    <color name="chip_border">@color/green_fern</color>
+
+    <color name="divider">@color/gray_athens</color>
+    <color name="progress_auth_background">@color/white_transparent_50</color>
+
+    <!-- Palette Colors. Start -->
     <!-- Colors for "internal use" only -->
 
-    <!-- General palettes -->
+    <!-- General Palette -->
     <color name="white">#ffffff</color>
+    <color name="white_transparent_50">#80ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Palette blue -->
+    <!-- Palette Blue -->
     <color name="blue_dodger">#2E9FFF</color>
 
-    <!-- Palette red -->
+    <!-- Palette Red -->
     <color name="red_froly">#F05F70</color>
 
-    <!-- Palette gray -->
+    <!-- Palette Green -->
+    <color name="green_fern">#5cb767</color>
+
+    <!-- Palette Gray -->
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>
 
-    <!-- Palette green -->
-    <color name="green_fern">#5FB66A</color>
+    <!-- Palette Colors. End -->
 </resources>

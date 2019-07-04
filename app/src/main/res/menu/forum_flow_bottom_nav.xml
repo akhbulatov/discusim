@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/menu_bottom_nav_forum_threads"
-        android:icon="@drawable/ic_collections"
+        android:icon="@drawable/ic_list_alt"
         android:title="@string/forum_flow_threads" />
 
 </menu>

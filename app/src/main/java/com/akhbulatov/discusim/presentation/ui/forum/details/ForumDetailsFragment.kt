@@ -11,8 +11,8 @@ import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.ForumSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setFollow
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
@@ -39,13 +39,14 @@ class ForumDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeUIChanges()
+        errorRefreshButton.setOnClickListener { viewModel.loadForumDetails() }
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    private fun observeUiChanges() {
         viewModel.progress.observe(this, Observer { showProgress(it) })
         viewModel.error.observe(this, Observer { showError(it.first, it.second) })
-        viewModel.forum.observe(this, Observer { showForumDetails(it) })
+        viewModel.forum.observe(this, Observer { showForumDetails(it.first, it.second) })
     }
 
     private fun showProgress(show: Boolean) {
@@ -57,16 +58,18 @@ class ForumDetailsFragment : BaseFragment() {
         errorLayout.isVisible = show
     }
 
-    private fun showForumDetails(forum: Forum) {
-        forumSharedViewModel.forum.value = forum
+    private fun showForumDetails(show: Boolean, forum: Forum?) {
+        if (forum != null) {
+            forumSharedViewModel.forum.value = forum
 
-        Glide.with(this)
-            .load(forum.channel?.avatarUrl ?: forum.faviconUrl)
-            .into(avatarImageView)
-        nameTextView.text = forum.name
-        descriptionTextView.text = forum.description
-        numFollowersTextView.text = forum.numFollowers.toString()
-        followButton.setFollow(forum.isFollowing)
+            avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
+            nameTextView.text = forum.name
+            descriptionTextView.text = forum.description
+            numThreadsTextView.text = forum.numThreads.toString()
+            numFollowersTextView.text = forum.numFollowers.toString()
+            followButton.setFollow(forum.isFollowing)
+        }
+        contentLayout.isVisible = show
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

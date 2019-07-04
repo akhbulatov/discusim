@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserActivityAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -28,7 +27,7 @@ class MyActivityFragment : BaseFragment() {
 
     private lateinit var viewModel: MyActivityViewModel
     private val activityAdapter by lazy { UserActivityAdapter() }
-    private val scrollListener by lazy {
+    private val onScrollListener by lazy {
         InfiniteScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextActivityPage() }
     }
@@ -36,7 +35,6 @@ class MyActivityFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[MyActivityViewModel::class.java]
-        viewModel.refreshActivity()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,16 +42,21 @@ class MyActivityFragment : BaseFragment() {
         activitySwipeRefresh.setOnRefreshListener { viewModel.refreshActivity() }
         with(activityRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
-            addOnScrollListener(scrollListener)
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addOnScrollListener(onScrollListener)
             adapter = activityAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshActivity() }
         dataRefreshButton.setOnClickListener { viewModel.refreshActivity() }
-        observeUIChanges()
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    override fun onDestroyView() {
+        activityRecyclerView.removeOnScrollListener(onScrollListener)
+        super.onDestroyView()
+    }
+
+    private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
@@ -90,7 +93,7 @@ class MyActivityFragment : BaseFragment() {
     }
 
     private fun showPageProgress(show: Boolean) {
-        if (!show) scrollListener.setLoaded()
+        if (!show) onScrollListener.setLoaded()
         activityAdapter.showProgress(show)
     }
 

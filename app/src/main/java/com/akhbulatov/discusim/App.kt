@@ -10,7 +10,7 @@ import timber.log.Timber
 class App : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
-        initThreeTenABP()
+        initThreeTenAbp()
         initTimber()
         initStetho()
     }
@@ -19,7 +19,7 @@ class App : DaggerApplication() {
         return DaggerAppComponent.builder().create(this)
     }
 
-    private fun initThreeTenABP() {
+    private fun initThreeTenAbp() {
         AndroidThreeTen.init(this)
     }
 

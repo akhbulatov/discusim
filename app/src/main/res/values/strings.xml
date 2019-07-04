@@ -1,19 +1,16 @@
 <resources>
     <string name="app_name">Discusim</string>
 
-    <!-- Common Messages -->
+    <!-- Common Messages. Start -->
     <string name="msg_refresh">Refresh</string>
     <string name="msg_empty_data">Empty data</string>
+    <string name="msg_follow">Follow</string>
+    <string name="msg_following">Following</string>
 
-    <!-- Time -->
-    <plurals name="time_days">
-        <item quantity="one">%d day ago</item>
-        <item quantity="other">%d days ago</item>
-    </plurals>
-
-    <plurals name="time_hours">
-        <item quantity="one">%d hour ago</item>
-        <item quantity="other">%d hours ago</item>
+    <!-- Time. Start -->
+    <plurals name="time_seconds">
+        <item quantity="one">%d second ago</item>
+        <item quantity="other">%d seconds ago</item>
     </plurals>
 
     <plurals name="time_minutes">
@@ -21,22 +18,29 @@
         <item quantity="other">%d minutes ago</item>
     </plurals>
 
-    <plurals name="time_seconds">
-        <item quantity="one">%d second ago</item>
-        <item quantity="other">%d seconds ago</item>
+    <plurals name="time_hours">
+        <item quantity="one">%d hour ago</item>
+        <item quantity="other">%d hours ago</item>
     </plurals>
 
+    <plurals name="time_days">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <!-- Time. End -->
+
+    <!-- Common Messages. End -->
+
     <!-- Common Errors -->
-    <string name="error_unknown">Unknown error</string>
     <string name="error_network">Network error</string>
+    <string name="error_unknown">Unknown error</string>
 
     <!-- Auth -->
     <string name="auth_title">Authorization</string>
 
     <!-- Main Flow -->
     <string name="main_flow_my_activity">Activity</string>
-    <string name="main_flow_forums">Forums</string>
-    <string name="main_flow_profile">Profile</string>
+    <string name="main_flow_my_forums">Forums</string>
 
     <!-- My Activity -->
     <string name="my_activity_title">Activity</string>
@@ -53,19 +57,20 @@
     <string name="forum_details_container_topics">Topics</string>
 
     <!-- Forum Details -->
+    <string name="forum_details_threads">Threads</string>
     <string name="forum_details_followers">Followers</string>
-    <string name="forum_details_follow">Follow</string>
-    <string name="forum_details_following">Following</string>
 
     <!-- Forum Threads Container -->
     <string name="forum_threads_container_latest">Latest</string>
     <string name="forum_threads_container_hot">Hot</string>
     <string name="forum_threads_container_popular">Popular</string>
 
-    <!-- List Items -->
+    <!-- List Items. Start -->
 
     <!-- Item User Activity -->
     <string name="item_user_activity_upvoted_thread">upvoted thread %s</string>
     <string name="item_user_activity_commented_thread">commented on thread %s</string>
+
+    <!-- List Items. End -->
 
 </resources>

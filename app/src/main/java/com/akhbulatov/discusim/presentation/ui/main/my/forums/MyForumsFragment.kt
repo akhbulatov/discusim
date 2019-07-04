@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.list.DividerNoLastItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.InfiniteScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumsAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -30,7 +29,7 @@ class MyForumsFragment : BaseFragment() {
     private val forumsAdapter by lazy {
         ForumsAdapter { viewModel.onForumClicked(it) }
     }
-    private val scrollListener by lazy {
+    private val onScrollListener by lazy {
         InfiniteScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextForumsPage() }
     }
@@ -38,7 +37,6 @@ class MyForumsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[MyForumsViewModel::class.java]
-        viewModel.refreshForums()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,20 +44,25 @@ class MyForumsFragment : BaseFragment() {
         forumsSwipeRefresh.setOnRefreshListener { viewModel.refreshForums() }
         with(forumsRecyclerView) {
             setHasFixedSize(true)
-            addItemDecoration(DividerNoLastItemDecoration(context, DividerItemDecoration.VERTICAL))
-            addOnScrollListener(scrollListener)
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            addOnScrollListener(onScrollListener)
             adapter = forumsAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
         dataRefreshButton.setOnClickListener { viewModel.refreshForums() }
-        observeUIChanges()
+        observeUiChanges()
     }
 
-    private fun observeUIChanges() {
+    override fun onDestroyView() {
+        forumsRecyclerView.removeOnScrollListener(onScrollListener)
+        super.onDestroyView()
+    }
+
+    private fun observeUiChanges() {
         viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
         viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.emptyData.observe(this, Observer { showEmptyData(it) })
-        viewModel.forums.observe(this, Observer { showActions(it.first, it.second) })
+        viewModel.forums.observe(this, Observer { showForums(it.first, it.second) })
         viewModel.errorMessage.observe(this, Observer { showErrorMessage(it) })
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
@@ -78,7 +81,7 @@ class MyForumsFragment : BaseFragment() {
         dataLayout.isVisible = show
     }
 
-    private fun showActions(show: Boolean, forums: List<Forum>) {
+    private fun showForums(show: Boolean, forums: List<Forum>) {
         forumsAdapter.submitList(forums)
         forumsRecyclerView.isVisible = show
     }
@@ -92,7 +95,7 @@ class MyForumsFragment : BaseFragment() {
     }
 
     private fun showPageProgress(show: Boolean) {
-        if (!show) scrollListener.setLoaded()
+        if (!show) onScrollListener.setLoaded()
         forumsAdapter.showProgress(show)
     }
 

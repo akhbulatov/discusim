@@ -12,7 +12,7 @@ import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
-import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanTime
+import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.getTintDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
@@ -33,9 +33,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
         }
 
     override fun onBindViewHolder(holder: BaseViewHolder<Any>, position: Int) {
-        if (holder is UserActivityViewHolder) {
-            holder.bind(getItem(position))
-        }
+        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int =
@@ -81,7 +79,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                     commentTextView.isVisible = false
                     activityTypeDrawable = context.getTintDrawable(
                         R.drawable.ic_favorite,
-                        R.color.button_upvote_background
+                        R.color.button_upvoted_background
                     )
                 } else if (item.comment != null) {
                     // Comment
@@ -101,7 +99,7 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                 authorImageView.loadRoundedImage(context, authorAvatarUrl)
                 activityTextView.text = activity
                 activityTypeImageView.setImageDrawable(activityTypeDrawable)
-                dateTextView.text = item.createdAt.getHumanTime(itemView.resources)
+                dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
             }
         }
     }

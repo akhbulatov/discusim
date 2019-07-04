@@ -1,17 +1,18 @@
 package com.akhbulatov.discusim.presentation.global
 
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
 class Paginator<T>(
-    private val requestFactory: (String?) -> Single<List<T>>,
+    private val requestFactory: (String?) -> Single<PagedList<T>>,
     private val viewController: ViewController<T>
 ) {
 
     private val firstPage: String? = null
-    var nextPage: String? = null
+    private var nextPage: String? = null
 
     private var currentState: State<T> = EmptyState()
     private val currentData = mutableListOf<T>()
@@ -26,7 +27,11 @@ class Paginator<T>(
         requestDisposable?.dispose()
         requestDisposable = requestFactory.invoke(page)
             .subscribeBy(
-                onSuccess = { currentState.newData(it) },
+                onSuccess = {
+                    Timber.d("Cursor of next page: ${it.cursor}")
+                    currentState.newData(it.data)
+                    nextPage = it.cursor
+                },
                 onError = { currentState.fail(it) }
             )
     }
@@ -206,6 +211,11 @@ class Paginator<T>(
 
         override fun loadNewPage() {
             Timber.d("loadNewPage: $nextPage")
+            if (nextPage == null) {
+                Timber.d("Cannot reload the current page or the first one.")
+                return
+            }
+
             currentState = PageProgressState()
 
             viewController.showPageProgress(true)
@@ -224,7 +234,7 @@ class Paginator<T>(
      * Возможные последующие состояния:
      * [EmptyProgressState], [DataState], [EmptyDataState], [ReleasedState].
      */
-    private inner class RefreshState : State<T> { // TODO
+    private inner class RefreshState : State<T> {
         override fun restart() {
             Timber.d("restart")
             currentState = EmptyProgressState()
