@@ -6,5 +6,7 @@ import io.reactivex.Single
 
 interface ForumRepository {
     fun getMyFollowingForums(cursor: String?): Single<PagedList<Forum>>
+    fun getUserFollowingForums(userId: Long, cursor: String?): Single<PagedList<Forum>>
+
     fun getForumDetails(forumId: String): Single<Forum>
 }
