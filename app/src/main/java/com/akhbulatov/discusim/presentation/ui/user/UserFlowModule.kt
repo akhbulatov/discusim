@@ -9,6 +9,8 @@ import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsModule
 import com.akhbulatov.discusim.presentation.ui.user.followers.UserFollowersFragment
 import com.akhbulatov.discusim.presentation.ui.user.followers.UserFollowersModule
+import com.akhbulatov.discusim.presentation.ui.user.following.UserFollowingFragment
+import com.akhbulatov.discusim.presentation.ui.user.following.UserFollowingModule
 import com.akhbulatov.discusim.presentation.ui.user.forums.UserForumsFragment
 import com.akhbulatov.discusim.presentation.ui.user.forums.UserForumsModule
 import dagger.Module
@@ -35,4 +37,8 @@ abstract class UserFlowModule {
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [UserFollowersModule::class])
     abstract fun contributeUserFollowersFragment(): UserFollowersFragment
+
+    @FlowChildFragmentScope
+    @ContributesAndroidInjector(modules = [UserFollowingModule::class])
+    abstract fun contributeUserFollowingFragment(): UserFollowingFragment
 }
