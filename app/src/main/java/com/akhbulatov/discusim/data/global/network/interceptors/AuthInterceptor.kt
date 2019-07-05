@@ -15,7 +15,7 @@ class AuthInterceptor @Inject constructor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        var url = request.url()
+        var url = request.url
 
         prefsStorage.accessToken?.let {
             url = url.newBuilder()
