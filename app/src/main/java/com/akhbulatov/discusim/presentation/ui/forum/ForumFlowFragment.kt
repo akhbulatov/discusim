@@ -29,9 +29,16 @@ class ForumFlowFragment : FlowFragment() {
         forumThreadsTabScreen = Screens.ForumThreadsContainer(forumId)
 
         val forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
-        forumSharedViewModel.forum.observe(this, Observer {
-            collapsingToolbar.title = it.name
-            bannerImageView.loadImage(context, it.channel?.bannerUrl!!) // TODO
+        forumSharedViewModel.forum.observe(this, Observer { forum ->
+            collapsingToolbar.title = forum.name
+
+            forum.channel?.let {
+                if (it.bannerUrl != null) {
+                    bannerImageView.loadImage(context, it.bannerUrl)
+                } else {
+                    bannerImageView.setBackgroundColor(it.bannerColorHex)
+                }
+            }
         })
     }
 
