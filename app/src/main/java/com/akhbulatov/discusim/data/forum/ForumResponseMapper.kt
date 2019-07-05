@@ -35,7 +35,8 @@ class ForumResponseMapper @Inject constructor() {
             Forum.Channel(
                 it.id.toLong(),
                 it.avatar,
-                "https:${it.options.alertBackground}"
+                it.banner ?: it.options.alertBackground?.let { bg -> "https:$bg" },
+                it.bannerColorHex
             )
         }
 
