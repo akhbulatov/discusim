@@ -16,4 +16,9 @@ object RequestParams {
         /** Запрашивает список топиков. */
         const val TOPICS = "topics"
     }
+
+    object Comment {
+        /** Запрашивает объект треда коммента. */
+        const val THREAD = "thread"
+    }
 }

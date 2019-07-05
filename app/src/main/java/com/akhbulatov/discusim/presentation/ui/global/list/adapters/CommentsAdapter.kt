@@ -3,29 +3,28 @@ package com.akhbulatov.discusim.presentation.ui.global.list.adapters
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Thread
+import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.global.models.VoteType
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
-import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.utils.setThreadVote
-import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.item_thread.*
+import com.akhbulatov.discusim.presentation.ui.global.utils.setTintEndDrawable
+import kotlinx.android.synthetic.main.item_comment.*
+import org.jetbrains.anko.dimen
 
-class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class CommentsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
-            ITEM_THREAD -> {
-                val itemView = parent.inflate(R.layout.item_thread)
-                ThreadViewHolder(itemView)
+            ITEM_COMMENT -> {
+                val itemView = parent.inflate(R.layout.item_comment)
+                CommentViewHolder(itemView)
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -39,7 +38,7 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
-            is Thread -> ITEM_THREAD
+            is Comment -> ITEM_COMMENT
             else -> ITEM_PROGRESS
         }
 
@@ -61,43 +60,49 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    class ThreadViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    private class CommentViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
         override fun bind(item: Any) {
-            if (item is Thread) {
+            if (item is Comment) {
                 val context = itemView.context
 
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
-                dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
-                if (item.mediaList.isNotEmpty()) {
-                    contentImageView.loadImage(context, item.mediaList.first().url)
-                } else {
-                    contentImageView.isVisible = false
-                }
-                if (item.topics.isNotEmpty()) {
-                    item.topics.forEach {
-                        val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
-                            text = it.name
-                        }
-                        topicsChipGroup.addView(topicChip)
+                dateTextView.text = item.createdAt.getHumanCreatedTime(context.resources)
+                messageTextView.text = item.message
+
+                if (item.upvotes > 0) {
+                    with(upvoteTextView) {
+                        compoundDrawablePadding = context.dimen(R.dimen.spacing_micro)
+                        text = item.upvotes.toString()
                     }
                 } else {
-                    topicsChipGroup.isVisible = false
+                    with(upvoteTextView) {
+                        compoundDrawablePadding = 0
+                        text = null
+                    }
                 }
-                titleTextView.text = item.title
-                with(voteButton) {
-                    text = item.upvotes.toString()
-                    setThreadVote(item.isUpvoted)
+                when (item.voteType) {
+                    VoteType.NO_VOTE -> {
+                        upvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
+                        downvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
+                    }
+                    VoteType.UPVOTE -> {
+                        upvoteTextView.setTintEndDrawable(R.color.button_comment_upvote)
+                        downvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
+                    }
+                    VoteType.DOWNVOTE -> {
+                        upvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
+                        downvoteTextView.setTintEndDrawable(R.color.button_comment_downvote)
+                    }
                 }
-                commentsButton.text = item.comments.toString()
             }
         }
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is Thread && newItem is Thread) {
+                if (oldItem is Comment && newItem is Comment) {
                     oldItem.id == newItem.id
                 } else {
                     oldItem is ProgressItem && newItem is ProgressItem
@@ -108,7 +113,7 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                 oldItem == newItem
         }
 
-        private const val ITEM_THREAD = 0
+        private const val ITEM_COMMENT = 0
         private const val ITEM_PROGRESS = 1
     }
 }
