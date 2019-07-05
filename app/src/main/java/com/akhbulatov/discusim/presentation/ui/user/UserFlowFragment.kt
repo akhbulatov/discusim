@@ -40,15 +40,17 @@ class UserFlowFragment : FlowFragment() {
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
             0 -> getString(R.string.user_flow_details_tab)
+            1 -> getString(R.string.user_flow_activity_tab)
             else -> throw IllegalArgumentException()
         }
 
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> Screens.UserDetails(userId).fragment
+            1 -> Screens.UserActivity(userId).fragment
             else -> throw IllegalArgumentException()
         }
 
-        override fun getCount(): Int = 1 // TODO
+        override fun getCount(): Int = 2
     }
 
     companion object {

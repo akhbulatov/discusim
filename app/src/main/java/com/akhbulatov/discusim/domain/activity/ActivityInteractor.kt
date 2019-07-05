@@ -12,4 +12,7 @@ class ActivityInteractor @Inject constructor(
 
     fun getMyActivity(cursor: String?): Single<PagedList<Action>> =
         activityRepository.getMyActivity(cursor)
+
+    fun getUserActivity(userId: Long, cursor: String?): Single<PagedList<Action>> =
+        activityRepository.getUserActivity(userId, cursor)
 }

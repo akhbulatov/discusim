@@ -18,4 +18,9 @@ class ActivityRepositoryImpl @Inject constructor(
         api.getUserActivity(null, cursor)
             .map { activityResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+
+    override fun getUserActivity(userId: Long, cursor: String?): Single<PagedList<Action>> =
+        api.getUserActivity(userId, cursor)
+            .map { activityResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
 }

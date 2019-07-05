@@ -6,4 +6,5 @@ import io.reactivex.Single
 
 interface ActivityRepository {
     fun getMyActivity(cursor: String?): Single<PagedList<Action>>
+    fun getUserActivity(userId: Long, cursor: String?): Single<PagedList<Action>>
 }
