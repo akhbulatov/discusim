@@ -90,7 +90,7 @@ class UserFollowersViewModel @Inject constructor(
     fun refreshFollowers() = paginator.refresh()
     fun loadNextFollowersPage() = paginator.loadNewPage()
 
-    fun onFollowerClicked(user: UserMiddle) = router.startFlow(Screens.UserDetails(user.id))
+    fun onFollowerClicked(user: UserMiddle) = router.startFlow(Screens.UserFlow(user.id))
 
     override fun onCleared() {
         paginator.release()
