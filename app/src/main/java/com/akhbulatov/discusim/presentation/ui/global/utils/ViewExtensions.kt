@@ -26,13 +26,19 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
 fun Context.color(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
 
 fun Context.getTintDrawable(@DrawableRes drawableRes: Int, @ColorRes colorRes: Int): Drawable {
-    val drawable = this.getDrawable(drawableRes)!!
-    drawable.setTint(this.color(colorRes))
-    return drawable
+    val mutableDrawable = getDrawable(drawableRes)!!.mutate()
+    mutableDrawable.setTint(this.color(colorRes))
+    return mutableDrawable
 }
 
 fun TextView.setTintStartDrawable(@ColorRes colorRes: Int) {
-    compoundDrawablesRelative.first()?.setTint(context.color(colorRes))
+    val mutableDrawable = compoundDrawablesRelative.first()!!.mutate()
+    mutableDrawable.setTint(context.color(colorRes))
+}
+
+fun TextView.setTintEndDrawable(@ColorRes colorRes: Int) {
+    val mutableDrawable = compoundDrawablesRelative[2]!!.mutate()
+    mutableDrawable.setTint(context.color(colorRes))
 }
 
 fun TextView.showTextIfNotEmpty(text: String?) {

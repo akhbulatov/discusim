@@ -15,6 +15,7 @@ import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragme
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
+import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragment
 import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -92,5 +93,11 @@ object Screens {
         val userId: Long
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
+    }
+
+    data class UserComments(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserCommentsFragment.newInstance(userId)
     }
 }

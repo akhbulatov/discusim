@@ -26,6 +26,10 @@
     <color name="button_thread_icon">@color/accent</color>
     <color name="button_thread_text">@color/text_primary</color>
 
+    <color name="button_comment_no_vote">@color/black</color>
+    <color name="button_comment_upvote">@color/blue_dodger</color>
+    <color name="button_comment_downvote">@color/red_froly</color>
+
     <color name="chip_topic_text">@color/green_fern</color>
     <color name="chip_topic_background">@color/transparent</color>
     <color name="chip_topic_border">@color/green_fern</color>

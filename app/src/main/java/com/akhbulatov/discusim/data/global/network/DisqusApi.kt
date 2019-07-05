@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
+import com.akhbulatov.discusim.data.comment.CommentsResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
@@ -53,6 +54,13 @@ interface DisqusApi {
         @Query("cursor") cursor: String?,
         @Query("attach") attach: List<String>
     ): Single<ForumsResponse>
+
+    @GET("users/listPosts.json")
+    fun getUserComments(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?,
+        @Query("related") related: List<String>
+    ): Single<CommentsResponse>
     // --- Users --- //
 
     // --- Forum --- //

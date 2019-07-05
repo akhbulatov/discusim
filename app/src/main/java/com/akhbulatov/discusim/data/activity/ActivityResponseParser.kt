@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.data.activity
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_ThreadVoteNetModelJsonAdapter
-import com.akhbulatov.discusim.data.global.network.models.CommentNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.responses.BaseResponseJsonAdapter
 import com.squareup.moshi.Moshi
@@ -14,7 +14,7 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
     private val baseResponseAdapter = BaseResponseJsonAdapter(moshi)
     private val actionAdapter = ActionNetModelJsonAdapter(moshi)
     private val threadVoteAdapter = ActionNetModel_ThreadVoteNetModelJsonAdapter(moshi)
-    private val commentAdapter = CommentNetModelJsonAdapter(moshi)
+    private val commentAdapter = CommentPreviewNetModelJsonAdapter(moshi)
 
     fun parse(activityJson: String): Pair<CursorNetModel, List<ActionNetModel>> {
         val cursor = baseResponseAdapter.fromJson(activityJson)!!.cursor

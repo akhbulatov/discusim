@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.data.activity
 import com.akhbulatov.discusim.data.comment.CommentResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
-import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
+import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModel
 import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
@@ -33,7 +33,7 @@ class ActivityResponseMapper @Inject constructor(
                         createdAt = it.createdAt
                     )
                 }
-                is CommentNetModel -> {
+                is CommentPreviewNetModel -> {
                     val comment = commentResponseMapper.map(it.obj)
 
                     Action(
