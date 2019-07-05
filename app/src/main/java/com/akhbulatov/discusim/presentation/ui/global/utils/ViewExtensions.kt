@@ -64,7 +64,7 @@ fun MaterialButton.setFollow(isFollowing: Boolean) {
     setText(textResId)
 }
 
-fun MaterialButton.setVote(isUpvoted: Boolean) {
+fun MaterialButton.setThreadVote(isUpvoted: Boolean) {
     val backgroundColor = if (isUpvoted) R.color.button_upvoted_background else R.color.button_thread_background
     val iconTintColor = if (isUpvoted) R.color.button_thread_upvoted_icon else R.color.button_thread_icon
     val textColor = if (isUpvoted) R.color.button_thread_upvoted_text else R.color.button_thread_text

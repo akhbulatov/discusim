@@ -15,7 +15,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.utils.setVote
+import com.akhbulatov.discusim.presentation.ui.global.utils.setThreadVote
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_thread.*
 
@@ -87,7 +87,7 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                 titleTextView.text = item.title
                 with(voteButton) {
                     text = item.upvotes.toString()
-                    setVote(item.isUpvoted)
+                    setThreadVote(item.isUpvoted)
                 }
                 commentsButton.text = item.comments.toString()
             }
