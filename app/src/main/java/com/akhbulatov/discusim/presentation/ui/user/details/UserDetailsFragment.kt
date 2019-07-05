@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.user.details
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,7 +11,10 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
+import com.akhbulatov.discusim.presentation.ui.global.utils.setTintStartDrawable
+import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import com.akhbulatov.discusim.presentation.ui.user.UserSharedViewModel
 import kotlinx.android.synthetic.main.fragment_user_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
@@ -62,12 +66,24 @@ class UserDetailsFragment : BaseFragment() {
 
             avatarImageView.loadRoundedImage(context, user.avatarUrl)
             fullNameTextView.text = user.name
-            usernameTextView.text = user.username
-            aboutTextView.text = user.about
-            numUpvotesTextView.text = user.numUpvotes.toString() // TODO
-            locationTextView.text = user.location
-            websiteTextView.text = user.website
-            joinedAtTextView.text = user.joinedAt.toString() // TODO
+            usernameTextView.text = getString(R.string.user_details_username, user.username)
+            aboutTextView.showTextIfNotEmpty(user.about)
+            with(numUpvotesTextView) {
+                setTintStartDrawable(R.color.accent)
+                text = getString(R.string.user_details_num_upvotes, user.numUpvotes).parseAsHtml()
+            }
+            with(locationTextView) {
+                setTintStartDrawable(R.color.accent)
+                showTextIfNotEmpty(user.location)
+            }
+            with(websiteTextView) {
+                setTintStartDrawable(R.color.accent)
+                showTextIfNotEmpty(user.website)
+            }
+            with(joinedAtTextView) {
+                setTintStartDrawable(R.color.accent)
+                text = getString(R.string.user_details_joined_date, user.joinedAt.getMediumDate())
+            }
         }
         contentLayout.isVisible = show
     }
