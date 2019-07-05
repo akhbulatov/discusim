@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.di.modules
 import com.akhbulatov.discusim.data.activity.ActivityRepositoryImpl
 import com.akhbulatov.discusim.data.comment.CommentRepositoryImpl
 import com.akhbulatov.discusim.data.follower.FollowerRepositoryImpl
+import com.akhbulatov.discusim.data.following.FollowingRepositoryImpl
 import com.akhbulatov.discusim.data.forum.ForumRepositoryImpl
 import com.akhbulatov.discusim.data.session.SessionRepositoryImpl
 import com.akhbulatov.discusim.data.thread.ThreadRepositoryImpl
@@ -11,6 +12,7 @@ import com.akhbulatov.discusim.data.user.UserRepositoryImpl
 import com.akhbulatov.discusim.domain.global.repositories.ActivityRepository
 import com.akhbulatov.discusim.domain.global.repositories.CommentRepository
 import com.akhbulatov.discusim.domain.global.repositories.FollowerRepository
+import com.akhbulatov.discusim.domain.global.repositories.FollowingRepository
 import com.akhbulatov.discusim.domain.global.repositories.ForumRepository
 import com.akhbulatov.discusim.domain.global.repositories.SessionRepository
 import com.akhbulatov.discusim.domain.global.repositories.ThreadRepository
@@ -53,4 +55,8 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindFollowerRepository(repository: FollowerRepositoryImpl): FollowerRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFollowingRepository(repository: FollowingRepositoryImpl): FollowingRepository
 }

@@ -71,6 +71,7 @@
     <string name="user_flow_comments_tab">Comments</string>
     <string name="user_flow_forums_tab">Forums</string>
     <string name="user_flow_followers_tab">Followers</string>
+    <string name="user_flow_following_tab">Following</string>
 
     <!-- User Details -->
     <string name="user_details_username">\@%s</string>

@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.data.global.network
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.comment.CommentsResponse
 import com.akhbulatov.discusim.data.follower.FollowersResponse
+import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
@@ -68,6 +69,12 @@ interface DisqusApi {
         @Query("user") userId: Long,
         @Query("cursor") cursor: String?
     ): Single<FollowersResponse>
+
+    @GET("users/listFollowing.json")
+    fun getUserFollowing(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?
+    ): Single<FollowingResponse>
     // --- Users --- //
 
     // --- Forum --- //
