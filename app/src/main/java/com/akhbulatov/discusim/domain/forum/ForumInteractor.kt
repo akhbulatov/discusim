@@ -13,6 +13,9 @@ class ForumInteractor @Inject constructor(
     fun getMyFollowingForums(cursor: String?): Single<PagedList<Forum>> =
         forumRepository.getMyFollowingForums(cursor)
 
+    fun getUserFollowingForums(userId: Long, cursor: String?): Single<PagedList<Forum>> =
+        forumRepository.getUserFollowingForums(userId, cursor)
+
     fun getForumDetails(forumId: String): Single<Forum> =
         forumRepository.getForumDetails(forumId)
 }

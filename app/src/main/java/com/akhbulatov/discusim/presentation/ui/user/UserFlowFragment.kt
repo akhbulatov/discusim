@@ -42,6 +42,7 @@ class UserFlowFragment : FlowFragment() {
             0 -> getString(R.string.user_flow_details_tab)
             1 -> getString(R.string.user_flow_activity_tab)
             2 -> getString(R.string.user_flow_comments_tab)
+            3 -> getString(R.string.user_flow_forums_tab)
             else -> throw IllegalArgumentException()
         }
 
@@ -49,10 +50,11 @@ class UserFlowFragment : FlowFragment() {
             0 -> Screens.UserDetails(userId).fragment
             1 -> Screens.UserActivity(userId).fragment
             2 -> Screens.UserComments(userId).fragment
+            3 -> Screens.UserForums(userId).fragment
             else -> throw IllegalArgumentException()
         }
 
-        override fun getCount(): Int = 3
+        override fun getCount(): Int = 4
     }
 
     companion object {

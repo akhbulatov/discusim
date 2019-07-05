@@ -7,6 +7,8 @@ import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragmen
 import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsModule
 import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsModule
+import com.akhbulatov.discusim.presentation.ui.user.forums.UserForumsFragment
+import com.akhbulatov.discusim.presentation.ui.user.forums.UserForumsModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -23,4 +25,8 @@ abstract class UserFlowModule {
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [UserCommentsModule::class])
     abstract fun contributeUserCommentsFragment(): UserCommentsFragment
+
+    @FlowChildFragmentScope
+    @ContributesAndroidInjector(modules = [UserForumsModule::class])
+    abstract fun contributeUserForumsFragment(): UserForumsFragment
 }

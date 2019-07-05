@@ -27,6 +27,18 @@ class ForumRepositoryImpl @Inject constructor(
             .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
+    override fun getUserFollowingForums(userId: Long, cursor: String?): Single<PagedList<Forum>> =
+        api.getFollowingForums(
+            userId,
+            cursor,
+            listOf(
+                RequestParams.Forum.FOLLOWS_FORUM,
+                RequestParams.Forum.COUNTERS
+            )
+        )
+            .map { forumResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
     override fun getForumDetails(forumId: String): Single<Forum> =
         api.getForumDetails(
             forumId,
