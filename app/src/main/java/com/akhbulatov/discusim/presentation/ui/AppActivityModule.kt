@@ -10,6 +10,8 @@ import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowModule
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowModule
+import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
+import com.akhbulatov.discusim.presentation.ui.user.UserFlowModule
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -33,4 +35,8 @@ abstract class AppActivityModule {
     @FlowFragmentScope
     @ContributesAndroidInjector(modules = [ForumFlowModule::class, FlowNavigationModule::class])
     abstract fun contributeForumFlowFragment(): ForumFlowFragment
+
+    @FlowFragmentScope
+    @ContributesAndroidInjector(modules = [UserFlowModule::class, FlowNavigationModule::class])
+    abstract fun contributeUserFlowFragment(): UserFlowFragment
 }

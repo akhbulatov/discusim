@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.akhbulatov.discusim.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -24,9 +26,24 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
 fun Context.color(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)
 
 fun Context.getTintDrawable(@DrawableRes drawableRes: Int, @ColorRes colorRes: Int): Drawable {
-    val drawable = this.getDrawable(drawableRes)!!
-    drawable.setTint(this.color(colorRes))
-    return drawable
+    val mutableDrawable = getDrawable(drawableRes)!!.mutate()
+    mutableDrawable.setTint(this.color(colorRes))
+    return mutableDrawable
+}
+
+fun TextView.setTintStartDrawable(@ColorRes colorRes: Int) {
+    val mutableDrawable = compoundDrawablesRelative.first()!!.mutate()
+    mutableDrawable.setTint(context.color(colorRes))
+}
+
+fun TextView.setTintEndDrawable(@ColorRes colorRes: Int) {
+    val mutableDrawable = compoundDrawablesRelative[2]!!.mutate()
+    mutableDrawable.setTint(context.color(colorRes))
+}
+
+fun TextView.showTextIfNotEmpty(text: String?) {
+    this.text = text
+    isVisible = !text.isNullOrBlank()
 }
 
 fun ImageView.loadImage(ctx: Context? = null, url: String) {
@@ -53,7 +70,7 @@ fun MaterialButton.setFollow(isFollowing: Boolean) {
     setText(textResId)
 }
 
-fun MaterialButton.setVote(isUpvoted: Boolean) {
+fun MaterialButton.setThreadVote(isUpvoted: Boolean) {
     val backgroundColor = if (isUpvoted) R.color.button_upvoted_background else R.color.button_thread_background
     val iconTintColor = if (isUpvoted) R.color.button_thread_upvoted_icon else R.color.button_thread_icon
     val textColor = if (isUpvoted) R.color.button_thread_upvoted_text else R.color.button_thread_text

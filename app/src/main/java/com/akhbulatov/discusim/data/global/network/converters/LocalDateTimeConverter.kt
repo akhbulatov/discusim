@@ -5,5 +5,5 @@ import org.threeten.bp.LocalDateTime
 
 class LocalDateTimeConverter {
     @FromJson
-    fun fromJson(json: String): LocalDateTime = LocalDateTime.parse(json)
+    fun fromJson(date: String): LocalDateTime = LocalDateTime.parse(date)
 }

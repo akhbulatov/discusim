@@ -5,7 +5,7 @@ import org.threeten.bp.LocalDateTime
 data class Action(
     val id: Long,
     val threadVote: ThreadVote? = null,
-    val comment: Comment? = null,
+    val comment: CommentPreview? = null,
     val type: Type,
     val createdAt: LocalDateTime
 ) {
@@ -14,7 +14,7 @@ data class Action(
         val id: Long,
         val thread: ThreadPreview,
         val forum: ForumPreview,
-        val author: User
+        val author: UserPreview
     )
 
     enum class Type {

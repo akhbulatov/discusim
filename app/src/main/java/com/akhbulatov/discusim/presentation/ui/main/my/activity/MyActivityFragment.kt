@@ -26,7 +26,9 @@ class MyActivityFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: MyActivityViewModel
-    private val activityAdapter by lazy { UserActivityAdapter() }
+    private val activityAdapter by lazy {
+        UserActivityAdapter { viewModel.onUserClicked(it) }
+    }
     private val onScrollListener by lazy {
         EndlessScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextActivityPage() }

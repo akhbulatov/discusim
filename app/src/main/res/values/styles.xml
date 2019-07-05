@@ -30,6 +30,10 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
+    <style name="AppToolbar.WithTabs">
+        <item name="android:elevation">0dp</item>
+    </style>
+
     <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="tabIndicatorColor">?colorSecondary</item>
         <item name="tabSelectedTextColor">?colorSecondary</item>
@@ -91,6 +95,25 @@
         <item name="iconTint">?colorSecondary</item>
         <item name="strokeColor">?colorSecondary</item>
         <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="UserDetailsText" parent="Text.Secondary">
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="CommentVoteText" parent="Text.Primary">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="CommentVoteText.Upvote">
+        <item name="android:drawableEnd">@drawable/ic_arrow_upward</item>
+    </style>
+
+    <style name="CommentVoteText.Downvote">
+        <item name="android:drawableEnd">@drawable/ic_arrow_downward</item>
     </style>
 
 </resources>

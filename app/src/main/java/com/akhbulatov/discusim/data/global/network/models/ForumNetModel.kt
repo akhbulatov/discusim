@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.data.global.network.models
 
+import com.akhbulatov.discusim.data.global.network.utils.HexColor
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,10 +23,12 @@ data class ForumNetModel(
     data class ChannelNetModel(
         @Json(name = "id") val id: String,
         @Json(name = "avatar") val avatar: String,
+        @Json(name = "banner") val banner: String?,
+        @Json(name = "bannerColorHex") @HexColor val bannerColorHex: Int,
         @Json(name = "options") val options: OptionsNetModel
     ) {
 
         @JsonClass(generateAdapter = true)
-        data class OptionsNetModel(@Json(name = "alertBackground") val alertBackground: String)
+        data class OptionsNetModel(@Json(name = "alertBackground") val alertBackground: String?)
     }
 }

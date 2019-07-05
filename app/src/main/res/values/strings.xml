@@ -65,6 +65,19 @@
     <string name="forum_threads_container_hot">Hot</string>
     <string name="forum_threads_container_popular">Popular</string>
 
+    <!-- User Flow -->
+    <string name="user_flow_details_tab">Details</string>
+    <string name="user_flow_activity_tab">Activity</string>
+    <string name="user_flow_comments_tab">Comments</string>
+    <string name="user_flow_forums_tab">Forums</string>
+    <string name="user_flow_followers_tab">Followers</string>
+    <string name="user_flow_following_tab">Following</string>
+
+    <!-- User Details -->
+    <string name="user_details_username">\@%s</string>
+    <string name="user_details_num_upvotes">&lt;b>%d&lt;/b> Upvotes</string>
+    <string name="user_details_joined_date">Joined %s</string>
+
     <!-- List Items. Start -->
 
     <!-- Item User Activity -->

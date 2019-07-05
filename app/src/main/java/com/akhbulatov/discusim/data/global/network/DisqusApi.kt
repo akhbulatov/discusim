@@ -1,11 +1,15 @@
 package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
+import com.akhbulatov.discusim.data.comment.CommentsResponse
+import com.akhbulatov.discusim.data.follower.FollowersResponse
+import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
+import com.akhbulatov.discusim.data.user.UserResponse
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -35,6 +39,11 @@ interface DisqusApi {
     // --- Auth --- //
 
     // --- Users --- //
+    @GET("users/details.json")
+    fun getUserDetails(
+        @Query("user") userId: Long
+    ): Single<UserResponse>
+
     @GET("users/listActivity.json")
     fun getUserActivity(
         @Query("user") userId: Long?,
@@ -47,6 +56,25 @@ interface DisqusApi {
         @Query("cursor") cursor: String?,
         @Query("attach") attach: List<String>
     ): Single<ForumsResponse>
+
+    @GET("users/listPosts.json")
+    fun getUserComments(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?,
+        @Query("related") related: List<String>
+    ): Single<CommentsResponse>
+
+    @GET("users/listFollowers.json")
+    fun getUserFollowers(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?
+    ): Single<FollowersResponse>
+
+    @GET("users/listFollowing.json")
+    fun getUserFollowing(
+        @Query("user") userId: Long,
+        @Query("cursor") cursor: String?
+    ): Single<FollowingResponse>
     // --- Users --- //
 
     // --- Forum --- //

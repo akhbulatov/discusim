@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
+import com.akhbulatov.discusim.domain.global.models.UserPreview
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -18,7 +19,9 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import kotlinx.android.synthetic.main.item_user_activity.*
 
-class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class UserActivityAdapter(
+    private val onUserClickListener: (UserPreview) -> Unit
+) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
@@ -60,7 +63,13 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    class UserActivityViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    inner class UserActivityViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+        private lateinit var user: UserPreview
+
+        init {
+            authorImageView.setOnClickListener { onUserClickListener(user) }
+        }
+
         override fun bind(item: Any) {
             if (item is Action) {
                 val context = itemView.context
@@ -70,6 +79,8 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
 
                 if (item.threadVote != null) {
                     // Thread Vote
+                    user = item.threadVote.author
+
                     authorAvatarUrl = item.threadVote.author.avatarUrl
                     val upvotedThread = context.getString(
                         R.string.item_user_activity_upvoted_thread,
@@ -83,6 +94,8 @@ class UserActivityAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK)
                     )
                 } else if (item.comment != null) {
                     // Comment
+                    user = item.comment.author
+
                     authorAvatarUrl = item.comment.author.avatarUrl
                     val commented = context.getString(
                         R.string.item_user_activity_commented_thread,

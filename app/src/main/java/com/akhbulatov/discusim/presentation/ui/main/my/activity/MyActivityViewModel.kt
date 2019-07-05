@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.activity.ActivityInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Action
+import com.akhbulatov.discusim.domain.global.models.UserPreview
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
+import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import javax.inject.Inject
 
@@ -85,6 +87,8 @@ class MyActivityViewModel @Inject constructor(
 
     fun refreshActivity() = paginator.refresh()
     fun loadNextActivityPage() = paginator.loadNewPage()
+
+    fun onUserClicked(user: UserPreview) = router.startFlow(Screens.UserFlow(user.id))
 
     override fun onCleared() {
         paginator.release()

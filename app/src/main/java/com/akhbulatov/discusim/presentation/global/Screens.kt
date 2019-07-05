@@ -13,6 +13,13 @@ import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
+import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
+import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
+import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragment
+import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.user.followers.UserFollowersFragment
+import com.akhbulatov.discusim.presentation.ui.user.following.UserFollowingFragment
+import com.akhbulatov.discusim.presentation.ui.user.forums.UserForumsFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
@@ -71,5 +78,47 @@ object Screens {
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
+    }
+
+    data class UserFlow(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserFlowFragment.newInstance(userId)
+    }
+
+    data class UserDetails(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserDetailsFragment.newInstance(userId)
+    }
+
+    data class UserActivity(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserActivityFragment.newInstance(userId)
+    }
+
+    data class UserComments(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserCommentsFragment.newInstance(userId)
+    }
+
+    data class UserForums(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserForumsFragment.newInstance(userId)
+    }
+
+    data class UserFollowers(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserFollowersFragment.newInstance(userId)
+    }
+
+    data class UserFollowing(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserFollowingFragment.newInstance(userId)
     }
 }

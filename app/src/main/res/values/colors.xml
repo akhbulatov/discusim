@@ -26,12 +26,17 @@
     <color name="button_thread_icon">@color/accent</color>
     <color name="button_thread_text">@color/text_primary</color>
 
+    <color name="button_comment_no_vote">@color/black</color>
+    <color name="button_comment_upvote">@color/blue_dodger</color>
+    <color name="button_comment_downvote">@color/red_froly</color>
+
     <color name="chip_topic_text">@color/green_fern</color>
     <color name="chip_topic_background">@color/transparent</color>
     <color name="chip_topic_border">@color/green_fern</color>
 
     <color name="divider">@color/gray_athens</color>
     <color name="progress_auth_background">@color/white_transparent_50</color>
+    <color name="user_details_border">@color/gray_silver</color>
 
     <!-- Palette Colors. Start -->
     <!-- Colors for "internal use" only -->

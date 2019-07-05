@@ -14,7 +14,7 @@ fun Throwable.userMessage(resourceManager: ResourceManager): String = when (this
     else -> resourceManager.getString(R.string.error_unknown)
 }
 
-private val DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+private val MEDIUM_DATE_FORMATTER = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
 
 fun LocalDateTime.getHumanCreatedTime(resources: Resources): String {
     val duration = Duration.between(this, LocalDateTime.now())
@@ -35,6 +35,8 @@ fun LocalDateTime.getHumanCreatedTime(resources: Resources): String {
             val days = duration.toDays().toInt()
             resources.getQuantityString(R.plurals.time_days, days, days)
         }
-        else -> this.format(DATE_FORMATTER)
+        else -> this.format(MEDIUM_DATE_FORMATTER)
     }
 }
+
+fun LocalDateTime.getMediumDate(): String = this.format(MEDIUM_DATE_FORMATTER)
