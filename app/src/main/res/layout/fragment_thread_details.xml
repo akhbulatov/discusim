@@ -52,6 +52,7 @@
                         android:id="@+id/authorImageView"
                         android:layout_width="@dimen/avatar_size"
                         android:layout_height="@dimen/avatar_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@tools:sample/avatars" />
