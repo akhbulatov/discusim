@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
+import com.akhbulatov.discusim.data.thread.ThreadResponse
 import com.akhbulatov.discusim.data.thread.ThreadsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
 import com.akhbulatov.discusim.data.user.UserResponse
@@ -91,6 +92,13 @@ interface DisqusApi {
     // --- Forum --- //
 
     // --- Threads --- //
+    @GET("threads/details.json")
+    fun getThreadDetails(
+        @Query("thread") threadId: Long,
+        @Query("related") related: List<String>,
+        @Query("attach") attach: List<String>
+    ): Single<ThreadResponse>
+
     @GET("threads/list.json")
     fun getThreads(
         @Query("forum") forumId: String,

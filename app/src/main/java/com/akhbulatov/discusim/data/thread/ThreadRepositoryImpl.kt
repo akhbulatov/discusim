@@ -15,6 +15,15 @@ class ThreadRepositoryImpl @Inject constructor(
     private val schedulers: SchedulersProvider
 ) : ThreadRepository {
 
+    override fun getThreadDetails(threadId: Long): Single<Thread> =
+        api.getThreadDetails(
+            threadId,
+            listOf(RequestParams.Thread.AUTHOR),
+            listOf(RequestParams.Thread.TOPICS)
+        )
+            .map { threadResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
     override fun getThreads(forumId: String): Single<PagedList<Thread>> =
         api.getThreads(
             forumId,

@@ -19,7 +19,9 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.setThreadVote
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_thread.*
 
-class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class ThreadsAdapter(
+    private val onItemClickListener: (Thread) -> Unit
+) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
@@ -61,11 +63,18 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    class ThreadViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    inner class ThreadViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+        private lateinit var thread: Thread
+
+        init {
+            itemView.setOnClickListener { onItemClickListener(thread) }
+        }
+
         override fun bind(item: Any) {
             if (item is Thread) {
-                val context = itemView.context
+                thread = item
 
+                val context = itemView.context
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
                 dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)

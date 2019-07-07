@@ -65,6 +65,9 @@
     <string name="forum_threads_container_hot">Hot</string>
     <string name="forum_threads_container_popular">Popular</string>
 
+    <!-- Thread Details -->
+    <string name="thread_details_username">\@%s</string>
+
     <!-- User Flow -->
     <string name="user_flow_details_tab">Details</string>
     <string name="user_flow_activity_tab">Activity</string>

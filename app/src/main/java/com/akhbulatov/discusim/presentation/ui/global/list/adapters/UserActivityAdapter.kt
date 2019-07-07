@@ -20,7 +20,8 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import kotlinx.android.synthetic.main.item_user_activity.*
 
 class UserActivityAdapter(
-    private val onUserClickListener: (UserPreview) -> Unit
+    private val onUserClickListener: (UserPreview) -> Unit,
+    private val onItemClickListener: (Action) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
@@ -65,13 +66,17 @@ class UserActivityAdapter(
 
     inner class UserActivityViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
         private lateinit var user: UserPreview
+        private lateinit var action: Action
 
         init {
             authorImageView.setOnClickListener { onUserClickListener(user) }
+            itemView.setOnClickListener { onItemClickListener(action) }
         }
 
         override fun bind(item: Any) {
             if (item is Action) {
+                action = item
+
                 val context = itemView.context
                 var authorAvatarUrl = ""
                 var activity = ""

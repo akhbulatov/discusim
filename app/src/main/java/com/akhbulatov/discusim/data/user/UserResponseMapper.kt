@@ -32,6 +32,7 @@ class UserResponseMapper @Inject constructor() {
             UserMiddle(
                 it.id.toLong(),
                 it.name,
+                it.username,
                 it.avatar.permalink
             )
         }

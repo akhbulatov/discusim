@@ -10,6 +10,9 @@ class ThreadInteractor @Inject constructor(
     private val threadRepository: ThreadRepository
 ) {
 
+    fun getThreadDetails(threadId: Long): Single<Thread> =
+        threadRepository.getThreadDetails(threadId)
+
     fun getThreads(forumId: String): Single<PagedList<Thread>> =
         threadRepository.getThreads(forumId)
 

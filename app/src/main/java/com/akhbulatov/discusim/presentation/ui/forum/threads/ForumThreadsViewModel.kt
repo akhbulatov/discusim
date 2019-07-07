@@ -9,6 +9,7 @@ import com.akhbulatov.discusim.domain.thread.ThreadInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
+import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
 import javax.inject.Inject
@@ -99,6 +100,8 @@ class ForumThreadsViewModel @Inject constructor(
 
     fun refreshThreads() = paginator.refresh()
     fun loadNextThreadsPage() = paginator.loadNewPage()
+
+    fun onThreadClicked(thread: Thread) = router.navigateTo(Screens.ThreadDetails(thread.id))
 
     override fun onCleared() {
         paginator.release()

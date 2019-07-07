@@ -1,6 +1,8 @@
 package com.akhbulatov.discusim.presentation.ui.user
 
 import com.akhbulatov.discusim.di.FlowChildFragmentScope
+import com.akhbulatov.discusim.presentation.ui.thread.details.ThreadDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.thread.details.ThreadDetailsModule
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityModule
 import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragment
@@ -41,4 +43,8 @@ abstract class UserFlowModule {
     @FlowChildFragmentScope
     @ContributesAndroidInjector(modules = [UserFollowingModule::class])
     abstract fun contributeUserFollowingFragment(): UserFollowingFragment
+
+    @FlowChildFragmentScope
+    @ContributesAndroidInjector(modules = [ThreadDetailsModule::class])
+    abstract fun contributeThreadDetailsFragment(): ThreadDetailsFragment
 }

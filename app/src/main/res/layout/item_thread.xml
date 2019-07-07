@@ -29,20 +29,20 @@
 
             <TextView
                 android:id="@+id/authorTextView"
-                style="@style/Text.Primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_normal"
+                android:textAppearance="@style/Text.Primary"
                 app:layout_constraintStart_toEndOf="@id/authorImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@tools:sample/first_names" />
 
             <TextView
                 android:id="@+id/dateTextView"
-                style="@style/Text.Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_micro"
+                android:textAppearance="@style/Text.Date"
                 app:layout_constraintStart_toStartOf="@id/authorTextView"
                 app:layout_constraintTop_toBottomOf="@id/authorTextView"
                 tools:text="@tools:sample/date/ddmmyy" />

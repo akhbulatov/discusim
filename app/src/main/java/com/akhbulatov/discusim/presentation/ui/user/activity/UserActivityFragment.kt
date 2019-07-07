@@ -27,7 +27,10 @@ class UserActivityFragment : BaseFragment() {
 
     private lateinit var viewModel: UserActivityViewModel
     private val activityAdapter by lazy {
-        UserActivityAdapter { viewModel.onUserClicked(it) }
+        UserActivityAdapter(
+            { viewModel.onUserClicked(it) },
+            { viewModel.onActionClicked(it) }
+        )
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)

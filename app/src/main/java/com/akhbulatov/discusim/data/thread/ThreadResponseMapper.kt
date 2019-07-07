@@ -14,6 +14,8 @@ class ThreadResponseMapper @Inject constructor(
     private val topicResponseMapper: TopicResponseMapper
 ) {
 
+    fun map(response: ThreadResponse): Thread = map(response.thread)
+
     fun map(response: ThreadsResponse): PagedList<Thread> {
         val threads = response.threads.map { map(it) }
         return PagedList(response.cursor?.next, threads)
@@ -22,7 +24,7 @@ class ThreadResponseMapper @Inject constructor(
     fun map(model: ThreadNetModel): Thread =
         model.let {
             Thread(
-                it.id,
+                it.id.toLong(),
                 it.title,
                 if (it.message.isNotEmpty()) it.message else null,
                 it.media?.let { list -> list.map { media -> Thread.Media(media.url) } } ?: emptyList(),

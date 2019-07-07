@@ -13,6 +13,7 @@ import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
+import com.akhbulatov.discusim.presentation.ui.thread.details.ThreadDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragment
@@ -78,6 +79,12 @@ object Screens {
         val threadType: ThreadType = ThreadType.LATEST
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
+    }
+
+    data class ThreadDetails(
+        val threadId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ThreadDetailsFragment.newInstance(threadId)
     }
 
     data class UserFlow(

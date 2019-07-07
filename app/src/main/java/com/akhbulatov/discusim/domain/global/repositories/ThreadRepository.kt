@@ -5,6 +5,7 @@ import com.akhbulatov.discusim.domain.global.models.Thread
 import io.reactivex.Single
 
 interface ThreadRepository {
+    fun getThreadDetails(threadId: Long): Single<Thread>
     fun getThreads(forumId: String): Single<PagedList<Thread>>
     fun getHotThreads(forumId: String): Single<PagedList<Thread>>
     fun getPopularThreads(forumId: String): Single<PagedList<Thread>>

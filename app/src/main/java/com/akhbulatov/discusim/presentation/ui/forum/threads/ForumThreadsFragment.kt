@@ -28,7 +28,9 @@ class ForumThreadsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ForumThreadsViewModel
-    private val threadsAdapter by lazy { ThreadsAdapter() }
+    private val threadsAdapter by lazy {
+        ThreadsAdapter { viewModel.onThreadClicked(it) }
+    }
     private val onScrollListener by lazy {
         EndlessScrollListener(threadsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextThreadsPage() }
