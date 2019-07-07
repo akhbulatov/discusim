@@ -79,10 +79,10 @@ class ThreadsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                         val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
                             text = it.name
                         }
-                        topicsChipGroup.addView(topicChip)
+                        topicChipGroup.addView(topicChip)
                     }
                 } else {
-                    topicsChipGroup.isVisible = false
+                    topicChipGroup.isVisible = false
                 }
                 titleTextView.text = item.title
                 with(voteButton) {
