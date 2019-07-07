@@ -51,7 +51,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <FrameLayout
-                android:id="@+id/container"
+                android:id="@+id/forumContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -63,6 +63,6 @@
         android:id="@+id/forumBottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/forum_flow_bottom_nav" />
+        app:menu="@menu/forum_host_bottom_nav" />
 
 </LinearLayout>

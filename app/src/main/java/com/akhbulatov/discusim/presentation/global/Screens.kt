@@ -5,16 +5,19 @@ import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
 import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
-import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.forum.ForumHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.topics.ForumTopicsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionType
-import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsFragment
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsHostFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
+import com.akhbulatov.discusim.presentation.ui.main.MainHostFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
+import com.akhbulatov.discusim.presentation.ui.user.UserHostFragment
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
 import com.akhbulatov.discusim.presentation.ui.user.comments.UserCommentsFragment
 import com.akhbulatov.discusim.presentation.ui.user.details.UserDetailsFragment
@@ -36,6 +39,10 @@ object Screens {
         override fun getFragment(): Fragment = MainFlowFragment()
     }
 
+    object MainHost : SupportAppScreen() {
+        override fun getFragment(): Fragment = MainHostFragment()
+    }
+
     object MyActivity : SupportAppScreen() {
         override fun getFragment(): Fragment = MyActivityFragment()
     }
@@ -50,10 +57,16 @@ object Screens {
         override fun getFragment(): Fragment = ForumFlowFragment.newInstance(forumId)
     }
 
-    data class ForumDetailsContainer(
+    data class ForumHost(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumDetailsContainerFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ForumHostFragment.newInstance(forumId)
+    }
+
+    data class ForumDetailsHost(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumDetailsHostFragment.newInstance(forumId)
     }
 
     data class ForumDetails(
@@ -68,10 +81,10 @@ object Screens {
         override fun getFragment(): Fragment = ForumTopicsFragment.newInstance(forumId)
     }
 
-    data class ForumDiscussionsContainer(
+    data class ForumDiscussionsHost(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumDiscussionsContainerFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ForumDiscussionsHostFragment.newInstance(forumId)
     }
 
     data class ForumDiscussions(
@@ -91,6 +104,12 @@ object Screens {
         val userId: Long
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserFlowFragment.newInstance(userId)
+    }
+
+    data class UserHost(
+        val userId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = UserHostFragment.newInstance(userId)
     }
 
     data class UserDetails(

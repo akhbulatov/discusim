@@ -17,3 +17,7 @@ annotation class FlowChildFragmentScope
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class Flow2ChildFragmentScope
+
+@Scope
+@Retention(AnnotationRetention.RUNTIME)
+annotation class Flow3ChildFragmentScope

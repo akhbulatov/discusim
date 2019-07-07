@@ -13,5 +13,5 @@ abstract class BaseFragment : DaggerFragment() {
         return inflater.inflate(layoutRes, container, false)
     }
 
-    abstract fun onBackPressed()
+    open fun onBackPressed() {}
 }
