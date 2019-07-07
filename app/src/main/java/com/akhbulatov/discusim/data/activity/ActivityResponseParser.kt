@@ -2,22 +2,22 @@ package com.akhbulatov.discusim.data.activity
 
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
-import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_ThreadVoteNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_DiscussionVoteNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModelJsonAdapter
-import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
-import com.akhbulatov.discusim.data.global.network.responses.BaseResponseJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponseJsonAdapter
 import com.squareup.moshi.Moshi
 import org.json.JSONObject
 import javax.inject.Inject
 
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
-    private val baseResponseAdapter = BaseResponseJsonAdapter(moshi)
+    private val cursorResponseAdapter = CursorResponseJsonAdapter(moshi)
     private val actionAdapter = ActionNetModelJsonAdapter(moshi)
-    private val threadVoteAdapter = ActionNetModel_ThreadVoteNetModelJsonAdapter(moshi)
+    private val discussionVoteAdapter = ActionNetModel_DiscussionVoteNetModelJsonAdapter(moshi)
     private val commentAdapter = CommentPreviewNetModelJsonAdapter(moshi)
 
     fun parse(activityJson: String): Pair<CursorNetModel, List<ActionNetModel>> {
-        val cursor = baseResponseAdapter.fromJson(activityJson)!!.cursor
+        val cursor = cursorResponseAdapter.fromJson(activityJson)!!.cursor
         val actions = arrayListOf<ActionNetModel>()
 
         val root = JSONObject(activityJson)
@@ -29,7 +29,7 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
             val action = actionAdapter.fromJson(actionJson.toString())!!
 
             val obj: Any? = when (action.type) {
-                ActivityType.THREAD_LIKE.type -> threadVoteAdapter.fromJson(objJson)!!
+                ActivityType.THREAD_LIKE.type -> discussionVoteAdapter.fromJson(objJson)!!
                 ActivityType.POST.type -> commentAdapter.fromJson(objJson)
                 else -> null
             }

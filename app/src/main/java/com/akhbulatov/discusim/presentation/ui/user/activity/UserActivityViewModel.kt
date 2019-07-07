@@ -92,6 +92,7 @@ class UserActivityViewModel @Inject constructor(
     fun loadNextActivityPage() = paginator.loadNewPage()
 
     fun onUserClicked(user: UserPreview) = router.startFlow(Screens.UserFlow(user.id))
+    fun onActionClicked(action: Action) = router.navigateTo(Screens.DiscussionDetails(action.id))
 
     override fun onCleared() {
         paginator.release()

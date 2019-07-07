@@ -19,7 +19,7 @@ class CommentRepositoryImpl @Inject constructor(
         api.getUserComments(
             userId,
             cursor,
-            listOf(RequestParams.Comment.THREAD)
+            listOf(RequestParams.Comment.DISCUSSION)
         )
             .map { commentResponseMapper.map(it) }
             .subscribeOn(schedulers.io())

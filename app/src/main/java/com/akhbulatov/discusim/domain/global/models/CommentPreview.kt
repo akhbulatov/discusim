@@ -4,5 +4,5 @@ data class CommentPreview(
     val id: Long,
     val message: String,
     val author: UserPreview,
-    val thread: ThreadPreview
+    val discussion: DiscussionPreview
 )

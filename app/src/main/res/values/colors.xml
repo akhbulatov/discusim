@@ -20,11 +20,11 @@
     <color name="button_following">@color/green_fern</color>
 
     <color name="button_upvoted_background">@color/red_froly</color>
-    <color name="button_thread_upvoted_icon">@color/white</color>
-    <color name="button_thread_upvoted_text">@color/white</color>
-    <color name="button_thread_background">@color/transparent</color>
-    <color name="button_thread_icon">@color/accent</color>
-    <color name="button_thread_text">@color/text_primary</color>
+    <color name="button_discussion_upvoted_icon">@color/white</color>
+    <color name="button_discussion_upvoted_text">@color/white</color>
+    <color name="button_discussion_background">@color/transparent</color>
+    <color name="button_discussion_icon">@color/accent</color>
+    <color name="button_discussion_text">@color/text_primary</color>
 
     <color name="button_comment_no_vote">@color/black</color>
     <color name="button_comment_upvote">@color/blue_dodger</color>

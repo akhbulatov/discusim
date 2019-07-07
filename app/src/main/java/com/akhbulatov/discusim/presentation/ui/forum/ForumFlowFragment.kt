@@ -17,7 +17,7 @@ class ForumFlowFragment : FlowFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_flow
 
     private lateinit var forumDetailsTabScreen: SupportAppScreen
-    private lateinit var forumThreadsTabScreen: SupportAppScreen
+    private lateinit var forumDiscussionsTabScreen: SupportAppScreen
 
     private val currentTabFragment: BaseFragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? BaseFragment
@@ -26,7 +26,7 @@ class ForumFlowFragment : FlowFragment() {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
         forumDetailsTabScreen = Screens.ForumDetailsContainer(forumId)
-        forumThreadsTabScreen = Screens.ForumThreadsContainer(forumId)
+        forumDiscussionsTabScreen = Screens.ForumDiscussionsContainer(forumId)
 
         val forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
         forumSharedViewModel.forum.observe(this, Observer { forum ->
@@ -48,7 +48,7 @@ class ForumFlowFragment : FlowFragment() {
         forumBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_forum_details -> forumDetailsTabScreen
-                R.id.menu_bottom_nav_forum_threads -> forumThreadsTabScreen
+                R.id.menu_bottom_nav_forum_discussions -> forumDiscussionsTabScreen
                 else -> throw IllegalArgumentException()
             }
             switchTab(tabScreen)
@@ -56,7 +56,7 @@ class ForumFlowFragment : FlowFragment() {
         }
 
         val tabScreen = when (currentTabFragment?.tag) {
-            forumThreadsTabScreen.screenKey -> forumThreadsTabScreen
+            forumDiscussionsTabScreen.screenKey -> forumDiscussionsTabScreen
             else -> forumDetailsTabScreen // Первый таб, открываемый по умолчанию
         }
         switchTab(tabScreen)

@@ -8,5 +8,5 @@ data class CommentPreviewNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "message") val message: String,
     @Json(name = "author") val author: UserPreviewNetModel,
-    @Json(name = "thread") val thread: ThreadPreviewNetModel
+    @Json(name = "thread") val thread: DiscussionPreviewNetModel
 )

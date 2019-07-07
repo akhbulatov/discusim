@@ -9,5 +9,5 @@ data class Comment(
     val createdAt: LocalDateTime,
     val upvotes: Int,
     val voteType: VoteType,
-    val thread: ThreadPreview
+    val discussion: DiscussionPreview
 )

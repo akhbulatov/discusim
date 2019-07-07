@@ -36,7 +36,7 @@ class ForumDetailsViewModel @Inject constructor(
     }
 
     fun loadForumDetails() {
-        subscriptions += forumInteractor.getForumDetails(forumId)
+        disposables += forumInteractor.getForumDetails(forumId)
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _forum.value = Pair(false, null)

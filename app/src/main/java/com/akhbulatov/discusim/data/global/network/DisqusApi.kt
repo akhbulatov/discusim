@@ -2,12 +2,13 @@ package com.akhbulatov.discusim.data.global.network
 
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.data.comment.CommentsResponse
+import com.akhbulatov.discusim.data.discussion.DiscussionResponse
+import com.akhbulatov.discusim.data.discussion.DiscussionsResponse
 import com.akhbulatov.discusim.data.follower.FollowersResponse
 import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
-import com.akhbulatov.discusim.data.thread.ThreadsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
 import com.akhbulatov.discusim.data.user.UserResponse
 import io.reactivex.Single
@@ -90,24 +91,31 @@ interface DisqusApi {
     ): Single<TopicsResponse>
     // --- Forum --- //
 
-    // --- Threads --- //
+    // --- Discussions --- //
+    @GET("threads/details.json")
+    fun getDiscussionDetails(
+        @Query("thread") discussionId: Long,
+        @Query("related") related: List<String>,
+        @Query("attach") attach: List<String>
+    ): Single<DiscussionResponse>
+
     @GET("threads/list.json")
-    fun getThreads(
+    fun getDiscussions(
         @Query("forum") forumId: String,
         @Query("related") related: List<String>,
         @Query("attach") attach: List<String>
-    ): Single<ThreadsResponse>
+    ): Single<DiscussionsResponse>
 
     @GET("threads/listHot.json")
-    fun getHotThreads(
+    fun getHotDiscussions(
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
-    ): Single<ThreadsResponse>
+    ): Single<DiscussionsResponse>
 
     @GET("threads/listPopular.json")
-    fun getPopularThreads(
+    fun getPopularDiscussions(
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
-    ): Single<ThreadsResponse>
-    // --- Threads --- //
+    ): Single<DiscussionsResponse>
+    // --- Discussions --- //
 }

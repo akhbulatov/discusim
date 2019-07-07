@@ -3,13 +3,14 @@ package com.akhbulatov.discusim.presentation.global
 import androidx.fragment.app.Fragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
+import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsContainerFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.topics.ForumTopicsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsContainerFragment
-import com.akhbulatov.discusim.presentation.ui.forum.threads.ForumThreadsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.threads.ThreadType
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionType
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsContainerFragment
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
@@ -67,17 +68,23 @@ object Screens {
         override fun getFragment(): Fragment = ForumTopicsFragment.newInstance(forumId)
     }
 
-    data class ForumThreadsContainer(
+    data class ForumDiscussionsContainer(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumThreadsContainerFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ForumDiscussionsContainerFragment.newInstance(forumId)
     }
 
-    data class ForumThreads(
+    data class ForumDiscussions(
         val forumId: String,
-        val threadType: ThreadType = ThreadType.LATEST
+        val discussionType: DiscussionType = DiscussionType.LATEST
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumThreadsFragment.newInstance(forumId, threadType)
+        override fun getFragment(): Fragment = ForumDiscussionsFragment.newInstance(forumId, discussionType)
+    }
+
+    data class DiscussionDetails(
+        val discussionId: Long
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = DiscussionDetailsFragment.newInstance(discussionId)
     }
 
     data class UserFlow(

@@ -65,7 +65,7 @@ class ForumDetailsFragment : BaseFragment() {
             avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
             nameTextView.text = forum.name
             descriptionTextView.text = forum.description
-            numThreadsTextView.text = forum.numThreads.toString()
+            numDiscussionsTextView.text = forum.numDiscussions.toString()
             numFollowersTextView.text = forum.numFollowers.toString()
             followButton.setFollow(forum.isFollowing)
         }

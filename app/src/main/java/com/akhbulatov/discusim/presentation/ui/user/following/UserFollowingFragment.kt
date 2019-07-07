@@ -13,7 +13,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.UserMiddle
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UsersAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_user_following.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -28,7 +28,7 @@ class UserFollowingFragment : BaseFragment() {
 
     private lateinit var viewModel: UserFollowingViewModel
     private val usersAdapter by lazy {
-        UsersAdapter { viewModel.onFollowingClicked(it) }
+        UserAdapter { viewModel.onFollowingClicked(it) }
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(followingRecyclerView.layoutManager as LinearLayoutManager)

@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
-    protected val subscriptions = CompositeDisposable()
+    protected val disposables = CompositeDisposable()
 
     override fun onCleared() {
-        subscriptions.clear()
+        disposables.clear()
         super.onCleared()
     }
 

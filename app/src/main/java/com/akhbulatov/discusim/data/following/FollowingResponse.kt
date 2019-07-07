@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.data.following
 
-import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.models.UserMiddleNetModel
-import com.akhbulatov.discusim.data.global.network.responses.BaseResponse
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -10,4 +10,4 @@ import com.squareup.moshi.JsonClass
 class FollowingResponse(
     cursor: CursorNetModel?,
     @Json(name = "response") val following: List<UserMiddleNetModel>
-) : BaseResponse(cursor)
+) : CursorResponse(cursor)
