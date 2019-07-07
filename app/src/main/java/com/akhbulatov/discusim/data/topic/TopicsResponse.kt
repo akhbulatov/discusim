@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.data.topic
 
 import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.models.TopicNetModel
-import com.akhbulatov.discusim.data.global.network.responses.BaseResponse
+import com.akhbulatov.discusim.data.global.network.responses.CursorResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -10,4 +10,4 @@ import com.squareup.moshi.JsonClass
 class TopicsResponse(
     cursor: CursorNetModel?,
     @Json(name = "response") val topics: List<TopicNetModel>
-) : BaseResponse(cursor)
+) : CursorResponse(cursor)
