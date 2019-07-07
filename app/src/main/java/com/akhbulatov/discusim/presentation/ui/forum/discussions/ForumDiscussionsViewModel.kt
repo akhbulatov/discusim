@@ -1,11 +1,11 @@
-package com.akhbulatov.discusim.presentation.ui.forum.threads
+package com.akhbulatov.discusim.presentation.ui.forum.discussions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.akhbulatov.discusim.domain.discussion.DiscussionInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.Thread
-import com.akhbulatov.discusim.domain.thread.ThreadInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
@@ -14,15 +14,15 @@ import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ForumThreadsViewModel @Inject constructor(
+class ForumDiscussionsViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val threadInteractor: ThreadInteractor,
+    private val discussionInteractor: DiscussionInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
     private lateinit var forumId: String
-    private lateinit var threadType: ThreadType
+    private lateinit var discussionType: DiscussionType
 
     private val _emptyProgress = MutableLiveData<Boolean>()
     val emptyProgress: LiveData<Boolean> get() = _emptyProgress
@@ -33,8 +33,8 @@ class ForumThreadsViewModel @Inject constructor(
     private val _emptyData = MutableLiveData<Boolean>()
     val emptyData: LiveData<Boolean> get() = _emptyData
 
-    private val _threads = MutableLiveData<Pair<Boolean, List<Thread>>>()
-    val threads: LiveData<Pair<Boolean, List<Thread>>> get() = _threads
+    private val _discussions = MutableLiveData<Pair<Boolean, List<Discussion>>>()
+    val discussions: LiveData<Pair<Boolean, List<Discussion>>> get() = _discussions
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -47,10 +47,10 @@ class ForumThreadsViewModel @Inject constructor(
 
     private val paginator = Paginator(
         {
-            chooseThreadsRequest()
+            chooseDiscussionsRequest()
                 .observeOn(schedulers.ui())
         },
-        object : Paginator.ViewController<Thread> {
+        object : Paginator.ViewController<Discussion> {
             override fun showEmptyProgress(show: Boolean) {
                 _emptyProgress.value = show
             }
@@ -67,8 +67,8 @@ class ForumThreadsViewModel @Inject constructor(
                 _emptyData.value = show
             }
 
-            override fun showData(show: Boolean, data: List<Thread>) {
-                _threads.value = Pair(show, data)
+            override fun showData(show: Boolean, data: List<Discussion>) {
+                _discussions.value = Pair(show, data)
             }
 
             override fun showErrorMessage(error: Throwable) {
@@ -85,23 +85,23 @@ class ForumThreadsViewModel @Inject constructor(
         }
     )
 
-    private fun chooseThreadsRequest(): Single<PagedList<Thread>> =
-        when (threadType) {
-            ThreadType.LATEST -> threadInteractor.getThreads(forumId)
-            ThreadType.HOT -> threadInteractor.getHotThreads(forumId)
-            ThreadType.POPULAR -> threadInteractor.getPopularThreads(forumId)
+    private fun chooseDiscussionsRequest(): Single<PagedList<Discussion>> =
+        when (discussionType) {
+            DiscussionType.LATEST -> discussionInteractor.getDiscussions(forumId)
+            DiscussionType.HOT -> discussionInteractor.getHotDiscussions(forumId)
+            DiscussionType.POPULAR -> discussionInteractor.getPopularDiscussions(forumId)
         }
 
-    fun setParams(forumId: String, threadType: ThreadType) {
+    fun setParams(forumId: String, discussionType: DiscussionType) {
         this.forumId = forumId
-        this.threadType = threadType
-        refreshThreads()
+        this.discussionType = discussionType
+        refreshDiscussions()
     }
 
-    fun refreshThreads() = paginator.refresh()
-    fun loadNextThreadsPage() = paginator.loadNewPage()
+    fun refreshDiscussions() = paginator.refresh()
+    fun loadNextDiscussionsPage() = paginator.loadNewPage()
 
-    fun onThreadClicked(thread: Thread) = router.navigateTo(Screens.ThreadDetails(thread.id))
+    fun onDiscussionClicked(discussion: Discussion) = router.navigateTo(Screens.DiscussionDetails(discussion.id))
 
     override fun onCleared() {
         paginator.release()

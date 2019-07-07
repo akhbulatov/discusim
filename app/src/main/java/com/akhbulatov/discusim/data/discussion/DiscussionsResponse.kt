@@ -1,13 +1,13 @@
-package com.akhbulatov.discusim.data.thread
+package com.akhbulatov.discusim.data.discussion
 
 import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
-import com.akhbulatov.discusim.data.global.network.models.ThreadNetModel
+import com.akhbulatov.discusim.data.global.network.models.DiscussionNetModel
 import com.akhbulatov.discusim.data.global.network.responses.BaseResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ThreadsResponse(
+class DiscussionsResponse(
     cursor: CursorNetModel?,
-    @Json(name = "response") val threads: List<ThreadNetModel>
+    @Json(name = "response") val discussions: List<DiscussionNetModel>
 ) : BaseResponse(cursor)

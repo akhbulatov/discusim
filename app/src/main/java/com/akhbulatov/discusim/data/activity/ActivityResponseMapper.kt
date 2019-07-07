@@ -1,10 +1,10 @@
 package com.akhbulatov.discusim.data.activity
 
 import com.akhbulatov.discusim.data.comment.CommentResponseMapper
+import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModel
-import com.akhbulatov.discusim.data.thread.ThreadResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.domain.global.models.PagedList
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class ActivityResponseMapper @Inject constructor(
     private val activityResponseParser: ActivityResponseParser,
-    private val threadResponseMapper: ThreadResponseMapper,
+    private val discussionResponseMapper: DiscussionResponseMapper,
     private val forumResponseMapper: ForumResponseMapper,
     private val userResponseMapper: UserResponseMapper,
     private val commentResponseMapper: CommentResponseMapper
@@ -23,13 +23,13 @@ class ActivityResponseMapper @Inject constructor(
         val activity = activityResponseParser.parse(activityBody.string())
         val actions = activity.second.map {
             when (it.obj) {
-                is ActionNetModel.ThreadVoteNetModel -> {
-                    val threadVote = mapThreadVote(it.obj)
+                is ActionNetModel.DiscussionVoteNetModel -> {
+                    val discussionVote = mapDiscussionVote(it.obj)
 
                     Action(
-                        id = threadVote.id,
-                        threadVote = threadVote,
-                        type = Action.Type.THREAD_VOTE,
+                        id = discussionVote.id,
+                        discussionVote = discussionVote,
+                        type = Action.Type.DISCUSSION_VOTE,
                         createdAt = it.createdAt
                     )
                 }
@@ -49,11 +49,11 @@ class ActivityResponseMapper @Inject constructor(
         return PagedList(activity.first.next, actions)
     }
 
-    private fun mapThreadVote(model: ActionNetModel.ThreadVoteNetModel): Action.ThreadVote =
+    private fun mapDiscussionVote(model: ActionNetModel.DiscussionVoteNetModel): Action.DiscussionVote =
         model.let {
-            Action.ThreadVote(
+            Action.DiscussionVote(
                 it.id.toLong(),
-                threadResponseMapper.map(it.thread),
+                discussionResponseMapper.map(it.thread),
                 forumResponseMapper.map(it.forum),
                 userResponseMapper.map(it.author)
             )

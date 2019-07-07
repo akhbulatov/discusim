@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import org.threeten.bp.LocalDateTime
 
 @JsonClass(generateAdapter = true)
-data class ThreadNetModel(
+data class DiscussionNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "title") val title: String,
     @Json(name = "message") val message: String,

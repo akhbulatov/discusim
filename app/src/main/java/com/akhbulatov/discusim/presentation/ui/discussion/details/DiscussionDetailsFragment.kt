@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.thread.details
+package com.akhbulatov.discusim.presentation.ui.discussion.details
 
 import android.os.Bundle
 import android.view.View
@@ -8,44 +8,44 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Thread
+import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.utils.setThreadVote
+import com.akhbulatov.discusim.presentation.ui.global.utils.setDiscussionVote
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_thread_details.*
+import kotlinx.android.synthetic.main.fragment_discussion_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
-class ThreadDetailsFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_thread_details
+class DiscussionDetailsFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_discussion_details
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: ThreadDetailsViewModel
+    private lateinit var viewModel: DiscussionDetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val threadId = requireNotNull(arguments?.getLong(ARG_THREAD_ID))
+        val discussionId = requireNotNull(arguments?.getLong(ARG_DISCUSSION_ID))
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ThreadDetailsViewModel::class.java]
-        viewModel.setThreadId(threadId)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[DiscussionDetailsViewModel::class.java]
+        viewModel.setDiscussionId(discussionId)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        errorRefreshButton.setOnClickListener { viewModel.loadThreadDetails() }
+        errorRefreshButton.setOnClickListener { viewModel.loadDiscussionDetails() }
         observeUiChanges()
     }
 
     private fun observeUiChanges() {
         viewModel.progress.observe(this, Observer { showProgress(it) })
         viewModel.error.observe(this, Observer { showError(it.first, it.second) })
-        viewModel.thread.observe(this, Observer { showThreadDetails(it.first, it.second) })
+        viewModel.discussion.observe(this, Observer { showDiscussionDetails(it.first, it.second) })
     }
 
     private fun showProgress(show: Boolean) {
@@ -57,17 +57,17 @@ class ThreadDetailsFragment : BaseFragment() {
         errorLayout.isVisible = show
     }
 
-    private fun showThreadDetails(show: Boolean, thread: Thread?) {
-        if (thread != null) {
-            titleTextView.text = thread.title
-            authorImageView.loadRoundedImage(context, thread.author.avatarUrl)
-            authorTextView.text = thread.author.name
-            usernameTextView.text = getString(R.string.thread_details_username, thread.author.username)
-            dateTextView.text = thread.createdAt.getHumanCreatedTime(resources)
+    private fun showDiscussionDetails(show: Boolean, discussion: Discussion?) {
+        if (discussion != null) {
+            titleTextView.text = discussion.title
+            authorImageView.loadRoundedImage(context, discussion.author.avatarUrl)
+            authorTextView.text = discussion.author.name
+            usernameTextView.text = getString(R.string.discussion_details_username, discussion.author.username)
+            dateTextView.text = discussion.createdAt.getHumanCreatedTime(resources)
 
-            messageTextView.text = thread.message?.parseAsHtml() // TODO
-            if (thread.topics.isNotEmpty()) {
-                thread.topics.forEach {
+            messageTextView.text = discussion.message?.parseAsHtml() // TODO
+            if (discussion.topics.isNotEmpty()) {
+                discussion.topics.forEach {
                     val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
                         text = it.name
                     }
@@ -78,10 +78,10 @@ class ThreadDetailsFragment : BaseFragment() {
             }
 
             with(voteButton) {
-                text = thread.upvotes.toString()
-                setThreadVote(thread.isUpvoted)
+                text = discussion.upvotes.toString()
+                setDiscussionVote(discussion.isUpvoted)
             }
-            commentsButton.text = thread.comments.toString()
+            commentsButton.text = discussion.comments.toString()
         }
         contentLayout.isVisible = show
     }
@@ -89,10 +89,10 @@ class ThreadDetailsFragment : BaseFragment() {
     override fun onBackPressed() = viewModel.onBackPressed()
 
     companion object {
-        private const val ARG_THREAD_ID = "thread_id"
+        private const val ARG_DISCUSSION_ID = "discussion_id"
 
-        fun newInstance(threadId: Long) = ThreadDetailsFragment().apply {
-            arguments = bundleOf(ARG_THREAD_ID to threadId)
+        fun newInstance(threadId: Long) = DiscussionDetailsFragment().apply {
+            arguments = bundleOf(ARG_DISCUSSION_ID to threadId)
         }
     }
 }

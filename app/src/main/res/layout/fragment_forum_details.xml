@@ -85,9 +85,9 @@
                 app:layout_constraintStart_toStartOf="@id/startGuideline"
                 app:layout_constraintTop_toBottomOf="@id/descriptionDivider">
 
-                <!-- Threads. Start -->
+                <!-- Discussions. Start -->
                 <LinearLayout
-                    android:id="@+id/numThreadsLayout"
+                    android:id="@+id/numDiscussionsLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -98,7 +98,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/numThreadsTextView"
+                        android:id="@+id/numDiscussionsTextView"
                         style="@style/ForumNumText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -108,10 +108,10 @@
                         style="@style/ForumNumSubtext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/forum_details_threads" />
+                        android:text="@string/forum_details_discussions" />
 
                 </LinearLayout>
-                <!-- Threads. End -->
+                <!-- Discussions. End -->
 
                 <!-- Followers. Start -->
                 <LinearLayout
@@ -124,7 +124,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/followButton"
                     app:layout_constraintHorizontal_weight="1.5"
-                    app:layout_constraintStart_toEndOf="@id/numThreadsLayout"
+                    app:layout_constraintStart_toEndOf="@id/numDiscussionsLayout"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView

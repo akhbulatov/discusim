@@ -6,7 +6,7 @@ data class Forum(
     val description: String?,
     val faviconUrl: String,
     val isFollowing: Boolean,
-    val numThreads: Int,
+    val numDiscussions: Int,
     val numFollowers: Int,
     val channel: Channel?
 ) {

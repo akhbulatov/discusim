@@ -82,16 +82,16 @@ class UserActivityAdapter(
                 var activity = ""
                 var activityTypeDrawable: Drawable? = null
 
-                if (item.threadVote != null) {
-                    // Thread Vote
-                    user = item.threadVote.author
+                if (item.discussionVote != null) {
+                    // Discussion Vote
+                    user = item.discussionVote.author
 
-                    authorAvatarUrl = item.threadVote.author.avatarUrl
-                    val upvotedThread = context.getString(
-                        R.string.item_user_activity_upvoted_thread,
-                        item.threadVote.thread.title
+                    authorAvatarUrl = item.discussionVote.author.avatarUrl
+                    val upvotedDiscussion = context.getString(
+                        R.string.item_user_activity_upvoted_discussion,
+                        item.discussionVote.discussion.title
                     )
-                    activity = "${item.threadVote.author.name} $upvotedThread"
+                    activity = "${item.discussionVote.author.name} $upvotedDiscussion"
                     commentTextView.isVisible = false
                     activityTypeDrawable = context.getTintDrawable(
                         R.drawable.ic_favorite,
@@ -103,8 +103,8 @@ class UserActivityAdapter(
 
                     authorAvatarUrl = item.comment.author.avatarUrl
                     val commented = context.getString(
-                        R.string.item_user_activity_commented_thread,
-                        item.comment.thread.title
+                        R.string.item_user_activity_commented_discussion,
+                        item.comment.discussion.title
                     )
                     activity = "${item.comment.author.name} $commented"
                     with(commentTextView) {

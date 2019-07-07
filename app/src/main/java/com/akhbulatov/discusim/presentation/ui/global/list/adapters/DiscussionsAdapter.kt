@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Thread
+import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -15,19 +15,19 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import com.akhbulatov.discusim.presentation.ui.global.utils.setThreadVote
+import com.akhbulatov.discusim.presentation.ui.global.utils.setDiscussionVote
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.item_thread.*
+import kotlinx.android.synthetic.main.item_discussion.*
 
-class ThreadsAdapter(
-    private val onItemClickListener: (Thread) -> Unit
+class DiscussionsAdapter(
+    private val onItemClickListener: (Discussion) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
-            ITEM_THREAD -> {
-                val itemView = parent.inflate(R.layout.item_thread)
-                ThreadViewHolder(itemView)
+            ITEM_DISCUSSION -> {
+                val itemView = parent.inflate(R.layout.item_discussion)
+                DiscussionViewHolder(itemView)
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -41,7 +41,7 @@ class ThreadsAdapter(
 
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
-            is Thread -> ITEM_THREAD
+            is Discussion -> ITEM_DISCUSSION
             else -> ITEM_PROGRESS
         }
 
@@ -63,16 +63,16 @@ class ThreadsAdapter(
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    inner class ThreadViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
-        private lateinit var thread: Thread
+    inner class DiscussionViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+        private lateinit var discussion: Discussion
 
         init {
-            itemView.setOnClickListener { onItemClickListener(thread) }
+            itemView.setOnClickListener { onItemClickListener(discussion) }
         }
 
         override fun bind(item: Any) {
-            if (item is Thread) {
-                thread = item
+            if (item is Discussion) {
+                discussion = item
 
                 val context = itemView.context
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
@@ -96,7 +96,7 @@ class ThreadsAdapter(
                 titleTextView.text = item.title
                 with(voteButton) {
                     text = item.upvotes.toString()
-                    setThreadVote(item.isUpvoted)
+                    setDiscussionVote(item.isUpvoted)
                 }
                 commentsButton.text = item.comments.toString()
             }
@@ -106,7 +106,7 @@ class ThreadsAdapter(
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is Thread && newItem is Thread) {
+                if (oldItem is Discussion && newItem is Discussion) {
                     oldItem.id == newItem.id
                 } else {
                     oldItem is ProgressItem && newItem is ProgressItem
@@ -117,7 +117,7 @@ class ThreadsAdapter(
                 oldItem == newItem
         }
 
-        private const val ITEM_THREAD = 0
+        private const val ITEM_DISCUSSION = 0
         private const val ITEM_PROGRESS = 1
     }
 }

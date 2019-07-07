@@ -12,5 +12,5 @@ data class CommentNetModel(
     @Json(name = "createdAt") val createdAt: LocalDateTime,
     @Json(name = "likes") val likes: Int,
     @Json(name = "userScore") val userScore: Int,
-    @Json(name = "thread") val thread: ThreadPreviewNetModel
+    @Json(name = "thread") val thread: DiscussionPreviewNetModel
 )

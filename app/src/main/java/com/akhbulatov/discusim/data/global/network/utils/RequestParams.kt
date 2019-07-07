@@ -5,11 +5,11 @@ object RequestParams {
         /** Запрашивает статус подписи на форум. */
         const val FOLLOWS_FORUM = "followsForum"
 
-        /** Запрашивает кол-во тредов, фолловеров и т.д. форума. */
+        /** Запрашивает кол-во дискуссий, фолловеров и т.д. форума. */
         const val COUNTERS = "counters"
     }
 
-    object Thread {
+    object Discussion {
         /** Запрашивает объект автора (юзера). */
         const val AUTHOR = "author"
 
@@ -18,7 +18,7 @@ object RequestParams {
     }
 
     object Comment {
-        /** Запрашивает объект треда (обсуждения), под которым написан коммент. */
-        const val THREAD = "thread"
+        /** Запрашивает объект дискуссии, под которым написан коммент. */
+        const val DISCUSSION = "thread"
     }
 }

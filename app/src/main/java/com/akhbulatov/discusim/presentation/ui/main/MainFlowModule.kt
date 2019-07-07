@@ -5,8 +5,8 @@ import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragme
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityModule
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsModule
-import com.akhbulatov.discusim.presentation.ui.thread.details.ThreadDetailsFragment
-import com.akhbulatov.discusim.presentation.ui.thread.details.ThreadDetailsModule
+import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDetailsFragment
+import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDetailsModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,6 +21,6 @@ abstract class MainFlowModule {
     abstract fun contributeMyForumsFragment(): MyForumsFragment
 
     @FlowChildFragmentScope
-    @ContributesAndroidInjector(modules = [ThreadDetailsModule::class])
-    abstract fun contributeThreadDetailsFragment(): ThreadDetailsFragment
+    @ContributesAndroidInjector(modules = [DiscussionDetailsModule::class])
+    abstract fun contributeDiscussionDetailsFragment(): DiscussionDetailsFragment
 }

@@ -32,7 +32,7 @@
                     android:id="@+id/titleTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/ThreadDetailsTitle"
+                    android:textAppearance="@style/DiscussionDetailsTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -101,7 +101,7 @@
                         android:id="@+id/messageTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/ThreadDetailsMessage"
+                        android:textAppearance="@style/DiscussionDetailsMessage"
                         app:layout_constraintBottom_toTopOf="@id/topicChipGroup"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/voteButton"
-                        style="@style/ThreadButton"
+                        style="@style/DiscussionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:icon="@drawable/ic_favorite"
@@ -145,7 +145,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/commentsButton"
-                        style="@style/ThreadButton"
+                        style="@style/DiscussionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_normal"

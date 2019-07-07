@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.domain.global.models
 
 import org.threeten.bp.LocalDateTime
 
-data class Thread(
+data class Discussion(
     val id: Long,
     val title: String,
     val message: String?,
