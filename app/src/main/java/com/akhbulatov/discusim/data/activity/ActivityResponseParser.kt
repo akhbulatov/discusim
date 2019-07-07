@@ -4,8 +4,8 @@ import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_DiscussionVoteNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModelJsonAdapter
-import com.akhbulatov.discusim.data.global.network.models.CursorNetModel
-import com.akhbulatov.discusim.data.global.network.responses.CursorResponseJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
+import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponseJsonAdapter
 import com.squareup.moshi.Moshi
 import org.json.JSONObject
 import javax.inject.Inject
