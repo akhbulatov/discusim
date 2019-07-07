@@ -36,7 +36,7 @@ class DiscussionDetailsViewModel @Inject constructor(
     }
 
     fun loadDiscussionDetails() {
-        subscriptions += discussionInteractor.getDiscussionDetails(discussionId)
+        disposables += discussionInteractor.getDiscussionDetails(discussionId)
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _discussion.value = Pair(false, null)

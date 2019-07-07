@@ -44,7 +44,7 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun login(code: String) {
-        subscriptions += sessionInteractor.login(code)
+        disposables += sessionInteractor.login(code)
             .observeOn(schedulers.ui())
             .doOnSubscribe { _progress.value = true }
             .doOnTerminate { _progress.value = false }

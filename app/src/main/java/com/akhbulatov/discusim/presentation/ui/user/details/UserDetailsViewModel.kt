@@ -36,7 +36,7 @@ class UserDetailsViewModel @Inject constructor(
     }
 
     fun loadUserDetails() {
-        subscriptions += userInteractor.getUserDetails(userId)
+        disposables += userInteractor.getUserDetails(userId)
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _user.value = Pair(false, null)
