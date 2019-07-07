@@ -13,7 +13,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.UserMiddle
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UsersAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_user_followers.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -27,8 +27,8 @@ class UserFollowersFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: UserFollowersViewModel
-    private val usersAdapter by lazy {
-        UsersAdapter { viewModel.onFollowerClicked(it) }
+    private val userAdapter by lazy {
+        UserAdapter { viewModel.onFollowerClicked(it) }
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(followersRecyclerView.layoutManager as LinearLayoutManager)
@@ -50,7 +50,7 @@ class UserFollowersFragment : BaseFragment() {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(onScrollListener)
-            adapter = usersAdapter
+            adapter = userAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshFollowers() }
         dataRefreshButton.setOnClickListener { viewModel.refreshFollowers() }
@@ -86,7 +86,7 @@ class UserFollowersFragment : BaseFragment() {
     }
 
     private fun showFollowers(show: Boolean, followers: List<UserMiddle>) {
-        usersAdapter.submitList(followers)
+        userAdapter.submitList(followers)
         followersRecyclerView.isVisible = show
     }
 
@@ -100,7 +100,7 @@ class UserFollowersFragment : BaseFragment() {
 
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
-        usersAdapter.showProgress(show)
+        userAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

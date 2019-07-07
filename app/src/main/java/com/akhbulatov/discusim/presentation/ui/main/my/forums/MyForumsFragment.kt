@@ -12,7 +12,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumsAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.ForumAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_my_forums.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -26,8 +26,8 @@ class MyForumsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: MyForumsViewModel
-    private val forumsAdapter by lazy {
-        ForumsAdapter { viewModel.onForumClicked(it) }
+    private val forumAdapter by lazy {
+        ForumAdapter { viewModel.onForumClicked(it) }
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
@@ -46,7 +46,7 @@ class MyForumsFragment : BaseFragment() {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(onScrollListener)
-            adapter = forumsAdapter
+            adapter = forumAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshForums() }
         dataRefreshButton.setOnClickListener { viewModel.refreshForums() }
@@ -82,7 +82,7 @@ class MyForumsFragment : BaseFragment() {
     }
 
     private fun showForums(show: Boolean, forums: List<Forum>) {
-        forumsAdapter.submitList(forums)
+        forumAdapter.submitList(forums)
         forumsRecyclerView.isVisible = show
     }
 
@@ -96,7 +96,7 @@ class MyForumsFragment : BaseFragment() {
 
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
-        forumsAdapter.showProgress(show)
+        forumAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

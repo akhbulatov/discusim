@@ -13,7 +13,7 @@ import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.VerticalSpaceItemDecoration
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.CommentsAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.CommentAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_user_comments.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -28,7 +28,7 @@ class UserCommentsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: UserCommentsViewModel
-    private val commentsAdapter by lazy { CommentsAdapter() }
+    private val commentAdapter by lazy { CommentAdapter() }
     private val onScrollListener by lazy {
         EndlessScrollListener(commentsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextCommentsPage() }
@@ -49,7 +49,7 @@ class UserCommentsFragment : BaseFragment() {
             setHasFixedSize(true)
             addItemDecoration(VerticalSpaceItemDecoration(dip(6)))
             addOnScrollListener(onScrollListener)
-            adapter = commentsAdapter
+            adapter = commentAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshComments() }
         dataRefreshButton.setOnClickListener { viewModel.refreshComments() }
@@ -85,7 +85,7 @@ class UserCommentsFragment : BaseFragment() {
     }
 
     private fun showComments(show: Boolean, comments: List<Comment>) {
-        commentsAdapter.submitList(comments)
+        commentAdapter.submitList(comments)
         commentsRecyclerView.isVisible = show
     }
 
@@ -99,7 +99,7 @@ class UserCommentsFragment : BaseFragment() {
 
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
-        commentsAdapter.showProgress(show)
+        commentAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

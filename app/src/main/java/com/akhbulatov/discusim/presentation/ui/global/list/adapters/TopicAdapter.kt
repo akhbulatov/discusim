@@ -6,23 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.Topic
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
-import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
-import kotlinx.android.synthetic.main.item_forum.*
+import kotlinx.android.synthetic.main.item_topic.*
 
-class ForumsAdapter(
-    private val onClickListener: (Forum) -> Unit
-) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class TopicAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
-            ITEM_FORUM -> {
-                val itemView = parent.inflate(R.layout.item_forum)
-                ForumViewHolder(itemView)
+            ITEM_TOPIC -> {
+                val itemView = parent.inflate(R.layout.item_topic)
+                TopicViewHolder(itemView)
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -36,7 +33,7 @@ class ForumsAdapter(
 
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
-            is Forum -> ITEM_FORUM
+            is Topic -> ITEM_TOPIC
             else -> ITEM_PROGRESS
         }
 
@@ -58,28 +55,18 @@ class ForumsAdapter(
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    inner class ForumViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
-        private lateinit var forum: Forum
-
-        init {
-            itemView.setOnClickListener { onClickListener(forum) }
-        }
-
+    class TopicViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
         override fun bind(item: Any) {
-            if (item is Forum) {
-                forum = item
-
+            if (item is Topic) {
                 nameTextView.text = item.name
-                val faviconUrl = item.channel?.avatarUrl ?: item.faviconUrl
-                avatarImageView.loadRoundedImage(itemView.context, faviconUrl)
             }
         }
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is Forum && newItem is Forum) {
+                if (oldItem is Topic && newItem is Topic) {
                     oldItem.id == newItem.id
                 } else {
                     oldItem is ProgressItem && newItem is ProgressItem
@@ -90,7 +77,7 @@ class ForumsAdapter(
                 oldItem == newItem
         }
 
-        private const val ITEM_FORUM = 0
+        private const val ITEM_TOPIC = 0
         private const val ITEM_PROGRESS = 1
     }
 }

@@ -13,7 +13,7 @@ import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.VerticalSpaceItemDecoration
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.DiscussionsAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.DiscussionAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_forum_discussions.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -28,8 +28,8 @@ class ForumDiscussionsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ForumDiscussionsViewModel
-    private val discussionsAdapter by lazy {
-        DiscussionsAdapter { viewModel.onDiscussionClicked(it) }
+    private val discussionAdapter by lazy {
+        DiscussionAdapter { viewModel.onDiscussionClicked(it) }
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(discussionsRecyclerView.layoutManager as LinearLayoutManager)
@@ -52,7 +52,7 @@ class ForumDiscussionsFragment : BaseFragment() {
             setHasFixedSize(true)
             addItemDecoration(VerticalSpaceItemDecoration(dip(10)))
             addOnScrollListener(onScrollListener)
-            adapter = discussionsAdapter
+            adapter = discussionAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshDiscussions() }
         dataRefreshButton.setOnClickListener { viewModel.refreshDiscussions() }
@@ -88,7 +88,7 @@ class ForumDiscussionsFragment : BaseFragment() {
     }
 
     private fun showDiscussions(show: Boolean, discussions: List<Discussion>) {
-        discussionsAdapter.submitList(discussions)
+        discussionAdapter.submitList(discussions)
         discussionsRecyclerView.isVisible = show
     }
 
@@ -102,7 +102,7 @@ class ForumDiscussionsFragment : BaseFragment() {
 
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
-        discussionsAdapter.showProgress(show)
+        discussionAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

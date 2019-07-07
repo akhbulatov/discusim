@@ -19,7 +19,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.setDiscussionVote
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_discussion.*
 
-class DiscussionsAdapter(
+class DiscussionAdapter(
     private val onItemClickListener: (Discussion) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 

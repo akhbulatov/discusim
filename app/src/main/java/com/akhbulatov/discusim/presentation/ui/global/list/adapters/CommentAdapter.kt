@@ -18,7 +18,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.setTintEndDrawable
 import kotlinx.android.synthetic.main.item_comment.*
 import org.jetbrains.anko.dimen
 
-class CommentsAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
+class CommentAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {

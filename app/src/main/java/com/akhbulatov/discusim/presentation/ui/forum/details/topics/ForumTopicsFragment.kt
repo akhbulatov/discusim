@@ -13,7 +13,7 @@ import com.akhbulatov.discusim.domain.global.models.Topic
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
-import com.akhbulatov.discusim.presentation.ui.global.list.adapters.TopicsAdapter
+import com.akhbulatov.discusim.presentation.ui.global.list.adapters.TopicAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import kotlinx.android.synthetic.main.fragment_forum_topics.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
@@ -27,7 +27,7 @@ class ForumTopicsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: ForumTopicsViewModel
-    private val topicsAdapter by lazy { TopicsAdapter() }
+    private val topicAdapter by lazy { TopicAdapter() }
     private val onScrollListener by lazy {
         EndlessScrollListener(topicsRecyclerView.layoutManager as LinearLayoutManager)
         { viewModel.loadNextTopicsPage() }
@@ -48,7 +48,7 @@ class ForumTopicsFragment : BaseFragment() {
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             addOnScrollListener(onScrollListener)
-            adapter = topicsAdapter
+            adapter = topicAdapter
         }
         errorRefreshButton.setOnClickListener { viewModel.refreshTopics() }
         dataRefreshButton.setOnClickListener { viewModel.refreshTopics() }
@@ -84,7 +84,7 @@ class ForumTopicsFragment : BaseFragment() {
     }
 
     private fun showTopics(show: Boolean, topics: List<Topic>) {
-        topicsAdapter.submitList(topics)
+        topicAdapter.submitList(topics)
         topicsRecyclerView.isVisible = show
     }
 
@@ -98,7 +98,7 @@ class ForumTopicsFragment : BaseFragment() {
 
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
-        topicsAdapter.showProgress(show)
+        topicAdapter.showProgress(show)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
