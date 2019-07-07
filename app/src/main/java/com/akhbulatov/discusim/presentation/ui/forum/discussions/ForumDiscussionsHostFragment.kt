@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details
+package com.akhbulatov.discusim.presentation.ui.forum.discussions
 
 import android.os.Bundle
 import android.view.View
@@ -9,16 +9,16 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_forum_details_container.*
+import kotlinx.android.synthetic.main.fragment_forum_discussions_host.*
 import javax.inject.Inject
 
-class ForumDetailsContainerFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forum_details_container
+class ForumDiscussionsHostFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_forum_discussions_host
 
     @Inject lateinit var router: FlowRouter
 
     private lateinit var forumId: String
-    private val pagerAdapter by lazy { ForumDetailsPagerAdapter() }
+    private val pagerAdapter by lazy { ForumDiscussionsPagerAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,33 +27,35 @@ class ForumDetailsContainerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        detailsPager.adapter = pagerAdapter
+        discussionsPager.adapter = pagerAdapter
     }
 
     override fun onBackPressed() = router.exit()
 
-    inner class ForumDetailsPagerAdapter :
+    inner class ForumDiscussionsPagerAdapter :
         FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment = when (position) {
-            0 -> Screens.ForumDetails(forumId).fragment
-            1 -> Screens.ForumTopics(forumId).fragment
+            0 -> Screens.ForumDiscussions(forumId).fragment
+            1 -> Screens.ForumDiscussions(forumId, DiscussionType.HOT).fragment
+            2 -> Screens.ForumDiscussions(forumId, DiscussionType.POPULAR).fragment
             else -> throw IllegalArgumentException()
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
-            0 -> getString(R.string.forum_details_container_details)
-            1 -> getString(R.string.forum_details_container_topics)
+            0 -> getString(R.string.forum_discussions_host_latest)
+            1 -> getString(R.string.forum_discussions_host_hot)
+            2 -> getString(R.string.forum_discussions_host_popular)
             else -> null
         }
 
-        override fun getCount(): Int = 2
+        override fun getCount(): Int = 3
     }
 
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
 
-        fun newInstance(forumId: String) = ForumDetailsContainerFragment().apply {
+        fun newInstance(forumId: String) = ForumDiscussionsHostFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
         }
     }

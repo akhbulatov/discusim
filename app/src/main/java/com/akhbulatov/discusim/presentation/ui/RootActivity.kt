@@ -11,12 +11,12 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
-class AppActivity : DaggerAppCompatActivity() {
+class RootActivity : DaggerAppCompatActivity() {
     @Inject lateinit var navigatorHolder: NavigatorHolder
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val navigator: Navigator by lazy { SupportAppNavigator(this, R.id.container) }
-    private lateinit var viewModel: AppActivityViewModel
+    private lateinit var viewModel: RootViewModel
 
     private val currentFragment
         get() = supportFragmentManager.findFragmentById(R.id.container) as BaseFragment?
@@ -24,7 +24,7 @@ class AppActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_container)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[AppActivityViewModel::class.java]
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[RootViewModel::class.java]
     }
 
     override fun onResumeFragments() {

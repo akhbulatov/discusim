@@ -4,11 +4,11 @@
     <item
         android:id="@+id/menu_bottom_nav_my_activity"
         android:icon="@drawable/ic_home"
-        android:title="@string/main_flow_my_activity" />
+        android:title="@string/main_host_my_activity" />
 
     <item
         android:id="@+id/menu_bottom_nav_my_forums"
         android:icon="@drawable/ic_forum"
-        android:title="@string/main_flow_my_forums" />
+        android:title="@string/main_host_my_forums" />
 
 </menu>

@@ -1,15 +1,9 @@
 package com.akhbulatov.discusim.presentation.ui.auth
 
-import android.os.Bundle
-import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class AuthFlowFragment : FlowFragment() {
-    override val layoutRes: Int = R.layout.layout_container
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        router.newRootScreen(Screens.Auth)
-    }
+    override fun getLaunchScreen(): SupportAppScreen = Screens.Auth
 }

@@ -38,9 +38,9 @@
     <!-- Auth -->
     <string name="auth_title">Authorization</string>
 
-    <!-- Main Flow -->
-    <string name="main_flow_my_activity">Activity</string>
-    <string name="main_flow_my_forums">Forums</string>
+    <!-- Main Host -->
+    <string name="main_host_my_activity">Activity</string>
+    <string name="main_host_my_forums">Forums</string>
 
     <!-- My Activity -->
     <string name="my_activity_title">Activity</string>
@@ -48,33 +48,33 @@
     <!-- My Forums -->
     <string name="my_forums_title">Forums</string>
 
-    <!-- Forum Flow -->
-    <string name="forum_flow_details">Details</string>
-    <string name="forum_flow_discussions">Discussions</string>
+    <!-- Forum Host -->
+    <string name="forum_host_details">Details</string>
+    <string name="forum_host_discussions">Discussions</string>
 
-    <!-- Forum Details Container -->
-    <string name="forum_details_container_details">Details</string>
-    <string name="forum_details_container_topics">Topics</string>
+    <!-- Forum Details Host -->
+    <string name="forum_details_host_details">Details</string>
+    <string name="forum_details_host_topics">Topics</string>
 
     <!-- Forum Details -->
     <string name="forum_details_discussions">Discussions</string>
     <string name="forum_details_followers">Followers</string>
 
-    <!-- Forum Discussions Container -->
-    <string name="forum_discussions_container_latest">Latest</string>
-    <string name="forum_discussions_container_hot">Hot</string>
-    <string name="forum_discussions_container_popular">Popular</string>
+    <!-- Forum Discussions Host -->
+    <string name="forum_discussions_host_latest">Latest</string>
+    <string name="forum_discussions_host_hot">Hot</string>
+    <string name="forum_discussions_host_popular">Popular</string>
 
     <!-- Discussion Details -->
     <string name="discussion_details_username">\@%s</string>
 
-    <!-- User Flow -->
-    <string name="user_flow_details_tab">Details</string>
-    <string name="user_flow_activity_tab">Activity</string>
-    <string name="user_flow_comments_tab">Comments</string>
-    <string name="user_flow_forums_tab">Forums</string>
-    <string name="user_flow_followers_tab">Followers</string>
-    <string name="user_flow_following_tab">Following</string>
+    <!-- User Host -->
+    <string name="user_host_details_tab">Details</string>
+    <string name="user_host_activity_tab">Activity</string>
+    <string name="user_host_comments_tab">Comments</string>
+    <string name="user_host_forums_tab">Forums</string>
+    <string name="user_host_followers_tab">Followers</string>
+    <string name="user_host_following_tab">Following</string>
 
     <!-- User Details -->
     <string name="user_details_username">\@%s</string>

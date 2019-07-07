@@ -6,7 +6,7 @@ import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class AppActivityViewModel @Inject constructor(
+class RootViewModel @Inject constructor(
     private val router: Router,
     sessionInteractor: SessionInteractor
 ) : BaseViewModel() {
