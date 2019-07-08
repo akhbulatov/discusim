@@ -15,6 +15,8 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 class ForumHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_host
 
+    private lateinit var forumSharedViewModel: ForumSharedViewModel
+
     private lateinit var forumDetailsTabScreen: SupportAppScreen
     private lateinit var forumDiscussionsTabScreen: SupportAppScreen
 
@@ -27,18 +29,7 @@ class ForumHostFragment : BaseFragment() {
         forumDetailsTabScreen = Screens.ForumDetailsHost(forumId)
         forumDiscussionsTabScreen = Screens.ForumDiscussionsHost(forumId)
 
-        val forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
-        forumSharedViewModel.forum.observe(this, Observer { forum ->
-            collapsingToolbar.title = forum.name
-
-            forum.channel?.let {
-                if (it.bannerUrl != null) {
-                    bannerImageView.loadImage(context, it.bannerUrl)
-                } else {
-                    bannerImageView.setBackgroundColor(it.bannerColorHex)
-                }
-            }
-        })
+        forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,12 +44,27 @@ class ForumHostFragment : BaseFragment() {
             switchTab(tabScreen)
             true
         }
+        observeUiChanges()
 
         val tabScreen = when (currentTabFragment?.tag) {
             forumDiscussionsTabScreen.screenKey -> forumDiscussionsTabScreen
             else -> forumDetailsTabScreen // Первый таб, открываемый по умолчанию
         }
         switchTab(tabScreen)
+    }
+
+    private fun observeUiChanges() {
+        forumSharedViewModel.forum.observe(this, Observer { forum ->
+            collapsingToolbar.title = forum.name
+
+            forum.channel?.let {
+                if (it.bannerUrl != null) {
+                    bannerImageView.loadImage(context, it.bannerUrl)
+                } else {
+                    bannerImageView.setBackgroundColor(it.bannerColorHex)
+                }
+            }
+        })
     }
 
     private fun switchTab(tabScreen: SupportAppScreen) {

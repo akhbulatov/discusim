@@ -18,6 +18,7 @@ class UserHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_host
 
     @Inject lateinit var router: FlowRouter
+    private lateinit var userSharedViewModel: UserSharedViewModel
 
     private var userId: Long = 0
     private val userPagerAdapter by lazy { UserPagerAdapter() }
@@ -25,11 +26,7 @@ class UserHostFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-
-        val userSharedViewModel = ViewModelProviders.of(this)[UserSharedViewModel::class.java]
-        userSharedViewModel.user.observe(this, Observer {
-            toolbar.title = it.username
-        })
+        userSharedViewModel = ViewModelProviders.of(this)[UserSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +34,13 @@ class UserHostFragment : BaseFragment() {
         toolbar.setNavigationOnClickListener { onBackPressed() }
         userPager.adapter = userPagerAdapter
         userTabLayout.setupWithViewPager(userPager)
+        observeUiChanges()
+    }
+
+    private fun observeUiChanges() {
+        userSharedViewModel.user.observe(this, Observer {
+            toolbar.title = it.username
+        })
     }
 
     private inner class UserPagerAdapter :
