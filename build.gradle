@@ -12,6 +12,7 @@ buildscript {
             'appCompat'       : '1.1.0-rc01',
             'recyclerView'    : '1.1.0-beta01',
             'constraintLayout': '2.0.0-beta2',
+            'progressButton'  : '1.0.3',
             'archLifecycle'   : '2.2.0-alpha02',
             'dagger'          : '2.23.2',
             'rxJava'          : '2.2.10',

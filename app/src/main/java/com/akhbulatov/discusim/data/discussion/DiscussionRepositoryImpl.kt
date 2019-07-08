@@ -1,10 +1,12 @@
 package com.akhbulatov.discusim.data.discussion
 
 import com.akhbulatov.discusim.data.global.network.DisqusApi
+import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.global.network.utils.RequestParams
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
+import com.akhbulatov.discusim.domain.global.models.VoteType
 import com.akhbulatov.discusim.domain.global.repositories.DiscussionRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -12,6 +14,7 @@ import javax.inject.Inject
 class DiscussionRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
     private val discussionResponseMapper: DiscussionResponseMapper,
+    private val voteResponseMapper: VoteResponseMapper,
     private val schedulers: SchedulersProvider
 ) : DiscussionRepository {
 
@@ -47,5 +50,13 @@ class DiscussionRepositoryImpl @Inject constructor(
             listOf(RequestParams.Discussion.AUTHOR)
         )
             .map { discussionResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
+    override fun voteDiscussion(discussionId: Long, voteType: VoteType): Single<VoteType> =
+        api.voteDiscussion(
+            discussionId,
+            voteResponseMapper.map(voteType)
+        )
+            .map { voteResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 }

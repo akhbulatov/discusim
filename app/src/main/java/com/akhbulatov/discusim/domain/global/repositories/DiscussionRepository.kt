@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.domain.global.repositories
 
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
+import com.akhbulatov.discusim.domain.global.models.VoteType
 import io.reactivex.Single
 
 interface DiscussionRepository {
@@ -9,4 +10,6 @@ interface DiscussionRepository {
     fun getDiscussions(forumId: String): Single<PagedList<Discussion>>
     fun getHotDiscussions(forumId: String): Single<PagedList<Discussion>>
     fun getPopularDiscussions(forumId: String): Single<PagedList<Discussion>>
+
+    fun voteDiscussion(discussionId: Long, voteType: VoteType): Single<VoteType>
 }

@@ -9,6 +9,7 @@ import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
+import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
 import com.akhbulatov.discusim.data.user.UserResponse
 import io.reactivex.Single
@@ -117,5 +118,12 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<DiscussionsResponse>
+
+    @FormUrlEncoded
+    @POST("threads/vote.json")
+    fun voteDiscussion(
+        @Field("thread") discussionId: Long,
+        @Field("vote") vote: Int
+    ): Single<VoteResponse>
     // --- Discussions --- //
 }

@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.data.discussion
 
 import com.akhbulatov.discusim.data.global.network.models.DiscussionNetModel
 import com.akhbulatov.discusim.data.global.network.models.DiscussionPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.topic.TopicResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Discussion
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 class DiscussionResponseMapper @Inject constructor(
     private val userResponseMapper: UserResponseMapper,
-    private val topicResponseMapper: TopicResponseMapper
+    private val topicResponseMapper: TopicResponseMapper,
+    private val voteResponseMapper: VoteResponseMapper
 ) {
 
     fun map(response: DiscussionResponse): Discussion = map(response.discussion)
@@ -32,7 +34,7 @@ class DiscussionResponseMapper @Inject constructor(
                 it.createdAt,
                 it.topics?.let { topic -> topicResponseMapper.map(topic) } ?: emptyList(),
                 it.likes,
-                it.userScore > 0,
+                voteResponseMapper.map(it.userScore),
                 it.posts
             )
         }

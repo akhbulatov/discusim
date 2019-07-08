@@ -96,7 +96,7 @@ class DiscussionAdapter(
                 titleTextView.text = item.title
                 with(voteButton) {
                     text = item.upvotes.toString()
-                    setDiscussionVote(item.isUpvoted)
+                    setDiscussionVote(item.voteType)
                 }
                 commentsButton.text = item.comments.toString()
             }
