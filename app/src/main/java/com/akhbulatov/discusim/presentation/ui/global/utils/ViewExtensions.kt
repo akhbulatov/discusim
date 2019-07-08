@@ -14,7 +14,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.VoteType
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.github.razir.progressbutton.DrawableButton
@@ -74,48 +74,39 @@ fun MaterialButton.setFollow(isFollowing: Boolean) {
     setText(textResId)
 }
 
-fun TextView.updateVotesText(voteType: VoteType) {
-    val oldVotes = text.toString().trim().toInt()
-    val newVotes = when (voteType) {
-        VoteType.NO_VOTE,
-        VoteType.DOWNVOTE -> oldVotes - 1
-        VoteType.UPVOTE -> oldVotes + 1
+fun MaterialButton.setDiscussionVote(vote: Vote) {
+    val backgroundColor = when (vote.type) {
+        Vote.Type.NO_VOTE -> R.color.button_discussion_background
+        Vote.Type.UPVOTE -> R.color.button_upvoted_background
+        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
-    text = newVotes.toString()
-}
-
-fun MaterialButton.setDiscussionVote(voteType: VoteType) {
-    val backgroundColor = when (voteType) {
-        VoteType.NO_VOTE -> R.color.button_discussion_background
-        VoteType.UPVOTE -> R.color.button_upvoted_background
-        VoteType.DOWNVOTE -> throw IllegalArgumentException() // TODO
+    val iconColor = when (vote.type) {
+        Vote.Type.NO_VOTE -> R.color.button_discussion_icon
+        Vote.Type.UPVOTE -> R.color.button_discussion_upvoted_icon
+        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
-    val iconColor = when (voteType) {
-        VoteType.NO_VOTE -> R.color.button_discussion_icon
-        VoteType.UPVOTE -> R.color.button_discussion_upvoted_icon
-        VoteType.DOWNVOTE -> throw IllegalArgumentException() // TODO
+    val textColor = when (vote.type) {
+        Vote.Type.NO_VOTE -> R.color.button_discussion_text
+        Vote.Type.UPVOTE -> R.color.button_discussion_upvoted_text
+        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
-    val textColor = when (voteType) {
-        VoteType.NO_VOTE -> R.color.button_discussion_text
-        VoteType.UPVOTE -> R.color.button_discussion_upvoted_text
-        VoteType.DOWNVOTE -> throw IllegalArgumentException() // TODO
-    }
-    val stroke = when (voteType) {
-        VoteType.NO_VOTE -> dip(1)
-        VoteType.UPVOTE -> 0
-        VoteType.DOWNVOTE -> throw IllegalArgumentException() // TODO
+    val stroke = when (vote.type) {
+        Vote.Type.NO_VOTE -> dip(1)
+        Vote.Type.UPVOTE -> 0
+        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
 
     setBackgroundColor(context.color(backgroundColor))
     icon = context.getDrawable(R.drawable.ic_favorite)
     iconTint = ColorStateList.valueOf(context.color(iconColor))
-    setTextColor(context.color(textColor))
     strokeWidth = stroke
+    setTextColor(context.color(textColor))
+    text = vote.upvotes.toString()
 
-    isSelected = voteType == VoteType.UPVOTE
+    isSelected = vote.type == Vote.Type.UPVOTE
 }
 
-fun MaterialButton.showDiscussionVoteProgress(show: Boolean) {
+fun MaterialButton.showDiscussionVoteProgress(show: Boolean, vote: Vote) {
     if (show) {
         // Размер прогресса должен совпадать с размером иконки кнопки - 18dp.
         // (6.5 + 2.5 (stroke progress)) * 2 = 18
@@ -123,20 +114,19 @@ fun MaterialButton.showDiscussionVoteProgress(show: Boolean) {
         val progressColor = if (isSelected) R.color.primary else R.color.accent
 
         showProgress {
-            buttonText = text.toString()
-            gravity = DrawableButton.GRAVITY_TEXT_START
+            gravity = DrawableButton.GRAVITY_CENTER
             progressRadiusPx = dip(progressPx)
             progressColorRes = progressColor
         }
         icon = null
     } else {
-        hideProgress(text.toString())
+        hideProgress(vote.upvotes.toString())
     }
 }
 
-fun MaterialButton.resetDiscussionVoteBeforeProgress() {
+fun MaterialButton.resetDiscussionVoteBeforeProgress(vote: Vote) {
     val iconColor = if (isSelected) R.color.button_discussion_upvoted_icon else R.color.button_discussion_icon
     icon = context.getDrawable(R.drawable.ic_favorite)
     iconTint = ColorStateList.valueOf(context.color(iconColor))
-    text = text.trim()
+    text = vote.upvotes.toString()
 }

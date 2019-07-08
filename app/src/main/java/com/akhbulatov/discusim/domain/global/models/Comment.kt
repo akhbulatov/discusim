@@ -7,7 +7,6 @@ data class Comment(
     val message: String,
     val author: UserPreview,
     val createdAt: LocalDateTime,
-    val upvotes: Int,
-    val voteType: VoteType,
+    val vote: Vote,
     val discussion: DiscussionPreview
 )

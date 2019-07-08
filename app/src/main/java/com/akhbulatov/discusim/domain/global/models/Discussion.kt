@@ -10,8 +10,7 @@ data class Discussion(
     val author: UserMiddle,
     val createdAt: LocalDateTime,
     val topics: List<Topic>,
-    val upvotes: Int,
-    val voteType: VoteType,
+    val vote: Vote,
     val comments: Int
 ) {
 

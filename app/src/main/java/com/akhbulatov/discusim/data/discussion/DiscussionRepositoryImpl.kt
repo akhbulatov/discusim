@@ -6,7 +6,7 @@ import com.akhbulatov.discusim.data.global.network.utils.RequestParams
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.VoteType
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.repositories.DiscussionRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -52,7 +52,7 @@ class DiscussionRepositoryImpl @Inject constructor(
             .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun voteDiscussion(discussionId: Long, voteType: VoteType): Single<VoteType> =
+    override fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote> =
         api.voteDiscussion(
             discussionId,
             voteResponseMapper.map(voteType)

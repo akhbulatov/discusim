@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.discussion.DiscussionInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Discussion
-import com.akhbulatov.discusim.domain.global.models.VoteType
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
@@ -37,8 +37,8 @@ class DiscussionDetailsViewModel @Inject constructor(
     private val _voteError = MutableLiveData<String>()
     val voteError: LiveData<String> get() = _voteError
 
-    private val _voteType = MutableLiveData<VoteType>()
-    val voteType: LiveData<VoteType> get() = _voteType
+    private val _vote = MutableLiveData<Vote>()
+    val vote: LiveData<Vote> get() = _vote
 
     fun setDiscussionId(discussionId: Long) {
         this.discussionId = discussionId
@@ -62,13 +62,13 @@ class DiscussionDetailsViewModel @Inject constructor(
 
     fun onVoteClicked(upvoted: Boolean) {
         // Дизлайк не предусмотрен
-        val voteType = if (!upvoted) VoteType.UPVOTE else VoteType.NO_VOTE
+        val voteType = if (!upvoted) Vote.Type.UPVOTE else Vote.Type.NO_VOTE
         disposables += discussionInteractor.voteDiscussion(discussionId, voteType)
             .observeOn(schedulers.ui())
             .doOnSubscribe { _voteProgress.value = true }
             .doAfterTerminate { _voteProgress.value = false }
             .subscribeBy(
-                onSuccess = { _voteType.value = it },
+                onSuccess = { _vote.value = it },
                 onError = { errorHandler.proceed(it) { msg -> _voteError.value = msg } }
             )
     }

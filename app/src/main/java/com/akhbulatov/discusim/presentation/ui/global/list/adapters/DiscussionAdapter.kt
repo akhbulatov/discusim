@@ -94,10 +94,7 @@ class DiscussionAdapter(
                     topicChipGroup.isVisible = false
                 }
                 titleTextView.text = item.title
-                with(voteButton) {
-                    text = item.upvotes.toString()
-                    setDiscussionVote(item.voteType)
-                }
+                voteButton.setDiscussionVote(item.vote)
                 commentsButton.text = item.comments.toString()
             }
         }

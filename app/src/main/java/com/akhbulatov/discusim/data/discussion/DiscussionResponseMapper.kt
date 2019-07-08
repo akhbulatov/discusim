@@ -33,8 +33,7 @@ class DiscussionResponseMapper @Inject constructor(
                 userResponseMapper.map(it.author),
                 it.createdAt,
                 it.topics?.let { topic -> topicResponseMapper.map(topic) } ?: emptyList(),
-                it.likes,
-                voteResponseMapper.map(it.userScore),
+                voteResponseMapper.map(it.likes, it.userScore),
                 it.posts
             )
         }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Comment
-import com.akhbulatov.discusim.domain.global.models.VoteType
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -70,10 +70,10 @@ class CommentAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                 dateTextView.text = item.createdAt.getHumanCreatedTime(context.resources)
                 messageTextView.text = item.message
 
-                if (item.upvotes > 0) {
+                if (item.vote.upvotes > 0) {
                     with(upvoteTextView) {
                         compoundDrawablePadding = context.dimen(R.dimen.spacing_micro)
-                        text = item.upvotes.toString()
+                        text = item.vote.upvotes.toString()
                     }
                 } else {
                     with(upvoteTextView) {
@@ -81,16 +81,16 @@ class CommentAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                         text = null
                     }
                 }
-                when (item.voteType) {
-                    VoteType.NO_VOTE -> {
+                when (item.vote.type) {
+                    Vote.Type.NO_VOTE -> {
                         upvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
                         downvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
                     }
-                    VoteType.UPVOTE -> {
+                    Vote.Type.UPVOTE -> {
                         upvoteTextView.setTintEndDrawable(R.color.button_comment_upvote)
                         downvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
                     }
-                    VoteType.DOWNVOTE -> {
+                    Vote.Type.DOWNVOTE -> {
                         upvoteTextView.setTintEndDrawable(R.color.button_comment_no_vote)
                         downvoteTextView.setTintEndDrawable(R.color.button_comment_downvote)
                     }

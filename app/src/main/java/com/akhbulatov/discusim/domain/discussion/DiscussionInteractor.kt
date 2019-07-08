@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.domain.discussion
 
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.VoteType
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.repositories.DiscussionRepository
 import io.reactivex.Single
 import javax.inject.Inject
@@ -23,6 +23,6 @@ class DiscussionInteractor @Inject constructor(
     fun getPopularDiscussions(forumId: String): Single<PagedList<Discussion>> =
         discussionRepository.getPopularDiscussions(forumId)
 
-    fun voteDiscussion(discussionId: Long, voteType: VoteType): Single<VoteType> =
+    fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote> =
         discussionRepository.voteDiscussion(discussionId, voteType)
 }

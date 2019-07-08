@@ -28,8 +28,7 @@ class CommentResponseMapper @Inject constructor(
                 it.message,
                 userResponseMapper.map(it.author),
                 it.createdAt,
-                it.likes,
-                voteResponseMapper.map(it.userScore),
+                voteResponseMapper.map(it.likes, it.userScore),
                 discussionResponseMapper.map(it.thread)
             )
         }
