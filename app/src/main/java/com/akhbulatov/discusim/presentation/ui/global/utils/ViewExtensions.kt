@@ -75,11 +75,11 @@ fun MaterialButton.setFollow(isFollowing: Boolean) {
 }
 
 fun TextView.updateVotesText(voteType: VoteType) {
-    var oldVotes = text.toString().trim().toInt()
+    val oldVotes = text.toString().trim().toInt()
     val newVotes = when (voteType) {
         VoteType.NO_VOTE,
-        VoteType.DOWNVOTE -> --oldVotes
-        VoteType.UPVOTE -> ++oldVotes
+        VoteType.DOWNVOTE -> oldVotes - 1
+        VoteType.UPVOTE -> oldVotes + 1
     }
     text = newVotes.toString()
 }
