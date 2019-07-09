@@ -122,6 +122,7 @@ fun MaterialButton.showDiscussionVoteProgress(show: Boolean, vote: Vote) {
     } else {
         hideProgress(vote.upvotes.toString())
     }
+    isClickable = !show
 }
 
 fun MaterialButton.resetDiscussionVoteBeforeProgress(vote: Vote) {
