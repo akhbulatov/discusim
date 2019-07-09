@@ -6,12 +6,15 @@ import com.akhbulatov.discusim.domain.discussion.DiscussionInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class ForumDiscussionsViewModel @Inject constructor(
@@ -44,6 +47,9 @@ class ForumDiscussionsViewModel @Inject constructor(
 
     private val _pageProgress = MutableLiveData<Boolean>()
     val pageProgress: LiveData<Boolean> get() = _pageProgress
+
+    private val _vote = MutableLiveData<Vote>()
+    val vote: LiveData<Vote> get() = _vote
 
     private val paginator = Paginator(
         {
@@ -101,7 +107,20 @@ class ForumDiscussionsViewModel @Inject constructor(
     fun refreshDiscussions() = paginator.refresh()
     fun loadNextDiscussionsPage() = paginator.loadNewPage()
 
-    fun onDiscussionClicked(discussion: Discussion) = router.navigateTo(Screens.DiscussionDetails(discussion.id))
+    fun onVoteClicked(discussion: Discussion, upvoted: Boolean) {
+        // Дизлайк не предусмотрен
+        val voteType = if (!upvoted) Vote.Type.UPVOTE else Vote.Type.NO_VOTE
+        disposables += discussionInteractor.voteDiscussion(discussion.id, voteType)
+            .observeOn(schedulers.ui())
+            .subscribeBy(
+                onSuccess = { _vote.value = it },
+                onError = { errorHandler.proceed(it) { msg -> _errorMessage.value = msg } }
+            )
+    }
+
+    fun onDiscussionClicked(discussion: Discussion) {
+        router.navigateTo(Screens.DiscussionDetails(discussion.id))
+    }
 
     override fun onCleared() {
         paginator.release()
