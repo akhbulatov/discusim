@@ -11,12 +11,12 @@ import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
-class RootActivity : DaggerAppCompatActivity() {
+class AppActivity : DaggerAppCompatActivity() {
     @Inject lateinit var navigatorHolder: NavigatorHolder
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val navigator: Navigator by lazy { SupportAppNavigator(this, R.id.container) }
-    private val viewModel: RootViewModel by viewModels { viewModelFactory }
+    private val viewModel: AppViewModel by viewModels { viewModelFactory }
 
     private val currentFragment
         get() = supportFragmentManager.findFragmentById(R.id.container) as BaseFragment?

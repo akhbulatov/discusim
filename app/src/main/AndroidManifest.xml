@@ -18,7 +18,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="m">
 
-        <activity android:name=".presentation.ui.RootActivity">
+        <activity android:name=".presentation.ui.AppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

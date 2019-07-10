@@ -18,11 +18,11 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class RootModule {
+abstract class AppActivityModule {
     @Binds
     @IntoMap
-    @ViewModelKey(RootViewModel::class)
-    abstract fun bindRootViewModel(viewModel: RootViewModel): ViewModel
+    @ViewModelKey(AppViewModel::class)
+    abstract fun bindAppViewModel(viewModel: AppViewModel): ViewModel
 
     @FlowFragmentScope
     @ContributesAndroidInjector(modules = [AuthFlowModule::class, FlowNavigationModule::class])
