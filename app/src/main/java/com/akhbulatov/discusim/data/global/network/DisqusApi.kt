@@ -9,8 +9,10 @@ import com.akhbulatov.discusim.data.following.FollowingResponse
 import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
+import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
 import com.akhbulatov.discusim.data.user.UserResponse
+import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.http.Field
@@ -89,6 +91,14 @@ interface DisqusApi {
     fun getTrendingTopics(
         @Query("channel") forumId: String
     ): Single<TopicsResponse>
+
+    @FormUrlEncoded
+    @POST("forums/follow.json")
+    fun followForum(@Field("target") forumId: String): Completable
+
+    @FormUrlEncoded
+    @POST("forums/unfollow.json")
+    fun unfollowForum(@Field("target") forumId: String): Completable
     // --- Forum --- //
 
     // --- Discussions --- //
@@ -117,5 +127,12 @@ interface DisqusApi {
         @Query("forum") forumId: String,
         @Query("related") related: List<String>
     ): Single<DiscussionsResponse>
+
+    @FormUrlEncoded
+    @POST("threads/vote.json")
+    fun voteDiscussion(
+        @Field("thread") discussionId: Long,
+        @Field("vote") vote: Int
+    ): Single<VoteResponse>
     // --- Discussions --- //
 }

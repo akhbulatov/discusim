@@ -16,10 +16,12 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.inflate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setDiscussionVote
+import com.akhbulatov.discusim.presentation.ui.global.utils.showDiscussionVoteProgress
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_discussion.*
 
 class DiscussionAdapter(
+    private val onVoteClickListener: (view: View, item: Discussion, position: Int) -> Unit,
     private val onItemClickListener: (Discussion) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
@@ -67,6 +69,10 @@ class DiscussionAdapter(
         private lateinit var discussion: Discussion
 
         init {
+            voteButton.setOnClickListener {
+                voteButton.showDiscussionVoteProgress(true, discussion.vote)
+                onVoteClickListener(it, discussion, adapterPosition)
+            }
             itemView.setOnClickListener { onItemClickListener(discussion) }
         }
 
@@ -94,10 +100,7 @@ class DiscussionAdapter(
                     topicChipGroup.isVisible = false
                 }
                 titleTextView.text = item.title
-                with(voteButton) {
-                    text = item.upvotes.toString()
-                    setDiscussionVote(item.isUpvoted)
-                }
+                voteButton.setDiscussionVote(item.vote)
                 commentsButton.text = item.comments.toString()
             }
         }

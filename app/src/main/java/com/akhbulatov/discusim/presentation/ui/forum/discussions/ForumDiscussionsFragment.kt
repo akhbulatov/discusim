@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Discussion
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
@@ -26,10 +27,18 @@ class ForumDiscussionsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_discussions
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var viewModel: ForumDiscussionsViewModel
+
+    private var discussionPosition = -1
+
     private val discussionAdapter by lazy {
-        DiscussionAdapter { viewModel.onDiscussionClicked(it) }
+        DiscussionAdapter(
+            { view, discussion, position ->
+                discussionPosition = position
+                viewModel.onVoteClicked(discussion, view.isSelected)
+            },
+            { viewModel.onDiscussionClicked(it) }
+        )
     }
     private val onScrollListener by lazy {
         EndlessScrollListener(discussionsRecyclerView.layoutManager as LinearLayoutManager)
@@ -72,6 +81,7 @@ class ForumDiscussionsFragment : BaseFragment() {
         viewModel.errorMessage.observe(this, Observer { showErrorMessage(it) })
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
+        viewModel.vote.observe(this, Observer { updateVote(it) })
     }
 
     private fun showEmptyProgress(show: Boolean) {
@@ -103,6 +113,13 @@ class ForumDiscussionsFragment : BaseFragment() {
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
         discussionAdapter.showProgress(show)
+    }
+
+    private fun updateVote(vote: Vote) {
+        val items = discussionAdapter.currentList.toMutableList()
+        val item = items[discussionPosition] as Discussion
+        items[discussionPosition] = item.copy(vote = vote)
+        discussionAdapter.submitList(items)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

@@ -3,16 +3,17 @@ package com.akhbulatov.discusim.data.comment
 import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
 import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Comment
 import com.akhbulatov.discusim.domain.global.models.CommentPreview
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.VoteType
 import javax.inject.Inject
 
 class CommentResponseMapper @Inject constructor(
     private val userResponseMapper: UserResponseMapper,
-    private val discussionResponseMapper: DiscussionResponseMapper
+    private val discussionResponseMapper: DiscussionResponseMapper,
+    private val voteResponseMapper: VoteResponseMapper
 ) {
 
     fun map(response: CommentsResponse): PagedList<Comment> {
@@ -27,12 +28,7 @@ class CommentResponseMapper @Inject constructor(
                 it.message,
                 userResponseMapper.map(it.author),
                 it.createdAt,
-                it.likes,
-                when (it.userScore) {
-                    -1 -> VoteType.DOWNVOTE
-                    0 -> VoteType.NO_VOTE
-                    else -> VoteType.UPVOTE
-                },
+                voteResponseMapper.map(it.likes, it.userScore),
                 discussionResponseMapper.map(it.thread)
             )
         }
