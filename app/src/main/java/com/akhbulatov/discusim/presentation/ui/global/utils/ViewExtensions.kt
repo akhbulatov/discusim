@@ -63,14 +63,46 @@ fun ImageView.loadRoundedImage(ctx: Context? = null, url: String) {
         .into(this)
 }
 
-fun MaterialButton.setFollow(isFollowing: Boolean) {
-    val iconDrawable = if (isFollowing) context.getDrawable(R.drawable.ic_done) else null
-    val backgroundColor = if (isFollowing) R.color.button_following else R.color.button_follow
-    val textResId = if (isFollowing) R.string.msg_following else R.string.msg_follow
+fun MaterialButton.setFollow(following: Boolean) {
+    val backgroundColor = if (following) R.color.button_following else R.color.button_follow
+    val iconDrawable = if (following) context.getDrawable(R.drawable.ic_done) else null
+    val textResId = if (following) R.string.msg_following else R.string.msg_follow
+
+    setBackgroundColor(context.color(backgroundColor))
+    icon = iconDrawable
+    iconTint = ColorStateList.valueOf(context.color(R.color.primary))
+    setText(textResId)
+
+    isSelected = following
+}
+
+/**
+ * Размер прогресса должен совпадать с размером иконки кнопки - 18dp.
+ * (6.5 + 2.5 (stroke progress)) * 2 = 18
+ */
+private const val BUTTON_PROGRESS_PX = 6.5f
+
+fun MaterialButton.showFollowProgress(show: Boolean) {
+    if (show) {
+        showProgress {
+            gravity = DrawableButton.GRAVITY_CENTER
+            progressRadiusPx = dip(BUTTON_PROGRESS_PX)
+            progressColorRes = R.color.primary
+        }
+        icon = null
+    } else {
+        val textResId = if (isSelected) R.string.msg_following else R.string.msg_follow
+        hideProgress(textResId)
+    }
+    isClickable = !show
+}
+
+fun MaterialButton.resetFollowBeforeProgress() {
+    val iconDrawable = if (isSelected) context.getDrawable(R.drawable.ic_done) else null
+    val textResId = if (isSelected) R.string.msg_following else R.string.msg_follow
 
     icon = iconDrawable
     iconTint = ColorStateList.valueOf(context.color(R.color.primary))
-    setBackgroundColor(context.color(backgroundColor))
     setText(textResId)
 }
 
@@ -108,14 +140,11 @@ fun MaterialButton.setDiscussionVote(vote: Vote) {
 
 fun MaterialButton.showDiscussionVoteProgress(show: Boolean, vote: Vote) {
     if (show) {
-        // Размер прогресса должен совпадать с размером иконки кнопки - 18dp.
-        // (6.5 + 2.5 (stroke progress)) * 2 = 18
-        val progressPx = 6.5f
         val progressColor = if (isSelected) R.color.primary else R.color.accent
 
         showProgress {
             gravity = DrawableButton.GRAVITY_CENTER
-            progressRadiusPx = dip(progressPx)
+            progressRadiusPx = dip(BUTTON_PROGRESS_PX)
             progressColorRes = progressColor
         }
         icon = null
