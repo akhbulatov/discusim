@@ -44,7 +44,7 @@ class DiscussionDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        voteButton.setOnClickListener { viewModel.onVoteClicked(voteButton.isSelected) }
+        voteButton.setOnClickListener { viewModel.onVoteClicked(it.isSelected) }
         bindProgressButton(voteButton)
         errorRefreshButton.setOnClickListener { viewModel.loadDiscussionDetails() }
         observeUiChanges()
