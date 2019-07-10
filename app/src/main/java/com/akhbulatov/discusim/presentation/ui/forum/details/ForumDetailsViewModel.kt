@@ -21,14 +21,26 @@ class ForumDetailsViewModel @Inject constructor(
 
     private lateinit var forumId: String
 
-    private val _progress = MutableLiveData<Boolean>()
-    val progress: LiveData<Boolean> get() = _progress
+    private val _emptyProgress = MutableLiveData<Boolean>()
+    val emptyProgress: LiveData<Boolean> get() = _emptyProgress
 
-    private val _error = MutableLiveData<Pair<Boolean, String?>>()
-    val error: LiveData<Pair<Boolean, String?>> get() = _error
+    private val _emptyError = MutableLiveData<Pair<Boolean, String?>>()
+    val emptyError: LiveData<Pair<Boolean, String?>> get() = _emptyError
 
     private val _forum = MutableLiveData<Pair<Boolean, Forum?>>()
     val forum: LiveData<Pair<Boolean, Forum?>> get() = _forum
+
+    private val _followProgress = MutableLiveData<Boolean>()
+    val followProgress: LiveData<Boolean> get() = _followProgress
+
+    private val _followError = MutableLiveData<String>()
+    val followError: LiveData<String> get() = _followError
+
+    private val _follow = MutableLiveData<Unit>()
+    val follow: LiveData<Unit> get() = _follow
+
+    private val _unfollow = MutableLiveData<Unit>()
+    val unfollow: LiveData<Unit> get() = _unfollow
 
     fun setForumId(forumId: String) {
         this.forumId = forumId
@@ -40,13 +52,39 @@ class ForumDetailsViewModel @Inject constructor(
             .observeOn(schedulers.ui())
             .doOnSubscribe {
                 _forum.value = Pair(false, null)
-                _error.value = Pair(false, null)
-                _progress.value = true
+                _emptyError.value = Pair(false, null)
+                _emptyProgress.value = true
             }
-            .doAfterTerminate { _progress.value = false }
+            .doAfterTerminate { _emptyProgress.value = false }
             .subscribeBy(
                 onSuccess = { _forum.value = Pair(true, it) },
-                onError = { errorHandler.proceed(it) { msg -> _error.value = Pair(true, msg) } }
+                onError = { errorHandler.proceed(it) { msg -> _emptyError.value = Pair(true, msg) } }
+            )
+    }
+
+    fun onFollowClicked(following: Boolean) {
+        if (!following) followForum() else unfollowForum()
+    }
+
+    private fun followForum() {
+        disposables += forumInteractor.followForum(forumId)
+            .observeOn(schedulers.ui())
+            .doOnSubscribe { _followProgress.value = true }
+            .doAfterTerminate { _followProgress.value = false }
+            .subscribeBy(
+                onComplete = { _follow.value = Unit },
+                onError = { errorHandler.proceed(it) { msg -> _followError.value = msg } }
+            )
+    }
+
+    private fun unfollowForum() {
+        disposables += forumInteractor.unfollowForum(forumId)
+            .observeOn(schedulers.ui())
+            .doOnSubscribe { _followProgress.value = true }
+            .doAfterTerminate { _followProgress.value = false }
+            .subscribeBy(
+                onComplete = { _unfollow.value = Unit },
+                onError = { errorHandler.proceed(it) { msg -> _followError.value = msg } }
             )
     }
 
