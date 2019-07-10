@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Comment
@@ -26,8 +26,8 @@ class UserCommentsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_comments
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: UserCommentsViewModel by viewModels { viewModelFactory }
 
-    private lateinit var viewModel: UserCommentsViewModel
     private val commentAdapter by lazy { CommentAdapter() }
     private val onScrollListener by lazy {
         EndlessScrollListener(commentsRecyclerView.layoutManager as LinearLayoutManager)
@@ -37,8 +37,6 @@ class UserCommentsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserCommentsViewModel::class.java]
         viewModel.setUserId(userId)
     }
 

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
@@ -25,8 +25,8 @@ class ForumTopicsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_topics
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: ForumTopicsViewModel by viewModels { viewModelFactory }
 
-    private lateinit var viewModel: ForumTopicsViewModel
     private val topicAdapter by lazy { TopicAdapter() }
     private val onScrollListener by lazy {
         EndlessScrollListener(topicsRecyclerView.layoutManager as LinearLayoutManager)
@@ -36,8 +36,6 @@ class ForumTopicsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumTopicsViewModel::class.java]
         viewModel.setForumId(forumId)
     }
 

@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.presentation.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -16,7 +16,7 @@ class RootActivity : DaggerAppCompatActivity() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val navigator: Navigator by lazy { SupportAppNavigator(this, R.id.container) }
-    private lateinit var viewModel: RootViewModel
+    private val viewModel: RootViewModel by viewModels { viewModelFactory }
 
     private val currentFragment
         get() = supportFragmentManager.findFragmentById(R.id.container) as BaseFragment?
@@ -24,7 +24,7 @@ class RootActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_container)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[RootViewModel::class.java]
+        run { viewModel }
     }
 
     override fun onResumeFragments() {

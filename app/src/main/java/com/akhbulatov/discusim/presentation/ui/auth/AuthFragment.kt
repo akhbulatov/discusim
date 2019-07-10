@@ -8,9 +8,9 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -21,13 +21,7 @@ class AuthFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_auth
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: AuthViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[AuthViewModel::class.java]
-    }
+    private val viewModel: AuthViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -5,8 +5,8 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
@@ -18,7 +18,7 @@ class UserHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_host
 
     @Inject lateinit var router: FlowRouter
-    private lateinit var userSharedViewModel: UserSharedViewModel
+    private val userSharedViewModel: UserSharedViewModel by viewModels()
 
     private var userId: Long = 0
     private val userPagerAdapter by lazy { UserPagerAdapter() }
@@ -26,7 +26,6 @@ class UserHostFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-        userSharedViewModel = ViewModelProviders.of(this)[UserSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -3,8 +3,8 @@ package com.akhbulatov.discusim.presentation.ui.forum
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
@@ -15,7 +15,7 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 class ForumHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_host
 
-    private lateinit var forumSharedViewModel: ForumSharedViewModel
+    private val forumSharedViewModel: ForumSharedViewModel by viewModels()
 
     private lateinit var forumDetailsTabScreen: SupportAppScreen
     private lateinit var forumDiscussionsTabScreen: SupportAppScreen
@@ -28,8 +28,6 @@ class ForumHostFragment : BaseFragment() {
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
         forumDetailsTabScreen = Screens.ForumDetailsHost(forumId)
         forumDiscussionsTabScreen = Screens.ForumDiscussionsHost(forumId)
-
-        forumSharedViewModel = ViewModelProviders.of(this)[ForumSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

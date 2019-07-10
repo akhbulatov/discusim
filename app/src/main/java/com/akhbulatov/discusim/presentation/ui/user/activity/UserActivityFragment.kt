@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
@@ -24,8 +24,8 @@ class UserActivityFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_activity
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: UserActivityViewModel by viewModels { viewModelFactory }
 
-    private lateinit var viewModel: UserActivityViewModel
     private val activityAdapter by lazy {
         UserActivityAdapter(
             { viewModel.onUserClicked(it) },
@@ -40,8 +40,6 @@ class UserActivityFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserActivityViewModel::class.java]
         viewModel.setUserId(userId)
     }
 

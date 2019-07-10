@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Discussion
@@ -27,7 +27,7 @@ class ForumDiscussionsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_discussions
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: ForumDiscussionsViewModel
+    private val viewModel: ForumDiscussionsViewModel by viewModels { viewModelFactory }
 
     private var discussionPosition = -1
 
@@ -49,8 +49,6 @@ class ForumDiscussionsFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
         val discussionType: DiscussionType = requireNotNull(arguments?.getParcelable(ARG_DISCUSSION_TYPE))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumDiscussionsViewModel::class.java]
         viewModel.setParams(forumId, discussionType)
     }
 

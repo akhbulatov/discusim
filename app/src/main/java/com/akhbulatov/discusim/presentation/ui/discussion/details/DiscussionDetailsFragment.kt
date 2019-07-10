@@ -5,8 +5,8 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.Vote
@@ -29,15 +29,13 @@ class DiscussionDetailsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_discussion_details
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: DiscussionDetailsViewModel
+    private val viewModel: DiscussionDetailsViewModel by viewModels { viewModelFactory }
 
     private lateinit var vote: Vote
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val discussionId = requireNotNull(arguments?.getLong(ARG_DISCUSSION_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[DiscussionDetailsViewModel::class.java]
         viewModel.setDiscussionId(discussionId)
     }
 

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
@@ -26,18 +26,13 @@ class ForumDetailsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_details
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: ForumDetailsViewModel
-    private lateinit var forumSharedViewModel: ForumSharedViewModel
+    private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
+    private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!!.parentFragment!! })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[ForumDetailsViewModel::class.java]
         viewModel.setForumId(forumId)
-
-        val parentFlowFragment = parentFragment!!.parentFragment!!
-        forumSharedViewModel = ViewModelProviders.of(parentFlowFragment)[ForumSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

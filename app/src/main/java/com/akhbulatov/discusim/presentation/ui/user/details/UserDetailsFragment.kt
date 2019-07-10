@@ -5,8 +5,8 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
@@ -25,18 +25,13 @@ class UserDetailsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_details
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-
-    private lateinit var viewModel: UserDetailsViewModel
-    private lateinit var userSharedViewModel: UserSharedViewModel
+    private val viewModel: UserDetailsViewModel by viewModels { viewModelFactory }
+    private val userSharedViewModel: UserSharedViewModel by viewModels({ parentFragment!! })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserDetailsViewModel::class.java]
         viewModel.setUserId(userId)
-
-        userSharedViewModel = ViewModelProviders.of(parentFragment!!)[UserSharedViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
@@ -25,8 +25,8 @@ class UserFollowersFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_followers
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: UserFollowersViewModel by viewModels { viewModelFactory }
 
-    private lateinit var viewModel: UserFollowersViewModel
     private val userAdapter by lazy {
         UserAdapter { viewModel.onFollowerClicked(it) }
     }
@@ -38,8 +38,6 @@ class UserFollowersFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val userId = requireNotNull(arguments?.getLong(ARG_USER_ID))
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[UserFollowersViewModel::class.java]
         viewModel.setUserId(userId)
     }
 

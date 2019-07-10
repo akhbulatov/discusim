@@ -3,9 +3,9 @@ package com.akhbulatov.discusim.presentation.ui.main.my.activity
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
@@ -24,8 +24,8 @@ class MyActivityFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_my_activity
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: MyActivityViewModel by viewModels { viewModelFactory }
 
-    private lateinit var viewModel: MyActivityViewModel
     private val activityAdapter by lazy {
         UserActivityAdapter(
             { viewModel.onUserClicked(it) },
@@ -39,7 +39,7 @@ class MyActivityFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[MyActivityViewModel::class.java]
+        run { viewModel }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
