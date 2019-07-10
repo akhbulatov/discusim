@@ -88,12 +88,11 @@
                 <!-- Discussions. Start -->
                 <LinearLayout
                     android:id="@+id/numDiscussionsLayout"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/numFollowersLayout"
-                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -118,12 +117,11 @@
                     android:id="@+id/numFollowersLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginStart="@dimen/spacing_xlarge"
                     android:layout_marginEnd="@dimen/spacing_normal"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/followButton"
-                    app:layout_constraintHorizontal_weight="1.5"
                     app:layout_constraintStart_toEndOf="@id/numDiscussionsLayout"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -143,7 +141,6 @@
                 </LinearLayout>
                 <!-- Followers. End -->
 
-                <!-- Follow -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/followButton"
                     style="@style/FollowButton"
@@ -151,7 +148,6 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/numFollowersLayout"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
