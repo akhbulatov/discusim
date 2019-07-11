@@ -1,9 +1,9 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
 detekt {
-    toolVersion = "1.0.0-RC15"
+    toolVersion = "${versions.detekt}"
     input = files("src/main/java")
     parallel = true
     filters = ".*build.*,.*/resources/.*,.*/tmp/.*"
-    config = files("$rootDir/detekt-config.yml")
+    config = files("$rootDir/default-detekt-config.yml")
 }
