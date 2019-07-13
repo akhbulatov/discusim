@@ -72,9 +72,8 @@ class ForumDetailsFragment : BaseFragment() {
             avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
             nameTextView.text = forum.name
             descriptionTextView.text = forum.description
-            // Устанавливает кол-во обсуждений и фолловеров с тысячным разделителем
-            numDiscussionsTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, forum.numDiscussions)
-            numFollowersTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, forum.numFollowers)
+            numDiscussionsTextView.text = getString(R.string.forum_details_thousand_nums, forum.numDiscussions)
+            numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, forum.numFollowers)
             followButton.setFollow(forum.isFollowing)
         }
         contentLayout.isVisible = show
@@ -98,15 +97,13 @@ class ForumDetailsFragment : BaseFragment() {
         val oldFollowers = forum.numFollowers
         val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
         forum = forum.copy(numFollowers = newFollowers)
-        numFollowersTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, newFollowers)
+        numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, newFollowers)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
 
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
-
-        private const val THOUSANDS_SEPARATOR_FORMAT = "%,d"
 
         fun newInstance(forumId: String) = ForumDetailsFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)

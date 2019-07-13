@@ -57,6 +57,7 @@
     <string name="forum_details_host_topics">Topics</string>
 
     <!-- Forum Details -->
+    <string name="forum_details_thousand_nums">%,d</string>
     <string name="forum_details_discussions">Discussions</string>
     <string name="forum_details_followers">Followers</string>
 
