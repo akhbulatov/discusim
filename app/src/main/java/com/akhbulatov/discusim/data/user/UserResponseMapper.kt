@@ -12,6 +12,8 @@ class UserResponseMapper @Inject constructor() {
 
     fun map(response: UserResponse): User = map(response.user)
 
+    fun map(models: List<UserMiddleNetModel>): List<UserMiddle> = models.map { map(it) }
+
     fun map(model: UserNetModel): User =
         model.let {
             User(

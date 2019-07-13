@@ -53,8 +53,9 @@
     <string name="forum_host_discussions">Discussions</string>
 
     <!-- Forum Details Host -->
-    <string name="forum_details_host_details">Details</string>
-    <string name="forum_details_host_topics">Topics</string>
+    <string name="forum_details_host_details_tab">Details</string>
+    <string name="forum_details_host_topics_tab">Topics</string>
+    <string name="forum_details_host_moderators_tab">Mods</string>
 
     <!-- Forum Details -->
     <string name="forum_details_thousand_nums">%,d</string>

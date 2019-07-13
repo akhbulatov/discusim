@@ -38,16 +38,18 @@ class ForumDetailsHostFragment : BaseFragment() {
         override fun getItem(position: Int): Fragment = when (position) {
             0 -> Screens.ForumDetails(forumId).fragment
             1 -> Screens.ForumTopics(forumId).fragment
+            2 -> Screens.ForumModerators(forumId).fragment
             else -> throw IllegalArgumentException()
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
-            0 -> getString(R.string.forum_details_host_details)
-            1 -> getString(R.string.forum_details_host_topics)
+            0 -> getString(R.string.forum_details_host_details_tab)
+            1 -> getString(R.string.forum_details_host_topics_tab)
+            2 -> getString(R.string.forum_details_host_moderators_tab)
             else -> null
         }
 
-        override fun getCount(): Int = 2
+        override fun getCount(): Int = 3
     }
 
     companion object {

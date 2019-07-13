@@ -8,6 +8,7 @@ import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.details.moderators.ForumModeratorsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.topics.ForumTopicsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionType
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsFragment
@@ -79,6 +80,12 @@ object Screens {
         val forumId: String
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumTopicsFragment.newInstance(forumId)
+    }
+
+    data class ForumModerators(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumModeratorsFragment.newInstance(forumId)
     }
 
     data class ForumDiscussionsHost(
