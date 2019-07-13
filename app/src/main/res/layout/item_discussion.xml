@@ -118,7 +118,7 @@
             app:layout_constraintTop_toBottomOf="@id/contentLayout">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/voteButton"
+                android:id="@+id/upvotesButton"
                 style="@style/DiscussionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_normal"
                 app:icon="@drawable/ic_comment"
-                app:layout_constraintStart_toEndOf="@+id/voteButton"
+                app:layout_constraintStart_toEndOf="@+id/upvotesButton"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="122" />
 

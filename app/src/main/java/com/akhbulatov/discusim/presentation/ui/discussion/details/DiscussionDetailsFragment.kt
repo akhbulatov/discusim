@@ -42,8 +42,8 @@ class DiscussionDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        voteButton.setOnClickListener { viewModel.onVoteClicked(it.isSelected) }
-        bindProgressButton(voteButton)
+        upvotesButton.setOnClickListener { viewModel.onVoteClicked(it.isSelected) }
+        bindProgressButton(upvotesButton)
         errorRefreshButton.setOnClickListener { viewModel.loadDiscussionDetails() }
         observeUiChanges()
     }
@@ -88,24 +88,24 @@ class DiscussionDetailsFragment : BaseFragment() {
                 topicChipGroup.isVisible = false
             }
 
-            voteButton.setDiscussionVote(discussion.vote)
+            upvotesButton.setDiscussionVote(discussion.vote)
             commentsButton.text = discussion.comments.toString()
         }
         contentLayout.isVisible = show
     }
 
     private fun showVoteProgress(show: Boolean) {
-        voteButton.showDiscussionVoteProgress(show, vote)
+        upvotesButton.showDiscussionVoteProgress(show, vote)
     }
 
     private fun showVoteError(message: String) {
-        voteButton.resetDiscussionVoteBeforeProgress(vote)
+        upvotesButton.resetDiscussionVoteBeforeProgress(vote)
         showSnackbar(message)
     }
 
     private fun updateVote(vote: Vote) {
         this.vote = vote
-        voteButton.setDiscussionVote(vote)
+        upvotesButton.setDiscussionVote(vote)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

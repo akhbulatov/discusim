@@ -69,8 +69,8 @@ class DiscussionAdapter(
         private lateinit var discussion: Discussion
 
         init {
-            voteButton.setOnClickListener {
-                voteButton.showDiscussionVoteProgress(true, discussion.vote)
+            upvotesButton.setOnClickListener {
+                upvotesButton.showDiscussionVoteProgress(true, discussion.vote)
                 onVoteClickListener(it, discussion, adapterPosition)
             }
             itemView.setOnClickListener { onItemClickListener(discussion) }
@@ -100,7 +100,7 @@ class DiscussionAdapter(
                     topicChipGroup.isVisible = false
                 }
                 titleTextView.text = item.title
-                voteButton.setDiscussionVote(item.vote)
+                upvotesButton.setDiscussionVote(item.vote)
                 commentsButton.text = item.comments.toString()
             }
         }
