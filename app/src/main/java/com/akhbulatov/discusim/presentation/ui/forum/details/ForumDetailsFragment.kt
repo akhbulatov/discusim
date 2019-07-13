@@ -29,6 +29,8 @@ class ForumDetailsFragment : BaseFragment() {
     private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
     private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!!.parentFragment!! })
 
+    private lateinit var forum: Forum
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
@@ -64,14 +66,15 @@ class ForumDetailsFragment : BaseFragment() {
 
     private fun showForumDetails(show: Boolean, forum: Forum?) {
         if (forum != null) {
+            this.forum = forum
             forumSharedViewModel.forum.value = forum
 
             avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
             nameTextView.text = forum.name
             descriptionTextView.text = forum.description
             // Устанавливает кол-во обсуждений и фолловеров с тысячным разделителем
-            numDiscussionsTextView.text = String.format("%,d", forum.numDiscussions)
-            numFollowersTextView.text = String.format("%,d", forum.numFollowers)
+            numDiscussionsTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, forum.numDiscussions)
+            numFollowersTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, forum.numFollowers)
             followButton.setFollow(forum.isFollowing)
         }
         contentLayout.isVisible = show
@@ -88,12 +91,22 @@ class ForumDetailsFragment : BaseFragment() {
 
     private fun updateFollow(following: Boolean) {
         followButton.setFollow(following)
+        updateNumFollowers(following)
+    }
+
+    private fun updateNumFollowers(following: Boolean) {
+        val oldFollowers = forum.numFollowers
+        val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
+        forum = forum.copy(numFollowers = newFollowers)
+        numFollowersTextView.text = String.format(THOUSANDS_SEPARATOR_FORMAT, newFollowers)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
 
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
+
+        private const val THOUSANDS_SEPARATOR_FORMAT = "%,d"
 
         fun newInstance(forumId: String) = ForumDetailsFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
