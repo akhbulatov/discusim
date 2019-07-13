@@ -10,7 +10,7 @@ class FollowerResponseMapper @Inject constructor(
 ) {
 
     fun map(response: FollowersResponse): PagedList<UserMiddle> {
-        val followers = response.followers.map { userResponseMapper.map(it) }
+        val followers = userResponseMapper.map(response.followers)
         return PagedList(response.cursor?.next, followers)
     }
 }
