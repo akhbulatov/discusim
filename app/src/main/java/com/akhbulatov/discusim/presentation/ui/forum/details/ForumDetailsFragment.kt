@@ -69,8 +69,9 @@ class ForumDetailsFragment : BaseFragment() {
             avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
             nameTextView.text = forum.name
             descriptionTextView.text = forum.description
-            numDiscussionsTextView.text = forum.numDiscussions.toString()
-            numFollowersTextView.text = forum.numFollowers.toString()
+            // Устанавливает кол-во обсуждений и фолловеров с тысячным разделителем
+            numDiscussionsTextView.text = String.format("%,d", forum.numDiscussions)
+            numFollowersTextView.text = String.format("%,d", forum.numFollowers)
             followButton.setFollow(forum.isFollowing)
         }
         contentLayout.isVisible = show
