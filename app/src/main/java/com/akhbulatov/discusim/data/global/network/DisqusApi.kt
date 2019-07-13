@@ -10,6 +10,7 @@ import com.akhbulatov.discusim.data.forum.ForumResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponse
+import com.akhbulatov.discusim.data.moderator.ModeratorsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
 import com.akhbulatov.discusim.data.user.UserResponse
 import io.reactivex.Completable
@@ -87,11 +88,6 @@ interface DisqusApi {
         @Query("attach") attach: List<String>
     ): Single<ForumResponse>
 
-    @GET("channels/listTrendingTopics")
-    fun getTrendingTopics(
-        @Query("channel") forumId: String
-    ): Single<TopicsResponse>
-
     @FormUrlEncoded
     @POST("forums/follow.json")
     fun followForum(@Field("target") forumId: String): Completable
@@ -99,6 +95,16 @@ interface DisqusApi {
     @FormUrlEncoded
     @POST("forums/unfollow.json")
     fun unfollowForum(@Field("target") forumId: String): Completable
+
+    @GET("channels/listTrendingTopics")
+    fun getTrendingTopics(
+        @Query("channel") forumId: String
+    ): Single<TopicsResponse>
+
+    @GET("forums/listModerators.json")
+    fun getModerators(
+        @Query("forum") forumId: String
+    ): Single<ModeratorsResponse>
     // --- Forum --- //
 
     // --- Discussions --- //
