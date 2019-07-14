@@ -8,10 +8,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user_host.*
+import org.jetbrains.anko.support.v4.share
 import javax.inject.Inject
 
 class UserHostFragment : BaseFragment() {
@@ -22,6 +24,7 @@ class UserHostFragment : BaseFragment() {
 
     private var userId: Long = 0
     private val userPagerAdapter by lazy { UserPagerAdapter() }
+    private var sharedUser: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +33,26 @@ class UserHostFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        setupToolbar()
         userPager.adapter = userPagerAdapter
         userTabLayout.setupWithViewPager(userPager)
         observeUiChanges()
     }
 
+    private fun setupToolbar() {
+        with(toolbar) {
+            inflateMenu(R.menu.user_host)
+            setNavigationOnClickListener { onBackPressed() }
+            setOnMenuItemClickListener {
+                sharedUser?.let { share(it.url) }
+                true
+            }
+        }
+    }
+
     private fun observeUiChanges() {
         userSharedViewModel.user.observe(this, Observer {
+            this.sharedUser = it
             toolbar.title = it.username
         })
     }
