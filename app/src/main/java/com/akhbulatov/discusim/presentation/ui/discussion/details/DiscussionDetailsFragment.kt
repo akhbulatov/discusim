@@ -23,6 +23,7 @@ import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_discussion_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
+import org.jetbrains.anko.support.v4.share
 import javax.inject.Inject
 
 class DiscussionDetailsFragment : BaseFragment() {
@@ -31,6 +32,7 @@ class DiscussionDetailsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: DiscussionDetailsViewModel by viewModels { viewModelFactory }
 
+    private var discussion: Discussion? = null
     private lateinit var vote: Vote
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +43,22 @@ class DiscussionDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        setupToolbar()
         upvotesButton.setOnClickListener { viewModel.onVoteClicked(it.isSelected) }
         bindProgressButton(upvotesButton)
         errorRefreshButton.setOnClickListener { viewModel.loadDiscussionDetails() }
         observeUiChanges()
+    }
+
+    private fun setupToolbar() {
+        with(toolbar) {
+            inflateMenu(R.menu.discussion_details)
+            setNavigationOnClickListener { onBackPressed() }
+            setOnMenuItemClickListener {
+                discussion?.let { share(it.link) }
+                true
+            }
+        }
     }
 
     private fun observeUiChanges() {
@@ -68,6 +81,7 @@ class DiscussionDetailsFragment : BaseFragment() {
 
     private fun showDiscussionDetails(show: Boolean, discussion: Discussion?) {
         if (discussion != null) {
+            this.discussion = discussion
             vote = discussion.vote
 
             titleTextView.text = discussion.title
