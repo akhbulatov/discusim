@@ -9,8 +9,8 @@ data class User(
     val avatarUrl: String,
     val about: String,
     val location: String,
-    val url: String,
     val website: String,
     val numUpvotes: Int,
-    val joinedAt: LocalDateTime
+    val joinedAt: LocalDateTime,
+    val url: String
 )
