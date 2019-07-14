@@ -23,6 +23,7 @@ class ForumResponseMapper @Inject constructor() {
                 it.name,
                 it.description,
                 it.favicon.permalink,
+                it.url,
                 it.isFollowing,
                 it.numThreads,
                 it.numFollowers,
