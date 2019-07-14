@@ -6,10 +6,12 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
+import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import kotlinx.android.synthetic.main.fragment_forum_host.*
+import org.jetbrains.anko.support.v4.share
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class ForumHostFragment : BaseFragment() {
@@ -19,6 +21,8 @@ class ForumHostFragment : BaseFragment() {
 
     private lateinit var forumDetailsTabScreen: SupportAppScreen
     private lateinit var forumDiscussionsTabScreen: SupportAppScreen
+
+    private var sharedForum: Forum? = null
 
     private val currentTabFragment: BaseFragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? BaseFragment
@@ -32,7 +36,7 @@ class ForumHostFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        setupToolbar()
         forumBottomNavView.setOnNavigationItemSelectedListener { item ->
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_forum_details -> forumDetailsTabScreen
@@ -51,10 +55,22 @@ class ForumHostFragment : BaseFragment() {
         switchTab(tabScreen)
     }
 
+    private fun setupToolbar() {
+        with(toolbar) {
+            inflateMenu(R.menu.forum_host)
+            setNavigationOnClickListener { onBackPressed() }
+            setOnMenuItemClickListener {
+                sharedForum?.let { share(it.url) }
+                true
+            }
+        }
+    }
+
     private fun observeUiChanges() {
         forumSharedViewModel.forum.observe(this, Observer { forum ->
-            collapsingToolbar.title = forum.name
+            this.sharedForum = forum
 
+            collapsingToolbar.title = forum.name
             forum.channel?.let {
                 if (it.bannerUrl != null) {
                     bannerImageView.loadImage(context, it.bannerUrl)

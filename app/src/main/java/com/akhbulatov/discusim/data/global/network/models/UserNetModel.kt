@@ -14,5 +14,6 @@ data class UserNetModel(
     @Json(name = "location") val location: String,
     @Json(name = "url") val url: String,
     @Json(name = "numLikesReceived") val numLikesReceived: Int,
-    @Json(name = "joinedAt") val joinedAt: LocalDateTime
+    @Json(name = "joinedAt") val joinedAt: LocalDateTime,
+    @Json(name = "profileUrl") val profileUrl: String
 )

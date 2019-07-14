@@ -7,6 +7,8 @@
     <string name="msg_follow">Follow</string>
     <string name="msg_following">Following</string>
 
+    <string name="action_share">Share</string>
+
     <!-- Time. Start -->
     <plurals name="time_seconds">
         <item quantity="one">%d second ago</item>

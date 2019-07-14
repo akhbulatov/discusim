@@ -13,7 +13,8 @@ data class ForumNetModel(
     @Json(name = "isFollowing") val isFollowing: Boolean,
     @Json(name = "numThreads") val numThreads: Int,
     @Json(name = "numFollowers") val numFollowers: Int,
-    @Json(name = "channel") val channel: ChannelNetModel?
+    @Json(name = "channel") val channel: ChannelNetModel?,
+    @Json(name = "url") val url: String
 ) {
 
     @JsonClass(generateAdapter = true)

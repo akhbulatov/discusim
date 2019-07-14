@@ -25,7 +25,8 @@ class UserResponseMapper @Inject constructor() {
                 it.location,
                 it.url,
                 it.numLikesReceived,
-                it.joinedAt
+                it.joinedAt,
+                it.profileUrl
             )
         }
 

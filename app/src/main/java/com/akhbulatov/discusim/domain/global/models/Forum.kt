@@ -8,7 +8,8 @@ data class Forum(
     val isFollowing: Boolean,
     val numDiscussions: Int,
     val numFollowers: Int,
-    val channel: Channel?
+    val channel: Channel?,
+    val url: String
 ) {
 
     data class Channel(

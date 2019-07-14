@@ -11,7 +11,8 @@ data class Discussion(
     val createdAt: LocalDateTime,
     val topics: List<Topic>,
     val vote: Vote,
-    val comments: Int
+    val comments: Int,
+    val link: String
 ) {
 
     data class Media(val url: String)

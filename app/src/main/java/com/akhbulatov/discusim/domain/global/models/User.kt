@@ -11,5 +11,6 @@ data class User(
     val location: String,
     val website: String,
     val numUpvotes: Int,
-    val joinedAt: LocalDateTime
+    val joinedAt: LocalDateTime,
+    val url: String
 )
