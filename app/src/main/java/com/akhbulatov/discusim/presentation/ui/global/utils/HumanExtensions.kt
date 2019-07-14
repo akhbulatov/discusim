@@ -35,7 +35,7 @@ fun LocalDateTime.getHumanCreatedTime(resources: Resources): String {
             val days = duration.toDays().toInt()
             resources.getQuantityString(R.plurals.time_days, days, days)
         }
-        else -> this.format(MEDIUM_DATE_FORMATTER)
+        else -> getMediumDate()
     }
 }
 

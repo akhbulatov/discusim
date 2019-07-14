@@ -108,24 +108,24 @@ fun MaterialButton.resetFollowBeforeProgress() {
 
 fun MaterialButton.setDiscussionVote(vote: Vote) {
     val backgroundColor = when (vote.type) {
-        Vote.Type.NO_VOTE -> R.color.button_discussion_background
+        Vote.Type.NO_VOTE,
+        Vote.Type.DOWNVOTE -> R.color.button_discussion_background
         Vote.Type.UPVOTE -> R.color.button_upvoted_background
-        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
     val iconColor = when (vote.type) {
-        Vote.Type.NO_VOTE -> R.color.button_discussion_icon
+        Vote.Type.NO_VOTE,
+        Vote.Type.DOWNVOTE -> R.color.button_discussion_icon
         Vote.Type.UPVOTE -> R.color.button_discussion_upvoted_icon
-        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
     val textColor = when (vote.type) {
-        Vote.Type.NO_VOTE -> R.color.button_discussion_text
+        Vote.Type.NO_VOTE,
+        Vote.Type.DOWNVOTE -> R.color.button_discussion_text
         Vote.Type.UPVOTE -> R.color.button_discussion_upvoted_text
-        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
     val stroke = when (vote.type) {
-        Vote.Type.NO_VOTE -> dip(1)
+        Vote.Type.NO_VOTE,
+        Vote.Type.DOWNVOTE -> dip(1)
         Vote.Type.UPVOTE -> 0
-        Vote.Type.DOWNVOTE -> throw IllegalArgumentException() // TODO
     }
 
     setBackgroundColor(context.color(backgroundColor))
