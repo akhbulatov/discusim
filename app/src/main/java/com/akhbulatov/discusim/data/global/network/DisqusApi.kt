@@ -118,6 +118,7 @@ interface DisqusApi {
     @GET("threads/list.json")
     fun getDiscussions(
         @Query("forum") forumId: String,
+        @Query("cursor") cursor: String?,
         @Query("related") related: List<String>,
         @Query("attach") attach: List<String>
     ): Single<DiscussionsResponse>

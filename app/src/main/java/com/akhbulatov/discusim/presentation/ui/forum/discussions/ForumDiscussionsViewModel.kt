@@ -53,7 +53,7 @@ class ForumDiscussionsViewModel @Inject constructor(
 
     private val paginator = Paginator(
         {
-            chooseDiscussionsRequest()
+            chooseDiscussionsRequest(it)
                 .observeOn(schedulers.ui())
         },
         object : Paginator.ViewController<Discussion> {
@@ -91,9 +91,9 @@ class ForumDiscussionsViewModel @Inject constructor(
         }
     )
 
-    private fun chooseDiscussionsRequest(): Single<PagedList<Discussion>> =
+    private fun chooseDiscussionsRequest(cursor: String?): Single<PagedList<Discussion>> =
         when (discussionType) {
-            DiscussionType.LATEST -> discussionInteractor.getDiscussions(forumId)
+            DiscussionType.LATEST -> discussionInteractor.getDiscussions(forumId, cursor)
             DiscussionType.HOT -> discussionInteractor.getHotDiscussions(forumId)
             DiscussionType.POPULAR -> discussionInteractor.getPopularDiscussions(forumId)
         }

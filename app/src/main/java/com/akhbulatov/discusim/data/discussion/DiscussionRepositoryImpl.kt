@@ -27,9 +27,10 @@ class DiscussionRepositoryImpl @Inject constructor(
             .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun getDiscussions(forumId: String): Single<PagedList<Discussion>> =
+    override fun getDiscussions(forumId: String, cursor: String?): Single<PagedList<Discussion>> =
         api.getDiscussions(
             forumId,
+            cursor,
             listOf(RequestParams.Discussion.AUTHOR),
             listOf(RequestParams.Discussion.TOPICS)
         )

@@ -14,8 +14,8 @@ class DiscussionInteractor @Inject constructor(
     fun getDiscussionDetails(discussionId: Long): Single<Discussion> =
         discussionRepository.getDiscussionDetails(discussionId)
 
-    fun getDiscussions(forumId: String): Single<PagedList<Discussion>> =
-        discussionRepository.getDiscussions(forumId)
+    fun getDiscussions(forumId: String, cursor: String?): Single<PagedList<Discussion>> =
+        discussionRepository.getDiscussions(forumId, cursor)
 
     fun getHotDiscussions(forumId: String): Single<PagedList<Discussion>> =
         discussionRepository.getHotDiscussions(forumId)
