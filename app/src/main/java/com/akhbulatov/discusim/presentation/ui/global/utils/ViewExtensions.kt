@@ -50,16 +50,33 @@ fun TextView.showTextIfNotEmpty(text: String?) {
     isVisible = !text.isNullOrBlank()
 }
 
-fun ImageView.loadImage(ctx: Context? = null, url: String) {
+fun ImageView.loadImage(
+    ctx: Context? = null,
+    url: String,
+    @DrawableRes placeholderResId: Int? = null
+) {
+    val imageResId = placeholderResId ?: R.drawable.img_placeholder
+
     Glide.with(ctx ?: context)
         .load(url)
+        .placeholder(imageResId)
         .into(this)
 }
 
-fun ImageView.loadRoundedImage(ctx: Context? = null, url: String) {
+/**
+ * @param placeholderResId По умолчанию используется placeholder юзера.
+ */
+fun ImageView.loadRoundedImage(
+    ctx: Context? = null,
+    url: String,
+    @DrawableRes placeholderResId: Int? = null
+) {
+    val imageResId = placeholderResId ?: R.drawable.img_user_placeholder
+
     Glide.with(ctx ?: context)
         .load(url)
         .apply(RequestOptions.circleCropTransform())
+        .placeholder(imageResId)
         .into(this)
 }
 

@@ -71,7 +71,7 @@ class ForumAdapter(
 
                 nameTextView.text = item.name
                 val faviconUrl = item.channel?.avatarUrl ?: item.faviconUrl
-                avatarImageView.loadRoundedImage(itemView.context, faviconUrl)
+                avatarImageView.loadRoundedImage(itemView.context, faviconUrl, R.drawable.img_forum_placeholder)
             }
         }
     }
