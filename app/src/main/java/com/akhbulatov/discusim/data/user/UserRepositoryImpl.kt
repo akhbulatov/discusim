@@ -13,6 +13,11 @@ class UserRepositoryImpl @Inject constructor(
     private val schedulers: SchedulersProvider
 ) : UserRepository {
 
+    override fun getMyDetails(): Single<User> =
+        api.getUserDetails(null)
+            .map { userResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
     override fun getUserDetails(userId: Long): Single<User> =
         api.getUserDetails(userId)
             .map { userResponseMapper.map(it) }

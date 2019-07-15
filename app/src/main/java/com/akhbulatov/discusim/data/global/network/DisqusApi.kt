@@ -45,7 +45,7 @@ interface DisqusApi {
     // --- Users --- //
     @GET("users/details.json")
     fun getUserDetails(
-        @Query("user") userId: Long
+        @Query("user") userId: Long?
     ): Single<UserResponse>
 
     @GET("users/listActivity.json")

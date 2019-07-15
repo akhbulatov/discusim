@@ -43,12 +43,16 @@
     <!-- Main Host -->
     <string name="main_host_my_activity">Activity</string>
     <string name="main_host_my_forums">Forums</string>
+    <string name="main_host_my_profile">Profile</string>
 
     <!-- My Activity -->
     <string name="my_activity_title">Activity</string>
 
     <!-- My Forums -->
     <string name="my_forums_title">Forums</string>
+
+    <!-- My Profile -->
+    <string name="my_profile_title">Profile</string>
 
     <!-- Forum Host -->
     <string name="forum_host_details">Details</string>
