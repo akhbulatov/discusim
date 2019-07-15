@@ -17,6 +17,7 @@ import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainHostFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.forums.MyForumsFragment
+import com.akhbulatov.discusim.presentation.ui.main.my.profile.MyProfileFragment
 import com.akhbulatov.discusim.presentation.ui.user.UserFlowFragment
 import com.akhbulatov.discusim.presentation.ui.user.UserHostFragment
 import com.akhbulatov.discusim.presentation.ui.user.activity.UserActivityFragment
@@ -50,6 +51,10 @@ object Screens {
 
     object MyForums : SupportAppScreen() {
         override fun getFragment(): Fragment = MyForumsFragment()
+    }
+
+    object MyProfile : SupportAppScreen() {
+        override fun getFragment(): Fragment = MyProfileFragment()
     }
 
     data class ForumFlow(

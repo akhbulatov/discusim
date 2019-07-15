@@ -4,5 +4,6 @@ import com.akhbulatov.discusim.domain.global.models.User
 import io.reactivex.Single
 
 interface UserRepository {
+    fun getMyDetails(): Single<User>
     fun getUserDetails(userId: Long): Single<User>
 }

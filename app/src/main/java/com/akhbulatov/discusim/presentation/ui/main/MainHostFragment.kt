@@ -20,6 +20,7 @@ class MainHostFragment : BaseFragment() {
             val tabScreen = when (item.itemId) {
                 R.id.menu_bottom_nav_my_activity -> Screens.MyActivity
                 R.id.menu_bottom_nav_my_forums -> Screens.MyForums
+                R.id.menu_bottom_nav_my_profile -> Screens.MyProfile
                 else -> throw IllegalArgumentException()
             }
             switchTab(tabScreen)
@@ -29,6 +30,7 @@ class MainHostFragment : BaseFragment() {
 
         val tabScreen = when (currentTabFragment?.tag) {
             Screens.MyForums.screenKey -> Screens.MyForums
+            Screens.MyProfile.screenKey -> Screens.MyProfile
             else -> Screens.MyActivity // Первый таб, открываемый по умолчанию
         }
         switchTab(tabScreen)
