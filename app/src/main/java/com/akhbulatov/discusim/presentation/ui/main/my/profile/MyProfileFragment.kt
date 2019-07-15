@@ -17,6 +17,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
+import org.jetbrains.anko.support.v4.share
 import javax.inject.Inject
 
 class MyProfileFragment : BaseFragment() {
@@ -25,6 +26,8 @@ class MyProfileFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: MyProfileViewModel by viewModels { viewModelFactory }
 
+    private var user: User? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         run { viewModel }
@@ -32,8 +35,19 @@ class MyProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
         errorRefreshButton.setOnClickListener { viewModel.loadMyDetails() }
         observeUiChanges()
+    }
+
+    private fun setupToolbar() {
+        with(toolbar) {
+            inflateMenu(R.menu.my_profile)
+            setOnMenuItemClickListener {
+                user?.let { share(it.url) }
+                true
+            }
+        }
     }
 
     private fun observeUiChanges() {
@@ -53,6 +67,8 @@ class MyProfileFragment : BaseFragment() {
 
     private fun showMyDetails(show: Boolean, user: User?) {
         if (user != null) {
+            this.user = user
+
             avatarImageView.loadRoundedImage(context, user.avatarUrl)
             fullNameTextView.text = user.name
             usernameTextView.text = getString(R.string.user_details_username, user.username)
