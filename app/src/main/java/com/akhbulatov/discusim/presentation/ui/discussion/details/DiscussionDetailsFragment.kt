@@ -11,6 +11,7 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
@@ -31,6 +32,7 @@ class DiscussionDetailsFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: DiscussionDetailsViewModel by viewModels { viewModelFactory }
+    private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels({ parentFragment!! })
 
     private var discussion: Discussion? = null
     private lateinit var vote: Vote
@@ -83,6 +85,7 @@ class DiscussionDetailsFragment : BaseFragment() {
         if (discussion != null) {
             this.discussion = discussion
             vote = discussion.vote
+            discussionSharedViewModel.discussion.value = discussion
 
             titleTextView.text = discussion.title
             authorImageView.loadRoundedImage(context, discussion.author.avatarUrl)
@@ -120,6 +123,8 @@ class DiscussionDetailsFragment : BaseFragment() {
     private fun updateVote(vote: Vote) {
         this.vote = vote
         upvotesButton.setDiscussionVote(vote)
+
+        discussion?.let { discussionSharedViewModel.discussion.value = it.copy(vote = vote) }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
