@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.item_discussion.*
 
 class DiscussionAdapter(
     private val onVoteClickListener: (view: View, item: Discussion, position: Int) -> Unit,
-    private val onItemClickListener: (Discussion) -> Unit
+    private val onItemClickListener: (Discussion, position: Int) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
@@ -73,7 +73,7 @@ class DiscussionAdapter(
                 upvotesButton.showDiscussionVoteProgress(true, discussion.vote)
                 onVoteClickListener(it, discussion, adapterPosition)
             }
-            itemView.setOnClickListener { onItemClickListener(discussion) }
+            itemView.setOnClickListener { onItemClickListener(discussion, adapterPosition) }
         }
 
         override fun bind(item: Any) {
@@ -90,6 +90,10 @@ class DiscussionAdapter(
                     contentImageView.isVisible = false
                 }
                 if (item.topics.isNotEmpty()) {
+                    if (topicChipGroup.childCount > 0) {
+                        topicChipGroup.removeAllViews()
+                    }
+
                     item.topics.forEach {
                         val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {
                             text = it.name
