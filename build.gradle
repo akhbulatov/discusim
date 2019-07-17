@@ -20,7 +20,7 @@ buildscript {
             'rxKotlin'        : '2.3.0',
             'rxAndroid'       : '2.1.1',
             'retrofit'        : '2.6.0',
-            'okhttp'          : '4.0.0',
+            'okhttp'          : '4.0.1',
             'moshi'           : '1.8.0',
             'cicerone'        : '5.0.0',
             'glide'           : '4.9.0',
