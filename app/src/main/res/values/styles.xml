@@ -35,6 +35,7 @@
     </style>
 
     <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:elevation">@dimen/spacing_micro</item>
         <item name="tabIndicatorColor">?colorSecondary</item>
         <item name="tabSelectedTextColor">?colorSecondary</item>
         <item name="tabTextColor">@color/text_inactive</item>
