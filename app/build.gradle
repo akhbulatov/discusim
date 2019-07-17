@@ -4,7 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    buildToolsVersion = versions.buildTools
     compileSdkVersion versions.compileSdk
+
     defaultConfig {
         applicationId "com.akhbulatov.discusim"
         minSdkVersion versions.minSdk
