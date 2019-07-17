@@ -11,7 +11,7 @@ import com.akhbulatov.discusim.domain.global.models.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.ForumSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
+import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.resetFollowBeforeProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.setFollow
 import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowProgress
@@ -69,7 +69,11 @@ class ForumDetailsFragment : BaseFragment() {
             this.forum = forum
             forumSharedViewModel.forum.value = forum
 
-            avatarImageView.loadImage(context, forum.channel?.avatarUrl ?: forum.faviconUrl)
+            avatarImageView.loadRoundedImage(
+                context,
+                forum.channel?.avatarUrl ?: forum.faviconUrl,
+                R.drawable.img_forum_placeholder
+            )
             nameTextView.text = forum.name
             descriptionTextView.text = forum.description
             numDiscussionsTextView.text = getString(R.string.forum_details_thousand_nums, forum.numDiscussions)
