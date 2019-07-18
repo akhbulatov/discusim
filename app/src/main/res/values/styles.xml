@@ -60,10 +60,14 @@
     </style>
 
     <style name="FollowButton" parent="Widget.MaterialComponents.Button.UnelevatedButton.Icon">
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="iconTint">?colorPrimary</item>
+    </style>
+
+    <style name="FollowButton.Normal">
         <item name="android:text">@string/msg_follow</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">?colorPrimary</item>
-        <item name="backgroundTint">?colorSecondary</item>
         <item name="iconSize">@dimen/button_icon_size</item>
     </style>
 

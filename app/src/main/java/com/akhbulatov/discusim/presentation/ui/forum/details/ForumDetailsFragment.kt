@@ -78,7 +78,7 @@ class ForumDetailsFragment : BaseFragment() {
             descriptionTextView.text = forum.description
             numDiscussionsTextView.text = getString(R.string.forum_details_thousand_nums, forum.numDiscussions)
             numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, forum.numFollowers)
-            followButton.setFollow(forum.isFollowing)
+            followButton.setFollow(forum.following)
         }
         contentLayout.isVisible = show
     }

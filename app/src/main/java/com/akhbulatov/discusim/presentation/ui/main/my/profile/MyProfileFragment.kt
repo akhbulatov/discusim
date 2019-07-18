@@ -44,7 +44,7 @@ class MyProfileFragment : BaseFragment() {
         with(toolbar) {
             inflateMenu(R.menu.my_profile)
             setOnMenuItemClickListener {
-                user?.let { share(it.url) }
+                user?.let { share(it.webUrl) }
                 true
             }
         }

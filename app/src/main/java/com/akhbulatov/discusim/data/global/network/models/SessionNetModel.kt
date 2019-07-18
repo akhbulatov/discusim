@@ -4,4 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SessionNetModel(@Json(name = "access_token") val accessToken: String)
+data class SessionNetModel(
+    @Json(name = "access_token") val accessToken: String,
+    @Json(name = "user_id") val userId: String
+)

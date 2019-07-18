@@ -13,9 +13,14 @@ import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
+import com.akhbulatov.discusim.presentation.ui.global.utils.resetFollowSmallBeforeProgress
+import com.akhbulatov.discusim.presentation.ui.global.utils.setFollowSmall
 import com.akhbulatov.discusim.presentation.ui.global.utils.setTintStartDrawable
+import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowSmallProgress
+import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import com.akhbulatov.discusim.presentation.ui.user.UserSharedViewModel
+import com.github.razir.progressbutton.bindProgressButton
 import kotlinx.android.synthetic.main.fragment_user_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
@@ -36,21 +41,27 @@ class UserDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        followButton.setOnClickListener { viewModel.onFollowClicked(it.isSelected) }
+        bindProgressButton(followButton)
         errorRefreshButton.setOnClickListener { viewModel.loadUserDetails() }
         observeUiChanges()
     }
 
     private fun observeUiChanges() {
-        viewModel.progress.observe(this, Observer { showProgress(it) })
-        viewModel.error.observe(this, Observer { showError(it.first, it.second) })
+        viewModel.emptyProgress.observe(this, Observer { showEmptyProgress(it) })
+        viewModel.emptyError.observe(this, Observer { showEmptyError(it.first, it.second) })
         viewModel.user.observe(this, Observer { showUserDetails(it.first, it.second) })
+        viewModel.followProgress.observe(this, Observer { showFollowProgress(it) })
+        viewModel.followError.observe(this, Observer { showFollowError(it) })
+        viewModel.follow.observe(this, Observer { updateFollow(true) })
+        viewModel.unfollow.observe(this, Observer { updateFollow(false) })
     }
 
-    private fun showProgress(show: Boolean) {
+    private fun showEmptyProgress(show: Boolean) {
         progressLayout.isVisible = show
     }
 
-    private fun showError(show: Boolean, message: String?) {
+    private fun showEmptyError(show: Boolean, message: String?) {
         errorTextView.text = message
         errorLayout.isVisible = show
     }
@@ -62,6 +73,12 @@ class UserDetailsFragment : BaseFragment() {
             avatarImageView.loadRoundedImage(context, user.avatarUrl)
             fullNameTextView.text = user.name
             usernameTextView.text = getString(R.string.user_details_username, user.username)
+            // Скрывает кнопку для авторизованного юзера (т.е. для себя)
+            if (!viewModel.isLoggedUser()) {
+                followButton.setFollowSmall(user.following)
+            } else {
+                followButton.isVisible = false
+            }
             aboutTextView.showTextIfNotEmpty(user.about)
             with(numUpvotesTextView) {
                 setTintStartDrawable(R.color.accent)
@@ -81,6 +98,19 @@ class UserDetailsFragment : BaseFragment() {
             }
         }
         contentLayout.isVisible = show
+    }
+
+    private fun showFollowProgress(show: Boolean) {
+        followButton.showFollowSmallProgress(show)
+    }
+
+    private fun showFollowError(message: String) {
+        followButton.resetFollowSmallBeforeProgress()
+        showSnackbar(message)
+    }
+
+    private fun updateFollow(following: Boolean) {
+        followButton.setFollowSmall(following)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

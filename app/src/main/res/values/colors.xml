@@ -36,7 +36,6 @@
 
     <color name="divider">@color/gray_athens</color>
     <color name="progress_auth_background">@color/white_transparent_50</color>
-    <color name="user_details_border">@color/gray_silver</color>
 
     <!-- Palette Colors. Start -->
     <!-- Colors for "internal use" only -->

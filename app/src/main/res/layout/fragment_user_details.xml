@@ -21,8 +21,6 @@
                 android:id="@+id/userTopLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/user_details_border"
-                android:padding="@dimen/spacing_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -43,10 +41,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/usernameTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/followButton"
                     app:layout_constraintStart_toEndOf="@id/avatarImageView"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -60,10 +59,20 @@
                     android:layout_marginTop="6dp"
                     android:textSize="@dimen/font_normal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/fullNameTextView"
                     app:layout_constraintStart_toStartOf="@id/fullNameTextView"
                     app:layout_constraintTop_toBottomOf="@id/fullNameTextView"
                     tools:text="\@username" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/followButton"
+                    style="@style/FollowButton"
+                    android:layout_width="@dimen/button_size"
+                    android:layout_height="@dimen/button_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:icon="@drawable/ic_add" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,7 +81,7 @@
                 style="@style/UserDetailsText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userTopLayout"
@@ -88,6 +97,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/aboutTextView"
+                app:layout_goneMarginTop="@dimen/spacing_large"
                 tools:text="93 Upvotes" />
 
             <TextView

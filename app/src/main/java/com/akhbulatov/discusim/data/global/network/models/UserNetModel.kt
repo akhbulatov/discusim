@@ -10,9 +10,10 @@ data class UserNetModel(
     @Json(name = "name") val name: String,
     @Json(name = "username") val username: String,
     @Json(name = "avatar") val avatar: AvatarNetModel,
+    @Json(name = "url") val url: String,
+    @Json(name = "isFollowing") val isFollowing: Boolean,
     @Json(name = "about") val about: String,
     @Json(name = "location") val location: String,
-    @Json(name = "url") val url: String,
     @Json(name = "numLikesReceived") val numLikesReceived: Int,
     @Json(name = "joinedAt") val joinedAt: LocalDateTime,
     @Json(name = "profileUrl") val profileUrl: String

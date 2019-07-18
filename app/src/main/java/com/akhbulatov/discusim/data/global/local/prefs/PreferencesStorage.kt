@@ -1,11 +1,12 @@
 package com.akhbulatov.discusim.data.global.local.prefs
 
-import com.akhbulatov.discusim.domain.global.models.Session
+import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 
 interface PreferencesStorage {
     var accessToken: String?
+    var userId: Long
 
-    fun isLoggedIn(): Boolean
-    fun setLoggedIn(session: Session)
+    fun isLoggedIn(userId: Long?): Boolean
+    fun setLoggedIn(session: SessionNetModel)
     fun logout()
 }

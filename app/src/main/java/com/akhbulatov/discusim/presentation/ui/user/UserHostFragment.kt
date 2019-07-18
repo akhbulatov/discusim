@@ -44,7 +44,7 @@ class UserHostFragment : BaseFragment() {
             inflateMenu(R.menu.user_host)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
-                sharedUser?.let { share(it.url) }
+                sharedUser?.let { share(it.webUrl) }
                 true
             }
         }
