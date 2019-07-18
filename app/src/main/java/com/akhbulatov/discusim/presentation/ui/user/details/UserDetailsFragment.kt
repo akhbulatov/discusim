@@ -73,7 +73,12 @@ class UserDetailsFragment : BaseFragment() {
             avatarImageView.loadRoundedImage(context, user.avatarUrl)
             fullNameTextView.text = user.name
             usernameTextView.text = getString(R.string.user_details_username, user.username)
-            followButton.setFollowSmall(user.following)
+            // Скрывает кнопку для авторизованного юзера (т.е. для себя)
+            if (!viewModel.isLoggedUser()) {
+                followButton.setFollowSmall(user.following)
+            } else {
+                followButton.isVisible = false
+            }
             aboutTextView.showTextIfNotEmpty(user.about)
             with(numUpvotesTextView) {
                 setTintStartDrawable(R.color.accent)

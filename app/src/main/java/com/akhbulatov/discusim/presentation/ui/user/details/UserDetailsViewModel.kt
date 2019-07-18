@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.domain.user.UserInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class UserDetailsViewModel @Inject constructor(
     private val router: FlowRouter,
     private val userInteractor: UserInteractor,
+    private val sessionInteractor: SessionInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
@@ -61,6 +63,8 @@ class UserDetailsViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) { msg -> _emptyError.value = Pair(true, msg) } }
             )
     }
+
+    fun isLoggedUser(): Boolean = sessionInteractor.isLoggedIn(userId)
 
     fun onFollowClicked(following: Boolean) {
         if (!following) followUser() else unfollowUser()

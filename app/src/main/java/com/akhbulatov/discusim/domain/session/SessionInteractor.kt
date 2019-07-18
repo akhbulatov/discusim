@@ -25,12 +25,11 @@ class SessionInteractor @Inject constructor(
         return null
     }
 
-    fun isLoggedIn(): Boolean = sessionRepository.isLoggedIn()
+    fun isLoggedIn(userId: Long? = null): Boolean =
+        sessionRepository.isLoggedIn(userId)
 
     fun login(code: String): Completable =
         sessionRepository.login(code)
-            .doOnSuccess { sessionRepository.setLoggedIn(it) }
-            .ignoreElement()
 
     fun logout() = sessionRepository.logout()
 }
