@@ -60,7 +60,7 @@ class ForumHostFragment : BaseFragment() {
             inflateMenu(R.menu.forum_host)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
-                sharedForum?.let { share(it.url) }
+                sharedForum?.let { share(it.webUrl) }
                 true
             }
         }

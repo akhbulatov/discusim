@@ -5,11 +5,11 @@ data class Forum(
     val name: String,
     val description: String?,
     val faviconUrl: String,
-    val isFollowing: Boolean,
+    val webUrl: String,
+    val following: Boolean,
     val numDiscussions: Int,
     val numFollowers: Int,
-    val channel: Channel?,
-    val url: String
+    val channel: Channel?
 ) {
 
     data class Channel(
