@@ -48,6 +48,14 @@ interface DisqusApi {
         @Query("user") userId: Long?
     ): Single<UserResponse>
 
+    @FormUrlEncoded
+    @POST("users/follow.json")
+    fun followUser(@Field("target") userId: Long): Completable
+
+    @FormUrlEncoded
+    @POST("users/unfollow.json")
+    fun unfollowUser(@Field("target") userId: Long): Completable
+
     @GET("users/listActivity.json")
     fun getUserActivity(
         @Query("user") userId: Long?,

@@ -7,10 +7,11 @@ data class User(
     val name: String,
     val username: String,
     val avatarUrl: String,
+    val webUrl: String,
+    val following: Boolean,
     val about: String,
     val location: String,
     val website: String,
     val numUpvotes: Int,
-    val joinedAt: LocalDateTime,
-    val url: String
+    val joinedAt: LocalDateTime
 )

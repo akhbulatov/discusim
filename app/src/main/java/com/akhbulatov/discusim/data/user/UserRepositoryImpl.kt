@@ -4,6 +4,7 @@ import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.global.repositories.UserRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -21,5 +22,13 @@ class UserRepositoryImpl @Inject constructor(
     override fun getUserDetails(userId: Long): Single<User> =
         api.getUserDetails(userId)
             .map { userResponseMapper.map(it) }
+            .subscribeOn(schedulers.io())
+
+    override fun followUser(userId: Long): Completable =
+        api.followUser(userId)
+            .subscribeOn(schedulers.io())
+
+    override fun unfollowUser(userId: Long): Completable =
+        api.unfollowUser(userId)
             .subscribeOn(schedulers.io())
 }

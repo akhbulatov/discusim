@@ -80,6 +80,43 @@ fun ImageView.loadRoundedImage(
         .into(this)
 }
 
+fun MaterialButton.setFollowSmall(following: Boolean) {
+    val backgroundColor = if (following) R.color.button_following else R.color.button_follow
+    val iconDrawable = if (following) {
+        context.getDrawable(R.drawable.ic_done)
+    } else {
+        context.getDrawable(R.drawable.ic_add)
+    }
+
+    setBackgroundColor(context.color(backgroundColor))
+    icon = iconDrawable
+
+    isSelected = following
+}
+
+fun MaterialButton.showFollowSmallProgress(show: Boolean) {
+    if (show) {
+        showProgress {
+            gravity = DrawableButton.GRAVITY_CENTER
+            progressColorRes = R.color.primary
+        }
+        icon = null
+    } else {
+        hideProgress()
+    }
+    isClickable = !show
+}
+
+fun MaterialButton.resetFollowSmallBeforeProgress() {
+    val iconDrawable = if (isSelected) {
+        context.getDrawable(R.drawable.ic_done)
+    } else {
+        context.getDrawable(R.drawable.ic_add)
+    }
+
+    icon = iconDrawable
+}
+
 fun MaterialButton.setFollow(following: Boolean) {
     val backgroundColor = if (following) R.color.button_following else R.color.button_follow
     val iconDrawable = if (following) context.getDrawable(R.drawable.ic_done) else null
