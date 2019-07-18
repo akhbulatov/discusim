@@ -65,6 +65,7 @@
         <item name="android:textColor">?colorPrimary</item>
         <item name="backgroundTint">?colorSecondary</item>
         <item name="iconSize">@dimen/button_icon_size</item>
+        <item name="iconTint">?colorPrimary</item>
     </style>
 
     <style name="ForumNumText" parent="Text.Primary">

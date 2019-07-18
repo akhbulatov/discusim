@@ -87,7 +87,6 @@ fun MaterialButton.setFollow(following: Boolean) {
 
     setBackgroundColor(context.color(backgroundColor))
     icon = iconDrawable
-    iconTint = ColorStateList.valueOf(context.color(R.color.primary))
     setText(textResId)
 
     isSelected = following
@@ -119,7 +118,6 @@ fun MaterialButton.resetFollowBeforeProgress() {
     val textResId = if (isSelected) R.string.msg_following else R.string.msg_follow
 
     icon = iconDrawable
-    iconTint = ColorStateList.valueOf(context.color(R.color.primary))
     setText(textResId)
 }
 
