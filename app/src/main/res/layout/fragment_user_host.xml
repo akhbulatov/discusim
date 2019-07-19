@@ -20,7 +20,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/userTabLayout"
-            style="@style/AppTabLayout"
+            style="@style/AppTabLayout.WithToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="scrollable" />

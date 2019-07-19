@@ -41,6 +41,10 @@
         <item name="tabTextColor">@color/text_inactive</item>
     </style>
 
+    <style name="AppTabLayout.WithToolbar">
+        <item name="android:elevation">0dp</item>
+    </style>
+
     <style name="AppCardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">0dp</item>
     </style>
