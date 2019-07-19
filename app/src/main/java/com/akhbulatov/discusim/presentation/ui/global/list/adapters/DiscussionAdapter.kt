@@ -97,11 +97,13 @@ class DiscussionAdapter(
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
                 dateTextView.text = item.createdAt.getHumanCreatedTime(itemView.resources)
-                if (item.mediaList.isNotEmpty()) {
+
+                val hasMedia = item.mediaList.isNotEmpty()
+                if (hasMedia) {
                     contentImageView.loadImage(context, item.mediaList.first().url)
-                } else {
-                    contentImageView.isVisible = false
                 }
+                contentImageView.isVisible = hasMedia
+
                 if (item.topics.isNotEmpty()) {
                     if (topicChipGroup.childCount > 0) {
                         topicChipGroup.removeAllViews()
