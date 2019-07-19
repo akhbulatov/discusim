@@ -23,6 +23,7 @@ class UserResponseMapper @Inject constructor() {
                 it.avatar.permalink,
                 it.profileUrl,
                 it.isFollowing,
+                it.isPrivate,
                 it.about,
                 it.location,
                 it.url,

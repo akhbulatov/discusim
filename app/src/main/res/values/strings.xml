@@ -34,6 +34,8 @@
     <!-- Common Messages. End -->
 
     <!-- Common Errors -->
+    <string name="error_bad_request">400 Bad Request</string>
+    <string name="error_server">500 Server Error</string>
     <string name="error_network">Network error</string>
     <string name="error_unknown">Unknown error</string>
 

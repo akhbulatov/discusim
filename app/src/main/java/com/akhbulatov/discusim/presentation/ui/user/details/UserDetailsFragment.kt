@@ -15,6 +15,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.resetFollowSmallBeforeProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.setFollowSmall
+import com.akhbulatov.discusim.presentation.ui.global.utils.setForPrivateUser
 import com.akhbulatov.discusim.presentation.ui.global.utils.setTintStartDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowSmallProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
@@ -73,11 +74,15 @@ class UserDetailsFragment : BaseFragment() {
             avatarImageView.loadRoundedImage(context, user.avatarUrl)
             fullNameTextView.text = user.name
             usernameTextView.text = getString(R.string.user_details_username, user.username)
-            // Скрывает кнопку для авторизованного юзера (т.е. для себя)
-            if (!viewModel.isLoggedUser()) {
-                followButton.setFollowSmall(user.following)
+            if (!user.private) {
+                // Скрывает кнопку для авторизованного юзера (т.е. для себя)
+                if (!viewModel.isLoggedUser()) {
+                    followButton.setFollowSmall(user.following)
+                } else {
+                    followButton.isVisible = false
+                }
             } else {
-                followButton.isVisible = false
+                followButton.setForPrivateUser()
             }
             aboutTextView.showTextIfNotEmpty(user.about)
             with(numUpvotesTextView) {

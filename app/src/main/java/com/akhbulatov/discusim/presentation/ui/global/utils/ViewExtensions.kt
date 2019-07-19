@@ -80,6 +80,12 @@ fun ImageView.loadRoundedImage(
         .into(this)
 }
 
+fun MaterialButton.setForPrivateUser() {
+    setBackgroundColor(context.color(R.color.button_disabled))
+    icon = context.getDrawable(R.drawable.ic_lock)
+    isClickable = false
+}
+
 fun MaterialButton.setFollowSmall(following: Boolean) {
     val backgroundColor = if (following) R.color.button_following else R.color.button_follow
     val iconDrawable = if (following) {

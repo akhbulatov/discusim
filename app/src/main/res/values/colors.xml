@@ -16,6 +16,8 @@
     <color name="bottom_nav_item_active">@color/accent</color>
     <color name="bottom_nav_item_inactive">@color/gray_silver</color>
 
+    <color name="button_disabled">@color/pale_sky_opacity_35</color>
+
     <color name="button_follow">@color/blue_dodger</color>
     <color name="button_following">@color/green_fern</color>
 
@@ -35,14 +37,14 @@
     <color name="chip_topic_border">@color/green_fern</color>
 
     <color name="divider">@color/gray_athens</color>
-    <color name="progress_auth_background">@color/white_transparent_50</color>
+    <color name="progress_auth_background">@color/white_opacity_50</color>
 
     <!-- Palette Colors. Start -->
     <!-- Colors for "internal use" only -->
 
     <!-- General Palette -->
     <color name="white">#ffffff</color>
-    <color name="white_transparent_50">#80ffffff</color>
+    <color name="white_opacity_50">#80ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
@@ -59,6 +61,8 @@
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>
+
+    <color name="pale_sky_opacity_35">#59687a86</color>
 
     <!-- Palette Colors. End -->
 </resources>
