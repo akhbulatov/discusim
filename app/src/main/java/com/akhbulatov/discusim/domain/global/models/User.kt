@@ -9,6 +9,7 @@ data class User(
     val avatarUrl: String,
     val webUrl: String,
     val following: Boolean,
+    val private: Boolean,
     val about: String,
     val location: String,
     val website: String,

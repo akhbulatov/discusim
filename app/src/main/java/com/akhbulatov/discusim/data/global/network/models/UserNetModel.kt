@@ -12,6 +12,7 @@ data class UserNetModel(
     @Json(name = "avatar") val avatar: AvatarNetModel,
     @Json(name = "url") val url: String,
     @Json(name = "isFollowing") val isFollowing: Boolean,
+    @Json(name = "isPrivate") val isPrivate: Boolean,
     @Json(name = "about") val about: String,
     @Json(name = "location") val location: String,
     @Json(name = "numLikesReceived") val numLikesReceived: Int,
