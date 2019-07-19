@@ -36,6 +36,7 @@ class ForumDiscussionsFragment : BaseFragment() {
 
     private val discussionAdapter by lazy {
         DiscussionAdapter(
+            this,
             { view, discussion, position ->
                 discussionPosition = position
                 viewModel.onVoteClicked(discussion, view.isSelected)

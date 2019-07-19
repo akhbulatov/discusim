@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
@@ -17,19 +18,24 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setDiscussionVote
 import com.akhbulatov.discusim.presentation.ui.global.utils.showDiscussionVoteProgress
+import com.github.razir.progressbutton.bindProgressButton
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_discussion.*
 
+private typealias OnVoteClickListener = (view: View, item: Discussion, position: Int) -> Unit
+private typealias OnItemClickListener = (Discussion, position: Int) -> Unit
+
 class DiscussionAdapter(
-    private val onVoteClickListener: (view: View, item: Discussion, position: Int) -> Unit,
-    private val onItemClickListener: (Discussion, position: Int) -> Unit
+    private val lifecycleOwner: LifecycleOwner,
+    private val onVoteClickListener: OnVoteClickListener,
+    private val onItemClickListener: OnItemClickListener
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
         when (viewType) {
             ITEM_DISCUSSION -> {
                 val itemView = parent.inflate(R.layout.item_discussion)
-                DiscussionViewHolder(itemView)
+                DiscussionViewHolder(itemView, lifecycleOwner, onVoteClickListener, onItemClickListener)
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -65,10 +71,17 @@ class DiscussionAdapter(
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    inner class DiscussionViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    class DiscussionViewHolder(
+        itemView: View,
+        lifecycleOwner: LifecycleOwner,
+        private val onVoteClickListener: OnVoteClickListener,
+        private val onItemClickListener: OnItemClickListener
+    ) : BaseViewHolder<Any>(itemView) {
+
         private lateinit var discussion: Discussion
 
         init {
+            lifecycleOwner.bindProgressButton(upvotesButton)
             upvotesButton.setOnClickListener {
                 upvotesButton.showDiscussionVoteProgress(true, discussion.vote)
                 onVoteClickListener(it, discussion, adapterPosition)
@@ -111,7 +124,7 @@ class DiscussionAdapter(
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
                 if (oldItem is Discussion && newItem is Discussion) {
                     oldItem.id == newItem.id
