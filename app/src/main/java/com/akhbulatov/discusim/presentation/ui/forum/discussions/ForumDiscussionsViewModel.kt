@@ -52,6 +52,9 @@ class ForumDiscussionsViewModel @Inject constructor(
     private val _vote = MutableLiveData<Vote>()
     val vote: LiveData<Vote> get() = _vote
 
+    private val _voteError = SingleLiveEvent<String>()
+    val voteError: LiveData<String> get() = _voteError
+
     private val paginator = Paginator(
         {
             chooseDiscussionsRequest(it)
@@ -115,7 +118,7 @@ class ForumDiscussionsViewModel @Inject constructor(
             .observeOn(schedulers.ui())
             .subscribeBy(
                 onSuccess = { _vote.value = it },
-                onError = { errorHandler.proceed(it) { msg -> _errorMessage.value = msg } }
+                onError = { errorHandler.proceed(it) { msg -> _voteError.value = msg } }
             )
     }
 

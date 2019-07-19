@@ -87,6 +87,7 @@ class ForumDiscussionsFragment : BaseFragment() {
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
         viewModel.vote.observe(this, Observer { updateVote(it) })
+        viewModel.voteError.observe(this, Observer { showVoteError(it) })
         discussionSharedViewModel.discussion.observe(this, Observer { updateDiscussion(it) })
     }
 
@@ -136,6 +137,13 @@ class ForumDiscussionsFragment : BaseFragment() {
             items[discussionPosition] = item.copy(vote = vote)
             discussionAdapter.submitList(items)
         }
+    }
+
+    private fun showVoteError(message: String) {
+        if (discussionPosition >= 0) {
+            discussionAdapter.notifyItemChanged(discussionPosition)
+        }
+        showSnackbar(message)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
