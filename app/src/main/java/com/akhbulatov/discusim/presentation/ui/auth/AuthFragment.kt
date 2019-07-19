@@ -59,7 +59,7 @@ class AuthFragment : BaseFragment() {
 
     private fun observeUiChanges() {
         viewModel.progress.observe(this, Observer { showProgress(it) })
-        viewModel.error.observe(this, Observer { showError(it) })
+        viewModel.errorMessage.observe(this, Observer { showError(it) })
     }
 
     private fun showProgress(show: Boolean) {

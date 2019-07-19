@@ -10,6 +10,7 @@ import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ class UserActivityViewModel @Inject constructor(
     private val _actions = MutableLiveData<Pair<Boolean, List<Action>>>()
     val actions: LiveData<Pair<Boolean, List<Action>>> get() = _actions
 
-    private val _errorMessage = MutableLiveData<String>()
+    private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
     private val _refreshProgress = MutableLiveData<Boolean>()
