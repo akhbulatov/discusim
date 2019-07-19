@@ -7,9 +7,15 @@ import org.threeten.bp.Duration
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
+import retrofit2.HttpException
 import java.io.IOException
 
 fun Throwable.userMessage(resourceManager: ResourceManager): String = when (this) {
+    is HttpException -> when (this.code()) {
+        400 -> resourceManager.getString(R.string.error_bad_request)
+        500 -> resourceManager.getString(R.string.error_server)
+        else -> resourceManager.getString(R.string.error_unknown)
+    }
     is IOException -> resourceManager.getString(R.string.error_network)
     else -> resourceManager.getString(R.string.error_unknown)
 }
