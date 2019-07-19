@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.global.base
+package com.akhbulatov.discusim.presentation.global
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

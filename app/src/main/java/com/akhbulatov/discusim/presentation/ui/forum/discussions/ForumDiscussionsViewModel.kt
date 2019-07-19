@@ -7,12 +7,12 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Vote
+import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
-import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy

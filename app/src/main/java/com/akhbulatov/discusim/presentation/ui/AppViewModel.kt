@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.presentation.ui
 
 import com.akhbulatov.discusim.domain.session.SessionInteractor
+import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.Screens
-import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
