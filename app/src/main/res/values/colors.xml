@@ -36,8 +36,8 @@
     <color name="chip_topic_background">@color/transparent</color>
     <color name="chip_topic_border">@color/green_fern</color>
 
-    <color name="list_item_pressed">@color/gray_silver</color>
     <color name="list_item_ripple">@color/blue_dodger_opacity_50</color>
+    <color name="list_item_pressed">@color/gray_silver</color>
 
     <color name="divider">@color/gray_athens</color>
     <color name="progress_auth_background">@color/white_opacity_50</color>
