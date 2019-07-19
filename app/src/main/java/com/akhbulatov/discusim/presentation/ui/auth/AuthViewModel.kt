@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
@@ -22,8 +23,8 @@ class AuthViewModel @Inject constructor(
     private val _progress = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean> get() = _progress
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _errorMessage = SingleLiveEvent<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
 
     fun getAuthorizeUrl(): String = sessionInteractor.getAuthorizeUrl()
 
@@ -50,7 +51,7 @@ class AuthViewModel @Inject constructor(
             .doOnTerminate { _progress.value = false }
             .subscribeBy(
                 onComplete = { router.newRootFlow(Screens.MainFlow) },
-                onError = { errorHandler.proceed(it) { msg -> _error.value = msg } }
+                onError = { errorHandler.proceed(it) { msg -> _errorMessage.value = msg } }
             )
     }
 

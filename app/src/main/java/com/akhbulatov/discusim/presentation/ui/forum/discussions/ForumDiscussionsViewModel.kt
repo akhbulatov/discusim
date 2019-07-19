@@ -11,6 +11,7 @@ import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import io.reactivex.Single
 import io.reactivex.rxkotlin.plusAssign
@@ -39,7 +40,7 @@ class ForumDiscussionsViewModel @Inject constructor(
     private val _discussions = MutableLiveData<Pair<Boolean, List<Discussion>>>()
     val discussions: LiveData<Pair<Boolean, List<Discussion>>> get() = _discussions
 
-    private val _errorMessage = MutableLiveData<String>()
+    private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
     private val _refreshProgress = MutableLiveData<Boolean>()

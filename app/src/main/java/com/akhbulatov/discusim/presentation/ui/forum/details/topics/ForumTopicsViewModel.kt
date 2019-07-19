@@ -8,6 +8,7 @@ import com.akhbulatov.discusim.domain.topic.TopicInteractor
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
+import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import javax.inject.Inject
 
@@ -32,7 +33,7 @@ class ForumTopicsViewModel @Inject constructor(
     private val _topics = MutableLiveData<Pair<Boolean, List<Topic>>>()
     val topics: LiveData<Pair<Boolean, List<Topic>>> get() = _topics
 
-    private val _errorMessage = MutableLiveData<String>()
+    private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
     private val _refreshProgress = MutableLiveData<Boolean>()

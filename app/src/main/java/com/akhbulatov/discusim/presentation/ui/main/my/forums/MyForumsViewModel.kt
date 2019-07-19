@@ -9,6 +9,7 @@ import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import com.akhbulatov.discusim.presentation.global.base.BaseViewModel
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class MyForumsViewModel @Inject constructor(
     private val _forums = MutableLiveData<Pair<Boolean, List<Forum>>>()
     val forums: LiveData<Pair<Boolean, List<Forum>>> get() = _forums
 
-    private val _errorMessage = MutableLiveData<String>()
+    private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
     private val _refreshProgress = MutableLiveData<Boolean>()
