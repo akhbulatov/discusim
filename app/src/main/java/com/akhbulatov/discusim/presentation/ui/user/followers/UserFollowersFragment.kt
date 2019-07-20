@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserAdapter
@@ -83,7 +83,7 @@ class UserFollowersFragment : BaseFragment() {
         dataLayout.isVisible = show
     }
 
-    private fun showFollowers(show: Boolean, followers: List<UserMiddle>) {
+    private fun showFollowers(show: Boolean, followers: List<User>) {
         userAdapter.submitList(followers)
         followersRecyclerView.isVisible = show
     }

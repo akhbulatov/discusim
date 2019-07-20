@@ -5,7 +5,7 @@ import org.threeten.bp.LocalDateTime
 data class Comment(
     val id: Long,
     val message: String,
-    val author: UserPreview,
+    val author: UserShort,
     val createdAt: LocalDateTime,
     val vote: Vote,
     val discussion: DiscussionPreview

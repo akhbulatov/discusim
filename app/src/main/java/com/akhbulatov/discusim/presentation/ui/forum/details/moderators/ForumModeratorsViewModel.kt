@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.forum.details.moderators
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.domain.moderator.ModeratorInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
@@ -31,8 +31,8 @@ class ForumModeratorsViewModel @Inject constructor(
     private val _emptyData = MutableLiveData<Boolean>()
     val emptyData: LiveData<Boolean> get() = _emptyData
 
-    private val _moderators = MutableLiveData<Pair<Boolean, List<UserMiddle>>>()
-    val moderators: LiveData<Pair<Boolean, List<UserMiddle>>> get() = _moderators
+    private val _moderators = MutableLiveData<Pair<Boolean, List<User>>>()
+    val moderators: LiveData<Pair<Boolean, List<User>>> get() = _moderators
 
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -48,7 +48,7 @@ class ForumModeratorsViewModel @Inject constructor(
             moderatorInteractor.getForumModerators(forumId)
                 .observeOn(schedulers.ui())
         },
-        object : Paginator.ViewController<UserMiddle> {
+        object : Paginator.ViewController<User> {
             override fun showEmptyProgress(show: Boolean) {
                 _emptyProgress.value = show
             }
@@ -65,7 +65,7 @@ class ForumModeratorsViewModel @Inject constructor(
                 _emptyData.value = show
             }
 
-            override fun showData(show: Boolean, data: List<UserMiddle>) {
+            override fun showData(show: Boolean, data: List<User>) {
                 _moderators.value = Pair(show, data)
             }
 
@@ -91,7 +91,7 @@ class ForumModeratorsViewModel @Inject constructor(
     fun refreshModerators() = paginator.refresh()
     fun loadNextModeratorsPage() = paginator.loadNewPage()
 
-    fun onModeratorClicked(user: UserMiddle) = router.startFlow(Screens.UserFlow(user.id))
+    fun onModeratorClicked(user: User) = router.startFlow(Screens.UserFlow(user.id))
 
     override fun onCleared() {
         paginator.release()

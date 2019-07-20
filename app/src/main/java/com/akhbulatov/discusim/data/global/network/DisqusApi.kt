@@ -12,7 +12,7 @@ import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponse
 import com.akhbulatov.discusim.data.moderator.ModeratorsResponse
 import com.akhbulatov.discusim.data.topic.TopicsResponse
-import com.akhbulatov.discusim.data.user.UserResponse
+import com.akhbulatov.discusim.data.user.UserDetailsResponse
 import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.ResponseBody
@@ -46,7 +46,7 @@ interface DisqusApi {
     @GET("users/details.json")
     fun getUserDetails(
         @Query("user") userId: Long?
-    ): Single<UserResponse>
+    ): Single<UserDetailsResponse>
 
     @FormUrlEncoded
     @POST("users/follow.json")

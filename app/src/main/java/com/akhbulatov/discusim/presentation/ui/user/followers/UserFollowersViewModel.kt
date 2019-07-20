@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.follower.FollowerInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -31,8 +31,8 @@ class UserFollowersViewModel @Inject constructor(
     private val _emptyData = MutableLiveData<Boolean>()
     val emptyData: LiveData<Boolean> get() = _emptyData
 
-    private val _followers = MutableLiveData<Pair<Boolean, List<UserMiddle>>>()
-    val followers: LiveData<Pair<Boolean, List<UserMiddle>>> get() = _followers
+    private val _followers = MutableLiveData<Pair<Boolean, List<User>>>()
+    val followers: LiveData<Pair<Boolean, List<User>>> get() = _followers
 
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -48,7 +48,7 @@ class UserFollowersViewModel @Inject constructor(
             followerInteractor.getUserFollowers(userId, it)
                 .observeOn(schedulers.ui())
         },
-        object : Paginator.ViewController<UserMiddle> {
+        object : Paginator.ViewController<User> {
             override fun showEmptyProgress(show: Boolean) {
                 _emptyProgress.value = show
             }
@@ -65,7 +65,7 @@ class UserFollowersViewModel @Inject constructor(
                 _emptyData.value = show
             }
 
-            override fun showData(show: Boolean, data: List<UserMiddle>) {
+            override fun showData(show: Boolean, data: List<User>) {
                 _followers.value = Pair(show, data)
             }
 
@@ -91,7 +91,7 @@ class UserFollowersViewModel @Inject constructor(
     fun refreshFollowers() = paginator.refresh()
     fun loadNextFollowersPage() = paginator.loadNewPage()
 
-    fun onFollowerClicked(user: UserMiddle) = router.startFlow(Screens.UserFlow(user.id))
+    fun onFollowerClicked(user: User) = router.startFlow(Screens.UserFlow(user.id))
 
     override fun onCleared() {
         paginator.release()

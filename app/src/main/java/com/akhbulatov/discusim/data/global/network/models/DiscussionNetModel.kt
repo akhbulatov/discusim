@@ -10,7 +10,7 @@ data class DiscussionNetModel(
     @Json(name = "title") val title: String,
     @Json(name = "message") val message: String,
     @Json(name = "media") val media: List<MediaNetModel>?,
-    @Json(name = "author") val author: UserMiddleNetModel,
+    @Json(name = "author") val author: UserNetModel,
     @Json(name = "createdAt") val createdAt: LocalDateTime,
     @Json(name = "topics") val topics: List<TopicNetModel>?,
     @Json(name = "likes") val likes: Int,

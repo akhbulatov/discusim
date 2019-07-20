@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
@@ -26,7 +26,7 @@ class MyProfileFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: MyProfileViewModel by viewModels { viewModelFactory }
 
-    private var user: User? = null
+    private var user: UserDetails? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class MyProfileFragment : BaseFragment() {
         errorLayout.isVisible = show
     }
 
-    private fun showMyDetails(show: Boolean, user: User?) {
+    private fun showMyDetails(show: Boolean, user: UserDetails?) {
         if (user != null) {
             this.user = user
 

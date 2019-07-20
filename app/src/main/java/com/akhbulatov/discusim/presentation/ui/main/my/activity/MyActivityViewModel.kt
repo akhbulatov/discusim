@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.activity.ActivityInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Action
-import com.akhbulatov.discusim.domain.global.models.UserPreview
+import com.akhbulatov.discusim.domain.global.models.UserShort
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -89,7 +89,7 @@ class MyActivityViewModel @Inject constructor(
     fun refreshActivity() = paginator.refresh()
     fun loadNextActivityPage() = paginator.loadNewPage()
 
-    fun onUserClicked(user: UserPreview) = router.startFlow(Screens.UserFlow(user.id))
+    fun onUserClicked(user: UserShort) = router.startFlow(Screens.UserFlow(user.id))
     fun onActionClicked(action: Action) = router.navigateTo(Screens.DiscussionDetails(action.id))
 
     override fun onCleared() {

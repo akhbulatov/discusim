@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
@@ -67,7 +67,7 @@ class UserDetailsFragment : BaseFragment() {
         errorLayout.isVisible = show
     }
 
-    private fun showUserDetails(show: Boolean, user: User?) {
+    private fun showUserDetails(show: Boolean, user: UserDetails?) {
         if (user != null) {
             userSharedViewModel.user.value = user
 

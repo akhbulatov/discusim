@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -15,7 +15,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import kotlinx.android.synthetic.main.item_user.*
 
 class UserAdapter(
-    private val onClickListener: (UserMiddle) -> Unit
+    private val onClickListener: (User) -> Unit
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Any> =
@@ -36,7 +36,7 @@ class UserAdapter(
 
     override fun getItemViewType(position: Int): Int =
         when (getItem(position)) {
-            is UserMiddle -> ITEM_USER
+            is User -> ITEM_USER
             else -> ITEM_PROGRESS
         }
 
@@ -59,14 +59,14 @@ class UserAdapter(
     }
 
     inner class UserViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
-        private lateinit var user: UserMiddle
+        private lateinit var user: User
 
         init {
             itemView.setOnClickListener { onClickListener(user) }
         }
 
         override fun bind(item: Any) {
-            if (item is UserMiddle) {
+            if (item is User) {
                 user = item
 
                 nameTextView.text = item.name
@@ -78,7 +78,7 @@ class UserAdapter(
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
-                if (oldItem is UserMiddle && newItem is UserMiddle) {
+                if (oldItem is User && newItem is User) {
                     oldItem.id == newItem.id
                 } else {
                     oldItem is ProgressItem && newItem is ProgressItem

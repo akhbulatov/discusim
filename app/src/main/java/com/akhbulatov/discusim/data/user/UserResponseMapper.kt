@@ -1,22 +1,22 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.global.network.models.UserMiddleNetModel
 import com.akhbulatov.discusim.data.global.network.models.UserNetModel
-import com.akhbulatov.discusim.data.global.network.models.UserPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.UserDetailsNetModel
+import com.akhbulatov.discusim.data.global.network.models.UserShortNetModel
 import com.akhbulatov.discusim.domain.global.models.User
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
-import com.akhbulatov.discusim.domain.global.models.UserPreview
+import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.UserShort
 import javax.inject.Inject
 
 class UserResponseMapper @Inject constructor() {
 
-    fun map(response: UserResponse): User = map(response.user)
+    fun map(response: UserDetailsResponse): UserDetails = map(response.userDetails)
 
-    fun map(models: List<UserMiddleNetModel>): List<UserMiddle> = models.map { map(it) }
+    fun map(models: List<UserNetModel>): List<User> = models.map { map(it) }
 
-    fun map(model: UserNetModel): User =
+    fun map(model: UserDetailsNetModel): UserDetails =
         model.let {
-            User(
+            UserDetails(
                 it.id.toLong(),
                 it.name,
                 it.username,
@@ -32,9 +32,9 @@ class UserResponseMapper @Inject constructor() {
             )
         }
 
-    fun map(model: UserMiddleNetModel): UserMiddle =
+    fun map(model: UserNetModel): User =
         model.let {
-            UserMiddle(
+            User(
                 it.id.toLong(),
                 it.name,
                 it.username,
@@ -42,9 +42,9 @@ class UserResponseMapper @Inject constructor() {
             )
         }
 
-    fun map(model: UserPreviewNetModel): UserPreview =
+    fun map(model: UserShortNetModel): UserShort =
         model.let {
-            UserPreview(
+            UserShort(
                 it.id.toLong(),
                 it.name,
                 it.avatar.permalink

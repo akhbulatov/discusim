@@ -14,7 +14,7 @@ data class Action(
         val id: Long,
         val discussion: DiscussionPreview,
         val forum: ForumPreview,
-        val author: UserPreview
+        val author: UserShort
     )
 
     enum class Type {

@@ -8,7 +8,7 @@ import org.threeten.bp.LocalDateTime
 data class CommentNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "message") val message: String,
-    @Json(name = "author") val author: UserPreviewNetModel,
+    @Json(name = "author") val author: UserShortNetModel,
     @Json(name = "createdAt") val createdAt: LocalDateTime,
     @Json(name = "likes") val likes: Int,
     @Json(name = "userScore") val userScore: Int,

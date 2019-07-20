@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
@@ -83,7 +83,7 @@ class ForumModeratorsFragment : BaseFragment() {
         dataLayout.isVisible = show
     }
 
-    private fun showModerators(show: Boolean, moderators: List<UserMiddle>) {
+    private fun showModerators(show: Boolean, moderators: List<User>) {
         userAdapter.submitList(moderators)
         moderatorsRecyclerView.isVisible = show
     }

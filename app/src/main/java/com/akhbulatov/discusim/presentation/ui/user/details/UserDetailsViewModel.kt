@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.user.details
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.UserDetails
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.domain.user.UserInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
@@ -29,8 +29,8 @@ class UserDetailsViewModel @Inject constructor(
     private val _emptyError = MutableLiveData<Pair<Boolean, String?>>()
     val emptyError: LiveData<Pair<Boolean, String?>> get() = _emptyError
 
-    private val _user = MutableLiveData<Pair<Boolean, User?>>()
-    val user: LiveData<Pair<Boolean, User?>> get() = _user
+    private val _user = MutableLiveData<Pair<Boolean, UserDetails?>>()
+    val user: LiveData<Pair<Boolean, UserDetails?>> get() = _user
 
     private val _followProgress = MutableLiveData<Boolean>()
     val followProgress: LiveData<Boolean> get() = _followProgress

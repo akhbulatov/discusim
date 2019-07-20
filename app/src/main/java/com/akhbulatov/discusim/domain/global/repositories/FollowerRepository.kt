@@ -1,9 +1,9 @@
 package com.akhbulatov.discusim.domain.global.repositories
 
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.UserMiddle
+import com.akhbulatov.discusim.domain.global.models.User
 import io.reactivex.Single
 
 interface FollowerRepository {
-    fun getUserFollowers(userId: Long, cursor: String?): Single<PagedList<UserMiddle>>
+    fun getUserFollowers(userId: Long, cursor: String?): Single<PagedList<User>>
 }

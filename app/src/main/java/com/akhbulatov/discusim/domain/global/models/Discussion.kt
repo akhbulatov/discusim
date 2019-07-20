@@ -7,7 +7,7 @@ data class Discussion(
     val title: String,
     val message: String?,
     val mediaList: List<Media>,
-    val author: UserMiddle,
+    val author: User,
     val createdAt: LocalDateTime,
     val topics: List<Topic>,
     val vote: Vote,

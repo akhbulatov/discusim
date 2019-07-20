@@ -2,8 +2,8 @@ package com.akhbulatov.discusim.presentation.ui.user
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.UserDetails
 
 class UserSharedViewModel : ViewModel() {
-    val user = MutableLiveData<User>()
+    val user = MutableLiveData<UserDetails>()
 }
