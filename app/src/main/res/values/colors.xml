@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Colors to apply in views -->
-    <color name="primary">@color/white</color>
+    <color name="primary">@android:color/white</color>
     <color name="primary_dark">@color/gray_silver</color>
     <color name="accent">@color/blue_dodger</color>
 
     <color name="screen_background">@color/gray_athens</color>
-    <color name="content_background">@color/white</color>
+    <color name="content_background">@android:color/white</color>
 
-    <color name="text_primary">@color/black</color>
+    <color name="text_primary">@android:color/black</color>
     <color name="text_secondary">@color/gray_dove</color>
     <color name="text_date">@color/gray_dove</color>
     <color name="text_inactive">@color/gray_silver</color>
@@ -22,18 +22,18 @@
     <color name="button_following">@color/green_fern</color>
 
     <color name="button_upvoted_background">@color/red_froly</color>
-    <color name="button_discussion_upvoted_icon">@color/white</color>
-    <color name="button_discussion_upvoted_text">@color/white</color>
-    <color name="button_discussion_background">@color/transparent</color>
+    <color name="button_discussion_upvoted_icon">@android:color/white</color>
+    <color name="button_discussion_upvoted_text">@android:color/white</color>
+    <color name="button_discussion_background">@android:color/transparent</color>
     <color name="button_discussion_icon">@color/accent</color>
     <color name="button_discussion_text">@color/text_primary</color>
 
-    <color name="button_comment_no_vote">@color/black</color>
+    <color name="button_comment_no_vote">@android:color/black</color>
     <color name="button_comment_upvote">@color/blue_dodger</color>
     <color name="button_comment_downvote">@color/red_froly</color>
 
     <color name="chip_topic_text">@color/green_fern</color>
-    <color name="chip_topic_background">@color/transparent</color>
+    <color name="chip_topic_background">@android:color/transparent</color>
     <color name="chip_topic_border">@color/green_fern</color>
 
     <color name="divider">@color/gray_athens</color>
@@ -43,10 +43,7 @@
     <!-- Colors for "internal use" only -->
 
     <!-- General Palette -->
-    <color name="white">#ffffff</color>
     <color name="white_opacity_50">#80ffffff</color>
-    <color name="black">#000000</color>
-    <color name="transparent">#00000000</color>
 
     <!-- Palette Blue -->
     <color name="blue_dodger">#2E9FFF</color>
