@@ -14,8 +14,8 @@ data class ActionNetModel(
     @JsonClass(generateAdapter = true)
     data class DiscussionVoteNetModel(
         @Json(name = "id") val id: String,
-        @Json(name = "thread") val thread: DiscussionPreviewNetModel,
-        @Json(name = "forum") val forum: ForumPreviewNetModel,
+        @Json(name = "thread") val thread: DiscussionShortNetModel,
+        @Json(name = "forum") val forum: ForumShortNetModel,
         @Json(name = "author") val author: UserShortNetModel
     )
 }

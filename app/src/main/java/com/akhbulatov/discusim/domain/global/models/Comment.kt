@@ -8,5 +8,5 @@ data class Comment(
     val author: UserShort,
     val createdAt: LocalDateTime,
     val vote: Vote,
-    val discussion: DiscussionPreview
+    val discussion: DiscussionShort
 )

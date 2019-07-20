@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.domain.global.models
 
-data class CommentPreview(
+data class CommentShort(
     val id: Long,
     val message: String,
     val author: UserShort,
-    val discussion: DiscussionPreview
+    val discussion: DiscussionShort
 )

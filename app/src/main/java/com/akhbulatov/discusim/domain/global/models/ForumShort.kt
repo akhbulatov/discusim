@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.domain.global.models
 
-data class DiscussionPreview(
+data class ForumShort(
     val id: String,
-    val title: String
+    val name: String
 )

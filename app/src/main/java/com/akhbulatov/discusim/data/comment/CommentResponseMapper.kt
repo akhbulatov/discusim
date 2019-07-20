@@ -2,11 +2,11 @@ package com.akhbulatov.discusim.data.comment
 
 import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
-import com.akhbulatov.discusim.data.global.network.models.CommentPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.CommentShortNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Comment
-import com.akhbulatov.discusim.domain.global.models.CommentPreview
+import com.akhbulatov.discusim.domain.global.models.CommentShort
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
@@ -33,9 +33,9 @@ class CommentResponseMapper @Inject constructor(
             )
         }
 
-    fun map(model: CommentPreviewNetModel): CommentPreview =
+    fun map(model: CommentShortNetModel): CommentShort =
         model.let {
-            CommentPreview(
+            CommentShort(
                 it.id.toLong(),
                 it.message,
                 userResponseMapper.map(it.author),

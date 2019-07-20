@@ -1,12 +1,12 @@
 package com.akhbulatov.discusim.data.discussion
 
 import com.akhbulatov.discusim.data.global.network.models.DiscussionNetModel
-import com.akhbulatov.discusim.data.global.network.models.DiscussionPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.DiscussionShortNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.topic.TopicResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Discussion
-import com.akhbulatov.discusim.domain.global.models.DiscussionPreview
+import com.akhbulatov.discusim.domain.global.models.DiscussionShort
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
@@ -39,9 +39,9 @@ class DiscussionResponseMapper @Inject constructor(
             )
         }
 
-    fun map(model: DiscussionPreviewNetModel): DiscussionPreview =
+    fun map(model: DiscussionShortNetModel): DiscussionShort =
         model.let {
-            DiscussionPreview(
+            DiscussionShort(
                 it.id,
                 it.title
             )

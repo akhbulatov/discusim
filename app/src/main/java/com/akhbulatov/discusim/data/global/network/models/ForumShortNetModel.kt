@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class ForumPreviewNetModel(
+class ForumShortNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "name") val name: String
 )

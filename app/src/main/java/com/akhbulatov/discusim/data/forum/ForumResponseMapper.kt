@@ -1,9 +1,9 @@
 package com.akhbulatov.discusim.data.forum
 
 import com.akhbulatov.discusim.data.global.network.models.ForumNetModel
-import com.akhbulatov.discusim.data.global.network.models.ForumPreviewNetModel
+import com.akhbulatov.discusim.data.global.network.models.ForumShortNetModel
 import com.akhbulatov.discusim.domain.global.models.Forum
-import com.akhbulatov.discusim.domain.global.models.ForumPreview
+import com.akhbulatov.discusim.domain.global.models.ForumShort
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
@@ -41,9 +41,9 @@ class ForumResponseMapper @Inject constructor() {
             )
         }
 
-    fun map(model: ForumPreviewNetModel): ForumPreview =
+    fun map(model: ForumShortNetModel): ForumShort =
         model.let {
-            ForumPreview(
+            ForumShort(
                 it.id,
                 it.name
             )
