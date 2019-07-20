@@ -55,7 +55,7 @@
     </style>
 
     <style name="ListItem">
-        <item name="android:background">@drawable/list_item_ripple</item>
+        <item name="android:background">@drawable/list_item_selector</item>
     </style>
 
     <style name="RefreshButton" parent="Widget.MaterialComponents.Button.TextButton">
