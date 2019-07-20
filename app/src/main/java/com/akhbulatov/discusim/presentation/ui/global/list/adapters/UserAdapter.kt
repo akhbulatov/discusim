@@ -22,7 +22,7 @@ class UserAdapter(
         when (viewType) {
             ITEM_USER -> {
                 val itemView = parent.inflate(R.layout.item_user)
-                ForumViewHolder(itemView)
+                UserViewHolder(itemView)
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -58,7 +58,7 @@ class UserAdapter(
         return currentList.isNotEmpty() && currentList.last() is ProgressItem
     }
 
-    inner class ForumViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+    inner class UserViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
         private lateinit var user: UserMiddle
 
         init {
