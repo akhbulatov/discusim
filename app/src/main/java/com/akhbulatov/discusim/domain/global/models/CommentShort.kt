@@ -4,5 +4,6 @@ data class CommentShort(
     val id: Long,
     val message: String,
     val author: UserShort,
-    val discussion: DiscussionShort
+    val discussion: DiscussionShort,
+    val forum: ForumShort
 )

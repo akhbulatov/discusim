@@ -12,6 +12,7 @@ import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
+import com.akhbulatov.discusim.presentation.ui.global.utils.navigateToAction
 import javax.inject.Inject
 
 class UserActivityViewModel @Inject constructor(
@@ -93,7 +94,7 @@ class UserActivityViewModel @Inject constructor(
     fun loadNextActivityPage() = paginator.loadNewPage()
 
     fun onUserClicked(user: UserShort) = router.startFlow(Screens.UserFlow(user.id))
-    fun onActionClicked(action: Action) = router.navigateTo(Screens.DiscussionDetails(action.id))
+    fun onActionClicked(action: Action) = router.navigateToAction(action)
 
     override fun onCleared() {
         paginator.release()

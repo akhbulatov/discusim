@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.data.comment
 
 import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
+import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
 import com.akhbulatov.discusim.data.global.network.models.CommentShortNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class CommentResponseMapper @Inject constructor(
     private val userResponseMapper: UserResponseMapper,
     private val discussionResponseMapper: DiscussionResponseMapper,
+    private val forumResponseMapper: ForumResponseMapper,
     private val voteResponseMapper: VoteResponseMapper
 ) {
 
@@ -39,7 +41,8 @@ class CommentResponseMapper @Inject constructor(
                 it.id.toLong(),
                 it.message,
                 userResponseMapper.map(it.author),
-                discussionResponseMapper.map(it.thread)
+                discussionResponseMapper.map(it.thread),
+                forumResponseMapper.map(it.forum)
             )
         }
 }

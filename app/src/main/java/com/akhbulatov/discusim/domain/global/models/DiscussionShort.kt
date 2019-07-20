@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.domain.global.models
 
 data class DiscussionShort(
-    val id: String,
-    val title: String
+    val id: Long,
+    val title: String,
+    val link: String
 )

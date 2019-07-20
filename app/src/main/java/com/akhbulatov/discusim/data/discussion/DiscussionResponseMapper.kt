@@ -42,8 +42,9 @@ class DiscussionResponseMapper @Inject constructor(
     fun map(model: DiscussionShortNetModel): DiscussionShort =
         model.let {
             DiscussionShort(
-                it.id,
-                it.title
+                it.id.toLong(),
+                it.title,
+                it.link
             )
         }
 }

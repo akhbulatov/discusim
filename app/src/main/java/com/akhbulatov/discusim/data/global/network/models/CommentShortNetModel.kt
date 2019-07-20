@@ -8,5 +8,6 @@ data class CommentShortNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "message") val message: String,
     @Json(name = "author") val author: UserShortNetModel,
-    @Json(name = "thread") val thread: DiscussionShortNetModel
+    @Json(name = "thread") val thread: DiscussionShortNetModel,
+    @Json(name = "forum") val forum: ForumShortNetModel
 )

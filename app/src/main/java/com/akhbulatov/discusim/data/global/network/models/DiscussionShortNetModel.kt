@@ -7,5 +7,6 @@ import com.squareup.moshi.JsonClass
 data class DiscussionShortNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "title") val title: String,
+    @Json(name = "link") val link: String,
     @Json(name = "likes") val likes: Int
 )

@@ -1,5 +1,8 @@
 package com.akhbulatov.discusim.presentation.global
 
+import android.content.Context
+import android.content.Intent
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFlowFragment
 import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
@@ -159,4 +162,12 @@ object Screens {
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = UserFollowingFragment.newInstance(userId)
     }
+
+    // --- External --- //
+    data class ExternalBrowser(
+        val url: String
+    ) : SupportAppScreen() {
+        override fun getActivityIntent(context: Context?): Intent? = Intent(Intent.ACTION_VIEW, url.toUri())
+    }
+    // --- External --- //
 }

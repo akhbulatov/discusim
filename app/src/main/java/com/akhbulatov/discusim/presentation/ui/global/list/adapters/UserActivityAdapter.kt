@@ -126,7 +126,7 @@ class UserActivityAdapter(
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Any>() {
             override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean =
                 if (oldItem is Action && newItem is Action) {
-                    oldItem.id == newItem.id
+                    Action.IdComparator.compare(oldItem, newItem) == 0 // TODO
                 } else {
                     oldItem is ProgressItem && newItem is ProgressItem
                 }

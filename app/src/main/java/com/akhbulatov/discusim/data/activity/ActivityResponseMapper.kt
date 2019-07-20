@@ -27,7 +27,6 @@ class ActivityResponseMapper @Inject constructor(
                     val discussionVote = mapDiscussionVote(it.obj)
 
                     Action(
-                        id = discussionVote.id,
                         discussionVote = discussionVote,
                         type = Action.Type.DISCUSSION_VOTE,
                         createdAt = it.createdAt
@@ -37,7 +36,6 @@ class ActivityResponseMapper @Inject constructor(
                     val comment = commentResponseMapper.map(it.obj)
 
                     Action(
-                        id = comment.id,
                         comment = comment,
                         type = Action.Type.COMMENT,
                         createdAt = it.createdAt
