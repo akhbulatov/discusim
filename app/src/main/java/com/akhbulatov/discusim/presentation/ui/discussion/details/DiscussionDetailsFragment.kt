@@ -8,8 +8,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.domain.global.models.Vote
+import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
@@ -35,7 +35,6 @@ class DiscussionDetailsFragment : BaseFragment() {
     private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels({ parentFragment!! })
 
     private var discussion: Discussion? = null
-    private lateinit var vote: Vote
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +83,6 @@ class DiscussionDetailsFragment : BaseFragment() {
     private fun showDiscussionDetails(show: Boolean, discussion: Discussion?) {
         if (discussion != null) {
             this.discussion = discussion
-            vote = discussion.vote
             discussionSharedViewModel.discussion.value = discussion
 
             titleTextView.text = discussion.title
@@ -112,19 +110,19 @@ class DiscussionDetailsFragment : BaseFragment() {
     }
 
     private fun showVoteProgress(show: Boolean) {
-        upvotesButton.showDiscussionVoteProgress(show, vote)
+        upvotesButton.showDiscussionVoteProgress(show, discussion!!.vote)
     }
 
     private fun showVoteError(message: String) {
-        upvotesButton.resetDiscussionVoteBeforeProgress(vote)
+        upvotesButton.resetDiscussionVoteBeforeProgress(discussion!!.vote)
         showSnackbar(message)
     }
 
     private fun updateVote(vote: Vote) {
-        this.vote = vote
         upvotesButton.setDiscussionVote(vote)
 
-        discussion?.let { discussionSharedViewModel.discussion.value = it.copy(vote = vote) }
+        discussion!!.copy(vote = vote)
+        discussionSharedViewModel.discussion.value = discussion!!
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
