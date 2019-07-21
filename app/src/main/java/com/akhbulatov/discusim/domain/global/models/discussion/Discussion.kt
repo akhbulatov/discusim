@@ -1,5 +1,7 @@
-package com.akhbulatov.discusim.domain.global.models
+package com.akhbulatov.discusim.domain.global.models.discussion
 
+import com.akhbulatov.discusim.domain.global.models.Topic
+import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.models.user.User
 import org.threeten.bp.LocalDateTime
 

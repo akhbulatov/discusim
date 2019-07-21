@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.data.comment
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.data.global.network.utils.RequestParams
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.global.models.comment.Comment
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.repositories.CommentRepository
 import io.reactivex.Single

@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.data.discussion
 
-import com.akhbulatov.discusim.data.global.network.models.DiscussionNetModel
+import com.akhbulatov.discusim.data.global.network.models.discussion.DiscussionNetModel
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponse
 import com.squareup.moshi.Json

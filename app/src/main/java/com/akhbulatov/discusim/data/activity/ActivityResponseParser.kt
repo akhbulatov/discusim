@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.data.activity
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel_DiscussionVoteNetModelJsonAdapter
-import com.akhbulatov.discusim.data.global.network.models.CommentShortNetModelJsonAdapter
+import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNetModelJsonAdapter
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponseJsonAdapter
 import com.squareup.moshi.Moshi

@@ -4,7 +4,7 @@ import com.akhbulatov.discusim.data.comment.CommentResponseMapper
 import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
-import com.akhbulatov.discusim.data.global.network.models.CommentShortNetModel
+import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNetModel
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.domain.global.models.PagedList

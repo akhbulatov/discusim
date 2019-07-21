@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.domain.comment
 
-import com.akhbulatov.discusim.domain.global.models.Comment
+import com.akhbulatov.discusim.domain.global.models.comment.Comment
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.repositories.CommentRepository
 import io.reactivex.Single

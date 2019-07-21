@@ -1,5 +1,6 @@
-package com.akhbulatov.discusim.domain.global.models
+package com.akhbulatov.discusim.domain.global.models.comment
 
+import com.akhbulatov.discusim.domain.global.models.discussion.DiscussionShort
 import com.akhbulatov.discusim.domain.global.models.forum.ForumShort
 import com.akhbulatov.discusim.domain.global.models.user.UserShort
 

@@ -2,12 +2,12 @@ package com.akhbulatov.discusim.data.comment
 
 import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
-import com.akhbulatov.discusim.data.global.network.models.CommentNetModel
-import com.akhbulatov.discusim.data.global.network.models.CommentShortNetModel
+import com.akhbulatov.discusim.data.global.network.models.comment.CommentNetModel
+import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
-import com.akhbulatov.discusim.domain.global.models.Comment
-import com.akhbulatov.discusim.domain.global.models.CommentShort
+import com.akhbulatov.discusim.domain.global.models.comment.Comment
+import com.akhbulatov.discusim.domain.global.models.comment.CommentShort
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
