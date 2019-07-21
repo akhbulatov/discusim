@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.data.global.network.models
+package com.akhbulatov.discusim.data.global.network.models.user
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

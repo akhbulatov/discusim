@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate

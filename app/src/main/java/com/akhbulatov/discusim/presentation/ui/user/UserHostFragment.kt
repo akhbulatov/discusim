@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment

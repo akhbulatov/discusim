@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.data.following
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.user.User
 import com.akhbulatov.discusim.domain.global.repositories.FollowingRepository
 import io.reactivex.Single
 import javax.inject.Inject

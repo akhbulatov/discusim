@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.global.network.models.UserDetailsNetModel
+import com.akhbulatov.discusim.data.global.network.models.user.UserDetailsNetModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

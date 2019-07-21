@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.domain.global.models
 
+import com.akhbulatov.discusim.domain.global.models.user.User
 import org.threeten.bp.LocalDateTime
 
 data class Discussion(

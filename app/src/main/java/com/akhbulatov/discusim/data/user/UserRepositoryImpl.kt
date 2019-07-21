@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.data.user
 
 import com.akhbulatov.discusim.data.global.network.DisqusApi
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import com.akhbulatov.discusim.domain.global.repositories.UserRepository
 import io.reactivex.Completable
 import io.reactivex.Single

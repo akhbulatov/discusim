@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Action
-import com.akhbulatov.discusim.domain.global.models.UserShort
+import com.akhbulatov.discusim.domain.global.models.user.UserShort
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder

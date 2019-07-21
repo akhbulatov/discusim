@@ -2,6 +2,7 @@ package com.akhbulatov.discusim.domain.global.models
 
 import com.akhbulatov.discusim.domain.global.models.Action.Type
 import com.akhbulatov.discusim.domain.global.models.forum.ForumShort
+import com.akhbulatov.discusim.domain.global.models.user.UserShort
 import org.threeten.bp.LocalDateTime
 
 /**

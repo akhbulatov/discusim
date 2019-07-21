@@ -1,11 +1,11 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.global.network.models.UserNetModel
-import com.akhbulatov.discusim.data.global.network.models.UserDetailsNetModel
-import com.akhbulatov.discusim.data.global.network.models.UserShortNetModel
-import com.akhbulatov.discusim.domain.global.models.User
-import com.akhbulatov.discusim.domain.global.models.UserDetails
-import com.akhbulatov.discusim.domain.global.models.UserShort
+import com.akhbulatov.discusim.data.global.network.models.user.UserNetModel
+import com.akhbulatov.discusim.data.global.network.models.user.UserDetailsNetModel
+import com.akhbulatov.discusim.data.global.network.models.user.UserShortNetModel
+import com.akhbulatov.discusim.domain.global.models.user.User
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserShort
 import javax.inject.Inject
 
 class UserResponseMapper @Inject constructor() {

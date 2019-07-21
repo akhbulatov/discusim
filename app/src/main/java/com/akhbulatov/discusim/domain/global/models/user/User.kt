@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.domain.global.models
+package com.akhbulatov.discusim.domain.global.models.user
 
 data class User(
     val id: Long,

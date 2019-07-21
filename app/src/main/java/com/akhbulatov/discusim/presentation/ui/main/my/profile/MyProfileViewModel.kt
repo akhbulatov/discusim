@@ -3,7 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.main.my.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import com.akhbulatov.discusim.domain.user.UserInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler

@@ -2,7 +2,7 @@ package com.akhbulatov.discusim.data.following
 
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import com.akhbulatov.discusim.domain.global.models.User
+import com.akhbulatov.discusim.domain.global.models.user.User
 import javax.inject.Inject
 
 class FollowingResponseMapper @Inject constructor(

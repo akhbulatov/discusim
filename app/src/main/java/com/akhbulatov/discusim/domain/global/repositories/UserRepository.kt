@@ -1,6 +1,6 @@
 package com.akhbulatov.discusim.domain.global.repositories
 
-import com.akhbulatov.discusim.domain.global.models.UserDetails
+import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import io.reactivex.Completable
 import io.reactivex.Single
 
