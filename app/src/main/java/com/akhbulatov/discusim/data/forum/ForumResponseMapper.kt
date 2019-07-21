@@ -13,30 +13,12 @@ import javax.inject.Inject
 
 class ForumResponseMapper @Inject constructor() {
 
+    fun map(response: ForumDetailsResponse): ForumDetails = map(response.forumDetails)
+
     fun map(response: ForumsResponse): PagedList<Forum> {
         val forums = response.forums.map { map(it) }
         return PagedList(response.cursor?.next, forums)
     }
-
-    fun map(response: ForumDetailsResponse): ForumDetails = map(response.forumDetails)
-
-    fun map(model: ForumShortNetModel): ForumShort =
-        model.let {
-            ForumShort(
-                it.id,
-                it.name
-            )
-        }
-
-    fun map(model: ForumNetModel): Forum =
-        model.let {
-            Forum(
-                it.id,
-                it.name,
-                it.favicon.permalink,
-                it.channel?.let { channel -> mapChannel(channel) }
-            )
-        }
 
     fun map(model: ForumDetailsNetModel): ForumDetails =
         model.let {
@@ -60,6 +42,24 @@ class ForumResponseMapper @Inject constructor() {
                 it.avatar,
                 it.banner ?: it.options.alertBackground?.let { bg -> "https:$bg" },
                 it.bannerColorHex
+            )
+        }
+
+    fun map(model: ForumNetModel): Forum =
+        model.let {
+            Forum(
+                it.id,
+                it.name,
+                it.favicon.permalink,
+                it.channel?.let { channel -> mapChannel(channel) }
+            )
+        }
+
+    fun map(model: ForumShortNetModel): ForumShort =
+        model.let {
+            ForumShort(
+                it.id,
+                it.name
             )
         }
 }
