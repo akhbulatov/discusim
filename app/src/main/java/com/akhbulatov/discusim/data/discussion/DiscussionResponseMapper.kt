@@ -5,9 +5,9 @@ import com.akhbulatov.discusim.data.global.network.models.discussion.DiscussionS
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.topic.TopicResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.domain.global.models.discussion.DiscussionShort
-import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
 class DiscussionResponseMapper @Inject constructor(
@@ -29,13 +29,7 @@ class DiscussionResponseMapper @Inject constructor(
                 it.id.toLong(),
                 it.title,
                 if (it.message.isNotEmpty()) it.message else null,
-                it.media?.let { list ->
-                    list.map { media ->
-                        Discussion.Media(
-                            media.url
-                        )
-                    }
-                } ?: emptyList(),
+                it.media?.let { list -> list.map { media -> Discussion.Media(media.url) } } ?: emptyList(),
                 userResponseMapper.map(it.author),
                 it.createdAt,
                 it.topics?.let { topic -> topicResponseMapper.map(topic) } ?: emptyList(),
