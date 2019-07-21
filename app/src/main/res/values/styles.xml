@@ -9,14 +9,27 @@
         <item name="android:textSize">@dimen/font_normal</item>
     </style>
 
+    <style name="Text.Primary.Title">
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
     <style name="Text.Secondary">
         <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/font_secondary</item>
+    </style>
+
+    <style name="Text.Content">
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/font_secondary</item>
     </style>
 
     <style name="Text.Date">
         <item name="android:textColor">@color/text_date</item>
         <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="Text.Date.Normal">
+        <item name="android:textSize">@dimen/font_secondary</item>
     </style>
     <!-- Global Text. End -->
 
@@ -104,14 +117,6 @@
         <item name="iconTint">?colorSecondary</item>
         <item name="strokeColor">?colorSecondary</item>
         <item name="strokeWidth">1dp</item>
-    </style>
-
-    <style name="DiscussionDetailsTitle" parent="Text.Primary">
-        <item name="android:textSize">@dimen/font_large</item>
-    </style>
-
-    <style name="DiscussionDetailsMessage" parent="Text.Secondary">
-        <item name="android:textColor">?colorOnSurface</item>
     </style>
 
     <style name="UserDetailsText" parent="Text.Secondary">

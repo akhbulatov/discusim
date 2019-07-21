@@ -9,6 +9,8 @@
 
     <string name="action_share">Share</string>
 
+    <string name="symbol_bullet">\u2022</string>
+
     <!-- Time. Start -->
     <plurals name="time_seconds">
         <item quantity="one">%d second ago</item>
