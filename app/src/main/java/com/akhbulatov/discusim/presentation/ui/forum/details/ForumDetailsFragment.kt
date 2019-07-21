@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.forum.ForumDetails
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.ForumSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
@@ -29,7 +29,7 @@ class ForumDetailsFragment : BaseFragment() {
     private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
     private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!!.parentFragment!! })
 
-    private lateinit var forum: Forum
+    private lateinit var forum: ForumDetails
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class ForumDetailsFragment : BaseFragment() {
         errorLayout.isVisible = show
     }
 
-    private fun showForumDetails(show: Boolean, forum: Forum?) {
+    private fun showForumDetails(show: Boolean, forum: ForumDetails?) {
         if (forum != null) {
             this.forum = forum
             forumSharedViewModel.forum.value = forum

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.forum.ForumInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.forum.ForumDetails
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -27,8 +27,8 @@ class ForumDetailsViewModel @Inject constructor(
     private val _emptyError = MutableLiveData<Pair<Boolean, String?>>()
     val emptyError: LiveData<Pair<Boolean, String?>> get() = _emptyError
 
-    private val _forum = MutableLiveData<Pair<Boolean, Forum?>>()
-    val forum: LiveData<Pair<Boolean, Forum?>> get() = _forum
+    private val _forum = MutableLiveData<Pair<Boolean, ForumDetails?>>()
+    val forum: LiveData<Pair<Boolean, ForumDetails?>> get() = _forum
 
     private val _followProgress = MutableLiveData<Boolean>()
     val followProgress: LiveData<Boolean> get() = _followProgress

@@ -6,7 +6,7 @@ import com.akhbulatov.discusim.data.discussion.DiscussionResponse
 import com.akhbulatov.discusim.data.discussion.DiscussionsResponse
 import com.akhbulatov.discusim.data.follower.FollowersResponse
 import com.akhbulatov.discusim.data.following.FollowingResponse
-import com.akhbulatov.discusim.data.forum.ForumResponse
+import com.akhbulatov.discusim.data.forum.ForumDetailsResponse
 import com.akhbulatov.discusim.data.forum.ForumsResponse
 import com.akhbulatov.discusim.data.global.network.models.SessionNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponse
@@ -65,8 +65,7 @@ interface DisqusApi {
     @GET("users/listFollowingForums.json")
     fun getFollowingForums(
         @Query("user") userId: Long?,
-        @Query("cursor") cursor: String?,
-        @Query("attach") attach: List<String>
+        @Query("cursor") cursor: String?
     ): Single<ForumsResponse>
 
     @GET("users/listPosts.json")
@@ -94,7 +93,7 @@ interface DisqusApi {
     fun getForumDetails(
         @Query("forum") forumId: String,
         @Query("attach") attach: List<String>
-    ): Single<ForumResponse>
+    ): Single<ForumDetailsResponse>
 
     @FormUrlEncoded
     @POST("forums/follow.json")

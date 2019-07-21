@@ -6,7 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.Forum
+import com.akhbulatov.discusim.domain.global.models.forum.ForumDetails
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
@@ -22,7 +22,7 @@ class ForumHostFragment : BaseFragment() {
     private lateinit var forumDetailsTabScreen: SupportAppScreen
     private lateinit var forumDiscussionsTabScreen: SupportAppScreen
 
-    private var sharedForum: Forum? = null
+    private var sharedForum: ForumDetails? = null
 
     private val currentTabFragment: BaseFragment?
         get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? BaseFragment
