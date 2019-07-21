@@ -7,5 +7,4 @@ import com.squareup.moshi.JsonClass
 data class TopicNetModel(
     @Json(name = "identifier") val identifier: String,
     @Json(name = "displayName") val displayName: String
-
 )
