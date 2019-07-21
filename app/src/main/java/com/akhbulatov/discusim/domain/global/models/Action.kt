@@ -1,13 +1,24 @@
 package com.akhbulatov.discusim.domain.global.models
 
+import com.akhbulatov.discusim.domain.global.models.Action.Type
 import org.threeten.bp.LocalDateTime
 
+/**
+ * Описывает активность. Например, *активность юзера*.
+ *
+ * Активностью может быть [Type.DISCUSSION_VOTE], [Type.COMMENT] или один из других вариантов [Type].
+ */
 data class Action(
     val discussionVote: DiscussionVote? = null,
     val comment: CommentShort? = null,
     val type: Type,
     val createdAt: LocalDateTime
 ) {
+
+    /**
+     * Сравнивает ID одного из объектов типа активности - [Type], т.к. у самого [Action] нет ID.
+     */
+    fun equalsId(other: Action): Boolean = IdComparator.compare(this, other) == 0
 
     data class DiscussionVote(
         val id: Long,
