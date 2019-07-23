@@ -108,16 +108,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/authorLayout">
 
-                    <TextView
+                    <org.sufficientlysecure.htmltextview.HtmlTextView
                         android:id="@+id/messageTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/Text.Content"
-                        app:layout_constraintBottom_toTopOf="@id/topicChipGroup"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_goneMarginBottom="@dimen/spacing_normal"
                         tools:maxLines="10"
                         tools:text="@tools:sample/lorem/random" />
 
@@ -126,7 +124,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_normal"
-                        android:layout_marginBottom="@dimen/spacing_normal"
                         app:chipSpacing="@dimen/spacing_small"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -139,10 +136,12 @@
                     android:id="@+id/actionsLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/messageLayout">
+                    app:layout_constraintTop_toBottomOf="@id/messageLayout"
+                    app:layout_goneMarginTop="@dimen/spacing_normal">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/upvotesButton"

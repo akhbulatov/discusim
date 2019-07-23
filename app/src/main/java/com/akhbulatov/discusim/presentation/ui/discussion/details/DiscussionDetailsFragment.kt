@@ -3,7 +3,6 @@ package com.akhbulatov.discusim.presentation.ui.discussion.details
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +12,7 @@ import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
+import com.akhbulatov.discusim.presentation.ui.global.utils.HtmlTagUtils
 import com.akhbulatov.discusim.presentation.ui.global.utils.getHumanCreatedTime
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.resetDiscussionVoteBeforeProgress
@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_discussion_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import org.jetbrains.anko.support.v4.share
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter
 import javax.inject.Inject
 
 class DiscussionDetailsFragment : BaseFragment() {
@@ -91,7 +92,13 @@ class DiscussionDetailsFragment : BaseFragment() {
             usernameTextView.text = getString(R.string.discussion_details_username, discussion.author.username)
             dateTextView.text = discussion.createdAt.getHumanCreatedTime(resources)
 
-            messageTextView.text = discussion.message?.parseAsHtml() // TODO
+            if (discussion.message != null) {
+                val message = HtmlTagUtils.replaceLinkTagsToImg(discussion.message)
+                messageTextView.setHtml(message, HtmlHttpImageGetter(messageTextView))
+            } else {
+                messageTextView.isVisible = false
+            }
+
             if (discussion.topics.isNotEmpty()) {
                 discussion.topics.forEach {
                     val topicChip = Chip(context, null, R.attr.topicChipStyle).apply {

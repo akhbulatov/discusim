@@ -20,7 +20,7 @@
 
     <style name="Text.Content">
         <item name="android:textColor">@color/text_primary</item>
-        <item name="android:textSize">@dimen/font_secondary</item>
+        <item name="android:textSize">@dimen/font_content</item>
     </style>
 
     <style name="Text.Date">

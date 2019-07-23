@@ -52,13 +52,16 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
-    // UI
+    // Android UI
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
     implementation "androidx.fragment:fragment-ktx:${versions.fragment}"
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+
+    // Custom Views
     implementation "com.github.razir.progressbutton:progressbutton:${versions.progressButton}"
+    implementation "org.sufficientlysecure:html-textview:${versions.htmlTextView}"
 
     // DI
     implementation "com.google.dagger:dagger:${versions.dagger}"

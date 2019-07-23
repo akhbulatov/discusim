@@ -15,6 +15,7 @@ buildscript {
             'recyclerView'    : '1.1.0-beta01',
             'constraintLayout': '2.0.0-beta2',
             'progressButton'  : '1.0.3',
+            'htmlTextView'    : '3.6',
             'dagger'          : '2.23.2',
             'rxJava'          : '2.2.10',
             'rxKotlin'        : '2.3.0',
