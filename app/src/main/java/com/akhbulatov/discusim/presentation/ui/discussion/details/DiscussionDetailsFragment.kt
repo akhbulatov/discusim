@@ -69,7 +69,7 @@ class DiscussionDetailsFragment : BaseFragment() {
         viewModel.discussion.observe(this, Observer { showDiscussionDetails(it.first, it.second) })
         viewModel.voteProgress.observe(this, Observer { showVoteProgress(it) })
         viewModel.voteError.observe(this, Observer { showVoteError(it) })
-        viewModel.vote.observe(this, Observer { updateVote(it) })
+        viewModel.voteType.observe(this, Observer { updateVote(it) })
     }
 
     private fun showEmptyProgress(show: Boolean) {
@@ -125,10 +125,11 @@ class DiscussionDetailsFragment : BaseFragment() {
         showSnackbar(message)
     }
 
-    private fun updateVote(vote: Vote) {
-        upvotesButton.setDiscussionVote(vote)
+    private fun updateVote(voteType: Vote.Type) {
+        val newVote = Vote.createUpdatedInstance(discussion!!.vote.upvotes, voteType)
+        upvotesButton.setDiscussionVote(newVote)
 
-        discussion!!.copy(vote = vote)
+        discussion = discussion!!.copy(vote = newVote)
         discussionSharedViewModel.discussion.value = discussion!!
     }
 

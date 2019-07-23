@@ -53,7 +53,7 @@ class DiscussionRepositoryImpl @Inject constructor(
             .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
 
-    override fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote> =
+    override fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote.Type> =
         api.voteDiscussion(
             discussionId,
             voteResponseMapper.map(voteType)

@@ -23,6 +23,6 @@ class DiscussionInteractor @Inject constructor(
     fun getPopularDiscussions(forumId: String): Single<PagedList<Discussion>> =
         discussionRepository.getPopularDiscussions(forumId)
 
-    fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote> =
+    fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote.Type> =
         discussionRepository.voteDiscussion(discussionId, voteType)
 }

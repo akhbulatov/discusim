@@ -37,8 +37,8 @@ class DiscussionDetailsViewModel @Inject constructor(
     private val _voteError = MutableLiveData<String>()
     val voteError: LiveData<String> get() = _voteError
 
-    private val _vote = MutableLiveData<Vote>()
-    val vote: LiveData<Vote> get() = _vote
+    private val _voteType = MutableLiveData<Vote.Type>()
+    val voteType: LiveData<Vote.Type> get() = _voteType
 
     fun setDiscussionId(discussionId: Long) {
         this.discussionId = discussionId
@@ -68,7 +68,7 @@ class DiscussionDetailsViewModel @Inject constructor(
             .doOnSubscribe { _voteProgress.value = true }
             .doAfterTerminate { _voteProgress.value = false }
             .subscribeBy(
-                onSuccess = { _vote.value = it },
+                onSuccess = { _voteType.value = it },
                 onError = { errorHandler.proceed(it) { msg -> _voteError.value = msg } }
             )
     }

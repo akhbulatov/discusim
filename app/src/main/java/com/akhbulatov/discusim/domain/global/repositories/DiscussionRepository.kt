@@ -12,5 +12,5 @@ interface DiscussionRepository {
     fun getHotDiscussions(forumId: String): Single<PagedList<Discussion>>
     fun getPopularDiscussions(forumId: String): Single<PagedList<Discussion>>
 
-    fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote>
+    fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote.Type>
 }
