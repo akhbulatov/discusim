@@ -48,7 +48,7 @@ data class Action(
             } else if (firstComment != null && secondComment != null) { // Comment
                 return firstComment.id.compareTo(secondComment.id)
             }
-            throw IllegalArgumentException() // TODO
+            return -1 // TODO
         }
     }
 }
