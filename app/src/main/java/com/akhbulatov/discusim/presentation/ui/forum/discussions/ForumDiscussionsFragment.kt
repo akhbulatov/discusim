@@ -48,7 +48,9 @@ class ForumDiscussionsFragment : BaseFragment() {
         )
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(discussionsRecyclerView.layoutManager as LinearLayoutManager) { viewModel.loadNextDiscussionsPage() }
+        EndlessScrollListener(
+            discussionsRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextDiscussionsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
