@@ -29,7 +29,7 @@ object HtmlTagUtils {
      */
     private val doubleQuotesRegex = "\".+?\"".toRegex()
 
-    private val imagesExtensions = arrayOf(".jpg", ".jpeg", ".png", ".gif")
+    private val imageExtensions = arrayOf(".jpg", ".jpeg", ".png", ".gif")
 
     /**
      * Заменяет ссылки на изображения с тэга `<a>` на `<img>` для ссылок с расширением изображения
@@ -58,8 +58,8 @@ object HtmlTagUtils {
                 val linkWithQuotes = linkMatchResult.value
                 val linkWithoutQuotes = linkWithQuotes.replace("\"", "")
 
-                for (i in imagesExtensions.indices) {
-                    if (linkWithoutQuotes.endsWith(imagesExtensions[i])) {
+                for (i in imageExtensions.indices) {
+                    if (linkWithoutQuotes.endsWith(imageExtensions[i])) {
                         // Заменяет тэг <a> на <img>
                         val imgLink = "<img src=$linkWithQuotes/>"
                         val startIndex = result.indexOf(aTag)
