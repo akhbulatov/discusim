@@ -8,8 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.domain.global.models.Vote
+import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
@@ -48,8 +48,9 @@ class ForumDiscussionsFragment : BaseFragment() {
         )
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(discussionsRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextDiscussionsPage() }
+        EndlessScrollListener(
+            discussionsRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextDiscussionsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

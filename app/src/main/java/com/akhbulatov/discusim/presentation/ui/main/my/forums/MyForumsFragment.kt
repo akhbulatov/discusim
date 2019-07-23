@@ -30,8 +30,9 @@ class MyForumsFragment : BaseFragment() {
         ForumAdapter { viewModel.onForumClicked(it) }
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(forumsRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextForumsPage() }
+        EndlessScrollListener(
+            forumsRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextForumsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

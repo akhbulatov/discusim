@@ -28,6 +28,7 @@ buildscript {
             'threeTenAbp'     : '1.2.1',
             'androidKtx'      : '1.2.0-alpha02',
             'anko'            : '0.10.8',
+            'ktlint'          : '0.34.2',
             'timber'          : '4.7.1',
             'stetho'          : '1.5.1',
             'leakCanary'      : '2.0-alpha-3'

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
-import com.akhbulatov.discusim.domain.global.models.comment.Comment
 import com.akhbulatov.discusim.domain.global.models.Vote
+import com.akhbulatov.discusim.domain.global.models.comment.Comment
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder

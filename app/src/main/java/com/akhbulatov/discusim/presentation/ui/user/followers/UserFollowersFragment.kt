@@ -31,8 +31,9 @@ class UserFollowersFragment : BaseFragment() {
         UserAdapter { viewModel.onFollowerClicked(it) }
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(followersRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextFollowersPage() }
+        EndlessScrollListener(
+            followersRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextFollowersPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -31,8 +31,9 @@ class UserFollowingFragment : BaseFragment() {
         UserAdapter { viewModel.onFollowingClicked(it) }
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(followingRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextFollowingPage() }
+        EndlessScrollListener(
+            followingRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextFollowingPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

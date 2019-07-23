@@ -31,8 +31,9 @@ class ForumModeratorsFragment : BaseFragment() {
         UserAdapter { viewModel.onModeratorClicked(it) }
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(moderatorsRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextModeratorsPage() }
+        EndlessScrollListener(
+            moderatorsRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextModeratorsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

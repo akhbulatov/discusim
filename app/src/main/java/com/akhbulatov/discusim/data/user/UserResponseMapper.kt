@@ -1,7 +1,7 @@
 package com.akhbulatov.discusim.data.user
 
-import com.akhbulatov.discusim.data.global.network.models.user.UserNetModel
 import com.akhbulatov.discusim.data.global.network.models.user.UserDetailsNetModel
+import com.akhbulatov.discusim.data.global.network.models.user.UserNetModel
 import com.akhbulatov.discusim.data.global.network.models.user.UserShortNetModel
 import com.akhbulatov.discusim.domain.global.models.user.User
 import com.akhbulatov.discusim.domain.global.models.user.UserDetails

@@ -6,9 +6,9 @@ import com.akhbulatov.discusim.data.global.network.models.comment.CommentNetMode
 import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNetModel
 import com.akhbulatov.discusim.data.global.network.models.vote.VoteResponseMapper
 import com.akhbulatov.discusim.data.user.UserResponseMapper
+import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.comment.Comment
 import com.akhbulatov.discusim.domain.global.models.comment.CommentShort
-import com.akhbulatov.discusim.domain.global.models.PagedList
 import javax.inject.Inject
 
 class CommentResponseMapper @Inject constructor(

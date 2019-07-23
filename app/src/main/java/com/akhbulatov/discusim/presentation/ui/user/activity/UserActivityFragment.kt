@@ -33,8 +33,9 @@ class UserActivityFragment : BaseFragment() {
         )
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(activityRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextActivityPage() }
+        EndlessScrollListener(
+            activityRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextActivityPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

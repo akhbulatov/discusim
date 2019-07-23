@@ -30,8 +30,9 @@ class UserCommentsFragment : BaseFragment() {
 
     private val commentAdapter by lazy { CommentAdapter() }
     private val onScrollListener by lazy {
-        EndlessScrollListener(commentsRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextCommentsPage() }
+        EndlessScrollListener(
+            commentsRecyclerView.layoutManager as LinearLayoutManager
+        ) { viewModel.loadNextCommentsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
