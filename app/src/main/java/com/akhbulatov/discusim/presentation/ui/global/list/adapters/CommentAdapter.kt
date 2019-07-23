@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.global.list.adapters
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.parseAsHtml
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
@@ -68,7 +69,7 @@ class CommentAdapter : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
                 authorImageView.loadRoundedImage(context, item.author.avatarUrl)
                 authorTextView.text = item.author.name
                 dateTextView.text = item.createdAt.getHumanCreatedTime(context.resources)
-                messageTextView.text = item.message
+                messageTextView.text = item.message.parseAsHtml().trim()
 
                 if (item.vote.upvotes > 0) {
                     with(upvoteTextView) {

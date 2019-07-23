@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.forum.details
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.resetFollowBeforePro
 import com.akhbulatov.discusim.presentation.ui.global.utils.setFollow
 import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import com.github.razir.progressbutton.bindProgressButton
 import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
@@ -75,7 +77,7 @@ class ForumDetailsFragment : BaseFragment() {
                 R.drawable.img_forum_placeholder
             )
             nameTextView.text = forum.name
-            descriptionTextView.text = forum.description
+            descriptionTextView.showTextIfNotEmpty(forum.description?.parseAsHtml()?.trim())
             numDiscussionsTextView.text = getString(R.string.forum_details_thousand_nums, forum.numDiscussions)
             numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, forum.numFollowers)
             followButton.setFollow(forum.following)

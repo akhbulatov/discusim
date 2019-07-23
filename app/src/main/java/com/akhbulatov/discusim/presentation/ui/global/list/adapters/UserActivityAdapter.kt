@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.parseAsHtml
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -108,7 +109,7 @@ class UserActivityAdapter(
                     )
                     activity = "${item.comment.author.name} $commented"
                     with(commentTextView) {
-                        text = item.comment.message
+                        text = item.comment.message.parseAsHtml().trim()
                         isVisible = true
                     }
                     activityTypeDrawable = context.getTintDrawable(R.drawable.ic_comment, R.color.accent)
