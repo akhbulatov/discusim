@@ -8,6 +8,7 @@ data class CommentShort(
     val id: Long,
     val message: String,
     val author: UserShort,
+    val hasParent: Boolean,
     val discussion: DiscussionShort,
     val forum: ForumShort
 )

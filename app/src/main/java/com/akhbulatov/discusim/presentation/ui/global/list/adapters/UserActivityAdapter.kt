@@ -103,11 +103,14 @@ class UserActivityAdapter(
                     user = item.comment.author
 
                     authorAvatarUrl = item.comment.author.avatarUrl
-                    val commented = context.getString(
-                        R.string.item_user_activity_commented_discussion,
-                        item.comment.discussion.title
-                    )
-                    activity = "${item.comment.author.name} $commented"
+                    // Commented or replied?
+                    val partActivityRes = if (!item.comment.hasParent) {
+                        R.string.item_user_activity_commented_discussion
+                    } else {
+                        R.string.item_user_activity_replied_discussion
+                    }
+                    val partActivity = context.getString(partActivityRes, item.comment.discussion.title)
+                    activity = "${item.comment.author.name} $partActivity"
                     with(commentTextView) {
                         text = item.comment.message.parseAsHtml().trim()
                         isVisible = true

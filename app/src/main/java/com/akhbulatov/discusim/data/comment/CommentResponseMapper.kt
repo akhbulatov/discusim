@@ -41,6 +41,7 @@ class CommentResponseMapper @Inject constructor(
                 it.id.toLong(),
                 it.message,
                 userResponseMapper.map(it.author),
+                it.parent != null,
                 discussionResponseMapper.map(it.thread),
                 forumResponseMapper.map(it.forum)
             )

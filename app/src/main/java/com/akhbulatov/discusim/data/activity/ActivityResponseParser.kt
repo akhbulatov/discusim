@@ -30,7 +30,8 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
 
             val obj: Any? = when (action.type) {
                 ActivityType.THREAD_LIKE.type -> discussionVoteAdapter.fromJson(objJson)!!
-                ActivityType.POST.type -> commentAdapter.fromJson(objJson)
+                ActivityType.POST.type,
+                ActivityType.REPLY.type -> commentAdapter.fromJson(objJson)
                 else -> null
             }
 
@@ -42,6 +43,7 @@ class ActivityResponseParser @Inject constructor(moshi: Moshi) {
 
     private enum class ActivityType(val type: String) {
         THREAD_LIKE("thread_like"),
-        POST("post")
+        POST("post"),
+        REPLY("reply")
     }
 }

@@ -11,6 +11,11 @@ data class CommentShortNetModel(
     @Json(name = "id") val id: String,
     @Json(name = "message") val message: String,
     @Json(name = "author") val author: UserShortNetModel,
+    @Json(name = "parent") val parent: ParentNetModel?,
     @Json(name = "thread") val thread: DiscussionShortNetModel,
     @Json(name = "forum") val forum: ForumShortNetModel
-)
+) {
+
+    @JsonClass(generateAdapter = true)
+    data class ParentNetModel(@Json(name = "id") val id: String)
+}
