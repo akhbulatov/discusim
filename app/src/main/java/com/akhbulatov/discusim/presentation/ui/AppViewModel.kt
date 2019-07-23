@@ -3,8 +3,8 @@ package com.akhbulatov.discusim.presentation.ui
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.Screens
-import javax.inject.Inject
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 class AppViewModel @Inject constructor(
     private val router: Router,

@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import javax.inject.Inject
 
 class AppActivity : DaggerAppCompatActivity() {
     @Inject lateinit var navigatorHolder: NavigatorHolder

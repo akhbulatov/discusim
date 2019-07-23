@@ -14,8 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_auth.*
+import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_auth

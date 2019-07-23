@@ -9,8 +9,8 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_forum_details_host.*
+import javax.inject.Inject
 
 class ForumDetailsHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_details_host

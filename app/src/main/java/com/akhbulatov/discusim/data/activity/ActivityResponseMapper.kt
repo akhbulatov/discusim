@@ -8,8 +8,8 @@ import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNe
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import javax.inject.Inject
 import okhttp3.ResponseBody
+import javax.inject.Inject
 
 class ActivityResponseMapper @Inject constructor(
     private val activityResponseParser: ActivityResponseParser,

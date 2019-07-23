@@ -14,11 +14,11 @@ import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserActivityAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_user_activity.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
+import javax.inject.Inject
 
 class UserActivityFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_activity

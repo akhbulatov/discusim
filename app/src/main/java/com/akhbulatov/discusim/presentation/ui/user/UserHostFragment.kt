@@ -12,9 +12,9 @@ import com.akhbulatov.discusim.domain.global.models.user.UserDetails
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_user_host.*
 import org.jetbrains.anko.support.v4.share
+import javax.inject.Inject
 
 class UserHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_host

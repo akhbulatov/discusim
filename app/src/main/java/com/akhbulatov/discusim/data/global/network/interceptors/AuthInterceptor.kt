@@ -2,10 +2,10 @@ package com.akhbulatov.discusim.data.global.network.interceptors
 
 import com.akhbulatov.discusim.data.global.local.prefs.PreferencesStorage
 import com.akhbulatov.discusim.data.session.OAuthParams
-import javax.inject.Inject
-import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @Singleton
 class AuthInterceptor @Inject constructor(

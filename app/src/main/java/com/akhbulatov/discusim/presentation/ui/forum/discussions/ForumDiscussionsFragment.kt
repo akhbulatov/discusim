@@ -16,12 +16,12 @@ import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.VerticalSpaceItemDecoration
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.DiscussionAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_forum_discussions.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import org.jetbrains.anko.support.v4.dip
+import javax.inject.Inject
 
 class ForumDiscussionsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_discussions
