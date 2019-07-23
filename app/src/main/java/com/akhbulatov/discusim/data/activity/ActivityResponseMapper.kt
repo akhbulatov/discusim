@@ -34,10 +34,11 @@ class ActivityResponseMapper @Inject constructor(
                 }
                 is CommentShortNetModel -> {
                     val comment = commentResponseMapper.map(it.obj)
+                    val type = if (!comment.hasParent) Action.Type.COMMENT else Action.Type.REPLY
 
                     Action(
                         comment = comment,
-                        type = Action.Type.COMMENT,
+                        type = type,
                         createdAt = it.createdAt
                     )
                 }

@@ -33,7 +33,8 @@ data class Action(
 
     enum class Type {
         DISCUSSION_VOTE,
-        COMMENT
+        COMMENT,
+        REPLY
     }
 
     object IdComparator : Comparator<Action> {

@@ -98,6 +98,7 @@
     <!-- Item User Activity -->
     <string name="item_user_activity_upvoted_discussion">upvoted discussion %s</string>
     <string name="item_user_activity_commented_discussion">commented on discussion %s</string>
+    <string name="item_user_activity_replied_discussion">replied on discussion %s</string>
 
     <!-- List Items. End -->
 

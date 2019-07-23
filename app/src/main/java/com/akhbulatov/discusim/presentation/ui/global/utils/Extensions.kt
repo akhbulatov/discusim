@@ -20,7 +20,8 @@ fun FlowRouter.navigateToAction(action: Action) {
         Action.Type.DISCUSSION_VOTE -> {
             action.discussionVote?.let { navigateTo(Screens.DiscussionDetails(it.discussion.id)) }
         }
-        Action.Type.COMMENT -> {
+        Action.Type.COMMENT,
+        Action.Type.REPLY -> {
             action.comment?.let {
                 if (it.forum.isChannel()) {
                     navigateTo(Screens.DiscussionDetails(it.discussion.id))
