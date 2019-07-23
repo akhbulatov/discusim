@@ -18,7 +18,7 @@ class VoteResponseMapper @Inject constructor() {
         0 -> Vote.Type.NO_VOTE
         1 -> Vote.Type.UPVOTE
         else -> {
-            Timber.w("Unknown vote type: $vote")
+            Timber.e("Unknown vote type: $vote")
             Vote.Type.NO_VOTE
         }
     }
