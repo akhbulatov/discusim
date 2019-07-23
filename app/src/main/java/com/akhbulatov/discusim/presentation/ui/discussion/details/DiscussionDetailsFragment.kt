@@ -94,7 +94,7 @@ class DiscussionDetailsFragment : BaseFragment() {
 
             if (discussion.message != null) {
                 val message = HtmlTagUtils.replaceLinkTagsToImg(discussion.message)
-                messageTextView.setHtml(message, HtmlHttpImageGetter(messageTextView))
+                messageTextView.setHtml(message, HtmlHttpImageGetter(messageTextView, null, true))
             } else {
                 messageTextView.isVisible = false
             }
