@@ -45,7 +45,7 @@ fun TextView.setTintEndDrawable(@ColorRes colorRes: Int) {
     mutableDrawable.setTint(context.color(colorRes))
 }
 
-fun TextView.showTextIfNotEmpty(text: String?) {
+fun TextView.showTextIfNotEmpty(text: CharSequence?) {
     this.text = text
     isVisible = !text.isNullOrBlank()
 }
