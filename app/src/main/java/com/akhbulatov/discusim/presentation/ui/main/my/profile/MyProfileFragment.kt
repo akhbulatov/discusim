@@ -14,11 +14,11 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.getMediumDate
 import com.akhbulatov.discusim.presentation.ui.global.utils.loadRoundedImage
 import com.akhbulatov.discusim.presentation.ui.global.utils.setTintStartDrawable
 import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import org.jetbrains.anko.support.v4.share
-import javax.inject.Inject
 
 class MyProfileFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_my_profile

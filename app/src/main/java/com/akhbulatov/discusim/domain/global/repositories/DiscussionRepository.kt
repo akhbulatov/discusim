@@ -1,8 +1,8 @@
 package com.akhbulatov.discusim.domain.global.repositories
 
-import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Vote
+import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
 import io.reactivex.Single
 
 interface DiscussionRepository {

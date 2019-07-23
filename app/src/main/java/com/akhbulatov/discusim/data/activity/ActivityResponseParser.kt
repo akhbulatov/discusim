@@ -7,8 +7,8 @@ import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNe
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorNetModel
 import com.akhbulatov.discusim.data.global.network.models.cursor.CursorResponseJsonAdapter
 import com.squareup.moshi.Moshi
-import org.json.JSONObject
 import javax.inject.Inject
+import org.json.JSONObject
 
 class ActivityResponseParser @Inject constructor(moshi: Moshi) {
     private val cursorResponseAdapter = CursorResponseJsonAdapter(moshi)

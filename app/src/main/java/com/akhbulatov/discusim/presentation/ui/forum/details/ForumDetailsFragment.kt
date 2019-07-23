@@ -17,10 +17,10 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.setFollow
 import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.github.razir.progressbutton.bindProgressButton
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import javax.inject.Inject
 
 class ForumDetailsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_details

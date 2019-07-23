@@ -15,11 +15,11 @@ import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.UserAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_forum_moderators.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import javax.inject.Inject
 
 class ForumModeratorsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_moderators
@@ -31,8 +31,7 @@ class ForumModeratorsFragment : BaseFragment() {
         UserAdapter { viewModel.onModeratorClicked(it) }
     }
     private val onScrollListener by lazy {
-        EndlessScrollListener(moderatorsRecyclerView.layoutManager as LinearLayoutManager)
-        { viewModel.loadNextModeratorsPage() }
+        EndlessScrollListener(moderatorsRecyclerView.layoutManager as LinearLayoutManager) { viewModel.loadNextModeratorsPage() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

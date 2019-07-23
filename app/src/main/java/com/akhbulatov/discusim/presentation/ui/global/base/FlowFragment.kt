@@ -4,11 +4,11 @@ import android.os.Bundle
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.di.Flow
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import javax.inject.Inject
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.android.support.SupportAppScreen
-import javax.inject.Inject
 
 abstract class FlowFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.layout_container

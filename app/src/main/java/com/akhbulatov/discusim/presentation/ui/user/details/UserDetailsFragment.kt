@@ -22,10 +22,10 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import com.akhbulatov.discusim.presentation.ui.user.UserSharedViewModel
 import com.github.razir.progressbutton.bindProgressButton
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_user_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
-import javax.inject.Inject
 
 class UserDetailsFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_user_details

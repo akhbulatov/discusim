@@ -3,12 +3,12 @@ package com.akhbulatov.discusim.presentation.ui.global.utils
 import android.content.res.Resources
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.ResourceManager
+import java.io.IOException
 import org.threeten.bp.Duration
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 import retrofit2.HttpException
-import java.io.IOException
 
 fun Throwable.userMessage(resourceManager: ResourceManager): String = when (this) {
     is HttpException -> when (this.code()) {

@@ -27,7 +27,6 @@ class MainHostFragment : BaseFragment() {
             true
         }
 
-
         val tabScreen = when (currentTabFragment?.tag) {
             Screens.MyForums.screenKey -> Screens.MyForums
             Screens.MyProfile.screenKey -> Screens.MyProfile

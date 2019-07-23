@@ -100,7 +100,6 @@ class Paginator<T>(
                 currentData.addAll(data)
                 viewController.showData(true, currentData)
                 viewController.showEmptyProgress(false)
-
             } else {
                 currentState = EmptyDataState()
 

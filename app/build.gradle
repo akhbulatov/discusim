@@ -46,6 +46,10 @@ android {
     }
 }
 
+configurations {
+    ktlint
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -97,9 +101,33 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
     implementation "org.jetbrains.anko:anko-support-v4-commons:${versions.anko}"
 
-    // Dev Tools
+    // ----- Dev Tools ----- //
+    // Code Quality
+    ktlint "com.pinterest:ktlint:${versions.ktlint}"
+    // Logger
     implementation "com.jakewharton.timber:timber:${versions.timber}"
+    // Debug Bridge
     implementation "com.facebook.stetho:stetho:${versions.stetho}"
     implementation "com.facebook.stetho:stetho-okhttp3:${versions.stetho}"
+    // Memory Leaks
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
+    // ----- Dev Tools ----- //
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "src/**/*.kt"
+    // to generate report in checkstyle format prepend following args:
+    // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    // see https://github.com/pinterest/ktlint#usage for more
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "-F", "src/**/*.kt"
 }
