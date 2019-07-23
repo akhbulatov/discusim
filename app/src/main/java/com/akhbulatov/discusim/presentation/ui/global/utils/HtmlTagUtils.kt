@@ -6,21 +6,21 @@ object HtmlTagUtils {
      * *Пример*:
      * **Input**:
      * ```
-     * <p>Description of <a href="https://uploads.disquscdn.com/images/f27f72367.gif">image link</a>
+     * <p>Description of <a href="https://uploads.disquscdn.com/images/f27f72367.gif">my image</a>
      * <br> And new text again.</p>
      * ```
      * **Output**:
      * ```
-     * <a href="https://uploads.disquscdn.com/images/f27f72367.gif">image link</a>
+     * <a href="https://uploads.disquscdn.com/images/f27f72367.gif">my image</a>
      * ```
      */
     private val aTagRegex = "<a.+?>.+?</a>".toRegex()
     /**
-     * Regex для получения текста в двойных кавычках (включая кавычки).
+     * Regex для получения текста в двойных кавычках (включая сами кавычки).
      * *Пример*:
      * **Input**:
      * ```
-     *  <a href="https://uploads.disquscdn.com/images/f27f72367.gif"</a>
+     * <a href="https://uploads.disquscdn.com/images/f27f72367.gif">my image</a>
      * ```
      * **Output**:
      * ```
@@ -37,7 +37,7 @@ object HtmlTagUtils {
      * *Пример*:
      * **Input**:
      * ```
-     * <a href="https://uploads.disquscdn.com/images/f27f72367.gif"</a>
+     * <a href="https://uploads.disquscdn.com/images/f27f72367.gif">my image</a>
      * ```
      * **Output**:
      * ```
