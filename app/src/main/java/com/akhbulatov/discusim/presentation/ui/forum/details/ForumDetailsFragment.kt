@@ -30,7 +30,13 @@ class ForumDetailsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
     private val forumSharedViewModel: ForumSharedViewModel by viewModels(
-        { parentFragment?.parentFragment ?: parentFragment!! }
+        {
+            if (forum.channel != null) {
+                parentFragment!!.parentFragment!!
+            } else {
+                parentFragment!!
+            }
+        }
     )
 
     private lateinit var forum: ForumDetails
