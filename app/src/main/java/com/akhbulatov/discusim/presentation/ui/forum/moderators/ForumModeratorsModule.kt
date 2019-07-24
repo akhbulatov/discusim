@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details.moderators
+package com.akhbulatov.discusim.presentation.ui.forum.moderators
 
 import androidx.lifecycle.ViewModel
 import com.akhbulatov.discusim.di.ViewModelKey

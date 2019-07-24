@@ -29,7 +29,7 @@ class ForumDiscussionsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDiscussionsViewModel by viewModels { viewModelFactory }
     private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels(
-        { parentFragment!!.parentFragment!!.parentFragment!! }
+        { parentFragment?.parentFragment?.parentFragment ?: parentFragment!!.parentFragment!! }
     )
 
     private var discussionPosition = -1

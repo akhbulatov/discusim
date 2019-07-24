@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.forum
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import com.akhbulatov.discusim.domain.global.models.forum.Forum
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionSharedViewModel
 import com.akhbulatov.discusim.presentation.ui.global.base.FlowFragment
@@ -13,7 +14,12 @@ class ForumFlowFragment : FlowFragment() {
 
     private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels()
 
-    override fun getLaunchScreen(): SupportAppScreen = Screens.ForumHost(forumId)
+    override fun getLaunchScreen(): SupportAppScreen =
+        if (Forum.isChannel(forumId)) {
+            Screens.ChannelHost(forumId)
+        } else {
+            Screens.ForumHost(forumId)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))

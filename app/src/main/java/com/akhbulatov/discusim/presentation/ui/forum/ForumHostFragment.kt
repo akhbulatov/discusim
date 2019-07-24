@@ -3,61 +3,46 @@ package com.akhbulatov.discusim.presentation.ui.forum
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.forum.ForumDetails
+import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import com.akhbulatov.discusim.presentation.ui.global.utils.loadImage
+import kotlinx.android.synthetic.main.fragment_channel_host.toolbar
 import kotlinx.android.synthetic.main.fragment_forum_host.*
 import org.jetbrains.anko.support.v4.share
-import ru.terrakok.cicerone.android.support.SupportAppScreen
+import javax.inject.Inject
 
 class ForumHostFragment : BaseFragment() {
     override val layoutRes: Int = R.layout.fragment_forum_host
 
+    @Inject lateinit var router: FlowRouter
     private val forumSharedViewModel: ForumSharedViewModel by viewModels()
 
-    private lateinit var forumDetailsTabScreen: SupportAppScreen
-    private lateinit var forumDiscussionsTabScreen: SupportAppScreen
-
+    private lateinit var forumId: String
+    private val forumPagerAdapter by lazy { ForumPagerAdapter() }
     private var sharedForum: ForumDetails? = null
-
-    private val currentTabFragment: BaseFragment?
-        get() = childFragmentManager.fragments.firstOrNull { !it.isHidden } as? BaseFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
-        forumDetailsTabScreen = Screens.ForumDetailsHost(forumId)
-        forumDiscussionsTabScreen = Screens.ForumDiscussionsHost(forumId)
+        forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-        forumBottomNavView.setOnNavigationItemSelectedListener { item ->
-            val tabScreen = when (item.itemId) {
-                R.id.menu_bottom_nav_forum_details -> forumDetailsTabScreen
-                R.id.menu_bottom_nav_forum_discussions -> forumDiscussionsTabScreen
-                else -> throw IllegalArgumentException()
-            }
-            switchTab(tabScreen)
-            true
-        }
+        forumPager.adapter = forumPagerAdapter
+        forumTabLayout.setupWithViewPager(forumPager)
         observeUiChanges()
-
-        val tabScreen = when (currentTabFragment?.tag) {
-            forumDiscussionsTabScreen.screenKey -> forumDiscussionsTabScreen
-            else -> forumDetailsTabScreen // Первый таб, открываемый по умолчанию
-        }
-        switchTab(tabScreen)
     }
 
     private fun setupToolbar() {
         with(toolbar) {
-            inflateMenu(R.menu.forum_host)
+            inflateMenu(R.menu.forum_channel_host)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
                 sharedForum?.let { share(it.webUrl) }
@@ -69,38 +54,30 @@ class ForumHostFragment : BaseFragment() {
     private fun observeUiChanges() {
         forumSharedViewModel.forum.observe(this, Observer { forum ->
             this.sharedForum = forum
-
-            collapsingToolbar.title = forum.name
-            forum.channel?.let {
-                if (it.bannerUrl != null) {
-                    bannerImageView.loadImage(context, it.bannerUrl)
-                } else {
-                    bannerImageView.setBackgroundColor(it.bannerColorHex)
-                }
-            }
+            toolbar.title = forum.name
         })
     }
 
-    private fun switchTab(tabScreen: SupportAppScreen) {
-        val currentFragment = currentTabFragment
-        val newFragment = childFragmentManager.findFragmentByTag(tabScreen.screenKey)
+    override fun onBackPressed() = router.exit()
 
-        if (currentFragment != null && newFragment != null && currentFragment == newFragment) {
-            return // Не переключает таб, т.к. нажатие выполнено на текущем табе
+    private inner class ForumPagerAdapter :
+        FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+        override fun getPageTitle(position: Int): CharSequence? = when (position) {
+            0 -> getString(R.string.forum_host_details_tab)
+            1 -> getString(R.string.forum_host_discussions_tab)
+            2 -> getString(R.string.forum_host_moderators_tab)
+            else -> throw IllegalArgumentException()
         }
 
-        childFragmentManager.beginTransaction().apply {
-            if (newFragment == null) {
-                add(R.id.forumContainer, tabScreen.fragment, tabScreen.screenKey)
-            }
+        override fun getItem(position: Int): Fragment = when (position) {
+            0 -> Screens.ForumDetails(forumId).fragment
+            1 -> Screens.ForumDiscussions(forumId).fragment
+            2 -> Screens.ForumModerators(forumId).fragment
+            else -> throw IllegalArgumentException()
+        }
 
-            currentFragment?.let { hide(it) }
-            newFragment?.let { show(it) }
-        }.commitNow()
-    }
-
-    override fun onBackPressed() {
-        currentTabFragment?.onBackPressed()
+        override fun getCount(): Int = 3
     }
 
     companion object {

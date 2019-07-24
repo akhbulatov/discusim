@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details
+package com.akhbulatov.discusim.presentation.ui.forum.channel.details
 
 import android.os.Bundle
 import android.view.View
@@ -24,12 +24,12 @@ import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
-class ForumDetailsFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forum_details
+class ChannelDetailsFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_channel_details
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
-    private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!! })
+    private val viewModel: ChannelDetailsViewModel by viewModels { viewModelFactory }
+    private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!!.parentFragment!! })
 
     private lateinit var forum: ForumDetails
 
@@ -78,6 +78,8 @@ class ForumDetailsFragment : BaseFragment() {
             )
             nameTextView.text = forum.name
             descriptionTextView.showTextIfNotEmpty(forum.description?.parseAsHtml()?.trim())
+            numDiscussionsTextView.text = getString(R.string.channel_details_thousand_nums, forum.numDiscussions)
+            numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, forum.numFollowers)
             followButton.setFollow(forum.following)
         }
         contentLayout.isVisible = show
@@ -94,6 +96,14 @@ class ForumDetailsFragment : BaseFragment() {
 
     private fun updateFollow(following: Boolean) {
         followButton.setFollow(following)
+        updateNumFollowers(following)
+    }
+
+    private fun updateNumFollowers(following: Boolean) {
+        val oldFollowers = forum.numFollowers
+        val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
+        forum = forum.copy(numFollowers = newFollowers)
+        numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, newFollowers)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
@@ -101,7 +111,7 @@ class ForumDetailsFragment : BaseFragment() {
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
 
-        fun newInstance(forumId: String) = ForumDetailsFragment().apply {
+        fun newInstance(forumId: String) = ChannelDetailsFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
         }
     }

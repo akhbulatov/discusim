@@ -3,6 +3,7 @@ package com.akhbulatov.discusim.presentation.ui.global.utils
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.akhbulatov.discusim.domain.global.models.Action
+import com.akhbulatov.discusim.domain.global.models.forum.Forum
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.google.android.material.snackbar.Snackbar
@@ -23,7 +24,7 @@ fun FlowRouter.navigateToAction(action: Action) {
         Action.Type.COMMENT,
         Action.Type.REPLY -> {
             action.comment?.let {
-                if (it.forum.isChannel()) {
+                if (Forum.isChannel(it.forum.id)) {
                     navigateTo(Screens.DiscussionDetails(it.discussion.id))
                 } else {
                     navigateTo(Screens.ExternalBrowser(it.discussion.link))

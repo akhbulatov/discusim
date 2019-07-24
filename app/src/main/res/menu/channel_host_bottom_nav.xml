@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_bottom_nav_channel_details"
+        android:icon="@drawable/ic_info_outline"
+        android:title="@string/channel_host_details" />
+
+    <item
+        android:id="@+id/menu_bottom_nav_channel_discussions"
+        android:icon="@drawable/ic_list_alt"
+        android:title="@string/channel_host_discussions" />
+
+</menu>

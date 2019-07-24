@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details
+package com.akhbulatov.discusim.presentation.ui.forum.channel.details
 
 import android.os.Bundle
 import android.view.View
@@ -9,11 +9,11 @@ import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_forum_details_host.*
+import kotlinx.android.synthetic.main.fragment_channel_details_host.*
 import javax.inject.Inject
 
-class ForumDetailsHostFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forum_details_host
+class ChannelDetailsHostFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_channel_details_host
 
     @Inject lateinit var router: FlowRouter
 
@@ -36,16 +36,16 @@ class ForumDetailsHostFragment : BaseFragment() {
         FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment = when (position) {
-            0 -> Screens.ForumDetails(forumId).fragment
-            1 -> Screens.ForumTopics(forumId).fragment
+            0 -> Screens.ChannelDetails(forumId).fragment
+            1 -> Screens.ChannelTopics(forumId).fragment
             2 -> Screens.ForumModerators(forumId).fragment
             else -> throw IllegalArgumentException()
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
-            0 -> getString(R.string.forum_details_host_details_tab)
-            1 -> getString(R.string.forum_details_host_topics_tab)
-            2 -> getString(R.string.forum_details_host_moderators_tab)
+            0 -> getString(R.string.channel_details_host_details_tab)
+            1 -> getString(R.string.channel_details_host_topics_tab)
+            2 -> getString(R.string.channel_details_host_moderators_tab)
             else -> null
         }
 
@@ -55,7 +55,7 @@ class ForumDetailsHostFragment : BaseFragment() {
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
 
-        fun newInstance(forumId: String) = ForumDetailsHostFragment().apply {
+        fun newInstance(forumId: String) = ChannelDetailsHostFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
         }
     }
