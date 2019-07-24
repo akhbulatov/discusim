@@ -21,7 +21,7 @@ class ActivityResponseMapper @Inject constructor(
 
     fun map(activityBody: ResponseBody): PagedList<Action> {
         val activity = activityResponseParser.parse(activityBody.string())
-        val actions = activity.second.map {
+        val actions = activity.second.mapNotNull {
             when (it.obj) {
                 is ActionNetModel.DiscussionVoteNetModel -> {
                     val discussionVote = mapDiscussionVote(it.obj)
@@ -42,7 +42,7 @@ class ActivityResponseMapper @Inject constructor(
                         createdAt = it.createdAt
                     )
                 }
-                else -> throw Exception() // TODO
+                else -> null
             }
         }
         return PagedList(activity.first.next, actions)
