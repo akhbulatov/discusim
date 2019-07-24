@@ -5,5 +5,5 @@ data class ForumShort(
     val name: String
 ) {
 
-    fun isChannel(): Boolean = name.startsWith("channel-")
+    fun isChannel(): Boolean = id.startsWith("channel-")
 }
