@@ -19,7 +19,7 @@ import com.akhbulatov.discusim.presentation.ui.global.utils.showFollowProgress
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
 import com.akhbulatov.discusim.presentation.ui.global.utils.showTextIfNotEmpty
 import com.github.razir.progressbutton.bindProgressButton
-import kotlinx.android.synthetic.main.fragment_channel_details.*
+import kotlinx.android.synthetic.main.fragment_forum_details.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
@@ -29,7 +29,9 @@ class ForumDetailsFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
-    private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!! })
+    private val forumSharedViewModel: ForumSharedViewModel by viewModels(
+        { parentFragment?.parentFragment ?: parentFragment!! }
+    )
 
     private lateinit var forum: ForumDetails
 
@@ -78,6 +80,15 @@ class ForumDetailsFragment : BaseFragment() {
             )
             nameTextView.text = forum.name
             descriptionTextView.showTextIfNotEmpty(forum.description?.parseAsHtml()?.trim())
+
+            if (forum.channel != null) {
+                numDiscussionsTextView.text = getString(R.string.channel_details_thousand_nums, forum.numDiscussions)
+                numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, forum.numFollowers)
+            } else {
+                numDiscussionsLayout.isVisible = false
+                numFollowersLayout.isVisible = false
+            }
+
             followButton.setFollow(forum.following)
         }
         contentLayout.isVisible = show
@@ -94,6 +105,16 @@ class ForumDetailsFragment : BaseFragment() {
 
     private fun updateFollow(following: Boolean) {
         followButton.setFollow(following)
+        if (forum.channel != null) {
+            updateNumChannelFollowers(following)
+        }
+    }
+
+    private fun updateNumChannelFollowers(following: Boolean) {
+        val oldFollowers = forum.numFollowers
+        val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
+        forum = forum.copy(numFollowers = newFollowers)
+        numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, newFollowers)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

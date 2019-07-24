@@ -36,7 +36,7 @@ class ChannelDetailsHostFragment : BaseFragment() {
         FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment = when (position) {
-            0 -> Screens.ChannelDetails(forumId).fragment
+            0 -> Screens.ForumDetails(forumId).fragment
             1 -> Screens.ChannelTopics(forumId).fragment
             2 -> Screens.ForumModerators(forumId).fragment
             else -> throw IllegalArgumentException()

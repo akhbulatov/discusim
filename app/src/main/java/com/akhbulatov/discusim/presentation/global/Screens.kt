@@ -10,7 +10,6 @@ import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDeta
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.channel.ChannelHostFragment
-import com.akhbulatov.discusim.presentation.ui.forum.channel.details.ChannelDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.channel.details.ChannelDetailsHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.channel.discussions.ChannelDiscussionsHostFragment
 import com.akhbulatov.discusim.presentation.ui.forum.channel.topics.ChannelTopicsFragment
@@ -90,12 +89,6 @@ object Screens {
         val forumId: String
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ChannelDetailsHostFragment.newInstance(forumId)
-    }
-
-    data class ChannelDetails(
-        val forumId: String
-    ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ChannelDetailsFragment.newInstance(forumId)
     }
 
     data class ChannelTopics(
