@@ -59,23 +59,28 @@
     <string name="my_profile_title">Profile</string>
 
     <!-- Forum Host -->
-    <string name="forum_host_details">Details</string>
-    <string name="forum_host_discussions">Discussions</string>
+    <string name="forum_host_details_tab">Details</string>
+    <string name="forum_host_discussions_tab">Discussions</string>
+    <string name="forum_host_moderators_tab">Mods</string>
 
-    <!-- Forum Details Host -->
-    <string name="forum_details_host_details_tab">Details</string>
-    <string name="forum_details_host_topics_tab">Topics</string>
-    <string name="forum_details_host_moderators_tab">Mods</string>
+    <!-- Channel Host -->
+    <string name="channel_host_details">Details</string>
+    <string name="channel_host_discussions">Discussions</string>
 
-    <!-- Forum Details -->
-    <string name="forum_details_thousand_nums">%,d</string>
-    <string name="forum_details_discussions">Discussions</string>
-    <string name="forum_details_followers">Followers</string>
+    <!-- Channel Details Host -->
+    <string name="channel_details_host_details_tab">Details</string>
+    <string name="channel_details_host_topics_tab">Topics</string>
+    <string name="channel_details_host_moderators_tab">Mods</string>
 
-    <!-- Forum Discussions Host -->
-    <string name="forum_discussions_host_latest">Latest</string>
-    <string name="forum_discussions_host_hot">Hot</string>
-    <string name="forum_discussions_host_popular">Popular</string>
+    <!-- Channel Details -->
+    <string name="channel_details_thousand_nums">%,d</string>
+    <string name="channel_details_discussions">Discussions</string>
+    <string name="channel_details_followers">Followers</string>
+
+    <!-- Channel Discussions Host -->
+    <string name="channel_discussions_host_latest">Latest</string>
+    <string name="channel_discussions_host_hot">Hot</string>
+    <string name="channel_discussions_host_popular">Popular</string>
 
     <!-- Discussion Details -->
     <string name="discussion_details_username">\@%s</string>

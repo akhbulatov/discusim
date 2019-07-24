@@ -29,7 +29,15 @@ class ForumDetailsFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDetailsViewModel by viewModels { viewModelFactory }
-    private val forumSharedViewModel: ForumSharedViewModel by viewModels({ parentFragment!!.parentFragment!! })
+    private val forumSharedViewModel: ForumSharedViewModel by viewModels(
+        {
+            if (forum.channel != null) {
+                parentFragment!!.parentFragment!!
+            } else {
+                parentFragment!!
+            }
+        }
+    )
 
     private lateinit var forum: ForumDetails
 
@@ -78,8 +86,15 @@ class ForumDetailsFragment : BaseFragment() {
             )
             nameTextView.text = forum.name
             descriptionTextView.showTextIfNotEmpty(forum.description?.parseAsHtml()?.trim())
-            numDiscussionsTextView.text = getString(R.string.forum_details_thousand_nums, forum.numDiscussions)
-            numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, forum.numFollowers)
+
+            if (forum.channel != null) {
+                numDiscussionsTextView.text = getString(R.string.channel_details_thousand_nums, forum.numDiscussions)
+                numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, forum.numFollowers)
+            } else {
+                numDiscussionsLayout.isVisible = false
+                numFollowersLayout.isVisible = false
+            }
+
             followButton.setFollow(forum.following)
         }
         contentLayout.isVisible = show
@@ -96,14 +111,16 @@ class ForumDetailsFragment : BaseFragment() {
 
     private fun updateFollow(following: Boolean) {
         followButton.setFollow(following)
-        updateNumFollowers(following)
+        if (forum.channel != null) {
+            updateNumChannelFollowers(following)
+        }
     }
 
-    private fun updateNumFollowers(following: Boolean) {
+    private fun updateNumChannelFollowers(following: Boolean) {
         val oldFollowers = forum.numFollowers
         val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
         forum = forum.copy(numFollowers = newFollowers)
-        numFollowersTextView.text = getString(R.string.forum_details_thousand_nums, newFollowers)
+        numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, newFollowers)
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

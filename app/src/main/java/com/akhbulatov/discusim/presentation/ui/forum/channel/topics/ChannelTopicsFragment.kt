@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details.topics
+package com.akhbulatov.discusim.presentation.ui.forum.channel.topics
 
 import android.os.Bundle
 import android.view.View
@@ -15,17 +15,17 @@ import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
 import com.akhbulatov.discusim.presentation.ui.global.list.adapters.TopicAdapter
 import com.akhbulatov.discusim.presentation.ui.global.utils.showSnackbar
-import kotlinx.android.synthetic.main.fragment_forum_topics.*
+import kotlinx.android.synthetic.main.fragment_channel_topics.*
 import kotlinx.android.synthetic.main.layout_empty_data.*
 import kotlinx.android.synthetic.main.layout_empty_error.*
 import kotlinx.android.synthetic.main.layout_empty_progress.*
 import javax.inject.Inject
 
-class ForumTopicsFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forum_topics
+class ChannelTopicsFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_channel_topics
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
-    private val viewModel: ForumTopicsViewModel by viewModels { viewModelFactory }
+    private val viewModel: ChannelTopicsViewModel by viewModels { viewModelFactory }
 
     private val topicAdapter by lazy { TopicAdapter() }
     private val onScrollListener by lazy {
@@ -105,7 +105,7 @@ class ForumTopicsFragment : BaseFragment() {
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
 
-        fun newInstance(forumId: String) = ForumTopicsFragment().apply {
+        fun newInstance(forumId: String) = ChannelTopicsFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
         }
     }

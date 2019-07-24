@@ -1,4 +1,4 @@
-package com.akhbulatov.discusim.presentation.ui.forum.discussions
+package com.akhbulatov.discusim.presentation.ui.forum.channel.discussions
 
 import android.os.Bundle
 import android.view.View
@@ -8,12 +8,13 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Screens
+import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionType
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_forum_discussions_host.*
+import kotlinx.android.synthetic.main.fragment_channel_discussions_host.*
 import javax.inject.Inject
 
-class ForumDiscussionsHostFragment : BaseFragment() {
-    override val layoutRes: Int = R.layout.fragment_forum_discussions_host
+class ChannelDiscussionsHostFragment : BaseFragment() {
+    override val layoutRes: Int = R.layout.fragment_channel_discussions_host
 
     @Inject lateinit var router: FlowRouter
 
@@ -43,9 +44,9 @@ class ForumDiscussionsHostFragment : BaseFragment() {
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
-            0 -> getString(R.string.forum_discussions_host_latest)
-            1 -> getString(R.string.forum_discussions_host_hot)
-            2 -> getString(R.string.forum_discussions_host_popular)
+            0 -> getString(R.string.channel_discussions_host_latest)
+            1 -> getString(R.string.channel_discussions_host_hot)
+            2 -> getString(R.string.channel_discussions_host_popular)
             else -> null
         }
 
@@ -55,7 +56,7 @@ class ForumDiscussionsHostFragment : BaseFragment() {
     companion object {
         private const val ARG_FORUM_ID = "forum_id"
 
-        fun newInstance(forumId: String) = ForumDiscussionsHostFragment().apply {
+        fun newInstance(forumId: String) = ChannelDiscussionsHostFragment().apply {
             arguments = bundleOf(ARG_FORUM_ID to forumId)
         }
     }

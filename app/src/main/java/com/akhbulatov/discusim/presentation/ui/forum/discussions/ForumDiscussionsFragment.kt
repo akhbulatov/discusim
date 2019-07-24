@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
+import com.akhbulatov.discusim.domain.global.models.forum.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
@@ -29,9 +30,16 @@ class ForumDiscussionsFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDiscussionsViewModel by viewModels { viewModelFactory }
     private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels(
-        { parentFragment!!.parentFragment!!.parentFragment!! }
+        {
+            if (Forum.isChannel(forumId)) {
+                parentFragment!!.parentFragment!!.parentFragment!!
+            } else {
+                parentFragment!!.parentFragment!!
+            }
+        }
     )
 
+    private lateinit var forumId: String
     private var discussionPosition = -1
 
     private val discussionAdapter by lazy {
@@ -55,7 +63,7 @@ class ForumDiscussionsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
+        forumId = requireNotNull(arguments?.getString(ARG_FORUM_ID))
         val discussionType: DiscussionType = requireNotNull(arguments?.getParcelable(ARG_DISCUSSION_TYPE))
         viewModel.setParams(forumId, discussionType)
     }

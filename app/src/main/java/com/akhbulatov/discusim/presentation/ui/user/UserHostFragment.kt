@@ -57,6 +57,8 @@ class UserHostFragment : BaseFragment() {
         })
     }
 
+    override fun onBackPressed() = router.exit()
+
     private inner class UserPagerAdapter :
         FragmentStatePagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -82,8 +84,6 @@ class UserHostFragment : BaseFragment() {
 
         override fun getCount(): Int = 6
     }
-
-    override fun onBackPressed() = router.exit()
 
     companion object {
         private const val ARG_USER_ID = "user_id"

@@ -9,13 +9,14 @@ import com.akhbulatov.discusim.presentation.ui.auth.AuthFragment
 import com.akhbulatov.discusim.presentation.ui.discussion.details.DiscussionDetailsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumFlowFragment
 import com.akhbulatov.discusim.presentation.ui.forum.ForumHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.channel.ChannelHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.channel.details.ChannelDetailsHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.channel.discussions.ChannelDiscussionsHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.channel.topics.ChannelTopicsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.details.ForumDetailsHostFragment
-import com.akhbulatov.discusim.presentation.ui.forum.details.moderators.ForumModeratorsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.details.topics.ForumTopicsFragment
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.DiscussionType
 import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsFragment
-import com.akhbulatov.discusim.presentation.ui.forum.discussions.ForumDiscussionsHostFragment
+import com.akhbulatov.discusim.presentation.ui.forum.moderators.ForumModeratorsFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainFlowFragment
 import com.akhbulatov.discusim.presentation.ui.main.MainHostFragment
 import com.akhbulatov.discusim.presentation.ui.main.my.activity.MyActivityFragment
@@ -72,34 +73,34 @@ object Screens {
         override fun getFragment(): Fragment = ForumHostFragment.newInstance(forumId)
     }
 
-    data class ForumDetailsHost(
-        val forumId: String
-    ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumDetailsHostFragment.newInstance(forumId)
-    }
-
     data class ForumDetails(
         val forumId: String
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumDetailsFragment.newInstance(forumId)
     }
 
-    data class ForumTopics(
+    data class ChannelHost(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumTopicsFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ChannelHostFragment.newInstance(forumId)
     }
 
-    data class ForumModerators(
+    data class ChannelDetailsHost(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumModeratorsFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ChannelDetailsHostFragment.newInstance(forumId)
     }
 
-    data class ForumDiscussionsHost(
+    data class ChannelTopics(
         val forumId: String
     ) : SupportAppScreen() {
-        override fun getFragment(): Fragment = ForumDiscussionsHostFragment.newInstance(forumId)
+        override fun getFragment(): Fragment = ChannelTopicsFragment.newInstance(forumId)
+    }
+
+    data class ChannelDiscussionsHost(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ChannelDiscussionsHostFragment.newInstance(forumId)
     }
 
     data class ForumDiscussions(
@@ -107,6 +108,12 @@ object Screens {
         val discussionType: DiscussionType = DiscussionType.LATEST
     ) : SupportAppScreen() {
         override fun getFragment(): Fragment = ForumDiscussionsFragment.newInstance(forumId, discussionType)
+    }
+
+    data class ForumModerators(
+        val forumId: String
+    ) : SupportAppScreen() {
+        override fun getFragment(): Fragment = ForumModeratorsFragment.newInstance(forumId)
     }
 
     data class DiscussionDetails(

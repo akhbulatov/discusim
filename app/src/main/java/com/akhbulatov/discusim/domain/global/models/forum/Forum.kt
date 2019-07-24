@@ -5,4 +5,9 @@ data class Forum(
     val name: String,
     val faviconUrl: String,
     val channel: Channel?
-)
+) {
+
+    companion object {
+        fun isChannel(forumId: String): Boolean = forumId.startsWith("channel-")
+    }
+}

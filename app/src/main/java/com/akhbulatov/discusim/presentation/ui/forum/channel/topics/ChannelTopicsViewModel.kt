@@ -1,21 +1,20 @@
-package com.akhbulatov.discusim.presentation.ui.forum.details.moderators
+package com.akhbulatov.discusim.presentation.ui.forum.channel.topics
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
-import com.akhbulatov.discusim.domain.global.models.user.User
-import com.akhbulatov.discusim.domain.moderator.ModeratorInteractor
+import com.akhbulatov.discusim.domain.global.models.Topic
+import com.akhbulatov.discusim.domain.topic.TopicInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
 import com.akhbulatov.discusim.presentation.global.Paginator
-import com.akhbulatov.discusim.presentation.global.Screens
 import com.akhbulatov.discusim.presentation.global.SingleLiveEvent
 import javax.inject.Inject
 
-class ForumModeratorsViewModel @Inject constructor(
+class ChannelTopicsViewModel @Inject constructor(
     private val router: FlowRouter,
-    private val moderatorInteractor: ModeratorInteractor,
+    private val topicInteractor: TopicInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
@@ -31,8 +30,8 @@ class ForumModeratorsViewModel @Inject constructor(
     private val _emptyData = MutableLiveData<Boolean>()
     val emptyData: LiveData<Boolean> get() = _emptyData
 
-    private val _moderators = MutableLiveData<Pair<Boolean, List<User>>>()
-    val moderators: LiveData<Pair<Boolean, List<User>>> get() = _moderators
+    private val _topics = MutableLiveData<Pair<Boolean, List<Topic>>>()
+    val topics: LiveData<Pair<Boolean, List<Topic>>> get() = _topics
 
     private val _errorMessage = SingleLiveEvent<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -45,10 +44,10 @@ class ForumModeratorsViewModel @Inject constructor(
 
     private val paginator = Paginator(
         {
-            moderatorInteractor.getForumModerators(forumId)
+            topicInteractor.getTrendingTopics(forumId)
                 .observeOn(schedulers.ui())
         },
-        object : Paginator.ViewController<User> {
+        object : Paginator.ViewController<Topic> {
             override fun showEmptyProgress(show: Boolean) {
                 _emptyProgress.value = show
             }
@@ -65,8 +64,8 @@ class ForumModeratorsViewModel @Inject constructor(
                 _emptyData.value = show
             }
 
-            override fun showData(show: Boolean, data: List<User>) {
-                _moderators.value = Pair(show, data)
+            override fun showData(show: Boolean, data: List<Topic>) {
+                _topics.value = Pair(show, data)
             }
 
             override fun showErrorMessage(error: Throwable) {
@@ -85,13 +84,11 @@ class ForumModeratorsViewModel @Inject constructor(
 
     fun setForumId(forumId: String) {
         this.forumId = forumId
-        refreshModerators()
+        refreshTopics()
     }
 
-    fun refreshModerators() = paginator.refresh()
-    fun loadNextModeratorsPage() = paginator.loadNewPage()
-
-    fun onModeratorClicked(user: User) = router.startFlow(Screens.UserFlow(user.id))
+    fun refreshTopics() = paginator.refresh()
+    fun loadNextTopicsPage() = paginator.loadNewPage()
 
     override fun onCleared() {
         paginator.release()

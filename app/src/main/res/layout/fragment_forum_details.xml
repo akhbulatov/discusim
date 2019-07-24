@@ -107,7 +107,7 @@
                         style="@style/ForumNumSubtext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/forum_details_discussions" />
+                        android:text="@string/channel_details_discussions" />
 
                 </LinearLayout>
                 <!-- Discussions. End -->
@@ -136,7 +136,7 @@
                         style="@style/ForumNumSubtext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/forum_details_followers" />
+                        android:text="@string/channel_details_followers" />
 
                 </LinearLayout>
                 <!-- Followers. End -->
