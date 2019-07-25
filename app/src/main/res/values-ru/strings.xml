@@ -1,13 +1,10 @@
 <resources>
-    <!-- Common Messages. Start -->
     <string name="msg_refresh">Обновить</string>
     <string name="msg_share">Поделиться</string>
     <string name="msg_empty_data">Пустые данные</string>
     <string name="msg_follow">Подписаться</string>
     <string name="msg_following">Подписан</string>
 
-
-    <!-- Time. Start -->
     <plurals name="time_seconds">
         <item quantity="one">%d секунду назад</item>
         <item quantity="few">%d секунды назад</item>
@@ -35,61 +32,45 @@
         <item quantity="many">%d дней назад</item>
         <item quantity="other">%d дней назад</item>
     </plurals>
-    <!-- Time. End -->
 
-    <!-- Common Messages. End -->
-
-    <!-- Common Errors -->
     <string name="error_bad_request">400 Неверный запрос</string>
     <string name="error_server">500 Ошибка сервера</string>
     <string name="error_network">Ошибка сети</string>
     <string name="error_unknown">Неизвестная ошибка</string>
 
-    <!-- Auth -->
     <string name="auth_title">Авторизация</string>
 
-    <!-- Main Host -->
     <string name="main_host_my_activity">Активность</string>
     <string name="main_host_my_forums">Форумы</string>
     <string name="main_host_my_profile">Профиль</string>
 
-    <!-- My Activity -->
     <string name="my_activity_title">Активность</string>
 
-    <!-- My Forums -->
     <string name="my_forums_title">Форумы</string>
 
-    <!-- My Profile -->
     <string name="my_profile_title">Профиль</string>
 
-    <!-- Forum Host -->
     <string name="forum_host_details_tab">Детали</string>
     <string name="forum_host_discussions_tab">Дискуссии</string>
     <string name="forum_host_moderators_tab">Моды</string>
 
-    <!-- Channel Host -->
     <string name="channel_host_details">Детали</string>
     <string name="channel_host_discussions">Дискуссии</string>
 
-    <!-- Channel Details Host -->
     <string name="channel_details_host_details_tab">Детали</string>
     <string name="channel_details_host_topics_tab">Топики</string>
     <string name="channel_details_host_moderators_tab">Моды</string>
 
-    <!-- Channel Details -->
     <string name="channel_details_thousand_nums">%,d</string>
     <string name="channel_details_discussions">Дискуссии</string>
     <string name="channel_details_followers">Подписчики</string>
 
-    <!-- Channel Discussions Host -->
     <string name="channel_discussions_host_latest">Последние</string>
     <string name="channel_discussions_host_hot">Горячие</string>
     <string name="channel_discussions_host_popular">Популярные</string>
 
-    <!-- Discussion Details -->
     <string name="discussion_details_username">\@%s</string>
 
-    <!-- User Host -->
     <string name="user_host_details_tab">Детали</string>
     <string name="user_host_activity_tab">Активность</string>
     <string name="user_host_comments_tab">Комментарии</string>
@@ -97,18 +78,11 @@
     <string name="user_host_followers_tab">Подписчики</string>
     <string name="user_host_following_tab">Подписки</string>
 
-    <!-- User Details -->
     <string name="user_details_username">\@%s</string>
     <string name="user_details_num_upvotes">&lt;b>%d&lt;/b> Голосов</string>
     <string name="user_details_joined_date">Присоединился %s</string>
 
-    <!-- List Items. Start -->
-
-    <!-- Item User Activity -->
     <string name="item_user_activity_upvoted_discussion">поддержал дискуссию %s</string>
     <string name="item_user_activity_commented_discussion">прокомментировал дискуссию %s</string>
     <string name="item_user_activity_replied_discussion">ответил в дискуссии %s</string>
-
-    <!-- List Items. End -->
-
 </resources>
