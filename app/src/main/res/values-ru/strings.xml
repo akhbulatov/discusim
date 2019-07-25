@@ -65,9 +65,9 @@
     <string name="channel_details_discussions">Дискуссии</string>
     <string name="channel_details_followers">Подписчики</string>
 
-    <string name="channel_discussions_host_latest">Последние</string>
-    <string name="channel_discussions_host_hot">Горячие</string>
-    <string name="channel_discussions_host_popular">Популярные</string>
+    <string name="channel_discussions_host_latest">Последнее</string>
+    <string name="channel_discussions_host_hot">Горячее</string>
+    <string name="channel_discussions_host_popular">Популярное</string>
 
     <string name="discussion_details_username">\@%s</string>
 
