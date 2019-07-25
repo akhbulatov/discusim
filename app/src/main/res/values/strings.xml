@@ -1,15 +1,14 @@
 <resources>
-    <string name="app_name">Discusim</string>
+    <string name="app_name" translatable="false">Discusim</string>
 
     <!-- Common Messages. Start -->
     <string name="msg_refresh">Refresh</string>
+    <string name="msg_share">Share</string>
     <string name="msg_empty_data">Empty data</string>
     <string name="msg_follow">Follow</string>
     <string name="msg_following">Following</string>
 
-    <string name="action_share">Share</string>
-
-    <string name="symbol_bullet">\u2022</string>
+    <string name="symbol_bullet" translatable="false">\u2022</string>
 
     <!-- Time. Start -->
     <plurals name="time_seconds">
