@@ -8,6 +8,7 @@ import com.akhbulatov.discusim.domain.user.UserInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Screens
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -46,6 +47,8 @@ class MyProfileViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) { msg -> _error.value = Pair(true, msg) } }
             )
     }
+
+    fun onAboutAppClicked() = router.navigateTo(Screens.About)
 
     override fun onBackPressed() = router.exit()
 }

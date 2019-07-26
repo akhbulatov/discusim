@@ -7,6 +7,7 @@
 
     <color name="screen_background">@color/gray_athens</color>
     <color name="content_background">@android:color/white</color>
+    <color name="content_dark_background">@color/gray_alabaster</color>
 
     <color name="text_primary">@android:color/black</color>
     <color name="text_secondary">@color/gray_dove</color>
@@ -39,8 +40,7 @@
     <color name="divider">@color/gray_athens</color>
     <color name="progress_auth_background">@color/white_opacity_50</color>
 
-    <!-- Palette Colors. Start -->
-    <!-- Colors for "internal use" only -->
+    <!-- Palette Colors (internal use only). Start -->
 
     <!-- General Palette -->
     <color name="white_opacity_50">#80ffffff</color>
@@ -58,6 +58,7 @@
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>
+    <color name="gray_alabaster">#FAFAFA</color>
 
     <color name="pale_sky_opacity_35">#59687a86</color>
 

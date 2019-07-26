@@ -8,4 +8,9 @@
         android:title="@string/msg_share"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/menu_about_app"
+        android:title="@string/my_profile_about_app"
+        app:showAsAction="never" />
+
 </menu>
