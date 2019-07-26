@@ -2,9 +2,11 @@ package com.akhbulatov.discusim.di.modules
 
 import android.content.Context
 import com.akhbulatov.discusim.App
+import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.domain.global.AppSchedulers
 import com.akhbulatov.discusim.domain.global.ResourceManager
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.models.AppInfo
 import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.AndroidResourceManager
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
@@ -38,5 +40,10 @@ abstract class AppModule {
             sessionInteractor: SessionInteractor,
             resourceManager: ResourceManager
         ) = ErrorHandler(router, sessionInteractor, resourceManager)
+
+        @JvmStatic
+        @Provides
+        @Singleton
+        fun provideAppInfo() = AppInfo(BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
     }
 }

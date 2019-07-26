@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/about_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_content_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_dark_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_normal">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@mipmap/ic_launcher_round" />
+
+                <TextView
+                    style="@style/Text.Primary.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/app_name" />
+
+                <TextView
+                    style="@style/Text.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="@string/about_app_description"
+                    android:textSize="@dimen/font_secondary" />
+
+                <TextView
+                    android:id="@+id/appVersionTextView"
+                    style="@style/Text.Secondary.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:visibility="gone"
+                    tools:text="Version 1.0 (build 10)"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/writeFeedbackTextView"
+                    style="@style/AboutItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_feedback"
+                    android:text="@string/about_write_feedback" />
+
+                <TextView
+                    android:id="@+id/rateAppTextView"
+                    style="@style/AboutItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_star"
+                    android:text="@string/about_rate_app" />
+
+                <TextView
+                    android:id="@+id/shareAppTextView"
+                    style="@style/AboutItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_share"
+                    android:text="@string/about_share_app" />
+
+                <TextView
+                    android:id="@+id/librariesTextView"
+                    style="@style/AboutItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_library_books"
+                    android:text="@string/about_libraries" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

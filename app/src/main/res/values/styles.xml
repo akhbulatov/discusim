@@ -13,9 +13,17 @@
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
+    <style name="Text.Primary.Normal">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
     <style name="Text.Secondary">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">@dimen/font_secondary</item>
+    </style>
+
+    <style name="Text.Secondary.Small">
+        <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="Text.Content">
@@ -136,6 +144,12 @@
 
     <style name="CommentVoteText.Downvote">
         <item name="android:drawableEnd">@drawable/ic_arrow_downward</item>
+    </style>
+
+    <style name="AboutItem">
+        <item name="android:drawablePadding">@dimen/spacing_large</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+        <item name="android:textAppearance">@style/Text.Primary.Normal</item>
     </style>
 
 </resources>
