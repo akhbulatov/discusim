@@ -1,6 +1,7 @@
 package com.akhbulatov.discusim.di.modules
 
 import android.content.Context
+import android.content.res.AssetManager
 import com.akhbulatov.discusim.App
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.domain.global.AppSchedulers
@@ -31,6 +32,10 @@ abstract class AppModule {
         @JvmStatic
         @Provides
         fun provideContext(app: App): Context = app.applicationContext
+
+        @JvmStatic
+        @Provides
+        fun provideAssetManager(context: Context): AssetManager = context.assets
 
         @JvmStatic
         @Provides

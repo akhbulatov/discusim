@@ -1,0 +1,135 @@
+[
+  {
+    "id": 1,
+    "name": "Material Components",
+    "author": "Google",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/material-components/material-components-android"
+  },
+  {
+    "id": 2,
+    "name": "AndroidX",
+    "author": "Google",
+    "license": "Apache License 2.0",
+    "web_url": "https://developer.android.com/jetpack/androidx"
+  },
+  {
+    "id": 3,
+    "name": "Dagger",
+    "author": "Google",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/google/dagger"
+  },
+  {
+    "id": 4,
+    "name": "RxJava",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxJava"
+  },
+  {
+    "id": 5,
+    "name": "RxKotlin",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxKotlin"
+  },
+  {
+    "id": 6,
+    "name": "RxAndroid",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxAndroid"
+  },
+  {
+    "id": 7,
+    "name": "Retrofit",
+    "author": "Square",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/square/retrofit"
+  },
+  {
+    "id": 8,
+    "name": "Moshi",
+    "author": "Square",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/square/moshi"
+  },
+  {
+    "id": 9,
+    "name": "Cicerone",
+    "author": "terrakok",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/terrakok/Cicerone"
+  },
+  {
+    "id": 10,
+    "name": "Glide",
+    "author": "Sam Judd",
+    "license": "BSD License",
+    "web_url": "https://github.com/bumptech/glide"
+  },
+  {
+    "id": 11,
+    "name": "ThreeTenABP",
+    "author": "Jake Wharton",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/JakeWharton/ThreeTenABP"
+  },
+  {
+    "id": 12,
+    "name": "Android KTX",
+    "author": "Google",
+    "license": "Apache License 2.0",
+    "web_url": "https://developer.android.com/kotlin/ktx"
+  },
+  {
+    "id": 13,
+    "name": "Anko",
+    "author": "JetBrains",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/Kotlin/anko"
+  },
+  {
+    "id": 14,
+    "name": "ProgressButton",
+    "author": "Anton Hadutski",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/razir/ProgressButton"
+  },
+  {
+    "id": 15,
+    "name": "HtmlTextView",
+    "author": "Sufficiently Secure",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/SufficientlySecure/html-textview"
+  },
+  {
+    "id": 16,
+    "name": "ktlint",
+    "author": "Pinterest",
+    "license": "MIT License",
+    "web_url": "https://github.com/pinterest/ktlint"
+  },
+  {
+    "id": 17,
+    "name": "Timber",
+    "author": "Jake Wharton",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/JakeWharton/timber"
+  },
+  {
+    "id": 18,
+    "name": "Stetho",
+    "author": "Facebook",
+    "license": "MIT License",
+    "web_url": "https://github.com/facebook/stetho"
+  },
+  {
+    "id": 19,
+    "name": "LeakCanary",
+    "author": "Square",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/square/leakcanary"
+  }
+]

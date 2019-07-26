@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.AppInfo
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Screens
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
@@ -33,6 +34,8 @@ class AboutViewModel @Inject constructor(
                 onError = { Timber.e("Failed to load app info: $it") }
             )
     }
+
+    fun onLibrariesClicked() = router.navigateTo(Screens.AppLibraries)
 
     override fun onBackPressed() = router.exit()
 }

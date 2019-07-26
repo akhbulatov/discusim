@@ -4,6 +4,7 @@ import com.akhbulatov.discusim.App
 import com.akhbulatov.discusim.di.modules.ActivityBindingModule
 import com.akhbulatov.discusim.di.modules.AppModule
 import com.akhbulatov.discusim.di.modules.DataModule
+import com.akhbulatov.discusim.di.modules.FileSystemModule
 import com.akhbulatov.discusim.di.modules.NavigationModule
 import com.akhbulatov.discusim.di.modules.NetworkModule
 import com.akhbulatov.discusim.di.modules.PreferencesModule
@@ -20,6 +21,7 @@ import javax.inject.Singleton
         AppModule::class,
         NetworkModule::class,
         PreferencesModule::class,
+        FileSystemModule::class,
         NavigationModule::class,
         DataModule::class,
         ViewModelModule::class,
