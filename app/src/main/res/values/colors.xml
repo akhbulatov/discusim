@@ -14,6 +14,10 @@
     <color name="text_date">@color/gray_dove</color>
     <color name="text_inactive">@color/gray_silver</color>
 
+    <color name="icon_background">@android:color/black</color>
+    <color name="progress_auth_background">@color/white_opacity_50</color>
+    <color name="divider">@color/gray_athens</color>
+
     <color name="bottom_nav_item_active">@color/accent</color>
     <color name="bottom_nav_item_inactive">@color/gray_silver</color>
 
@@ -37,24 +41,21 @@
     <color name="chip_topic_background">@android:color/transparent</color>
     <color name="chip_topic_border">@color/green_fern</color>
 
-    <color name="divider">@color/gray_athens</color>
-    <color name="progress_auth_background">@color/white_opacity_50</color>
-
     <!-- Palette Colors (internal use only). Start -->
 
-    <!-- General Palette -->
+    <!-- General-->
     <color name="white_opacity_50">#80ffffff</color>
 
-    <!-- Palette Blue -->
+    <!-- Blue -->
     <color name="blue_dodger">#2E9FFF</color>
 
-    <!-- Palette Red -->
+    <!-- Red -->
     <color name="red_froly">#F05F70</color>
 
-    <!-- Palette Green -->
+    <!-- Green -->
     <color name="green_fern">#5cb767</color>
 
-    <!-- Palette Gray -->
+    <!-- Gray -->
     <color name="gray_silver">#cccccc</color>
     <color name="gray_athens">#EBEEF3</color>
     <color name="gray_dove">#6F6F6F</color>

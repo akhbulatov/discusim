@@ -12,8 +12,9 @@
         <item name="colorOnPrimary">@color/text_primary</item>
         <item name="colorOnSurface">@color/text_primary</item>
 
-        <item name="toolbarStyle">@style/AppToolbar</item>
+        <item name="actionOverflowButtonStyle">@style/AppOverflowIcon</item>
         <item name="bottomNavigationStyle">@style/AppBottomNavView</item>
+        <item name="toolbarStyle">@style/AppToolbar</item>
 
         <item name="topicChipStyle">@style/TopicChip</item>
     </style>

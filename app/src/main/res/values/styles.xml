@@ -55,6 +55,10 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <style name="AppOverflowIcon" parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="android:tint">@color/icon_background</item>
+    </style>
+
     <style name="AppTabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="android:elevation">@dimen/spacing_micro</item>
         <item name="tabIndicatorColor">?colorSecondary</item>
