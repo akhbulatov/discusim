@@ -72,7 +72,7 @@
                 <TextView
                     android:id="@+id/writeFeedbackTextView"
                     style="@style/AboutItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_feedback"
                     android:text="@string/about_write_feedback" />
@@ -80,7 +80,7 @@
                 <TextView
                     android:id="@+id/rateAppTextView"
                     style="@style/AboutItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_star"
                     android:text="@string/about_rate_app" />
@@ -88,7 +88,7 @@
                 <TextView
                     android:id="@+id/shareAppTextView"
                     style="@style/AboutItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_share"
                     android:text="@string/about_share_app" />
@@ -96,7 +96,7 @@
                 <TextView
                     android:id="@+id/librariesTextView"
                     style="@style/AboutItem"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_library_books"
                     android:text="@string/about_libraries" />

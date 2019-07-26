@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "RxJava",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxJava"
+  },
+  {
+    "id": 2,
+    "name": "RxKotlin",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxKotlin"
+  },
+  {
+    "id": 3,
+    "name": "RxAndroid",
+    "author": "ReactiveX",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/ReactiveX/RxAndroid"
+  },
+  {
+    "id": 4,
+    "name": "Timber",
+    "author": "Jake Wharton",
+    "license": "Apache License 2.0",
+    "web_url": "https://github.com/JakeWharton/timber"
+  }
+]

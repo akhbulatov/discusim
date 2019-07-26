@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.data.discussion.DiscussionRepositoryImpl
 import com.akhbulatov.discusim.data.follower.FollowerRepositoryImpl
 import com.akhbulatov.discusim.data.following.FollowingRepositoryImpl
 import com.akhbulatov.discusim.data.forum.ForumRepositoryImpl
+import com.akhbulatov.discusim.data.library.LibraryRepositoryImpl
 import com.akhbulatov.discusim.data.moderator.ModeratorRepositoryImpl
 import com.akhbulatov.discusim.data.session.SessionRepositoryImpl
 import com.akhbulatov.discusim.data.topic.TopicRepositoryImpl
@@ -18,6 +19,7 @@ import com.akhbulatov.discusim.domain.global.repositories.DiscussionRepository
 import com.akhbulatov.discusim.domain.global.repositories.FollowerRepository
 import com.akhbulatov.discusim.domain.global.repositories.FollowingRepository
 import com.akhbulatov.discusim.domain.global.repositories.ForumRepository
+import com.akhbulatov.discusim.domain.global.repositories.LibraryRepository
 import com.akhbulatov.discusim.domain.global.repositories.ModeratorRepository
 import com.akhbulatov.discusim.domain.global.repositories.SessionRepository
 import com.akhbulatov.discusim.domain.global.repositories.TopicRepository
@@ -71,4 +73,8 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindAppRepository(repository: AppRepositoryImpl): AppRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindLibraryRepository(repository: LibraryRepositoryImpl): LibraryRepository
 }

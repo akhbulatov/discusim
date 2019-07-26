@@ -108,6 +108,9 @@
     <string name="about_share_app">Share the app</string>
     <string name="about_libraries">Open Source Libraries</string>
 
+    <!-- App Libraries -->
+    <string name="app_libraries_title">Open Source Libraries</string>
+
     <!-- List Items. Start -->
 
     <!-- Item User Activity -->

@@ -52,8 +52,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
             }
             R.id.shareAppTextView -> {
             }
-            R.id.librariesTextView -> {
-            }
+            R.id.librariesTextView -> viewModel.onLibrariesClicked()
         }
     }
 
