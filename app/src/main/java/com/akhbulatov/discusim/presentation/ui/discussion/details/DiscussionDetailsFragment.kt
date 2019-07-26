@@ -54,7 +54,6 @@ class DiscussionDetailsFragment : BaseFragment() {
 
     private fun setupToolbar() {
         with(toolbar) {
-            inflateMenu(R.menu.discussion_details)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
                 discussion?.let { share(it.link) }

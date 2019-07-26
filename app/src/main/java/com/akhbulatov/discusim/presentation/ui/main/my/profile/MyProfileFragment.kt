@@ -41,15 +41,12 @@ class MyProfileFragment : BaseFragment() {
     }
 
     private fun setupToolbar() {
-        with(toolbar) {
-            inflateMenu(R.menu.my_profile)
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.menu_share -> user?.let { user -> share(user.webUrl) }
-                    R.id.menu_about_app -> viewModel.onAboutAppClicked()
-                }
-                true
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_share -> user?.let { user -> share(user.webUrl) }
+                R.id.menu_about_app -> viewModel.onAboutAppClicked()
             }
+            true
         }
     }
 

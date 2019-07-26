@@ -41,7 +41,6 @@ class UserHostFragment : BaseFragment() {
 
     private fun setupToolbar() {
         with(toolbar) {
-            inflateMenu(R.menu.user_host)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
                 sharedUser?.let { share(it.webUrl) }
