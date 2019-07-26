@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Discusim</string>
-    <string name="app_description">Unofficial Disqus client</string>
-    <string name="app_version">Version %f (build %d)</string>
 
     <!-- Common Messages. Start -->
     <string name="msg_refresh">Refresh</string>
@@ -103,6 +101,8 @@
 
     <!-- About -->
     <string name="about_title">About</string>
+    <string name="about_app_description">Unofficial Disqus client</string>
+    <string name="about_app_version">Version %s (build %d)</string>
     <string name="about_write_feedback">Write feedback</string>
     <string name="about_rate_app">Rate the app</string>
     <string name="about_share_app">Share the app</string>

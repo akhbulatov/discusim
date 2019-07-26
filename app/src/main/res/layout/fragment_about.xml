@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_small"
-                    android:text="@string/app_description"
+                    android:text="@string/about_app_description"
                     android:textSize="@dimen/font_secondary" />
 
                 <TextView
@@ -57,7 +57,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
-                    tools:text="Version 1.0 (build 10)" />
+                    android:visibility="gone"
+                    tools:text="Version 1.0 (build 10)"
+                    tools:visibility="visible" />
 
             </LinearLayout>
 
