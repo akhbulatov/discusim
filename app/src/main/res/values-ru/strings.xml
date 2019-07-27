@@ -49,6 +49,7 @@
     <string name="my_forums_title">Форумы</string>
 
     <string name="my_profile_title">Профиль</string>
+    <string name="my_profile_about_app">О приложении</string>
 
     <string name="forum_host_details_tab">Детали</string>
     <string name="forum_host_discussions_tab">Дискуссии</string>
@@ -81,6 +82,16 @@
     <string name="user_details_username">\@%s</string>
     <string name="user_details_num_upvotes">&lt;b>%d&lt;/b> Голосов</string>
     <string name="user_details_joined_date">Присоединился %s</string>
+
+    <string name="about_title">О приложении</string>
+    <string name="about_app_description">Неофицальный Disqus клиент</string>
+    <string name="about_app_version">Версия %s (сборка %d)</string>
+    <string name="about_write_feedback">Написать отзыв</string>
+    <string name="about_rate_app">Оценить приложение</string>
+    <string name="about_share_app">Поделиться приложением</string>
+    <string name="about_libraries">Библиотеки с открытым исходным кодом</string>
+
+    <string name="app_libraries_title">Open Source библиотеки</string>
 
     <string name="item_user_activity_upvoted_discussion">поддержал дискуссию %s</string>
     <string name="item_user_activity_commented_discussion">прокомментировал дискуссию %s</string>
