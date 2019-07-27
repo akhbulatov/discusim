@@ -1,14 +1,15 @@
 package com.akhbulatov.discusim.di.modules
 
+import android.content.res.AssetManager
 import com.akhbulatov.discusim.data.global.filesystem.FileManager
-import com.akhbulatov.discusim.data.global.filesystem.RawFileManager
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-abstract class FileSystemModule {
-    @Binds
+object FileSystemModule {
+    @JvmStatic
+    @Provides
     @Singleton
-    abstract fun provideRawFileManager(fileManager: RawFileManager): FileManager
+    fun provideFileManager(assetManager: AssetManager) = FileManager(assetManager)
 }

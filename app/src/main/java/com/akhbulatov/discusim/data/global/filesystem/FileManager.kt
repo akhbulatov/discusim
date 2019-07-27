@@ -1,5 +1,13 @@
 package com.akhbulatov.discusim.data.global.filesystem
 
-interface FileManager {
-    fun readFile(fileName: String): String
+import android.content.res.AssetManager
+
+class FileManager(
+    private val assetManager: AssetManager
+) {
+
+    fun readRawFile(fileName: String): String {
+        val reader = assetManager.open(fileName).bufferedReader()
+        return reader.use { it.readText() }
+    }
 }
