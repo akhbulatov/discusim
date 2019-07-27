@@ -9,13 +9,10 @@ import com.akhbulatov.discusim.domain.global.AppSchedulers
 import com.akhbulatov.discusim.domain.global.ResourceManager
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.AppInfo
-import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.presentation.global.AndroidResourceManager
-import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import ru.terrakok.cicerone.Router
 import javax.inject.Singleton
 
 @Module
@@ -42,15 +39,6 @@ abstract class AppModule {
         @Provides
         fun provideConnectivityManager(context: Context): ConnectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        @JvmStatic
-        @Provides
-        @Singleton
-        fun provideErrorHandler(
-            router: Router,
-            sessionInteractor: SessionInteractor,
-            resourceManager: ResourceManager
-        ) = ErrorHandler(router, sessionInteractor, resourceManager)
 
         @JvmStatic
         @Provides
