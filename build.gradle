@@ -7,13 +7,13 @@ buildscript {
             'minSdk'          : 21,
             'targetSdk'       : 28,
 
-            'androidGradle'   : '3.4.2',
             'kotlin'          : '1.3.41',
             'material'        : '1.1.0-alpha08',
             'appCompat'       : '1.1.0-rc01',
             'fragment'        : '1.2.0-alpha01',
             'recyclerView'    : '1.1.0-beta01',
             'constraintLayout': '2.0.0-beta2',
+            'firebaseCore'    : '17.0.1',
             'progressButton'  : '1.0.3',
             'htmlTextView'    : '3.6',
             'dagger'          : '2.24',
@@ -40,8 +40,9 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${versions.androidGradle}"
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath 'com.google.gms:google-services:4.3.0'
     }
 }
 
