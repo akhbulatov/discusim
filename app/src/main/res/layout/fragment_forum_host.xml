@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways"
+            app:menu="@menu/forum_channel_host"
             app:navigationIcon="@drawable/ic_arrow_back"
             tools:title="@tools:sample/lorem" />
 

@@ -58,7 +58,6 @@ class ChannelHostFragment : BaseFragment() {
 
     private fun setupToolbar() {
         with(toolbar) {
-            inflateMenu(R.menu.forum_channel_host)
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener {
                 sharedForum?.let { share(it.webUrl) }
