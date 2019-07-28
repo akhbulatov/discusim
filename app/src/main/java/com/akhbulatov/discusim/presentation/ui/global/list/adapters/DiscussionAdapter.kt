@@ -119,7 +119,12 @@ class DiscussionAdapter(
                     topicChipGroup.isVisible = false
                 }
                 titleTextView.text = item.title
-                upvotesButton.setDiscussionVote(item.vote)
+                with(upvotesButton) {
+                    setDiscussionVote(item.vote)
+                    // Когда отображается прогресс, клик отключается, поэтому необходимо его включить снова
+                    // при обновлении элемента
+                    isClickable = true
+                }
                 commentsButton.text = item.comments.toString()
             }
         }
