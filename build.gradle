@@ -18,7 +18,7 @@ buildscript {
             'htmlTextView'    : '3.6',
             'dagger'          : '2.24',
             'rxJava'          : '2.2.10',
-            'rxKotlin'        : '2.3.0',
+            'rxKotlin'        : '2.4.0',
             'rxAndroid'       : '2.1.1',
             'retrofit'        : '2.6.0',
             'okhttp'          : '4.0.1',
