@@ -5,11 +5,14 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.AppInfo
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_about.*
+import org.jetbrains.anko.support.v4.browse
+import org.jetbrains.anko.support.v4.share
 import javax.inject.Inject
 
 class AboutFragment : BaseFragment(), View.OnClickListener {
@@ -48,13 +51,16 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
         when (v?.id) {
             R.id.writeFeedbackTextView -> {
             }
-            R.id.rateAppTextView -> {
-            }
-            R.id.shareAppTextView -> {
-            }
+            R.id.rateAppTextView -> browse(APP_PLAY_MARKET_URL)
+            R.id.shareAppTextView -> share(APP_PLAY_WEB_URL)
             R.id.librariesTextView -> viewModel.onLibrariesClicked()
         }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()
+
+    companion object {
+        const val APP_PLAY_MARKET_URL = "market://details?id=${BuildConfig.APPLICATION_ID}"
+        const val APP_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
+    }
 }

@@ -19,12 +19,12 @@ class AboutViewModel @Inject constructor(
     private val schedulers: SchedulersProvider
 ) : BaseViewModel() {
 
+    private val _appInfo = MutableLiveData<AppInfo>()
+    val appInfo: LiveData<AppInfo> get() = _appInfo
+
     init {
         loadAppInfo()
     }
-
-    private val _appInfo = MutableLiveData<AppInfo>()
-    val appInfo: LiveData<AppInfo> get() = _appInfo
 
     private fun loadAppInfo() {
         disposables += appInteractor.getAppInfo()
