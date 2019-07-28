@@ -1,7 +1,6 @@
 package com.akhbulatov.discusim.domain.global.models
 
 data class AppLibrary(
-    val id: Long,
     val name: String,
     val author: String,
     val license: String,

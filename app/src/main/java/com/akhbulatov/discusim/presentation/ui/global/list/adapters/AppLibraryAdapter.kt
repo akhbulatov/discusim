@@ -43,7 +43,7 @@ class AppLibraryAdapter(
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AppLibrary>() {
             override fun areItemsTheSame(oldItem: AppLibrary, newItem: AppLibrary): Boolean =
-                oldItem.id == newItem.id
+                oldItem.name == newItem.name
 
             override fun areContentsTheSame(oldItem: AppLibrary, newItem: AppLibrary): Boolean =
                 oldItem == newItem

@@ -12,7 +12,6 @@ class LibraryResponseMapper @Inject constructor() {
     fun map(model: AppLibraryNetModel): AppLibrary =
         model.let {
             AppLibrary(
-                it.id,
                 it.name,
                 it.author,
                 it.license,
