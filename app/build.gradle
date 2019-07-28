@@ -17,6 +17,7 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0"
+        resConfigs "en", "ru"
 
         buildConfigField "String", "BASE_URL", "\"https://disqus.com/\""
         buildConfigField "String", "BASE_API_URL", "\"https://disqus.com/api/3.0/\""
@@ -27,6 +28,15 @@ android {
         buildConfigField "String", "SCOPE", keystoreProperties['disqus_scope']
     }
 
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['release_store_file'])
+            storePassword keystoreProperties['release_store_password']
+            keyAlias keystoreProperties['release_key_alias']
+            keyPassword keystoreProperties['release_key_password']
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
@@ -35,8 +45,10 @@ android {
         }
 
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
