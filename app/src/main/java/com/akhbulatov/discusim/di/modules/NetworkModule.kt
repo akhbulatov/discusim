@@ -32,7 +32,7 @@ object NetworkModule {
         "${BuildConfig.BASE_URL}api/oauth/2.0/authorize/",
         BuildConfig.CLIENT_ID,
         BuildConfig.CLIENT_SECRET,
-        BuildConfig.OAUTH_SCOPE,
+        BuildConfig.SCOPE,
         BuildConfig.REDIRECT_URI
     )
 

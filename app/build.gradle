@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     buildToolsVersion = versions.buildTools
     compileSdkVersion versions.compileSdk
@@ -17,10 +21,10 @@ android {
         buildConfigField "String", "BASE_URL", "\"https://disqus.com/\""
         buildConfigField "String", "BASE_API_URL", "\"https://disqus.com/api/3.0/\""
 
-        buildConfigField "String", "CLIENT_ID", "\"QC6s13EPF1vkzhein4WRpxqVr91zlNoVnLH6ImSa7UPBK5I0T7WKPCtZMYd9IC1l\""
-        buildConfigField "String", "CLIENT_SECRET", "\"HKdJ6pvWjzqrAIaMvy70hXmIhUeBcMrVgjA9VClGArZgTu8XLx2iLyFwVYpAv0Dv\""
-        buildConfigField "String", "REDIRECT_URI", "\"http://www.example.com/oauth_redirect\""
-        buildConfigField "String", "OAUTH_SCOPE", "\"read,write\""
+        buildConfigField "String", "CLIENT_ID", keystoreProperties['disqus_client_id']
+        buildConfigField "String", "CLIENT_SECRET", keystoreProperties['disqus_client_secret']
+        buildConfigField "String", "REDIRECT_URI", keystoreProperties['disqus_redirect_uri']
+        buildConfigField "String", "SCOPE", keystoreProperties['disqus_scope']
     }
 
     buildTypes {
