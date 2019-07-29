@@ -2,7 +2,6 @@ package com.akhbulatov.discusim.di.modules
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.net.ConnectivityManager
 import com.akhbulatov.discusim.App
 import com.akhbulatov.discusim.BuildConfig
 import com.akhbulatov.discusim.domain.global.AppSchedulers
@@ -34,11 +33,6 @@ abstract class AppModule {
         @JvmStatic
         @Provides
         fun provideAssetManager(context: Context): AssetManager = context.assets
-
-        @JvmStatic
-        @Provides
-        fun provideConnectivityManager(context: Context): ConnectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         @JvmStatic
         @Provides
