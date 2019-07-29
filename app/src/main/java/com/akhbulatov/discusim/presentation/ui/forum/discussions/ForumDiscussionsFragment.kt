@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
-import com.akhbulatov.discusim.domain.global.models.forum.Forum
 import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import com.akhbulatov.discusim.presentation.ui.global.list.EndlessScrollListener
@@ -29,15 +28,6 @@ class ForumDiscussionsFragment : BaseFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ForumDiscussionsViewModel by viewModels { viewModelFactory }
-    private val discussionSharedViewModel: DiscussionSharedViewModel by viewModels(
-        {
-            if (Forum.isChannel(forumId)) {
-                parentFragment!!.parentFragment!!.parentFragment!!
-            } else {
-                parentFragment!!.parentFragment!!
-            }
-        }
-    )
 
     private lateinit var forumId: String
     private var discussionPosition = -1
@@ -97,7 +87,6 @@ class ForumDiscussionsFragment : BaseFragment() {
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
         viewModel.voteType.observe(this, Observer { updateVote(it) })
         viewModel.voteError.observe(this, Observer { showVoteError(it) })
-        discussionSharedViewModel.discussion.observe(this, Observer { updateDiscussion(it) })
     }
 
     private fun showEmptyProgress(show: Boolean) {
@@ -129,14 +118,6 @@ class ForumDiscussionsFragment : BaseFragment() {
     private fun showPageProgress(show: Boolean) {
         if (!show) onScrollListener.setLoaded()
         discussionAdapter.showProgress(show)
-    }
-
-    private fun updateDiscussion(discussion: Discussion) {
-        if (discussionPosition >= 0) {
-            val items = discussionAdapter.currentList.toMutableList()
-            items[discussionPosition] = discussion
-            discussionAdapter.submitList(items)
-        }
     }
 
     private fun updateVote(voteType: Vote.Type) {
