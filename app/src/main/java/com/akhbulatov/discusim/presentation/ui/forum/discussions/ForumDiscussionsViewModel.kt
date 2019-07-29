@@ -49,8 +49,8 @@ class ForumDiscussionsViewModel @Inject constructor(
     private val _pageProgress = MutableLiveData<Boolean>()
     val pageProgress: LiveData<Boolean> get() = _pageProgress
 
-    private val _voteType = MutableLiveData<Vote.Type>()
-    val voteType: LiveData<Vote.Type> get() = _voteType
+    private val _vote = MutableLiveData<Vote>()
+    val vote: LiveData<Vote> get() = _vote
 
     private val _voteError = SingleLiveEvent<String>()
     val voteError: LiveData<String> get() = _voteError
@@ -117,9 +117,13 @@ class ForumDiscussionsViewModel @Inject constructor(
         disposables += discussionInteractor.voteDiscussion(discussion.id, voteType)
             .observeOn(schedulers.ui())
             .subscribeBy(
-                onSuccess = { _voteType.value = it },
+                onSuccess = { _vote.value = updatedVote(discussion, it) },
                 onError = { errorHandler.proceed(it) { msg -> _voteError.value = msg } }
             )
+    }
+
+    private fun updatedVote(discussion: Discussion, voteType: Vote.Type): Vote {
+        return Vote.createUpdatedInstance(discussion.vote.upvotes, voteType)
     }
 
     fun onDiscussionClicked(discussion: Discussion) {

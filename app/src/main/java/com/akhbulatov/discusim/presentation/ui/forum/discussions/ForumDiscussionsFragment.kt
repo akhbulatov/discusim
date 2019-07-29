@@ -85,7 +85,7 @@ class ForumDiscussionsFragment : BaseFragment() {
         viewModel.errorMessage.observe(this, Observer { showErrorMessage(it) })
         viewModel.refreshProgress.observe(this, Observer { showRefreshProgress(it) })
         viewModel.pageProgress.observe(this, Observer { showPageProgress(it) })
-        viewModel.voteType.observe(this, Observer { updateVote(it) })
+        viewModel.vote.observe(this, Observer { updateVote(it) })
         viewModel.voteError.observe(this, Observer { showVoteError(it) })
     }
 
@@ -120,12 +120,11 @@ class ForumDiscussionsFragment : BaseFragment() {
         discussionAdapter.showProgress(show)
     }
 
-    private fun updateVote(voteType: Vote.Type) {
+    private fun updateVote(vote: Vote) {
         if (discussionPosition >= 0) {
             val items = discussionAdapter.currentList.toMutableList()
             val item = items[discussionPosition] as Discussion
-            val newVote = Vote.createUpdatedInstance(item.vote.upvotes, voteType)
-            items[discussionPosition] = item.copy(vote = newVote)
+            items[discussionPosition] = item.copy(vote = vote)
             discussionAdapter.submitList(items)
         }
     }
