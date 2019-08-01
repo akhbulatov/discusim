@@ -90,6 +90,7 @@
     <string name="about_rate_app">Оценить приложение</string>
     <string name="about_share_app">Поделиться приложением</string>
     <string name="about_libraries">Библиотеки с открытым исходным кодом</string>
+    <string name="about_privacy_policy">Политика конфиденциальности</string>
 
     <string name="app_libraries_title">Open Source библиотеки</string>
 

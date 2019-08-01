@@ -106,6 +106,14 @@
                     android:drawableStart="@drawable/ic_library_books"
                     android:text="@string/about_libraries" />
 
+                <TextView
+                    android:id="@+id/privacyPolicyTextView"
+                    style="@style/AboutItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_subject"
+                    android:text="@string/about_privacy_policy" />
+
             </LinearLayout>
 
         </LinearLayout>

@@ -107,6 +107,7 @@
     <string name="about_rate_app">Rate the app</string>
     <string name="about_share_app">Share the app</string>
     <string name="about_libraries">Open Source Libraries</string>
+    <string name="about_privacy_policy">Privacy policy</string>
 
     <!-- App Libraries -->
     <string name="app_libraries_title">Open Source Libraries</string>
