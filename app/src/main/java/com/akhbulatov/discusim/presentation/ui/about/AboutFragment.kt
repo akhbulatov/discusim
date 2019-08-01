@@ -33,6 +33,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
         rateAppTextView.setOnClickListener(this)
         shareAppTextView.setOnClickListener(this)
         librariesTextView.setOnClickListener(this)
+        privacyPolicyTextView.setOnClickListener(this)
         observeUiChanges()
     }
 
@@ -54,6 +55,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
             R.id.rateAppTextView -> browse(APP_PLAY_MARKET_URL)
             R.id.shareAppTextView -> share(APP_PLAY_WEB_URL)
             R.id.librariesTextView -> viewModel.onLibrariesClicked()
+            R.id.privacyPolicyTextView -> browse(PRIVACY_POLICY_URL)
         }
     }
 
@@ -62,5 +64,6 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
     companion object {
         const val APP_PLAY_MARKET_URL = "market://details?id=${BuildConfig.APPLICATION_ID}"
         const val APP_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
+        const val PRIVACY_POLICY_URL = "https://discusim.flycricket.io/privacy.html"
     }
 }
