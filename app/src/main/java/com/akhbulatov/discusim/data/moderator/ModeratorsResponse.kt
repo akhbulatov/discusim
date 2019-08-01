@@ -12,5 +12,6 @@ class ModeratorsResponse(
     @Json(name = "response") val moderators: List<ModeratorNetModel>
 ) : CursorResponse(cursor) {
 
+    @JsonClass(generateAdapter = true)
     data class ModeratorNetModel(@Json(name = "user") val user: UserNetModel)
 }
