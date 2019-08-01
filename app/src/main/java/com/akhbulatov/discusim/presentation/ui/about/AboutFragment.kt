@@ -12,6 +12,7 @@ import com.akhbulatov.discusim.presentation.global.ViewModelFactory
 import com.akhbulatov.discusim.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_about.*
 import org.jetbrains.anko.support.v4.browse
+import org.jetbrains.anko.support.v4.email
 import org.jetbrains.anko.support.v4.share
 import javax.inject.Inject
 
@@ -50,8 +51,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.writeFeedbackTextView -> {
-            }
+            R.id.writeFeedbackTextView -> email(APP_FEEDBACK_EMAIL)
             R.id.rateAppTextView -> browse(APP_PLAY_MARKET_URL)
             R.id.shareAppTextView -> share(APP_PLAY_WEB_URL)
             R.id.librariesTextView -> viewModel.onLibrariesClicked()
@@ -62,6 +62,7 @@ class AboutFragment : BaseFragment(), View.OnClickListener {
     override fun onBackPressed() = viewModel.onBackPressed()
 
     companion object {
+        const val APP_FEEDBACK_EMAIL = "feedback.discusim@gmail.com"
         const val APP_PLAY_MARKET_URL = "market://details?id=${BuildConfig.APPLICATION_ID}"
         const val APP_PLAY_WEB_URL = "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
         const val PRIVACY_POLICY_URL = "https://discusim.flycricket.io/privacy.html"
