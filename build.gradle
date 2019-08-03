@@ -19,7 +19,7 @@ buildscript {
             'progressButton'  : '1.0.3',
             'htmlTextView'    : '3.6',
             'dagger'          : '2.24',
-            'rxJava'          : '2.2.10',
+            'rxJava'          : '2.2.11',
             'rxKotlin'        : '2.4.0',
             'rxAndroid'       : '2.1.1',
             'retrofit'        : '2.6.1',
@@ -34,7 +34,7 @@ buildscript {
             'timber'          : '4.7.1',
             'crashlytics'     : '2.10.1',
             'stetho'          : '1.5.1',
-            'leakCanary'      : '2.0-beta-1'
+            'leakCanary'      : '2.0-beta-2'
     ]
 
     repositories {
