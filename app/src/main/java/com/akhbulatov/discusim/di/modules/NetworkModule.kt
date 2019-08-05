@@ -36,7 +36,7 @@ object NetworkModule {
     @Singleton
     fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
         if (BuildConfig.DEBUG) {
-            level = HttpLoggingInterceptor.Level.BODY
+            level = HttpLoggingInterceptor.Level.HEADERS
         }
     }
 
