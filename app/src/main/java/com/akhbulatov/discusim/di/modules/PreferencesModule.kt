@@ -21,6 +21,6 @@ abstract class PreferencesModule {
         @Provides
         @Singleton
         fun provideSharedPreferences(context: Context): SharedPreferences =
-            context.getSharedPreferences("discusim.prefs", Context.MODE_PRIVATE)
+            context.getSharedPreferences(SharedPreferencesStorage.PREF_FILE_NAME, Context.MODE_PRIVATE)
     }
 }
