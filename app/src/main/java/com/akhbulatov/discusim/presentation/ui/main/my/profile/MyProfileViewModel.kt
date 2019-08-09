@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.user.UserDetails
+import com.akhbulatov.discusim.domain.session.SessionInteractor
 import com.akhbulatov.discusim.domain.user.UserInteractor
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 class MyProfileViewModel @Inject constructor(
     private val router: FlowRouter,
+    private val sessionInteractor: SessionInteractor,
     private val userInteractor: UserInteractor,
     private val schedulers: SchedulersProvider,
     private val errorHandler: ErrorHandler
@@ -46,6 +48,11 @@ class MyProfileViewModel @Inject constructor(
                 onSuccess = { _user.value = Pair(true, it) },
                 onError = { errorHandler.proceed(it) { msg -> _error.value = Pair(true, msg) } }
             )
+    }
+
+    fun onSignOutClicked() {
+        sessionInteractor.logout()
+        router.newRootFlow(Screens.AuthFlow)
     }
 
     fun onAboutAppClicked() = router.navigateTo(Screens.About)

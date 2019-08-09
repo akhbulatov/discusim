@@ -49,6 +49,7 @@
     <string name="my_forums_title">Форумы</string>
 
     <string name="my_profile_title">Профиль</string>
+    <string name="my_profile_sign_out">Выйти</string>
     <string name="my_profile_about_app">О приложении</string>
 
     <string name="forum_host_details_tab">Детали</string>

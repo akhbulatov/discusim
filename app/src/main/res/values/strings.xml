@@ -57,6 +57,7 @@
 
     <!-- My Profile -->
     <string name="my_profile_title">Profile</string>
+    <string name="my_profile_sign_out">Sign out</string>
     <string name="my_profile_about_app">About</string>
 
     <!-- Forum Host -->

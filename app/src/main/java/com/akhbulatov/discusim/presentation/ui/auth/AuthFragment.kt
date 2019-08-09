@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
+import android.webkit.CookieManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -29,8 +30,25 @@ class AuthFragment : BaseFragment() {
         observeUiChanges()
     }
 
+    override fun onPause() {
+        authWebView.onPause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        authWebView.onResume()
+        super.onResume()
+    }
+
+    override fun onDestroyView() {
+        authWebView.destroy()
+        super.onDestroyView()
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupWebView() {
+        CookieManager.getInstance().removeAllCookies(null)
+
         with(authWebView) {
             settings.javaScriptEnabled = true
             loadUrl(viewModel.getAuthorizeUrl())

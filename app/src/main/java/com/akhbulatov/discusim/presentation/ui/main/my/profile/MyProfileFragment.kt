@@ -44,6 +44,7 @@ class MyProfileFragment : BaseFragment() {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_share -> user?.let { user -> share(user.webUrl) }
+                R.id.menu_sign_out -> viewModel.onSignOutClicked()
                 R.id.menu_about_app -> viewModel.onAboutAppClicked()
             }
             true
