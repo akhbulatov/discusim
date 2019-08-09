@@ -16,10 +16,18 @@ class SessionRepositoryImpl @Inject constructor(
 
     override fun getAuthorizeUrl(): String {
         return "${oAuthParams.authorizeUrl}?" +
-                "client_id=${oAuthParams.clientId}&" +
-                "scope=${oAuthParams.scope}&" +
-                "response_type=code&" +
-                "redirect_uri=${oAuthParams.redirectUri}"
+            "client_id=${oAuthParams.clientId}&" +
+            "scope=${oAuthParams.scope}&" +
+            "response_type=code&" +
+            "redirect_uri=${oAuthParams.redirectUri}"
+    }
+
+    override fun fetchAuthCode(url: String): String? {
+        val redirectUriCode = "${oAuthParams.redirectUri}?code"
+        if (url.startsWith(redirectUriCode)) {
+            return url.substringAfter("code=")
+        }
+        return null
     }
 
     override fun isLoggedIn(userId: Long?): Boolean =

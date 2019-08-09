@@ -12,18 +12,7 @@ class SessionInteractor @Inject constructor(
 
     fun getAuthorizeUrl(): String = sessionRepository.getAuthorizeUrl()
 
-    /**
-     * Извлекает код, необходимый для выполнения входа (получения токена).
-     *
-     * @param url Редирект URL с кодом для входа.
-     * @return Код для входа или `null`, если код не найден.
-     */
-    fun fetchAuthCode(url: String): String? {
-        if (url.contains("code")) {
-            return url.substringAfterLast("=")
-        }
-        return null
-    }
+    fun fetchAuthCode(url: String): String? = sessionRepository.fetchAuthCode(url)
 
     fun isLoggedIn(userId: Long? = null): Boolean =
         sessionRepository.isLoggedIn(userId)
