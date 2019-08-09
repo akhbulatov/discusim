@@ -18,7 +18,7 @@ android {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode 2
-        versionName "1.0.0-alpha2"
+        versionName "1.0.0-alpha3"
         resConfigs "en", "ru"
 
         buildConfigField "String", "BASE_URL", "\"https://disqus.com/\""
