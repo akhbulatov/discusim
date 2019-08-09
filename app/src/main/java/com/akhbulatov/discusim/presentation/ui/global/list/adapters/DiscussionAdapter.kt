@@ -104,7 +104,8 @@ class DiscussionAdapter(
                 }
                 contentImageView.isVisible = hasMedia
 
-                if (item.topics.isNotEmpty()) {
+                val hasTopics = item.topics.isNotEmpty()
+                if (hasTopics) {
                     if (topicChipGroup.childCount > 0) {
                         topicChipGroup.removeAllViews()
                     }
@@ -115,9 +116,9 @@ class DiscussionAdapter(
                         }
                         topicChipGroup.addView(topicChip)
                     }
-                } else {
-                    topicChipGroup.isVisible = false
                 }
+                topicChipGroup.isVisible = hasTopics
+
                 titleTextView.text = item.title
                 with(upvotesButton) {
                     setDiscussionVote(item.vote)
