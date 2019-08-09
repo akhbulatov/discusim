@@ -6,9 +6,11 @@ import com.akhbulatov.discusim.domain.discussion.DiscussionInteractor
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
+import com.akhbulatov.discusim.domain.global.models.user.User
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
+import com.akhbulatov.discusim.presentation.global.Screens
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -59,6 +61,8 @@ class DiscussionDetailsViewModel @Inject constructor(
                 onError = { errorHandler.proceed(it) { msg -> _emptyError.value = Pair(true, msg) } }
             )
     }
+
+    fun onAuthorClicked(user: User) = router.startFlow(Screens.UserFlow(user.id))
 
     fun onVoteClicked(upvoted: Boolean) {
         // Дизлайк не предусмотрен

@@ -44,6 +44,7 @@ class DiscussionDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
+        authorImageView.setOnClickListener { viewModel.onAuthorClicked(discussion!!.author) }
         upvotesButton.setOnClickListener { viewModel.onVoteClicked(it.isSelected) }
         bindProgressButton(upvotesButton)
         errorRefreshButton.setOnClickListener { viewModel.loadDiscussionDetails() }
