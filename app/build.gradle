@@ -17,8 +17,8 @@ android {
         applicationId "com.akhbulatov.discusim"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode 3
-        versionName "1.0.0-alpha3"
+        versionCode 4
+        versionName "1.0.0-alpha4"
         resConfigs "en", "ru"
 
         buildConfigField "String", "BASE_URL", "\"https://disqus.com/\""
