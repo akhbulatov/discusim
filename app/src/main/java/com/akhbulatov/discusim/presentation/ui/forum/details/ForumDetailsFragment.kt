@@ -49,7 +49,7 @@ class ForumDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        followButton.setOnClickListener { viewModel.onFollowClicked(it.isSelected) }
+        followButton.setOnClickListener { viewModel.onFollowClicked(it.isSelected, forum) }
         bindProgressButton(followButton)
         errorRefreshButton.setOnClickListener { viewModel.loadForumDetails() }
         observeUiChanges()
@@ -61,8 +61,7 @@ class ForumDetailsFragment : BaseFragment() {
         viewModel.forum.observe(this, Observer { showForumDetails(it.first, it.second) })
         viewModel.followProgress.observe(this, Observer { showFollowProgress(it) })
         viewModel.followError.observe(this, Observer { showFollowError(it) })
-        viewModel.follow.observe(this, Observer { updateFollow(true) })
-        viewModel.unfollow.observe(this, Observer { updateFollow(false) })
+        viewModel.following.observe(this, Observer { updateFollow(it) })
     }
 
     private fun showEmptyProgress(show: Boolean) {
@@ -109,18 +108,13 @@ class ForumDetailsFragment : BaseFragment() {
         showSnackbar(message)
     }
 
-    private fun updateFollow(following: Boolean) {
-        followButton.setFollow(following)
-        if (forum.channel != null) {
-            updateNumChannelFollowers(following)
-        }
-    }
+    private fun updateFollow(forum: ForumDetails) {
+        this.forum = forum
 
-    private fun updateNumChannelFollowers(following: Boolean) {
-        val oldFollowers = forum.numFollowers
-        val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
-        forum = forum.copy(numFollowers = newFollowers)
-        numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, newFollowers)
+        followButton.setFollow(forum.following)
+        if (forum.channel != null) {
+            numFollowersTextView.text = getString(R.string.channel_details_thousand_nums, forum.numFollowers)
+        }
     }
 
     override fun onBackPressed() = viewModel.onBackPressed()

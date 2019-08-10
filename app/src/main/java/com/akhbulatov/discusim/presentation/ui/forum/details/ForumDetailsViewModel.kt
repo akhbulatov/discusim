@@ -36,11 +36,8 @@ class ForumDetailsViewModel @Inject constructor(
     private val _followError = MutableLiveData<String>()
     val followError: LiveData<String> get() = _followError
 
-    private val _follow = MutableLiveData<Unit>()
-    val follow: LiveData<Unit> get() = _follow
-
-    private val _unfollow = MutableLiveData<Unit>()
-    val unfollow: LiveData<Unit> get() = _unfollow
+    private val _following = MutableLiveData<ForumDetails>()
+    val following: LiveData<ForumDetails> get() = _following
 
     fun setForumId(forumId: String) {
         this.forumId = forumId
@@ -62,30 +59,36 @@ class ForumDetailsViewModel @Inject constructor(
             )
     }
 
-    fun onFollowClicked(following: Boolean) {
-        if (!following) followForum() else unfollowForum()
+    fun onFollowClicked(following: Boolean, forum: ForumDetails) {
+        if (!following) followForum(forum) else unfollowForum(forum)
     }
 
-    private fun followForum() {
+    private fun followForum(forum: ForumDetails) {
         disposables += forumInteractor.followForum(forumId)
             .observeOn(schedulers.ui())
             .doOnSubscribe { _followProgress.value = true }
             .doAfterTerminate { _followProgress.value = false }
             .subscribeBy(
-                onComplete = { _follow.value = Unit },
+                onComplete = { _following.value = updatedForum(true, forum) },
                 onError = { errorHandler.proceed(it) { msg -> _followError.value = msg } }
             )
     }
 
-    private fun unfollowForum() {
+    private fun unfollowForum(forum: ForumDetails) {
         disposables += forumInteractor.unfollowForum(forumId)
             .observeOn(schedulers.ui())
             .doOnSubscribe { _followProgress.value = true }
             .doAfterTerminate { _followProgress.value = false }
             .subscribeBy(
-                onComplete = { _unfollow.value = Unit },
+                onComplete = { _following.value = updatedForum(false, forum) },
                 onError = { errorHandler.proceed(it) { msg -> _followError.value = msg } }
             )
+    }
+
+    private fun updatedForum(following: Boolean, forum: ForumDetails): ForumDetails {
+        val oldFollowers = forum.numFollowers
+        val newFollowers = if (following) oldFollowers + 1 else oldFollowers - 1
+        return forum.copy(following = following, numFollowers = newFollowers)
     }
 
     override fun onBackPressed() = router.exit()
