@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.akhbulatov.discusim.R
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
+import com.akhbulatov.discusim.domain.global.models.user.User
 import com.akhbulatov.discusim.presentation.ui.global.list.ProgressItem
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.BaseViewHolder
 import com.akhbulatov.discusim.presentation.ui.global.list.viewholders.ProgressViewHolder
@@ -22,11 +23,13 @@ import com.github.razir.progressbutton.bindProgressButton
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.item_discussion.*
 
+private typealias OnAuthorClickListener = (author: User) -> Unit
 private typealias OnVoteClickListener = (view: View, item: Discussion, position: Int) -> Unit
 private typealias OnItemClickListener = (Discussion, position: Int) -> Unit
 
 class DiscussionAdapter(
     private val lifecycleOwner: LifecycleOwner,
+    private val onAuthorClickListener: OnAuthorClickListener,
     private val onVoteClickListener: OnVoteClickListener,
     private val onItemClickListener: OnItemClickListener
 ) : ListAdapter<Any, BaseViewHolder<Any>>(DIFF_CALLBACK) {
@@ -35,7 +38,13 @@ class DiscussionAdapter(
         when (viewType) {
             ITEM_DISCUSSION -> {
                 val itemView = parent.inflate(R.layout.item_discussion)
-                DiscussionViewHolder(itemView, lifecycleOwner, onVoteClickListener, onItemClickListener)
+                DiscussionViewHolder(
+                    itemView,
+                    lifecycleOwner,
+                    onAuthorClickListener,
+                    onVoteClickListener,
+                    onItemClickListener
+                )
             }
             else -> {
                 val itemView = parent.inflate(R.layout.item_progress)
@@ -74,6 +83,7 @@ class DiscussionAdapter(
     class DiscussionViewHolder(
         itemView: View,
         lifecycleOwner: LifecycleOwner,
+        private val onAuthorClickListener: OnAuthorClickListener,
         private val onVoteClickListener: OnVoteClickListener,
         private val onItemClickListener: OnItemClickListener
     ) : BaseViewHolder<Any>(itemView) {
@@ -82,6 +92,7 @@ class DiscussionAdapter(
 
         init {
             lifecycleOwner.bindProgressButton(upvotesButton)
+            authorImageView.setOnClickListener { onAuthorClickListener(discussion.author) }
             upvotesButton.setOnClickListener {
                 upvotesButton.showDiscussionVoteProgress(true, discussion.vote)
                 onVoteClickListener(it, discussion, adapterPosition)

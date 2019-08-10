@@ -7,6 +7,7 @@ import com.akhbulatov.discusim.domain.global.SchedulersProvider
 import com.akhbulatov.discusim.domain.global.models.PagedList
 import com.akhbulatov.discusim.domain.global.models.Vote
 import com.akhbulatov.discusim.domain.global.models.discussion.Discussion
+import com.akhbulatov.discusim.domain.global.models.user.User
 import com.akhbulatov.discusim.presentation.global.BaseViewModel
 import com.akhbulatov.discusim.presentation.global.ErrorHandler
 import com.akhbulatov.discusim.presentation.global.FlowRouter
@@ -110,6 +111,8 @@ class ForumDiscussionsViewModel @Inject constructor(
 
     fun refreshDiscussions() = paginator.refresh()
     fun loadNextDiscussionsPage() = paginator.loadNewPage()
+
+    fun onAuthorClicked(user: User) = router.startFlow(Screens.UserFlow(user.id))
 
     fun onVoteClicked(discussion: Discussion, upvoted: Boolean) {
         // Дизлайк не предусмотрен
