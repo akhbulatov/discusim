@@ -1,5 +1,6 @@
 package com.akhbulatov.discusim.presentation.ui
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +25,8 @@ class AppActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_container)
+        // Отключает поворот экрана (только портретный режим)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         run { viewModel }
     }
 
