@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.res.AssetManager
 import com.akhbulatov.discusim.App
 import com.akhbulatov.discusim.BuildConfig
-import com.akhbulatov.discusim.domain.global.AppSchedulers
 import com.akhbulatov.discusim.domain.global.ResourceManager
 import com.akhbulatov.discusim.domain.global.SchedulersProvider
+import com.akhbulatov.discusim.domain.global.SchedulersProviderImpl
 import com.akhbulatov.discusim.domain.global.models.AppInfo
 import com.akhbulatov.discusim.presentation.global.AndroidResourceManager
 import dagger.Binds
@@ -18,7 +18,7 @@ import javax.inject.Singleton
 abstract class AppModule {
     @Binds
     @Singleton
-    abstract fun bindSchedulersProvider(schedulers: AppSchedulers): SchedulersProvider
+    abstract fun bindSchedulersProvider(schedulers: SchedulersProviderImpl): SchedulersProvider
 
     @Binds
     @Singleton

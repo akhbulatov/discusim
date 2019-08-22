@@ -10,17 +10,22 @@ import javax.inject.Inject
 
 class ActivityRepositoryImpl @Inject constructor(
     private val api: DisqusApi,
+    private val activityResponseParser: ActivityResponseParser,
     private val activityResponseMapper: ActivityResponseMapper,
     private val schedulers: SchedulersProvider
 ) : ActivityRepository {
 
     override fun getMyActivity(cursor: String?): Single<PagedList<Action>> =
         api.getUserActivity(null, cursor)
-            .map { activityResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .observeOn(schedulers.computation())
+            .map { activityResponseParser.parse(it) }
+            .map { activityResponseMapper.map(it) }
 
     override fun getUserActivity(userId: Long, cursor: String?): Single<PagedList<Action>> =
         api.getUserActivity(userId, cursor)
-            .map { activityResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .observeOn(schedulers.computation())
+            .map { activityResponseParser.parse(it) }
+            .map { activityResponseMapper.map(it) }
 }

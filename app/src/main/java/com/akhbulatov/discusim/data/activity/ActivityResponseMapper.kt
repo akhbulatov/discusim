@@ -5,23 +5,21 @@ import com.akhbulatov.discusim.data.discussion.DiscussionResponseMapper
 import com.akhbulatov.discusim.data.forum.ForumResponseMapper
 import com.akhbulatov.discusim.data.global.network.models.ActionNetModel
 import com.akhbulatov.discusim.data.global.network.models.comment.CommentShortNetModel
+import com.akhbulatov.discusim.data.global.network.models.cursor.PagedListNetModel
 import com.akhbulatov.discusim.data.user.UserResponseMapper
 import com.akhbulatov.discusim.domain.global.models.Action
 import com.akhbulatov.discusim.domain.global.models.PagedList
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 class ActivityResponseMapper @Inject constructor(
-    private val activityResponseParser: ActivityResponseParser,
     private val discussionResponseMapper: DiscussionResponseMapper,
     private val forumResponseMapper: ForumResponseMapper,
     private val userResponseMapper: UserResponseMapper,
     private val commentResponseMapper: CommentResponseMapper
 ) {
 
-    fun map(activityBody: ResponseBody): PagedList<Action> {
-        val activity = activityResponseParser.parse(activityBody.string())
-        val actions = activity.second.mapNotNull {
+    fun map(model: PagedListNetModel<ActionNetModel>): PagedList<Action> {
+        val actions = model.data.mapNotNull {
             when (it.obj) {
                 is ActionNetModel.DiscussionVoteNetModel -> {
                     val discussionVote = mapDiscussionVote(it.obj)
@@ -45,7 +43,7 @@ class ActivityResponseMapper @Inject constructor(
                 else -> null
             }
         }
-        return PagedList(activity.first.next, actions)
+        return PagedList(model.cursor.next, actions)
     }
 
     private fun mapDiscussionVote(model: ActionNetModel.DiscussionVoteNetModel): Action.DiscussionVote =
