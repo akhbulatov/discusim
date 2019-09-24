@@ -16,7 +16,8 @@ class LibraryRepositoryImpl @Inject constructor(
 
     override fun getAppLibraries(): Single<List<AppLibrary>> =
         Single.fromCallable { fileManager.readRawFile("app_libraries.json") }
+            .subscribeOn(schedulers.io())
             .map { libraryResponseParser.parse(it) }
             .map { libraryResponseMapper.map(it) }
-            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.computation())
 }

@@ -16,13 +16,15 @@ class UserRepositoryImpl @Inject constructor(
 
     override fun getMyDetails(): Single<UserDetails> =
         api.getUserDetails(null)
-            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { userResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getUserDetails(userId: Long): Single<UserDetails> =
         api.getUserDetails(userId)
-            .map { userResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { userResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun followUser(userId: Long): Completable =
         api.followUser(userId)

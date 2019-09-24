@@ -25,18 +25,21 @@ class ForumRepositoryImpl @Inject constructor(
                 RequestParams.Forum.COUNTERS
             )
         )
-            .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { forumResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getMyFollowingForums(cursor: String?): Single<PagedList<Forum>> =
         api.getFollowingForums(null, cursor)
-            .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { forumResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getUserFollowingForums(userId: Long, cursor: String?): Single<PagedList<Forum>> =
         api.getFollowingForums(userId, cursor)
-            .map { forumResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { forumResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun followForum(forumId: String): Completable =
         api.followForum(forumId)

@@ -16,6 +16,7 @@ class ModeratorRepositoryImpl @Inject constructor(
 
     override fun getForumModerators(forumId: String): Single<PagedList<User>> =
         api.getModerators(forumId)
-            .map { moderatorResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { moderatorResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 }

@@ -16,6 +16,7 @@ class FollowerRepositoryImpl @Inject constructor(
 
     override fun getUserFollowers(userId: Long, cursor: String?): Single<PagedList<User>> =
         api.getUserFollowers(userId, cursor)
-            .map { followerResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { followerResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 }

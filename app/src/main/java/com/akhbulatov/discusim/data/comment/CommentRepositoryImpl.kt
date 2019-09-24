@@ -21,6 +21,7 @@ class CommentRepositoryImpl @Inject constructor(
             cursor,
             listOf(RequestParams.Comment.DISCUSSION)
         )
-            .map { commentResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { commentResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 }

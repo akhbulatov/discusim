@@ -24,8 +24,9 @@ class DiscussionRepositoryImpl @Inject constructor(
             listOf(RequestParams.Discussion.AUTHOR),
             listOf(RequestParams.Discussion.TOPICS)
         )
-            .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { discussionResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getDiscussions(forumId: String, cursor: String?): Single<PagedList<Discussion>> =
         api.getDiscussions(
@@ -34,30 +35,34 @@ class DiscussionRepositoryImpl @Inject constructor(
             listOf(RequestParams.Discussion.AUTHOR),
             listOf(RequestParams.Discussion.TOPICS)
         )
-            .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { discussionResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getHotDiscussions(forumId: String): Single<PagedList<Discussion>> =
         api.getHotDiscussions(
             forumId,
             listOf(RequestParams.Discussion.AUTHOR)
         )
-            .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { discussionResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun getPopularDiscussions(forumId: String): Single<PagedList<Discussion>> =
         api.getPopularDiscussions(
             forumId,
             listOf(RequestParams.Discussion.AUTHOR)
         )
-            .map { discussionResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { discussionResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 
     override fun voteDiscussion(discussionId: Long, voteType: Vote.Type): Single<Vote.Type> =
         api.voteDiscussion(
             discussionId,
             voteResponseMapper.map(voteType)
         )
-            .map { voteResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { voteResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 }

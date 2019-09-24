@@ -16,6 +16,7 @@ class TopicRepositoryImpl @Inject constructor(
 
     override fun geTrendingTopics(forumId: String): Single<PagedList<Topic>> =
         api.getTrendingTopics(forumId.substringAfter("channel-")) // TODO
-            .map { topicResponseMapper.map(it) }
             .subscribeOn(schedulers.io())
+            .map { topicResponseMapper.map(it) }
+            .observeOn(schedulers.computation())
 }
